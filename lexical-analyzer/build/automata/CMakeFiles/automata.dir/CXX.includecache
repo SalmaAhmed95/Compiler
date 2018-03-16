@@ -85,6 +85,8 @@ RegexToNfaConverter.hpp
 /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.hpp
 NFA.h
 /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/NFA.h
+stack
+-
 
 /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.hpp
 string
