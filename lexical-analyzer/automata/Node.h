@@ -13,7 +13,9 @@
 typedef int stateID;
 
 struct Edge {
-  stateID from;
+    Edge(stateID i, stateID i1, char i2);
+
+    stateID from;
   stateID to;
   char transition;
 };

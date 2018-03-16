@@ -13,8 +13,7 @@
 
 class DFA : public Automata {
 public:
-    virtual stateID createNode() = 0;
-
+    virtual stateID createNode();
 };
 
 #endif //COMPLIER_NFA_H

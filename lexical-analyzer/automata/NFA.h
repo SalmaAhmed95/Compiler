@@ -14,8 +14,6 @@
 class NFA : public Automata {
 public:
     stateID createNode();
-
-
 };
 
 #endif //COMPLIER_NFA_H

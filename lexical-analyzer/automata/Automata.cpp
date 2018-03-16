@@ -45,3 +45,13 @@ std::vector<TransEdges> Automata :: getTransitions(stateID curState) {
     Node* curNode = graph[curState];
     return curNode->getTransitions();
 }
+
+bool Automata::isAcceptance(stateID stateId) {
+    //TODO implement this function
+    return false;
+}
+
+bool Automata::setAcceptance(stateID stateId, bool acceptance) {
+
+    return false;
+}
