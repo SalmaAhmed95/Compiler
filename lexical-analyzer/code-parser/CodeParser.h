@@ -17,6 +17,10 @@ public:
 
     void setStartIndex(int i);
 
+    int getCurIndex();
+
+    std::string getSubString(int startIndex , int lastIndex);
+
     bool hasChars();
 
 private:
