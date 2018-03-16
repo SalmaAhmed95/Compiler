@@ -1,0 +1,4 @@
+cmake_minimum_required(VERSION 2.8)
+project(Compiler)
+add_subdirectory(grammar-parser)
+add_subdirectory(main)
