@@ -12,15 +12,14 @@ class DfaNode : public Node {
 
 public:
 
-    virtual DfaNode();
 
-    virtual DfaNode(stateID id);
+     DfaNode(stateID id);
 
-    virtual void addTransition(stateID node_to, char transition);
+     void addTransition(stateID node_to, char transition);
 
-    virtual std::vector<TransEdgesDfa> getTransitions();
+    std::vector<TransEdges> getTransitions();
 
-    virtual std::vector<stateID> getCertainTransitions(char transition);
+    std::vector<stateID> getTransitions(char transition);
 
 private:
 

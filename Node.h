@@ -9,6 +9,7 @@
 #include <vector>
 #include <set>
 
+
 typedef int stateID;
 
 struct Edge {
@@ -22,7 +23,7 @@ struct AcceptanceSpec {
     std::string *type;
 };
 
-struct TransEdgesNfa {
+struct TransEdges {
     char transition;
     std::vector<stateID> nextStates;
 };
@@ -37,18 +38,19 @@ class Node {
 
 public:
 
-    virtual Node() = 0;
+    Node();
 
     void setAcceptanceState(AcceptanceSpec *spec);
+    AcceptanceSpec *getAcceptance();
 
     virtual void addTransition(stateID node_to, char transition) = 0;
-
+    virtual std::vector<stateID> getTransitions(char transition) = 0;
+    virtual std::vector<TransEdges> getTransitions() = 0;
 
 protected:
     stateID ID;
     bool acceptanceState;
-    AcceptanceSpec spec;
-
+    AcceptanceSpec* spec;
     Node(stateID id);
 };
 

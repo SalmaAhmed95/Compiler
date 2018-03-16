@@ -11,19 +11,18 @@ class NfaNode : public Node {
 
 public:
 
-    virtual NfaNode();
 
-    virtual NfaNode(stateID id);
+    NfaNode(stateID id);
 
-    virtual void addTransition(stateID node_to, char transition);
+    void addTransition(stateID node_to, char transition);
 
-    virtual std::vector<TransEdgesNfa> getTransitions();
+    std::vector<TransEdges> getTransitions();
 
-    virtual std::vector<stateID> getCertainTransitions(char transition);
+    std::vector<stateID> getTransitions(char transition);
 
 private:
 
-    std::map<int, std::vector<int> > transisions;
+    std::multimap<char, stateID> transitions;
 
 
 };

@@ -15,12 +15,6 @@ class DFA : public Automata {
 public:
     virtual stateID createNode() = 0;
 
-    stateID getTransition(stateID curState, char transition);
-
-    std::vector<TransEdgesDfa> getTransitions();
-
-
-
 };
 
 #endif //COMPLIER_NFA_H

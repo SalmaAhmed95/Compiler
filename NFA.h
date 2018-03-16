@@ -13,11 +13,8 @@
 
 class NFA : public Automata {
 public:
-    virtual stateID createNode() = 0;
+    stateID createNode();
 
-    std::vector<stateID> getTransitions(stateID curState, char transition);
-
-    std::vector<TransEdgesNfa> getTransitions();
 
 };
 
