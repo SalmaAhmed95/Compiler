@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp" "/home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o"
-  "/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Properties.cpp" "/home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o"
-  "/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Token.cpp" "/home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o"
+  "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp" "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o"
+  "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Properties.cpp" "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o"
+  "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.cpp" "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

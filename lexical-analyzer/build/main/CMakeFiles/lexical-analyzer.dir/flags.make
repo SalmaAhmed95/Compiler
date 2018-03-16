@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser 
+CXX_INCLUDES = -I/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser 
 

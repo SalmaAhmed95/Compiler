@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/moamen/Desktop/Compiler/lexical-analyzer
+CMAKE_SOURCE_DIR = /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/moamen/Desktop/Compiler/lexical-analyzer/build
+CMAKE_BINARY_DIR = /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -124,14 +124,14 @@ install/local/fast: install/local
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/progress.marks
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles 0
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/progress.marks
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/clean
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/clean
 .PHONY : clean
 
 # The main clean target
@@ -141,22 +141,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/preinstall
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/preinstall
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 grammar-parser/CMakeFiles/grammar-parser.dir/rule:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/CMakeFiles/grammar-parser.dir/rule
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f CMakeFiles/Makefile2 grammar-parser/CMakeFiles/grammar-parser.dir/rule
 .PHONY : grammar-parser/CMakeFiles/grammar-parser.dir/rule
 
 # Convenience name for target.
@@ -166,7 +166,7 @@ grammar-parser: grammar-parser/CMakeFiles/grammar-parser.dir/rule
 
 # fast build rule for target.
 grammar-parser/fast:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/build
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/build
 .PHONY : grammar-parser/fast
 
 ProductionParser.o: ProductionParser.cpp.o
@@ -175,7 +175,7 @@ ProductionParser.o: ProductionParser.cpp.o
 
 # target to build an object file
 ProductionParser.cpp.o:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o
 .PHONY : ProductionParser.cpp.o
 
 ProductionParser.i: ProductionParser.cpp.i
@@ -184,7 +184,7 @@ ProductionParser.i: ProductionParser.cpp.i
 
 # target to preprocess a source file
 ProductionParser.cpp.i:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.i
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.i
 .PHONY : ProductionParser.cpp.i
 
 ProductionParser.s: ProductionParser.cpp.s
@@ -193,7 +193,7 @@ ProductionParser.s: ProductionParser.cpp.s
 
 # target to generate assembly for a file
 ProductionParser.cpp.s:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.s
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.s
 .PHONY : ProductionParser.cpp.s
 
 Properties.o: Properties.cpp.o
@@ -202,7 +202,7 @@ Properties.o: Properties.cpp.o
 
 # target to build an object file
 Properties.cpp.o:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o
 .PHONY : Properties.cpp.o
 
 Properties.i: Properties.cpp.i
@@ -211,7 +211,7 @@ Properties.i: Properties.cpp.i
 
 # target to preprocess a source file
 Properties.cpp.i:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.i
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.i
 .PHONY : Properties.cpp.i
 
 Properties.s: Properties.cpp.s
@@ -220,7 +220,7 @@ Properties.s: Properties.cpp.s
 
 # target to generate assembly for a file
 Properties.cpp.s:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.s
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.s
 .PHONY : Properties.cpp.s
 
 Token.o: Token.cpp.o
@@ -229,7 +229,7 @@ Token.o: Token.cpp.o
 
 # target to build an object file
 Token.cpp.o:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o
 .PHONY : Token.cpp.o
 
 Token.i: Token.cpp.i
@@ -238,7 +238,7 @@ Token.i: Token.cpp.i
 
 # target to preprocess a source file
 Token.cpp.i:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.i
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.i
 .PHONY : Token.cpp.i
 
 Token.s: Token.cpp.s
@@ -247,7 +247,7 @@ Token.s: Token.cpp.s
 
 # target to generate assembly for a file
 Token.cpp.s:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.s
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.s
 .PHONY : Token.cpp.s
 
 # Help Target
@@ -283,6 +283,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

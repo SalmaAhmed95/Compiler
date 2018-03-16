@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/moamen/Desktop/Compiler/lexical-analyzer
+CMAKE_SOURCE_DIR = /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/moamen/Desktop/Compiler/lexical-analyzer/build
+CMAKE_BINARY_DIR = /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -124,9 +124,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles /home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -180,6 +180,19 @@ lexical-analyzer/fast:
 	$(MAKE) -f main/CMakeFiles/lexical-analyzer.dir/build.make main/CMakeFiles/lexical-analyzer.dir/build
 .PHONY : lexical-analyzer/fast
 
+#=============================================================================
+# Target rules for targets named automata
+
+# Build rule for target.
+automata: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 automata
+.PHONY : automata
+
+# fast build rule for target.
+automata/fast:
+	$(MAKE) -f automata/CMakeFiles/automata.dir/build.make automata/CMakeFiles/automata.dir/build
+.PHONY : automata/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -194,6 +207,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... grammar-parser"
 	@echo "... lexical-analyzer"
+	@echo "... automata"
 .PHONY : help
 
 

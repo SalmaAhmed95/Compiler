@@ -1,4 +1,4 @@
-# Install script for directory: /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser
+# Install script for directory: /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

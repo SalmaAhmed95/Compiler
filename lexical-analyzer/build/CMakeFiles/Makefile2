@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/moamen/Desktop/Compiler/lexical-analyzer
+CMAKE_SOURCE_DIR = /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/moamen/Desktop/Compiler/lexical-analyzer/build
+CMAKE_BINARY_DIR = /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build
 
 #=============================================================================
 # Directory level rules for directory grammar-parser
@@ -84,7 +84,7 @@ grammar-parser/preinstall:
 grammar-parser/CMakeFiles/grammar-parser.dir/all:
 	$(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/depend
 	$(MAKE) -f grammar-parser/CMakeFiles/grammar-parser.dir/build.make grammar-parser/CMakeFiles/grammar-parser.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=1,2,3,4 "Built target grammar-parser"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=8,9,10,11 "Built target grammar-parser"
 .PHONY : grammar-parser/CMakeFiles/grammar-parser.dir/all
 
 # Include target in all.
@@ -94,9 +94,9 @@ all: grammar-parser/CMakeFiles/grammar-parser.dir/all
 
 # Build rule for subdir invocation for target.
 grammar-parser/CMakeFiles/grammar-parser.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 grammar-parser/CMakeFiles/grammar-parser.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles 0
 .PHONY : grammar-parser/CMakeFiles/grammar-parser.dir/rule
 
 # Convenience name for target.
@@ -139,7 +139,7 @@ main/preinstall:
 main/CMakeFiles/lexical-analyzer.dir/all: grammar-parser/CMakeFiles/grammar-parser.dir/all
 	$(MAKE) -f main/CMakeFiles/lexical-analyzer.dir/build.make main/CMakeFiles/lexical-analyzer.dir/depend
 	$(MAKE) -f main/CMakeFiles/lexical-analyzer.dir/build.make main/CMakeFiles/lexical-analyzer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=5,6 "Built target lexical-analyzer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=12,13 "Built target lexical-analyzer"
 .PHONY : main/CMakeFiles/lexical-analyzer.dir/all
 
 # Include target in all.
@@ -149,9 +149,9 @@ all: main/CMakeFiles/lexical-analyzer.dir/all
 
 # Build rule for subdir invocation for target.
 main/CMakeFiles/lexical-analyzer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 main/CMakeFiles/lexical-analyzer.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles 0
 .PHONY : main/CMakeFiles/lexical-analyzer.dir/rule
 
 # Convenience name for target.
@@ -166,6 +166,61 @@ main/CMakeFiles/lexical-analyzer.dir/clean:
 
 # clean rule for target.
 clean: main/CMakeFiles/lexical-analyzer.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory automata
+
+# Convenience name for "all" pass in the directory.
+automata/all: automata/CMakeFiles/automata.dir/all
+
+.PHONY : automata/all
+
+# Convenience name for "clean" pass in the directory.
+automata/clean: automata/CMakeFiles/automata.dir/clean
+
+.PHONY : automata/clean
+
+# Convenience name for "preinstall" pass in the directory.
+automata/preinstall:
+
+.PHONY : automata/preinstall
+
+#=============================================================================
+# Target rules for target automata/CMakeFiles/automata.dir
+
+# All Build rule for target.
+automata/CMakeFiles/automata.dir/all:
+	$(MAKE) -f automata/CMakeFiles/automata.dir/build.make automata/CMakeFiles/automata.dir/depend
+	$(MAKE) -f automata/CMakeFiles/automata.dir/build.make automata/CMakeFiles/automata.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target automata"
+.PHONY : automata/CMakeFiles/automata.dir/all
+
+# Include target in all.
+all: automata/CMakeFiles/automata.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+automata/CMakeFiles/automata.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles 7
+	$(MAKE) -f CMakeFiles/Makefile2 automata/CMakeFiles/automata.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles 0
+.PHONY : automata/CMakeFiles/automata.dir/rule
+
+# Convenience name for target.
+automata: automata/CMakeFiles/automata.dir/rule
+
+.PHONY : automata
+
+# clean rule for target.
+automata/CMakeFiles/automata.dir/clean:
+	$(MAKE) -f automata/CMakeFiles/automata.dir/build.make automata/CMakeFiles/automata.dir/clean
+.PHONY : automata/CMakeFiles/automata.dir/clean
+
+# clean rule for target.
+clean: automata/CMakeFiles/automata.dir/clean
 
 .PHONY : clean
 

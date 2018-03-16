@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
 Properties.hpp
-/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
 Token.hpp
-/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Token.hpp
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.hpp
 ctype.h
 -
 map
@@ -22,7 +22,7 @@ stack
 vector
 -
 
-/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
 fstream
 -
 iostream
@@ -32,11 +32,11 @@ map
 string
 -
 
-/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Token.hpp
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.hpp
 string
 -
 
-/home/moamen/Desktop/Compiler/lexical-analyzer/main/main.cpp
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/main/main.cpp
 ../grammar-parser/ProductionParser.hpp
-/home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
 

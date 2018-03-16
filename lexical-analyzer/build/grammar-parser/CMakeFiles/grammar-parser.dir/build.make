@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/moamen/Desktop/Compiler/lexical-analyzer
+CMAKE_SOURCE_DIR = /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/moamen/Desktop/Compiler/lexical-analyzer/build
+CMAKE_BINARY_DIR = /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build
 
 # Include any dependencies generated for this target.
 include grammar-parser/CMakeFiles/grammar-parser.dir/depend.make
@@ -59,16 +59,16 @@ include grammar-parser/CMakeFiles/grammar-parser.dir/flags.make
 
 grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o: grammar-parser/CMakeFiles/grammar-parser.dir/flags.make
 grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o: ../grammar-parser/ProductionParser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o -c /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o"
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o -c /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp
 
 grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grammar-parser.dir/ProductionParser.cpp.i"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp > CMakeFiles/grammar-parser.dir/ProductionParser.cpp.i
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp > CMakeFiles/grammar-parser.dir/ProductionParser.cpp.i
 
 grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grammar-parser.dir/ProductionParser.cpp.s"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp -o CMakeFiles/grammar-parser.dir/ProductionParser.cpp.s
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp -o CMakeFiles/grammar-parser.dir/ProductionParser.cpp.s
 
 grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o.requires:
 
@@ -83,16 +83,16 @@ grammar-parser/CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o.provides.bui
 
 grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o: grammar-parser/CMakeFiles/grammar-parser.dir/flags.make
 grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o: ../grammar-parser/Properties.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar-parser.dir/Properties.cpp.o -c /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Properties.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o"
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar-parser.dir/Properties.cpp.o -c /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Properties.cpp
 
 grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grammar-parser.dir/Properties.cpp.i"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Properties.cpp > CMakeFiles/grammar-parser.dir/Properties.cpp.i
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Properties.cpp > CMakeFiles/grammar-parser.dir/Properties.cpp.i
 
 grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grammar-parser.dir/Properties.cpp.s"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Properties.cpp -o CMakeFiles/grammar-parser.dir/Properties.cpp.s
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Properties.cpp -o CMakeFiles/grammar-parser.dir/Properties.cpp.s
 
 grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o.requires:
 
@@ -107,16 +107,16 @@ grammar-parser/CMakeFiles/grammar-parser.dir/Properties.cpp.o.provides.build: gr
 
 grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o: grammar-parser/CMakeFiles/grammar-parser.dir/flags.make
 grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o: ../grammar-parser/Token.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar-parser.dir/Token.cpp.o -c /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Token.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o"
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/grammar-parser.dir/Token.cpp.o -c /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.cpp
 
 grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/grammar-parser.dir/Token.cpp.i"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Token.cpp > CMakeFiles/grammar-parser.dir/Token.cpp.i
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.cpp > CMakeFiles/grammar-parser.dir/Token.cpp.i
 
 grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/grammar-parser.dir/Token.cpp.s"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser/Token.cpp -o CMakeFiles/grammar-parser.dir/Token.cpp.s
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.cpp -o CMakeFiles/grammar-parser.dir/Token.cpp.s
 
 grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o.requires:
 
@@ -143,9 +143,9 @@ grammar-parser/libgrammar-parser.a: grammar-parser/CMakeFiles/grammar-parser.dir
 grammar-parser/libgrammar-parser.a: grammar-parser/CMakeFiles/grammar-parser.dir/Token.cpp.o
 grammar-parser/libgrammar-parser.a: grammar-parser/CMakeFiles/grammar-parser.dir/build.make
 grammar-parser/libgrammar-parser.a: grammar-parser/CMakeFiles/grammar-parser.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/moamen/Desktop/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libgrammar-parser.a"
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && $(CMAKE_COMMAND) -P CMakeFiles/grammar-parser.dir/cmake_clean_target.cmake
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/grammar-parser.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libgrammar-parser.a"
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && $(CMAKE_COMMAND) -P CMakeFiles/grammar-parser.dir/cmake_clean_target.cmake
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/grammar-parser.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 grammar-parser/CMakeFiles/grammar-parser.dir/build: grammar-parser/libgrammar-parser.a
@@ -159,10 +159,10 @@ grammar-parser/CMakeFiles/grammar-parser.dir/requires: grammar-parser/CMakeFiles
 .PHONY : grammar-parser/CMakeFiles/grammar-parser.dir/requires
 
 grammar-parser/CMakeFiles/grammar-parser.dir/clean:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser && $(CMAKE_COMMAND) -P CMakeFiles/grammar-parser.dir/cmake_clean.cmake
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser && $(CMAKE_COMMAND) -P CMakeFiles/grammar-parser.dir/cmake_clean.cmake
 .PHONY : grammar-parser/CMakeFiles/grammar-parser.dir/clean
 
 grammar-parser/CMakeFiles/grammar-parser.dir/depend:
-	cd /home/moamen/Desktop/Compiler/lexical-analyzer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/moamen/Desktop/Compiler/lexical-analyzer /home/moamen/Desktop/Compiler/lexical-analyzer/grammar-parser /home/moamen/Desktop/Compiler/lexical-analyzer/build /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser /home/moamen/Desktop/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/grammar-parser.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/grammar-parser/CMakeFiles/grammar-parser.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : grammar-parser/CMakeFiles/grammar-parser.dir/depend
 

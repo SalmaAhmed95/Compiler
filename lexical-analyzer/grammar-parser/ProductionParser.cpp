@@ -44,10 +44,6 @@ ProductionParser::loadLexicalRules(std::string lexicalRulesFileName,
     }
     priority--;
   }
-  for (int i = 0; i < formulatedTokens.size(); i++) {
-    std::cout << formulatedTokens[i]->getType() << " "
-              << formulatedTokens[i]->getPostfixRegix() << '\n';
-  }
   return formulatedTokens;
 }
 

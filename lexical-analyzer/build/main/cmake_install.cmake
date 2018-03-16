@@ -1,4 +1,4 @@
-# Install script for directory: /home/moamen/Desktop/Compiler/lexical-analyzer/main
+# Install script for directory: /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/lexical-analyzer"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/moamen/Desktop/Compiler/lexical-analyzer/build/main/lexical-analyzer")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/main/lexical-analyzer")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/lexical-analyzer" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/lexical-analyzer")
     if(CMAKE_INSTALL_DO_STRIP)
