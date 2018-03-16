@@ -5,10 +5,7 @@
 #include "NfaNode.h"
 #include <iostream>
 
-NfaNode::NfaNode(stateID id) {
-  ID = id;
-  acceptanceState = false;
-}
+NfaNode::NfaNode(stateID id) : Node(id) {}
 
 void NfaNode::addTransition(stateID node_to, char transition) {
   transitions.insert(std::pair<char, stateID>(transition, node_to));

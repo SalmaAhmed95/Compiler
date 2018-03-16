@@ -331,6 +331,33 @@ Node.cpp.s:
 	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f automata/CMakeFiles/automata.dir/build.make automata/CMakeFiles/automata.dir/Node.cpp.s
 .PHONY : Node.cpp.s
 
+RegexToNfaConverter.o: RegexToNfaConverter.cpp.o
+
+.PHONY : RegexToNfaConverter.o
+
+# target to build an object file
+RegexToNfaConverter.cpp.o:
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f automata/CMakeFiles/automata.dir/build.make automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o
+.PHONY : RegexToNfaConverter.cpp.o
+
+RegexToNfaConverter.i: RegexToNfaConverter.cpp.i
+
+.PHONY : RegexToNfaConverter.i
+
+# target to preprocess a source file
+RegexToNfaConverter.cpp.i:
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f automata/CMakeFiles/automata.dir/build.make automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.i
+.PHONY : RegexToNfaConverter.cpp.i
+
+RegexToNfaConverter.s: RegexToNfaConverter.cpp.s
+
+.PHONY : RegexToNfaConverter.s
+
+# target to generate assembly for a file
+RegexToNfaConverter.cpp.s:
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build && $(MAKE) -f automata/CMakeFiles/automata.dir/build.make automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.s
+.PHONY : RegexToNfaConverter.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -362,6 +389,9 @@ help:
 	@echo "... Node.o"
 	@echo "... Node.i"
 	@echo "... Node.s"
+	@echo "... RegexToNfaConverter.o"
+	@echo "... RegexToNfaConverter.i"
+	@echo "... RegexToNfaConverter.s"
 .PHONY : help
 
 

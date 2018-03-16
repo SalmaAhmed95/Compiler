@@ -201,6 +201,30 @@ automata/CMakeFiles/automata.dir/Node.cpp.o.provides: automata/CMakeFiles/automa
 automata/CMakeFiles/automata.dir/Node.cpp.o.provides.build: automata/CMakeFiles/automata.dir/Node.cpp.o
 
 
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o: automata/CMakeFiles/automata.dir/flags.make
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o: ../automata/RegexToNfaConverter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o"
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/automata && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o -c /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/RegexToNfaConverter.cpp
+
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/automata.dir/RegexToNfaConverter.cpp.i"
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/automata && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/RegexToNfaConverter.cpp > CMakeFiles/automata.dir/RegexToNfaConverter.cpp.i
+
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/automata.dir/RegexToNfaConverter.cpp.s"
+	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/automata && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/RegexToNfaConverter.cpp -o CMakeFiles/automata.dir/RegexToNfaConverter.cpp.s
+
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o.requires:
+
+.PHONY : automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o.requires
+
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o.provides: automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o.requires
+	$(MAKE) -f automata/CMakeFiles/automata.dir/build.make automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o.provides.build
+.PHONY : automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o.provides
+
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o.provides.build: automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o
+
+
 # Object files for target automata
 automata_OBJECTS = \
 "CMakeFiles/automata.dir/Automata.cpp.o" \
@@ -208,7 +232,8 @@ automata_OBJECTS = \
 "CMakeFiles/automata.dir/DfaNode.cpp.o" \
 "CMakeFiles/automata.dir/NFA.cpp.o" \
 "CMakeFiles/automata.dir/NfaNode.cpp.o" \
-"CMakeFiles/automata.dir/Node.cpp.o"
+"CMakeFiles/automata.dir/Node.cpp.o" \
+"CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o"
 
 # External object files for target automata
 automata_EXTERNAL_OBJECTS =
@@ -219,9 +244,10 @@ automata/libautomata.a: automata/CMakeFiles/automata.dir/DfaNode.cpp.o
 automata/libautomata.a: automata/CMakeFiles/automata.dir/NFA.cpp.o
 automata/libautomata.a: automata/CMakeFiles/automata.dir/NfaNode.cpp.o
 automata/libautomata.a: automata/CMakeFiles/automata.dir/Node.cpp.o
+automata/libautomata.a: automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o
 automata/libautomata.a: automata/CMakeFiles/automata.dir/build.make
 automata/libautomata.a: automata/CMakeFiles/automata.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libautomata.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libautomata.a"
 	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/automata && $(CMAKE_COMMAND) -P CMakeFiles/automata.dir/cmake_clean_target.cmake
 	cd /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/automata && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/automata.dir/link.txt --verbose=$(VERBOSE)
 
@@ -236,6 +262,7 @@ automata/CMakeFiles/automata.dir/requires: automata/CMakeFiles/automata.dir/DfaN
 automata/CMakeFiles/automata.dir/requires: automata/CMakeFiles/automata.dir/NFA.cpp.o.requires
 automata/CMakeFiles/automata.dir/requires: automata/CMakeFiles/automata.dir/NfaNode.cpp.o.requires
 automata/CMakeFiles/automata.dir/requires: automata/CMakeFiles/automata.dir/Node.cpp.o.requires
+automata/CMakeFiles/automata.dir/requires: automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o.requires
 
 .PHONY : automata/CMakeFiles/automata.dir/requires
 

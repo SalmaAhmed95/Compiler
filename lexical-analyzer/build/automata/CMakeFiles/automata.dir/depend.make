@@ -28,3 +28,11 @@ automata/CMakeFiles/automata.dir/NfaNode.cpp.o: ../automata/Node.h
 automata/CMakeFiles/automata.dir/Node.cpp.o: ../automata/Node.cpp
 automata/CMakeFiles/automata.dir/Node.cpp.o: ../automata/Node.h
 
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o: ../automata/Automata.h
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o: ../automata/NFA.h
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o: ../automata/NfaNode.h
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o: ../automata/Node.h
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o: ../automata/RegexToNfaConverter.cpp
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o: ../automata/RegexToNfaConverter.hpp
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o: ../grammar-parser/Token.hpp
+

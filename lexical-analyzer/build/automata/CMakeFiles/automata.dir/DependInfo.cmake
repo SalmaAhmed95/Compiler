@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/NFA.cpp" "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/automata/CMakeFiles/automata.dir/NFA.cpp.o"
   "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/NfaNode.cpp" "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/automata/CMakeFiles/automata.dir/NfaNode.cpp.o"
   "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/Node.cpp" "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/automata/CMakeFiles/automata.dir/Node.cpp.o"
+  "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/RegexToNfaConverter.cpp" "/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/build/automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
