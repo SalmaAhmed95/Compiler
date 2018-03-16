@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/complier.dir/main.cpp.o CMakeFiles/complier.dir/Node.cpp.o CMakeFiles/complier.dir/NFA.cpp.o CMakeFiles/complier.dir/NfaNode.cpp.o CMakeFiles/complier.dir/DfaNode.cpp.o CMakeFiles/complier.dir/Automata.cpp.o CMakeFiles/complier.dir/DFA.cpp.o  -o complier 

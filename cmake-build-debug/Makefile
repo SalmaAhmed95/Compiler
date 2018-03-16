@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/karfass/clion-2017.2.2/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/salma/Downloads/clion-2017.2.2/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/karfass/clion-2017.2.2/bin/cmake/bin/cmake -E remove -f
+RM = /home/salma/Downloads/clion-2017.2.2/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/karfass/CLionProjects/complier
+CMAKE_SOURCE_DIR = /home/salma/Compiler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/karfass/CLionProjects/complier/cmake-build-debug
+CMAKE_BINARY_DIR = /home/salma/Compiler/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/karfass/CLionProjects/complier/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/karfass/clion-2017.2.2/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/salma/Downloads/clion-2017.2.2/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/karfass/clion-2017.2.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/salma/Downloads/clion-2017.2.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/karfass/CLionProjects/complier/cmake-build-debug/CMakeFiles /home/karfass/CLionProjects/complier/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/salma/Compiler/cmake-build-debug/CMakeFiles /home/salma/Compiler/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/karfass/CLionProjects/complier/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/salma/Compiler/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,206 +111,368 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named complier
+# Target rules for targets named Compiler
 
 # Build rule for target.
-complier: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 complier
-.PHONY : complier
+Compiler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Compiler
+.PHONY : Compiler
 
 # fast build rule for target.
-complier/fast:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/build
-.PHONY : complier/fast
+Compiler/fast:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/build
+.PHONY : Compiler/fast
 
-Automata.o: Automata.cpp.o
+lexical-analyzer/automata/Automata.o: lexical-analyzer/automata/Automata.cpp.o
 
-.PHONY : Automata.o
-
-# target to build an object file
-Automata.cpp.o:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/Automata.cpp.o
-.PHONY : Automata.cpp.o
-
-Automata.i: Automata.cpp.i
-
-.PHONY : Automata.i
-
-# target to preprocess a source file
-Automata.cpp.i:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/Automata.cpp.i
-.PHONY : Automata.cpp.i
-
-Automata.s: Automata.cpp.s
-
-.PHONY : Automata.s
-
-# target to generate assembly for a file
-Automata.cpp.s:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/Automata.cpp.s
-.PHONY : Automata.cpp.s
-
-DFA.o: DFA.cpp.o
-
-.PHONY : DFA.o
+.PHONY : lexical-analyzer/automata/Automata.o
 
 # target to build an object file
-DFA.cpp.o:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/DFA.cpp.o
-.PHONY : DFA.cpp.o
+lexical-analyzer/automata/Automata.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/Automata.cpp.o
+.PHONY : lexical-analyzer/automata/Automata.cpp.o
 
-DFA.i: DFA.cpp.i
+lexical-analyzer/automata/Automata.i: lexical-analyzer/automata/Automata.cpp.i
 
-.PHONY : DFA.i
+.PHONY : lexical-analyzer/automata/Automata.i
 
 # target to preprocess a source file
-DFA.cpp.i:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/DFA.cpp.i
-.PHONY : DFA.cpp.i
+lexical-analyzer/automata/Automata.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/Automata.cpp.i
+.PHONY : lexical-analyzer/automata/Automata.cpp.i
 
-DFA.s: DFA.cpp.s
+lexical-analyzer/automata/Automata.s: lexical-analyzer/automata/Automata.cpp.s
 
-.PHONY : DFA.s
+.PHONY : lexical-analyzer/automata/Automata.s
 
 # target to generate assembly for a file
-DFA.cpp.s:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/DFA.cpp.s
-.PHONY : DFA.cpp.s
+lexical-analyzer/automata/Automata.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/Automata.cpp.s
+.PHONY : lexical-analyzer/automata/Automata.cpp.s
 
-DfaNode.o: DfaNode.cpp.o
+lexical-analyzer/automata/DFA.o: lexical-analyzer/automata/DFA.cpp.o
 
-.PHONY : DfaNode.o
+.PHONY : lexical-analyzer/automata/DFA.o
 
 # target to build an object file
-DfaNode.cpp.o:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/DfaNode.cpp.o
-.PHONY : DfaNode.cpp.o
+lexical-analyzer/automata/DFA.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/DFA.cpp.o
+.PHONY : lexical-analyzer/automata/DFA.cpp.o
 
-DfaNode.i: DfaNode.cpp.i
+lexical-analyzer/automata/DFA.i: lexical-analyzer/automata/DFA.cpp.i
 
-.PHONY : DfaNode.i
+.PHONY : lexical-analyzer/automata/DFA.i
 
 # target to preprocess a source file
-DfaNode.cpp.i:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/DfaNode.cpp.i
-.PHONY : DfaNode.cpp.i
+lexical-analyzer/automata/DFA.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/DFA.cpp.i
+.PHONY : lexical-analyzer/automata/DFA.cpp.i
 
-DfaNode.s: DfaNode.cpp.s
+lexical-analyzer/automata/DFA.s: lexical-analyzer/automata/DFA.cpp.s
 
-.PHONY : DfaNode.s
+.PHONY : lexical-analyzer/automata/DFA.s
 
 # target to generate assembly for a file
-DfaNode.cpp.s:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/DfaNode.cpp.s
-.PHONY : DfaNode.cpp.s
+lexical-analyzer/automata/DFA.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/DFA.cpp.s
+.PHONY : lexical-analyzer/automata/DFA.cpp.s
 
-NFA.o: NFA.cpp.o
+lexical-analyzer/automata/DfaNode.o: lexical-analyzer/automata/DfaNode.cpp.o
 
-.PHONY : NFA.o
+.PHONY : lexical-analyzer/automata/DfaNode.o
 
 # target to build an object file
-NFA.cpp.o:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/NFA.cpp.o
-.PHONY : NFA.cpp.o
+lexical-analyzer/automata/DfaNode.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/DfaNode.cpp.o
+.PHONY : lexical-analyzer/automata/DfaNode.cpp.o
 
-NFA.i: NFA.cpp.i
+lexical-analyzer/automata/DfaNode.i: lexical-analyzer/automata/DfaNode.cpp.i
 
-.PHONY : NFA.i
+.PHONY : lexical-analyzer/automata/DfaNode.i
 
 # target to preprocess a source file
-NFA.cpp.i:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/NFA.cpp.i
-.PHONY : NFA.cpp.i
+lexical-analyzer/automata/DfaNode.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/DfaNode.cpp.i
+.PHONY : lexical-analyzer/automata/DfaNode.cpp.i
 
-NFA.s: NFA.cpp.s
+lexical-analyzer/automata/DfaNode.s: lexical-analyzer/automata/DfaNode.cpp.s
 
-.PHONY : NFA.s
+.PHONY : lexical-analyzer/automata/DfaNode.s
 
 # target to generate assembly for a file
-NFA.cpp.s:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/NFA.cpp.s
-.PHONY : NFA.cpp.s
+lexical-analyzer/automata/DfaNode.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/DfaNode.cpp.s
+.PHONY : lexical-analyzer/automata/DfaNode.cpp.s
 
-NfaNode.o: NfaNode.cpp.o
+lexical-analyzer/automata/NFA.o: lexical-analyzer/automata/NFA.cpp.o
 
-.PHONY : NfaNode.o
+.PHONY : lexical-analyzer/automata/NFA.o
 
 # target to build an object file
-NfaNode.cpp.o:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/NfaNode.cpp.o
-.PHONY : NfaNode.cpp.o
+lexical-analyzer/automata/NFA.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NFA.cpp.o
+.PHONY : lexical-analyzer/automata/NFA.cpp.o
 
-NfaNode.i: NfaNode.cpp.i
+lexical-analyzer/automata/NFA.i: lexical-analyzer/automata/NFA.cpp.i
 
-.PHONY : NfaNode.i
+.PHONY : lexical-analyzer/automata/NFA.i
 
 # target to preprocess a source file
-NfaNode.cpp.i:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/NfaNode.cpp.i
-.PHONY : NfaNode.cpp.i
+lexical-analyzer/automata/NFA.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NFA.cpp.i
+.PHONY : lexical-analyzer/automata/NFA.cpp.i
 
-NfaNode.s: NfaNode.cpp.s
+lexical-analyzer/automata/NFA.s: lexical-analyzer/automata/NFA.cpp.s
 
-.PHONY : NfaNode.s
+.PHONY : lexical-analyzer/automata/NFA.s
 
 # target to generate assembly for a file
-NfaNode.cpp.s:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/NfaNode.cpp.s
-.PHONY : NfaNode.cpp.s
+lexical-analyzer/automata/NFA.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NFA.cpp.s
+.PHONY : lexical-analyzer/automata/NFA.cpp.s
 
-Node.o: Node.cpp.o
+lexical-analyzer/automata/NfaNode.o: lexical-analyzer/automata/NfaNode.cpp.o
 
-.PHONY : Node.o
+.PHONY : lexical-analyzer/automata/NfaNode.o
 
 # target to build an object file
-Node.cpp.o:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/Node.cpp.o
-.PHONY : Node.cpp.o
+lexical-analyzer/automata/NfaNode.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaNode.cpp.o
+.PHONY : lexical-analyzer/automata/NfaNode.cpp.o
 
-Node.i: Node.cpp.i
+lexical-analyzer/automata/NfaNode.i: lexical-analyzer/automata/NfaNode.cpp.i
 
-.PHONY : Node.i
+.PHONY : lexical-analyzer/automata/NfaNode.i
 
 # target to preprocess a source file
-Node.cpp.i:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/Node.cpp.i
-.PHONY : Node.cpp.i
+lexical-analyzer/automata/NfaNode.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaNode.cpp.i
+.PHONY : lexical-analyzer/automata/NfaNode.cpp.i
 
-Node.s: Node.cpp.s
+lexical-analyzer/automata/NfaNode.s: lexical-analyzer/automata/NfaNode.cpp.s
 
-.PHONY : Node.s
+.PHONY : lexical-analyzer/automata/NfaNode.s
 
 # target to generate assembly for a file
-Node.cpp.s:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/Node.cpp.s
-.PHONY : Node.cpp.s
+lexical-analyzer/automata/NfaNode.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaNode.cpp.s
+.PHONY : lexical-analyzer/automata/NfaNode.cpp.s
 
-main.o: main.cpp.o
+lexical-analyzer/automata/Node.o: lexical-analyzer/automata/Node.cpp.o
 
-.PHONY : main.o
+.PHONY : lexical-analyzer/automata/Node.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/main.cpp.o
-.PHONY : main.cpp.o
+lexical-analyzer/automata/Node.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.o
+.PHONY : lexical-analyzer/automata/Node.cpp.o
 
-main.i: main.cpp.i
+lexical-analyzer/automata/Node.i: lexical-analyzer/automata/Node.cpp.i
 
-.PHONY : main.i
+.PHONY : lexical-analyzer/automata/Node.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/main.cpp.i
-.PHONY : main.cpp.i
+lexical-analyzer/automata/Node.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.i
+.PHONY : lexical-analyzer/automata/Node.cpp.i
 
-main.s: main.cpp.s
+lexical-analyzer/automata/Node.s: lexical-analyzer/automata/Node.cpp.s
 
-.PHONY : main.s
+.PHONY : lexical-analyzer/automata/Node.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/complier.dir/build.make CMakeFiles/complier.dir/main.cpp.s
-.PHONY : main.cpp.s
+lexical-analyzer/automata/Node.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.s
+.PHONY : lexical-analyzer/automata/Node.cpp.s
+
+lexical-analyzer/code-parser/CodeParser.o: lexical-analyzer/code-parser/CodeParser.cpp.o
+
+.PHONY : lexical-analyzer/code-parser/CodeParser.o
+
+# target to build an object file
+lexical-analyzer/code-parser/CodeParser.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o
+.PHONY : lexical-analyzer/code-parser/CodeParser.cpp.o
+
+lexical-analyzer/code-parser/CodeParser.i: lexical-analyzer/code-parser/CodeParser.cpp.i
+
+.PHONY : lexical-analyzer/code-parser/CodeParser.i
+
+# target to preprocess a source file
+lexical-analyzer/code-parser/CodeParser.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.i
+.PHONY : lexical-analyzer/code-parser/CodeParser.cpp.i
+
+lexical-analyzer/code-parser/CodeParser.s: lexical-analyzer/code-parser/CodeParser.cpp.s
+
+.PHONY : lexical-analyzer/code-parser/CodeParser.s
+
+# target to generate assembly for a file
+lexical-analyzer/code-parser/CodeParser.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.s
+.PHONY : lexical-analyzer/code-parser/CodeParser.cpp.s
+
+lexical-analyzer/grammar-parser/ProductionParser.o: lexical-analyzer/grammar-parser/ProductionParser.cpp.o
+
+.PHONY : lexical-analyzer/grammar-parser/ProductionParser.o
+
+# target to build an object file
+lexical-analyzer/grammar-parser/ProductionParser.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o
+.PHONY : lexical-analyzer/grammar-parser/ProductionParser.cpp.o
+
+lexical-analyzer/grammar-parser/ProductionParser.i: lexical-analyzer/grammar-parser/ProductionParser.cpp.i
+
+.PHONY : lexical-analyzer/grammar-parser/ProductionParser.i
+
+# target to preprocess a source file
+lexical-analyzer/grammar-parser/ProductionParser.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.i
+.PHONY : lexical-analyzer/grammar-parser/ProductionParser.cpp.i
+
+lexical-analyzer/grammar-parser/ProductionParser.s: lexical-analyzer/grammar-parser/ProductionParser.cpp.s
+
+.PHONY : lexical-analyzer/grammar-parser/ProductionParser.s
+
+# target to generate assembly for a file
+lexical-analyzer/grammar-parser/ProductionParser.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.s
+.PHONY : lexical-analyzer/grammar-parser/ProductionParser.cpp.s
+
+lexical-analyzer/grammar-parser/Properties.o: lexical-analyzer/grammar-parser/Properties.cpp.o
+
+.PHONY : lexical-analyzer/grammar-parser/Properties.o
+
+# target to build an object file
+lexical-analyzer/grammar-parser/Properties.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Properties.cpp.o
+.PHONY : lexical-analyzer/grammar-parser/Properties.cpp.o
+
+lexical-analyzer/grammar-parser/Properties.i: lexical-analyzer/grammar-parser/Properties.cpp.i
+
+.PHONY : lexical-analyzer/grammar-parser/Properties.i
+
+# target to preprocess a source file
+lexical-analyzer/grammar-parser/Properties.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Properties.cpp.i
+.PHONY : lexical-analyzer/grammar-parser/Properties.cpp.i
+
+lexical-analyzer/grammar-parser/Properties.s: lexical-analyzer/grammar-parser/Properties.cpp.s
+
+.PHONY : lexical-analyzer/grammar-parser/Properties.s
+
+# target to generate assembly for a file
+lexical-analyzer/grammar-parser/Properties.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Properties.cpp.s
+.PHONY : lexical-analyzer/grammar-parser/Properties.cpp.s
+
+lexical-analyzer/grammar-parser/Token.o: lexical-analyzer/grammar-parser/Token.cpp.o
+
+.PHONY : lexical-analyzer/grammar-parser/Token.o
+
+# target to build an object file
+lexical-analyzer/grammar-parser/Token.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.o
+.PHONY : lexical-analyzer/grammar-parser/Token.cpp.o
+
+lexical-analyzer/grammar-parser/Token.i: lexical-analyzer/grammar-parser/Token.cpp.i
+
+.PHONY : lexical-analyzer/grammar-parser/Token.i
+
+# target to preprocess a source file
+lexical-analyzer/grammar-parser/Token.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.i
+.PHONY : lexical-analyzer/grammar-parser/Token.cpp.i
+
+lexical-analyzer/grammar-parser/Token.s: lexical-analyzer/grammar-parser/Token.cpp.s
+
+.PHONY : lexical-analyzer/grammar-parser/Token.s
+
+# target to generate assembly for a file
+lexical-analyzer/grammar-parser/Token.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.s
+.PHONY : lexical-analyzer/grammar-parser/Token.cpp.s
+
+lexical-analyzer/main/main.o: lexical-analyzer/main/main.cpp.o
+
+.PHONY : lexical-analyzer/main/main.o
+
+# target to build an object file
+lexical-analyzer/main/main.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o
+.PHONY : lexical-analyzer/main/main.cpp.o
+
+lexical-analyzer/main/main.i: lexical-analyzer/main/main.cpp.i
+
+.PHONY : lexical-analyzer/main/main.i
+
+# target to preprocess a source file
+lexical-analyzer/main/main.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.i
+.PHONY : lexical-analyzer/main/main.cpp.i
+
+lexical-analyzer/main/main.s: lexical-analyzer/main/main.cpp.s
+
+.PHONY : lexical-analyzer/main/main.s
+
+# target to generate assembly for a file
+lexical-analyzer/main/main.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.s
+.PHONY : lexical-analyzer/main/main.cpp.s
+
+lexical-analyzer/pattern-matcher/PatternMatcher.o: lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o
+
+.PHONY : lexical-analyzer/pattern-matcher/PatternMatcher.o
+
+# target to build an object file
+lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o
+.PHONY : lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o
+
+lexical-analyzer/pattern-matcher/PatternMatcher.i: lexical-analyzer/pattern-matcher/PatternMatcher.cpp.i
+
+.PHONY : lexical-analyzer/pattern-matcher/PatternMatcher.i
+
+# target to preprocess a source file
+lexical-analyzer/pattern-matcher/PatternMatcher.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.i
+.PHONY : lexical-analyzer/pattern-matcher/PatternMatcher.cpp.i
+
+lexical-analyzer/pattern-matcher/PatternMatcher.s: lexical-analyzer/pattern-matcher/PatternMatcher.cpp.s
+
+.PHONY : lexical-analyzer/pattern-matcher/PatternMatcher.s
+
+# target to generate assembly for a file
+lexical-analyzer/pattern-matcher/PatternMatcher.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.s
+.PHONY : lexical-analyzer/pattern-matcher/PatternMatcher.cpp.s
+
+lexical-analyzer/utils/SymbolTable.o: lexical-analyzer/utils/SymbolTable.cpp.o
+
+.PHONY : lexical-analyzer/utils/SymbolTable.o
+
+# target to build an object file
+lexical-analyzer/utils/SymbolTable.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/utils/SymbolTable.cpp.o
+.PHONY : lexical-analyzer/utils/SymbolTable.cpp.o
+
+lexical-analyzer/utils/SymbolTable.i: lexical-analyzer/utils/SymbolTable.cpp.i
+
+.PHONY : lexical-analyzer/utils/SymbolTable.i
+
+# target to preprocess a source file
+lexical-analyzer/utils/SymbolTable.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/utils/SymbolTable.cpp.i
+.PHONY : lexical-analyzer/utils/SymbolTable.cpp.i
+
+lexical-analyzer/utils/SymbolTable.s: lexical-analyzer/utils/SymbolTable.cpp.s
+
+.PHONY : lexical-analyzer/utils/SymbolTable.s
+
+# target to generate assembly for a file
+lexical-analyzer/utils/SymbolTable.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/utils/SymbolTable.cpp.s
+.PHONY : lexical-analyzer/utils/SymbolTable.cpp.s
 
 # Help Target
 help:
@@ -320,28 +482,46 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... complier"
-	@echo "... Automata.o"
-	@echo "... Automata.i"
-	@echo "... Automata.s"
-	@echo "... DFA.o"
-	@echo "... DFA.i"
-	@echo "... DFA.s"
-	@echo "... DfaNode.o"
-	@echo "... DfaNode.i"
-	@echo "... DfaNode.s"
-	@echo "... NFA.o"
-	@echo "... NFA.i"
-	@echo "... NFA.s"
-	@echo "... NfaNode.o"
-	@echo "... NfaNode.i"
-	@echo "... NfaNode.s"
-	@echo "... Node.o"
-	@echo "... Node.i"
-	@echo "... Node.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... Compiler"
+	@echo "... lexical-analyzer/automata/Automata.o"
+	@echo "... lexical-analyzer/automata/Automata.i"
+	@echo "... lexical-analyzer/automata/Automata.s"
+	@echo "... lexical-analyzer/automata/DFA.o"
+	@echo "... lexical-analyzer/automata/DFA.i"
+	@echo "... lexical-analyzer/automata/DFA.s"
+	@echo "... lexical-analyzer/automata/DfaNode.o"
+	@echo "... lexical-analyzer/automata/DfaNode.i"
+	@echo "... lexical-analyzer/automata/DfaNode.s"
+	@echo "... lexical-analyzer/automata/NFA.o"
+	@echo "... lexical-analyzer/automata/NFA.i"
+	@echo "... lexical-analyzer/automata/NFA.s"
+	@echo "... lexical-analyzer/automata/NfaNode.o"
+	@echo "... lexical-analyzer/automata/NfaNode.i"
+	@echo "... lexical-analyzer/automata/NfaNode.s"
+	@echo "... lexical-analyzer/automata/Node.o"
+	@echo "... lexical-analyzer/automata/Node.i"
+	@echo "... lexical-analyzer/automata/Node.s"
+	@echo "... lexical-analyzer/code-parser/CodeParser.o"
+	@echo "... lexical-analyzer/code-parser/CodeParser.i"
+	@echo "... lexical-analyzer/code-parser/CodeParser.s"
+	@echo "... lexical-analyzer/grammar-parser/ProductionParser.o"
+	@echo "... lexical-analyzer/grammar-parser/ProductionParser.i"
+	@echo "... lexical-analyzer/grammar-parser/ProductionParser.s"
+	@echo "... lexical-analyzer/grammar-parser/Properties.o"
+	@echo "... lexical-analyzer/grammar-parser/Properties.i"
+	@echo "... lexical-analyzer/grammar-parser/Properties.s"
+	@echo "... lexical-analyzer/grammar-parser/Token.o"
+	@echo "... lexical-analyzer/grammar-parser/Token.i"
+	@echo "... lexical-analyzer/grammar-parser/Token.s"
+	@echo "... lexical-analyzer/main/main.o"
+	@echo "... lexical-analyzer/main/main.i"
+	@echo "... lexical-analyzer/main/main.s"
+	@echo "... lexical-analyzer/pattern-matcher/PatternMatcher.o"
+	@echo "... lexical-analyzer/pattern-matcher/PatternMatcher.i"
+	@echo "... lexical-analyzer/pattern-matcher/PatternMatcher.s"
+	@echo "... lexical-analyzer/utils/SymbolTable.o"
+	@echo "... lexical-analyzer/utils/SymbolTable.i"
+	@echo "... lexical-analyzer/utils/SymbolTable.s"
 .PHONY : help
 
 

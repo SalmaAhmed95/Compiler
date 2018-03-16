@@ -9,9 +9,20 @@
 class CodeParser {
 
 public:
-    CodeParser();
+    explicit CodeParser(std::string fileName);
 
-    std::vector<char> getChars(std::string fileName);
+    std::vector<char> parseFile();
+
+    char getChar();
+
+    void setStartIndex(int i);
+
+    bool hasChars();
+
+private:
+    std::string codeFile;
+    int index = 0;
+    std::vector<char> chars;
 
 };
 

@@ -6,7 +6,24 @@
 #define COMPILER_PATTERNMATCHER_H
 
 
+#include "../automata/DFA.h"
+#include "../code-parser/CodeParser.h"
+
+#define  SPACE ' '
+
 class PatternMatcher {
+public:
+    explicit PatternMatcher(DFA *dfa, std::string inputFile);
+    bool findMatch(stateID start);
+    void analyzeCode();
+    void recoveryRoutine();
+
+private:
+    DFA *minDFA;
+    CodeParser *parser;
+    //to insert attribute value and corresponding type once match is found
+    std::multimap<std::string,std::string> analysisTable;
+
 
 };
 
