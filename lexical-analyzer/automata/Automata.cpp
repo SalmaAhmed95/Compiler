@@ -24,9 +24,9 @@ bool Automata::isPHI(stateID curState) {
 }
 
 
-int Automata::getPrecendence(stateID curState) {
+int Automata::getPrecedence(stateID curState) {
     Node *curNode = graph[curState];
-    return curNode->getPrecendence();
+    return curNode->getPrecedence();
 }
 
 std::string Automata::getIdentifier(stateID curState) {

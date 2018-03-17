@@ -15,7 +15,13 @@ class DFA : public Automata {
 public:
 
     stateID createNode();
-    stateID createNode(StateType type, int precendence, std::string *identifier);
+
+    /**
+     * @param type state type (Accepted, PHI, Intermediate)
+     * @param precedence state precedence for matching race condition
+     * @param identifier identifier
+     */
+    stateID createNode(StateType type, int precedence, std::string *identifier);
 
 };
 

@@ -20,7 +20,7 @@ enum StateType {
 struct StateSpec {
     StateType stateType;
     int precedence;
-    std::string identiifer;
+    std::string identifier;
 };
 
 struct TransEdges {
@@ -39,7 +39,7 @@ public:
 
     bool isPHI();
 
-    int getPrecendence();
+    int getPrecedence();
 
     std::string getIdentifier();
 
