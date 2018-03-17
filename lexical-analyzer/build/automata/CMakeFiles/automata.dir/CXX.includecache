@@ -11,10 +11,10 @@ Automata.h
 /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/Automata.h
 
 /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/Automata.h
-set
--
 Node.h
 /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/Node.h
+set
+-
 
 /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/DFA.cpp
 DFA.h
@@ -74,5 +74,21 @@ set
 string
 -
 vector
+-
+
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/RegexToNfaConverter.cpp
+RegexToNfaConverter.hpp
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/RegexToNfaConverter.hpp
+
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/RegexToNfaConverter.hpp
+../grammar-parser/Token.hpp
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.hpp
+NFA.h
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/NFA.h
+stack
+-
+
+/home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.hpp
+string
 -
 

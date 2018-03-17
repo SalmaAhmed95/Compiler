@@ -35,6 +35,8 @@ struct TransEdgesDfa {
   int nextState;
 };
 
+enum StateType { ACCEPTED, PHI, INTERMEDIATE };
+
 class Node {
 
 public:
@@ -49,8 +51,8 @@ public:
 
 protected:
   stateID ID;
-  bool acceptanceState;
-  AcceptanceSpec *spec;
+  StateType stateType;
+  AcceptanceSpec spec;
   Node(stateID id);
 };
 

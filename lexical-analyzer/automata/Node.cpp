@@ -7,16 +7,20 @@ Node::Node() {}
 
 Node::Node(stateID id) {
   Node::ID = id;
-  Node::acceptanceState = false;
+  Node::stateType = INTERMEDIATE;
 }
 
 void Node::setAcceptanceState(AcceptanceSpec *spec) {
-  Node::acceptanceState = true;
-  Node::spec = (AcceptanceSpec *)new AcceptanceSpec;
-  Node::spec->precedence = spec->precedence;
+  Node::stateType = ACCEPTED;
+  Node::spec.precedence = spec->precedence;
   int bufferSize = spec->type.length() + 1;
-  char buffer[bufferSize];
-  spec->type.copy(buffer, bufferSize - 1, 0);
+  Node::spec.type = spec->type.substr(0, bufferSize);
 }
 
-AcceptanceSpec *Node::getAcceptance() { return spec; }
+AcceptanceSpec *Node::getAcceptance() {
+  AcceptanceSpec *copySpec = (AcceptanceSpec *)new AcceptanceSpec;
+  copySpec->precedence = spec.precedence;
+  int bufferSize = spec.type.length() + 1;
+  copySpec->type = spec.type.substr(0, bufferSize);
+  return copySpec;
+}

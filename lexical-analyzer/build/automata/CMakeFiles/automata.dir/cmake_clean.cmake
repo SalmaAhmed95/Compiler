@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/automata.dir/NFA.cpp.o"
   "CMakeFiles/automata.dir/NfaNode.cpp.o"
   "CMakeFiles/automata.dir/Node.cpp.o"
+  "CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o"
   "libautomata.pdb"
   "libautomata.a"
 )

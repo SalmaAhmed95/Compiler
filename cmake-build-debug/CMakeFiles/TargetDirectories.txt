@@ -1,3 +1,0 @@
-/home/karfass/CLionProjects/complier/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/karfass/CLionProjects/complier/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/karfass/CLionProjects/complier/cmake-build-debug/CMakeFiles/complier.dir

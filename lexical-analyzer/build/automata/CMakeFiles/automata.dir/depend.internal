@@ -28,3 +28,11 @@ automata/CMakeFiles/automata.dir/NfaNode.cpp.o
 automata/CMakeFiles/automata.dir/Node.cpp.o
  /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/Node.cpp
  /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/Node.h
+automata/CMakeFiles/automata.dir/RegexToNfaConverter.cpp.o
+ /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/Automata.h
+ /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/NFA.h
+ /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/NfaNode.h
+ /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/Node.h
+ /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/RegexToNfaConverter.cpp
+ /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/automata/RegexToNfaConverter.hpp
+ /home/moamen/Desktop/Comp/Compiler/Compiler/lexical-analyzer/grammar-parser/Token.hpp

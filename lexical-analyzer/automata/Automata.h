@@ -5,39 +5,39 @@
 #ifndef COMPLIER_AUTOMATA_H
 #define COMPLIER_AUTOMATA_H
 
-#include<set>
 #include "Node.h"
+#include <set>
 
-class Automata{
+class Automata {
 
 public:
+  Automata();
 
-    virtual stateID createNode() = 0;
+  virtual stateID createNode() = 0;
 
-    void addTransition(Edge *edge);
+  void addTransition(char transition, stateID from, stateID to);
 
-    void setAcceptance(stateID id, AcceptanceSpec *acceptanceSpec1);
+  void setAcceptance(stateID id, AcceptanceSpec *acceptanceSpec1);
 
-    AcceptanceSpec *getAcceptance(stateID id);
+  AcceptanceSpec *getAcceptance(stateID id);
 
-    stateID getRootID();
+  stateID getRootID();
 
-    std::set<char> getAllAttributes();
+  std::set<char> getAllAttributes();
 
-    stateID getNumberOfStates();
+  stateID getNumberOfStates();
 
-    std::vector<stateID> getTransitions(stateID curState, char transition);
+  std::vector<stateID> getTransitions(stateID curState, char transition);
 
-    std::vector<TransEdges> getTransitions(stateID curState);
+  std::vector<TransEdges> getTransitions(stateID curState);
 
     bool isAcceptance(stateID stateId);
 
     bool setAcceptance(stateID stateId, bool acceptance);
 
 protected:
-    stateID lastNodeID = 0;
-    std::vector<Node*> graph;
-    std::set<char> attributes;
-
+  stateID lastNodeID;
+  std::vector<Node *> graph;
+  std::set<char> attributes;
 };
-#endif //COMPLIER_AUTOMATA_H
+#endif // COMPLIER_AUTOMATA_H
