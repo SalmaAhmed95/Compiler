@@ -10,5 +10,6 @@ int main() {
   //             << '\n';
   // }
   NFA *nfa = RegexToNfaConverter::getNfa(tokens);
+  nfa->print();
   std::cout << "HERE" << std::endl;
 }

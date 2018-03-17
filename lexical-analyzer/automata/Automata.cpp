@@ -54,3 +54,32 @@ void Automata::setStateSpec(stateID nodeId, int precedence,
   Node *node = graph[nodeId];
   node->setStateSpec(precedence, tokenClass, stateType);
 }
+
+void Automata::print() {
+  stateID nodeID = getRootID();
+  bool *visited = new bool[(int)getNumberOfStates()];
+  for (int i = 0; i < (int)getNumberOfStates(); i++) {
+    visited[i] = false;
+  }
+  print(nodeID, visited);
+  delete[] visited;
+}
+
+void Automata::print(stateID nodeID, bool *visited) {
+  visited[nodeID] = true;
+  std::vector<TransEdges> edges = getTransitions(nodeID);
+  if ((int)edges.size() == 0) {
+    return;
+  }
+  for (int i = 0; i < edges.size(); i++) {
+    char trans = edges[i].transition;
+    for (int j = 0; j < edges[i].nextStates.size(); j++) {
+      stateID to = edges[i].nextStates[j];
+      std::cout << "going form " << nodeID << " to " << to << " by " << trans
+                << '\n';
+      if (!visited[to]) {
+        print(to, visited);
+      }
+    }
+  }
+}

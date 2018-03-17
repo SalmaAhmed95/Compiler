@@ -6,6 +6,7 @@
 #define COMPLIER_AUTOMATA_H
 
 #include "Node.h"
+#include <iostream>
 #include <set>
 
 #define ROOT_ID 0
@@ -43,10 +44,15 @@ public:
   void setStateSpec(stateID nodeId, int precedence, std::string tokenClass,
                     StateType stateType);
 
+  void print();
+
 protected:
   stateID lastNodeID;
   std::vector<Node *> graph;
   std::set<char> attributes;
+
+private:
+  void print(stateID nodeID, bool *visited);
 };
 
 #endif // COMPLIER_AUTOMATA_H

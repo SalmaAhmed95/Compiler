@@ -1,30 +1,9 @@
 #include "RegexToNfaConverter.hpp"
 
-bool visited[1000];
-
-void printNfa(stateID id, NFA *nfa) {
-  visited[id] = true;
-  std::vector<TransEdges> edges = nfa->getTransitions(id);
-  if (edges.size() == 0)
-    return;
-  for (int i = 0; i < edges.size(); i++) {
-    char trans = edges[i].transition;
-    for (int j = 0; j < edges[i].nextStates.size(); j++) {
-      stateID to = edges[i].nextStates[j];
-      std::cout << "going form " << id << " to " << to << " by " << trans
-                << '\n';
-      if (!visited[to]) {
-        printNfa(to, nfa);
-      }
-    }
-  }
-}
-
 NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
   NFA *nfa = new NFA();
   stateID rootID = nfa->createNode();
-  std::vector<struct SubNfa *> allNfa;
-  Token *token = new Token("hello", "a+", 10);
+  Token *token = new Token("hello", "a*", 10);
   struct SubNfa *s = convertToken(token, nfa);
   nfa->addTransition(EPS_TRANS, rootID, s->startID);
   for (int i = 0; i < tokens.size(); i++) {
