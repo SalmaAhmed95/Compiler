@@ -18,7 +18,7 @@ public:
 
     virtual stateID createNode() = 0;
 
-    virtual stateID createNode(StateType type, int precendence, std::string identifier) = 0;
+    virtual stateID createNode(StateType type, int precedence, std::string tokenClass) = 0;
 
     void addTransition(char transition, stateID from, stateID to);
 
