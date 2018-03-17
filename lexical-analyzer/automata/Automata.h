@@ -29,7 +29,7 @@ public:
 
     int getPrecedence(stateID curState);
 
-    std::string getIdentifier(stateID curState);
+    std::string getTokenClass(stateID curState);
 
     stateID getRootID();
 

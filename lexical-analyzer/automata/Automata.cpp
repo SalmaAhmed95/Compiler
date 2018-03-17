@@ -29,7 +29,7 @@ int Automata::getPrecedence(stateID curState) {
     return curNode->getPrecedence();
 }
 
-std::string Automata::getIdentifier(stateID curState) {
+std::string Automata::getTokenClass(stateID curState) {
     Node *curNode = graph[curState];
     return curNode->getTokenClass();
 }
