@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgrammar-parser.a  CMakeFiles/grammar-parser.dir/ProductionParser.cpp.o CMakeFiles/grammar-parser.dir/Properties.cpp.o CMakeFiles/grammar-parser.dir/Token.cpp.o
-/usr/bin/ranlib libgrammar-parser.a

@@ -1,8 +1,11 @@
+#ifndef REGEX_TO_NFA_H
+#define REGEX_TO_NFA_H
 #include "../grammar-parser/Token.hpp"
 #include "NFA.h"
+#include <iostream>
 #include <stack>
 
-#define EPS '`'
+#define EPS_TRANS '`'
 #define OR_OP '|'
 #define CONC_OP '#'
 #define STAR_OP '*'
@@ -34,4 +37,7 @@ private:
   static void doUnaryOperation(std::stack<struct SubNfa *> &nfaStack, NFA *nfa,
                                char operation);
   static bool isBinaryOperation(char operation);
+  static bool isUnaryOperation(char operation);
 };
+
+#endif
