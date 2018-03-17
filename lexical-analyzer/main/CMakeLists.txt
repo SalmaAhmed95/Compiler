@@ -1,5 +1,5 @@
 set(Main_SRCS
-        ../automata/main.cpp
+        main.cpp
 )
 
 add_executable(lexical-analyzer

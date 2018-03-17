@@ -38,13 +38,14 @@ NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
 struct SubNfa *RegexToNfaConverter::convertToken(Token *token, NFA *nfa) {
   std::stack<struct SubNfa *> nfaStack;
   std::string postfixRegex = token->getPostfixRegix();
+  std::vector<stateID> createdNodes;
   for (int i = 0; i < (int)postfixRegex.size(); i++) {
     if (isBinaryOperation(postfixRegex[i])) {
-      doBinaryOperation(nfaStack, nfa, postfixRegex[i]);
+      doBinaryOperation(nfaStack, nfa, postfixRegex[i], createdNodes);
     } else if (isUnaryOperation(postfixRegex[i])) {
-      doUnaryOperation(nfaStack, nfa, postfixRegex[i]);
+      doUnaryOperation(nfaStack, nfa, postfixRegex[i], createdNodes);
     } else {
-      nfaStack.push(buildChar(postfixRegex[i], nfa));
+      nfaStack.push(buildChar(postfixRegex[i], nfa, createdNodes));
     }
   }
   if ((int)nfaStack.size() < 1) {
@@ -52,15 +53,14 @@ struct SubNfa *RegexToNfaConverter::convertToken(Token *token, NFA *nfa) {
   }
   struct SubNfa *totalNfaToken = nfaStack.top();
   nfaStack.pop();
-  struct AcceptanceSpec *acceptanceSpec = new AcceptanceSpec;
-  acceptanceSpec->precedence = token->getPriority();
-  acceptanceSpec->type = token->getType();
-  nfa->setAcceptance(totalNfaToken->endID, acceptanceSpec);
+  nfa->setStateSpec(totalNfaToken->endID, token->getPriority(),
+                    token->getType(), ACCEPTED);
   return totalNfaToken;
 }
 
 void RegexToNfaConverter::doBinaryOperation(
-    std::stack<struct SubNfa *> &nfaStack, NFA *nfa, char operation) {
+    std::stack<struct SubNfa *> &nfaStack, NFA *nfa, char operation,
+    std::vector<stateID> &createdNodes) {
   if (nfaStack.size() < 2) {
     return;
   }
@@ -71,7 +71,7 @@ void RegexToNfaConverter::doBinaryOperation(
   struct SubNfa *finalNfa;
   switch (operation) {
   case OR_OP:
-    finalNfa = buildOr(firstNfa, secondNfa, nfa);
+    finalNfa = buildOr(firstNfa, secondNfa, nfa, createdNodes);
     break;
   case CONC_OP:
     finalNfa = buildConcatenate(firstNfa, secondNfa, nfa);
@@ -85,7 +85,8 @@ void RegexToNfaConverter::doBinaryOperation(
 }
 
 void RegexToNfaConverter::doUnaryOperation(
-    std::stack<struct SubNfa *> &nfaStack, NFA *nfa, char operation) {
+    std::stack<struct SubNfa *> &nfaStack, NFA *nfa, char operation,
+    std::vector<stateID> &createdNodes) {
   if (nfaStack.empty()) {
     return;
   }
@@ -94,22 +95,26 @@ void RegexToNfaConverter::doUnaryOperation(
   struct SubNfa *finalNfa;
   switch (operation) {
   case STAR_OP:
-    finalNfa = buildStar(subNfa, nfa);
+    finalNfa = buildStar(subNfa, nfa, createdNodes);
     break;
   case PLUS_OP:
-    finalNfa = buildPlus(subNfa, nfa);
+    finalNfa = buildPlus(subNfa, nfa, createdNodes);
     break;
   default:
-    finalNfa = buildChar(operation, nfa);
+    finalNfa = buildChar(operation, nfa, createdNodes);
     break;
   }
   nfaStack.push(finalNfa);
   delete subNfa;
 }
 
-struct SubNfa *RegexToNfaConverter::buildChar(char transition, NFA *nfa) {
+struct SubNfa *
+RegexToNfaConverter::buildChar(char transition, NFA *nfa,
+                               std::vector<stateID> &createdNodes) {
   stateID startID = nfa->createNode();
   stateID endID = nfa->createNode();
+  createdNodes.push_back(startID);
+  createdNodes.push_back(endID);
   nfa->addTransition(transition, startID, endID);
   return createSubNfa(startID, endID);
 }
@@ -121,11 +126,13 @@ struct SubNfa *RegexToNfaConverter::buildConcatenate(struct SubNfa *firstNfa,
   return createSubNfa(firstNfa->startID, secondNfa->endID);
 }
 
-struct SubNfa *RegexToNfaConverter::buildOr(struct SubNfa *firstNfa,
-                                            struct SubNfa *secondNfa,
-                                            NFA *nfa) {
+struct SubNfa *
+RegexToNfaConverter::buildOr(struct SubNfa *firstNfa, struct SubNfa *secondNfa,
+                             NFA *nfa, std::vector<stateID> &createdNodes) {
   stateID startID = nfa->createNode();
   stateID endID = nfa->createNode();
+  createdNodes.push_back(startID);
+  createdNodes.push_back(endID);
   nfa->addTransition(EPS_TRANS, startID, firstNfa->startID);
   nfa->addTransition(EPS_TRANS, startID, secondNfa->startID);
   nfa->addTransition(EPS_TRANS, firstNfa->endID, endID);
@@ -133,9 +140,13 @@ struct SubNfa *RegexToNfaConverter::buildOr(struct SubNfa *firstNfa,
   return createSubNfa(startID, endID);
 }
 
-struct SubNfa *RegexToNfaConverter::buildStar(struct SubNfa *subNfa, NFA *nfa) {
+struct SubNfa *
+RegexToNfaConverter::buildStar(struct SubNfa *subNfa, NFA *nfa,
+                               std::vector<stateID> &createdNodes) {
   stateID startID = nfa->createNode();
   stateID endID = nfa->createNode();
+  createdNodes.push_back(startID);
+  createdNodes.push_back(endID);
   nfa->addTransition(EPS_TRANS, startID, subNfa->startID);
   nfa->addTransition(EPS_TRANS, startID, endID);
   nfa->addTransition(EPS_TRANS, subNfa->endID, endID);
@@ -143,8 +154,11 @@ struct SubNfa *RegexToNfaConverter::buildStar(struct SubNfa *subNfa, NFA *nfa) {
   return createSubNfa(startID, endID);
 }
 
-struct SubNfa *RegexToNfaConverter::buildPlus(struct SubNfa *subNfa, NFA *nfa) {
+struct SubNfa *
+RegexToNfaConverter::buildPlus(struct SubNfa *subNfa, NFA *nfa,
+                               std::vector<stateID> &createdNodes) {
   stateID endID = nfa->createNode();
+  createdNodes.push_back(endID);
   nfa->addTransition(EPS_TRANS, subNfa->endID, endID);
   nfa->addTransition(EPS_TRANS, subNfa->endID, subNfa->startID);
   return createSubNfa(subNfa->startID, endID);

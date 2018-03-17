@@ -5,18 +5,15 @@
 #ifndef COMPLIER_DFA_H
 #define COMPLIER_DFA_H
 
-#include<string>
-#include <vector>
 #include "Automata.h"
 #include "DfaNode.h"
-
+#include <string>
+#include <vector>
 
 class DFA : public Automata {
 public:
-
-    stateID createNode();
-    stateID createNode(StateType type, int precedence, std::string tokenClass);
-
+  stateID createNode();
+  stateID createNode(StateType type, int precedence, std::string tokenClass);
 };
 
-#endif //COMPLIER_DFA_H
+#endif // COMPLIER_DFA_H

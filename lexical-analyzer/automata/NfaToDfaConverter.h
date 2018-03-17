@@ -5,27 +5,27 @@
 #ifndef COMPILER_NFATODFACONVERTER_H
 #define COMPILER_NFATODFACONVERTER_H
 
-
 #include "DFA.h"
 #include "NFA.h"
 
 struct SetOfNfaStates {
-    StateSpec type;
-    std::set<stateID> states;
+  StateSpec type;
+  std::set<stateID> states;
 };
 
 struct DfaToNfaStates {
-    stateID dfaID;
-    std::set<stateID> states;
+  stateID dfaID;
+  std::set<stateID> states;
 };
 class NfaToDfaConverter {
-    public:
-    DFA *getDFA(NFA *nfa);
+public:
+  DFA *getDFA(NFA *nfa);
 
-   private:
-    NfaToDfaConverter();
-    void constructEpsTransitionTable(std::vector<SetOfNfaStates> *epsTransitions, NFA *nfa);
-    void getEpsTransitionsForState(stateID  curState, SetOfNfaStates *stateEpsTransition, NFA *nfa);
-
+private:
+  NfaToDfaConverter();
+  void constructEpsTransitionTable(std::vector<SetOfNfaStates> *epsTransitions,
+                                   NFA *nfa);
+  void getEpsTransitionsForState(stateID curState,
+                                 SetOfNfaStates *stateEpsTransition, NFA *nfa);
 };
-#endif //COMPILER_NFATODFACONVERTER_H
+#endif // COMPILER_NFATODFACONVERTER_H
