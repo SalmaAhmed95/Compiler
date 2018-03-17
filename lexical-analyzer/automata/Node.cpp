@@ -6,34 +6,35 @@
 Node::Node() {}
 
 Node::Node(stateID id) {
-  Node::ID = id;
-  Node::stateType = INTERMEDIATE;
+    Node::ID = id;
+    Node::stateSpec.stateType = INTERMEDIATE;
+    Node::stateSpec.precedence = 0;
+    Node::stateSpec.identiifer = " ";
 }
 
-void Node::setAcceptanceState(AcceptanceSpec *spec) {
-  Node::stateType = ACCEPTED;
-  Node::spec.precedence = spec->precedence;
-  int bufferSize = spec->type.length() + 1;
-  Node::spec.type = spec->type.substr(0, bufferSize);
+Node::Node(stateID id, StateSpec *spec) {
+    Node::ID = id;
+    Node::stateSpec.stateType = spec->stateType;
+    Node::stateSpec.precedence = spec->precedence;
+    int bufferSize = spec->identiifer.length() + 1;
+    Node::stateSpec.identiifer = spec->identiifer.substr(0, bufferSize);
 }
 
-AcceptanceSpec *Node::getAcceptance() {
-  AcceptanceSpec *copySpec = (AcceptanceSpec *)new AcceptanceSpec;
-  copySpec->precedence = spec.precedence;
-  int bufferSize = spec.type.length() + 1;
-  copySpec->type = spec.type.substr(0, bufferSize);
-  return copySpec;
+int Node::getPrecendence() {
+    return stateSpec.precedence;
 }
 
 
-void Node::setPHIState(){
-  Node::stateType = PHI;
+std::string Node::getIdentifier() {
+
+    return std::string(Node::stateSpec.identiifer);
 }
 
-bool Node::isAccepted(){
-  return stateType == ACCEPTED;
+
+bool Node::isAccepted() {
+    return stateSpec.stateType == ACCEPTED;
 }
 
-bool Node::isPHI(){
-  return stateType == PHI;
+bool Node::isPHI() {
+    return stateSpec.stateType == PHI;
 }

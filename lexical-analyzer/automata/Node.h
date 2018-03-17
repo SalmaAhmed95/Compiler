@@ -13,49 +13,60 @@
 
 typedef int stateID;
 
-struct Edge {
-  stateID from;
-  stateID to;
-  char transition;
+enum StateType {
+    ACCEPTED, PHI, INTERMEDIATE
 };
 
-struct AcceptanceSpec {
-  int precedence;
-  std::string type;
+struct Edge {
+    stateID from;
+    stateID to;
+    char transition;
+};
+
+struct StateSpec {
+    StateType stateType;
+    int precedence;
+    std::string identiifer;
 };
 
 struct TransEdges {
-  char transition;
-  std::vector<stateID> nextStates;
+    char transition;
+    std::vector<stateID> nextStates;
 };
 
 struct TransEdgesDfa {
-  char transition;
-  int nextState;
+    char transition;
+    int nextState;
 };
 
-enum StateType { ACCEPTED, PHI, INTERMEDIATE };
+
 
 class Node {
 
 public:
-  Node();
+    Node();
 
-  void setAcceptanceState(AcceptanceSpec *spec);
-  void setPHIState();
-  bool isAccepted();
-  bool isPHI();
-  AcceptanceSpec *getAcceptance();
+    bool isAccepted();
 
-  virtual void addTransition(stateID node_to, char transition) = 0;
-  virtual std::vector<stateID> getTransitions(char transition) = 0;
-  virtual std::vector<TransEdges> getTransitions() = 0;
+    bool isPHI();
+
+    int getPrecendence();
+
+    std::string getIdentifier();
+
+    virtual void addTransition(stateID node_to, char transition) = 0;
+
+    virtual std::vector<stateID> getTransitions(char transition) = 0;
+
+    virtual std::vector<TransEdges> getTransitions() = 0;
 
 protected:
-  stateID ID;
-  StateType stateType;
-  AcceptanceSpec spec;
-  Node(stateID id);
+    stateID ID;
+    StateSpec stateSpec;
+
+    Node(stateID id);
+
+    Node(stateID id, StateSpec *spec);
 
 };
 

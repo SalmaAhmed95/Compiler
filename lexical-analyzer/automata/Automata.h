@@ -14,30 +14,38 @@
 class Automata {
 
 public:
-  Automata();
+    Automata();
 
-  virtual stateID createNode() = 0;
-  virtual stateID createNode(StateType) = 0;
-  void addTransition(char transition, stateID from, stateID to);
+    virtual stateID createNode() = 0;
 
-  void setAcceptance(stateID id, AcceptanceSpec *acceptanceSpec1);
+    virtual stateID createNode(StateType type, int precendence, std::string *identifier) = 0;
 
-  AcceptanceSpec *getAcceptance(stateID id);
+    void addTransition(char transition, stateID from, stateID to);
 
-  stateID getRootID();
 
-  std::set<char> getAllAttributes();
+    bool isAccepted(stateID curState);
 
-  stateID getNumberOfStates();
+    bool isPHI(stateID curState);
 
-  std::vector<stateID> getTransitions(stateID curState, char transition);
+    int getPrecendence(stateID curState);
 
-  std::vector<TransEdges> getTransitions(stateID curState);
+    std::string getIdentifier(stateID curState);
+
+    stateID getRootID();
+
+    std::set<char> getAllAttributes();
+
+    stateID getNumberOfStates();
+
+    std::vector<stateID> getTransitions(stateID curState, char transition);
+
+    std::vector<TransEdges> getTransitions(stateID curState);
 
 protected:
-  stateID lastNodeID;
-  std::vector<Node *> graph;
-  std::set<char> attributes;
+    stateID lastNodeID;
+    std::vector<Node *> graph;
+    std::set<char> attributes;
 
 };
+
 #endif // COMPLIER_AUTOMATA_H

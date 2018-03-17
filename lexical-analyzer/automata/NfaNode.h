@@ -13,7 +13,7 @@ public:
 
 
     NfaNode(stateID id);
-
+    NfaNode(stateID id, StateSpec *stateSpec);
     void addTransition(stateID node_to, char transition);
 
     std::vector<TransEdges> getTransitions();

@@ -14,12 +14,10 @@ public:
 
 
      DfaNode(stateID id);
-
+     DfaNode(stateID id, StateSpec *stateSpec);
      void addTransition(stateID node_to, char transition);
-
-    std::vector<TransEdges> getTransitions();
-
-    std::vector<stateID> getTransitions(char transition);
+     std::vector<TransEdges> getTransitions();
+     std::vector<stateID> getTransitions(char transition);
 
 private:
 

@@ -141,6 +141,9 @@
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h">
 			<Option target="Compiler"/>
 		</Unit>
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/main.cpp">
+			<Option target="Compiler"/>
+		</Unit>
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/CMakeCache.txt">
 			<Option target="Compiler"/>
 		</Unit>
@@ -199,9 +202,6 @@
 			<Option target="Compiler"/>
 		</Unit>
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/main/main.cpp">
 			<Option target="Compiler"/>
 		</Unit>
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">

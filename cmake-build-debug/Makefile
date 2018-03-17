@@ -312,6 +312,33 @@ lexical-analyzer/automata/Node.cpp.s:
 	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.s
 .PHONY : lexical-analyzer/automata/Node.cpp.s
 
+lexical-analyzer/automata/main.o: lexical-analyzer/automata/main.cpp.o
+
+.PHONY : lexical-analyzer/automata/main.o
+
+# target to build an object file
+lexical-analyzer/automata/main.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o
+.PHONY : lexical-analyzer/automata/main.cpp.o
+
+lexical-analyzer/automata/main.i: lexical-analyzer/automata/main.cpp.i
+
+.PHONY : lexical-analyzer/automata/main.i
+
+# target to preprocess a source file
+lexical-analyzer/automata/main.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.i
+.PHONY : lexical-analyzer/automata/main.cpp.i
+
+lexical-analyzer/automata/main.s: lexical-analyzer/automata/main.cpp.s
+
+.PHONY : lexical-analyzer/automata/main.s
+
+# target to generate assembly for a file
+lexical-analyzer/automata/main.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.s
+.PHONY : lexical-analyzer/automata/main.cpp.s
+
 lexical-analyzer/code-parser/CodeParser.o: lexical-analyzer/code-parser/CodeParser.cpp.o
 
 .PHONY : lexical-analyzer/code-parser/CodeParser.o
@@ -420,33 +447,6 @@ lexical-analyzer/grammar-parser/Token.cpp.s:
 	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.s
 .PHONY : lexical-analyzer/grammar-parser/Token.cpp.s
 
-lexical-analyzer/main/main.o: lexical-analyzer/main/main.cpp.o
-
-.PHONY : lexical-analyzer/main/main.o
-
-# target to build an object file
-lexical-analyzer/main/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o
-.PHONY : lexical-analyzer/main/main.cpp.o
-
-lexical-analyzer/main/main.i: lexical-analyzer/main/main.cpp.i
-
-.PHONY : lexical-analyzer/main/main.i
-
-# target to preprocess a source file
-lexical-analyzer/main/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.i
-.PHONY : lexical-analyzer/main/main.cpp.i
-
-lexical-analyzer/main/main.s: lexical-analyzer/main/main.cpp.s
-
-.PHONY : lexical-analyzer/main/main.s
-
-# target to generate assembly for a file
-lexical-analyzer/main/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.s
-.PHONY : lexical-analyzer/main/main.cpp.s
-
 lexical-analyzer/pattern-matcher/PatternMatcher.o: lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o
 
 .PHONY : lexical-analyzer/pattern-matcher/PatternMatcher.o
@@ -531,6 +531,9 @@ help:
 	@echo "... lexical-analyzer/automata/Node.o"
 	@echo "... lexical-analyzer/automata/Node.i"
 	@echo "... lexical-analyzer/automata/Node.s"
+	@echo "... lexical-analyzer/automata/main.o"
+	@echo "... lexical-analyzer/automata/main.i"
+	@echo "... lexical-analyzer/automata/main.s"
 	@echo "... lexical-analyzer/code-parser/CodeParser.o"
 	@echo "... lexical-analyzer/code-parser/CodeParser.i"
 	@echo "... lexical-analyzer/code-parser/CodeParser.s"
@@ -543,9 +546,6 @@ help:
 	@echo "... lexical-analyzer/grammar-parser/Token.o"
 	@echo "... lexical-analyzer/grammar-parser/Token.i"
 	@echo "... lexical-analyzer/grammar-parser/Token.s"
-	@echo "... lexical-analyzer/main/main.o"
-	@echo "... lexical-analyzer/main/main.i"
-	@echo "... lexical-analyzer/main/main.s"
 	@echo "... lexical-analyzer/pattern-matcher/PatternMatcher.o"
 	@echo "... lexical-analyzer/pattern-matcher/PatternMatcher.i"
 	@echo "... lexical-analyzer/pattern-matcher/PatternMatcher.s"

@@ -25,9 +25,24 @@ CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaNode.cpp.o
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.cpp
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.h
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaToDfaConverter.cpp.o
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DfaNode.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaToDfaConverter.cpp
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaToDfaConverter.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.o
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.cpp
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/main.cpp
 CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.cpp
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.h
@@ -42,11 +57,6 @@ CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Properties.cpp.o
 CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.o
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.cpp
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp
-CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o
- /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
- /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
- /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp
- /home/karfass/CLionProjects/Compiler/lexical-analyzer/main/main.cpp
 CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.h

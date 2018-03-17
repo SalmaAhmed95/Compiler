@@ -8,20 +8,33 @@ Automata::Automata() : lastNodeID(0) {
 }
 
 void Automata::addTransition(char transition, stateID from, stateID to) {
-  Node *fromNode = graph[from];
-  fromNode->addTransition(to, transition);
-  attributes.insert(transition);
+    Node *fromNode = graph[from];
+    fromNode->addTransition(to, transition);
+    attributes.insert(transition);
 }
 
-void Automata::setAcceptance(stateID id, AcceptanceSpec *acceptanceSpec1) {
-  Node *curNode = graph[id];
-  curNode->setAcceptanceState(acceptanceSpec1);
+bool Automata::isAccepted(stateID curState) {
+    Node *curNode = graph[curState];
+    return curNode->isAccepted();
 }
 
-AcceptanceSpec *Automata::getAcceptance(stateID id) {
-  Node *curNode = graph[id];
-  return curNode->getAcceptance();
+bool Automata::isPHI(stateID curState) {
+    Node *curNode = graph[curState];
+    return curNode->isPHI();
 }
+
+
+int Automata::getPrecendence(stateID curState) {
+    Node *curNode = graph[curState];
+    return curNode->getPrecendence();
+}
+
+std::string Automata::getIdentifier(stateID curState) {
+    Node *curNode = graph[curState];
+    return curNode->getIdentifier();
+}
+
+std::string getIdentifier(stateID curState);
 
 stateID Automata::getRootID() { return ROOT_ID; }
 
@@ -31,11 +44,11 @@ stateID Automata::getNumberOfStates() { return lastNodeID; }
 
 std::vector<stateID> Automata::getTransitions(stateID curState,
                                               char transition) {
-  Node *curNode = graph[curState];
-  return curNode->getTransitions(transition);
+    Node *curNode = graph[curState];
+    return curNode->getTransitions(transition);
 }
 
 std::vector<TransEdges> Automata::getTransitions(stateID curState) {
-  Node *curNode = graph[curState];
-  return curNode->getTransitions();
+    Node *curNode = graph[curState];
+    return curNode->getTransitions();
 }

@@ -62,6 +62,18 @@ iostream
 Node.h
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
 
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaToDfaConverter.cpp
+queue
+-
+NfaToDfaConverter.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaToDfaConverter.h
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaToDfaConverter.h
+DFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.h
+NFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h
+
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.cpp
 Node.h
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
@@ -75,6 +87,14 @@ string
 -
 vector
 -
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/main.cpp
+iostream
+-
+Automata.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
+NFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h
 
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.cpp
 vector
@@ -127,10 +147,6 @@ Token.hpp
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp
 string
 -
-
-/home/karfass/CLionProjects/Compiler/lexical-analyzer/main/main.cpp
-../grammar-parser/ProductionParser.hpp
-/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
 
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/pattern-matcher/PatternMatcher.cpp
 PatternMatcher.h

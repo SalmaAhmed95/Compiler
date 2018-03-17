@@ -6,6 +6,8 @@
 
 DfaNode::DfaNode(stateID id) : Node(id) {}
 
+DfaNode::DfaNode(stateID id, StateSpec* stateSpec) : Node(id, stateSpec){}
+
 void DfaNode::addTransition(stateID node_to, char transition) {
   transitions.insert(std::pair<char, stateID>(transition, node_to));
 }

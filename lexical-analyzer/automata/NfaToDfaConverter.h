@@ -10,12 +10,14 @@
 #include "NFA.h"
 
 struct SetOfNfaStates {
-    StateType type;
-    AcceptanceSpec spec;
+    StateSpec type;
     std::set<stateID> states;
 };
 
-
+struct DfaToNfaStates {
+    stateID dfaID;
+    std::set<stateID> states;
+};
 class NfaToDfaConverter {
     public:
     DFA *getDFA(NFA *nfa);

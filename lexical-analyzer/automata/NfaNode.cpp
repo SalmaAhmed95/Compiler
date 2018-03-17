@@ -7,6 +7,8 @@
 
 NfaNode::NfaNode(stateID id) : Node(id) {}
 
+NfaNode::NfaNode(stateID id, StateSpec* stateSpec) : Node(id, stateSpec){}
+
 void NfaNode::addTransition(stateID node_to, char transition) {
   transitions.insert(std::pair<char, stateID>(transition, node_to));
 }

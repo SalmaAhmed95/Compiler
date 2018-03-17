@@ -273,28 +273,28 @@ CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.o.provides: CM
 CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.o.provides.build: CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.o
 
 
-CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o: CMakeFiles/Compiler.dir/flags.make
-CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o: ../lexical-analyzer/main/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o -c /home/karfass/CLionProjects/Compiler/lexical-analyzer/main/main.cpp
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o: CMakeFiles/Compiler.dir/flags.make
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o: ../lexical-analyzer/automata/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o -c /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/main.cpp
 
-CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karfass/CLionProjects/Compiler/lexical-analyzer/main/main.cpp > CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.i
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/main.cpp > CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.i
 
-CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karfass/CLionProjects/Compiler/lexical-analyzer/main/main.cpp -o CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.s
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/main.cpp -o CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.s
 
-CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o.requires:
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o.requires:
 
-.PHONY : CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o.requires
+.PHONY : CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o.requires
 
-CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o.provides: CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o.provides.build
-.PHONY : CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o.provides
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o.provides: CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o.provides.build
+.PHONY : CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o.provides
 
-CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o.provides.build: CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o.provides.build: CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o
 
 
 CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o: CMakeFiles/Compiler.dir/flags.make
@@ -404,7 +404,7 @@ Compiler_OBJECTS = \
 "CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o" \
 "CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Properties.cpp.o" \
 "CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.o" \
-"CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o" \
+"CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o" \
 "CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o" \
 "CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o" \
 "CMakeFiles/Compiler.dir/lexical-analyzer/utils/SymbolTable.cpp.o" \
@@ -422,7 +422,7 @@ Compiler: CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.o
 Compiler: CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o
 Compiler: CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Properties.cpp.o
 Compiler: CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.o
-Compiler: CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o
+Compiler: CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o
 Compiler: CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o
 Compiler: CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o
 Compiler: CMakeFiles/Compiler.dir/lexical-analyzer/utils/SymbolTable.cpp.o
@@ -446,7 +446,7 @@ CMakeFiles/Compiler.dir/requires: CMakeFiles/Compiler.dir/lexical-analyzer/autom
 CMakeFiles/Compiler.dir/requires: CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o.requires
 CMakeFiles/Compiler.dir/requires: CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Properties.cpp.o.requires
 CMakeFiles/Compiler.dir/requires: CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/Token.cpp.o.requires
-CMakeFiles/Compiler.dir/requires: CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o.requires
+CMakeFiles/Compiler.dir/requires: CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o.requires
 CMakeFiles/Compiler.dir/requires: CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o.requires
 CMakeFiles/Compiler.dir/requires: CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o.requires
 CMakeFiles/Compiler.dir/requires: CMakeFiles/Compiler.dir/lexical-analyzer/utils/SymbolTable.cpp.o.requires
