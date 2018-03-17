@@ -115,22 +115,22 @@ DFA *createMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
     DFA *minimizedDfa = new DFA();
 
     //Create States to represent the sets ignoring the PHI state
-    for (int i = 0; i < sets->size(); i++) {
+    for (unsigned int i = 0; i < sets->size(); i++) {
         stateID stateInSet = *(sets->at(i).begin());
         int statePrecedence = dfaGraph->getPrecedence(stateInSet);
-        std::string stateIdentifier = dfaGraph->getIdentifier(stateInSet);
+        std::string stateIdentifier = dfaGraph->getTokenClass(stateInSet);
         if (dfaGraph->isAccepted(stateInSet)) {
-            minimizedDfa->createNode(StateType::ACCEPTED, statePrecedence, &(stateIdentifier));
+            minimizedDfa->createNode(StateType::ACCEPTED, statePrecedence, stateIdentifier);
         } else if (dfaGraph->isPHI(stateInSet)) {
             sets->erase(sets->begin() + i);
             i--;
         } else {
-            minimizedDfa->createNode(StateType::INTERMEDIATE, statePrecedence, &stateIdentifier);
+            minimizedDfa->createNode(StateType::INTERMEDIATE, statePrecedence, stateIdentifier);
         }
     }
 
     // get index of the set containing the root
-    int rootSetIndex;
+    int rootSetIndex = 0;
     for (unsigned int i = 0; i < sets->size(); i++) {
         if (sets->at(i).count(dfaGraph->getRootID())) {
             rootSetIndex = i;

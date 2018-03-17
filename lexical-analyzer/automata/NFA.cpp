@@ -11,9 +11,9 @@ stateID NFA ::createNode() {
         return (NFA::lastNodeID - 1);
 }
 
-stateID NFA::createNode(StateType type, int precedence, std::string *identifier){
+stateID NFA::createNode(StateType type, int precedence, std::string tokenClass){
         StateSpec newSpec;
-        newSpec.identifier = *identifier;
+        newSpec.tokenClass = tokenClass;
         newSpec.stateType = type;
         newSpec.precedence = precedence;
         Node* newNode = new NfaNode(lastNodeID, &newSpec);

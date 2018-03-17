@@ -18,10 +18,9 @@ public:
 
     virtual stateID createNode() = 0;
 
-    virtual stateID createNode(StateType type, int precedence, std::string *identifier) = 0;
+    virtual stateID createNode(StateType type, int precedence, std::string tokenClass) = 0;
 
     void addTransition(char transition, stateID from, stateID to);
-
 
     bool isAccepted(stateID curState);
 
@@ -29,7 +28,7 @@ public:
 
     int getPrecedence(stateID curState);
 
-    std::string getIdentifier(stateID curState);
+    std::string getTokenClass(stateID curState);
 
     stateID getRootID();
 
@@ -37,9 +36,9 @@ public:
 
     stateID getNumberOfStates();
 
-    std::vector<stateID> getTransitions(stateID curState, char transition);
+    std::vector <stateID> getTransitions(stateID curState, char transition);
 
-    std::vector<TransEdges> getTransitions(stateID curState);
+    std::vector <TransEdges> getTransitions(stateID curState);
 
 protected:
     stateID lastNodeID;

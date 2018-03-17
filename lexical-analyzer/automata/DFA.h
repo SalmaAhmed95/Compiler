@@ -21,8 +21,7 @@ public:
      * @param precedence state precedence for matching race condition
      * @param identifier identifier
      */
-    stateID createNode(StateType type, int precedence, std::string *identifier);
-
+    stateID createNode(StateType type, int precedence, std::string tokenClass);
 };
 
 #endif //COMPLIER_DFA_H

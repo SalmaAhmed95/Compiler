@@ -20,7 +20,7 @@ enum StateType {
 struct StateSpec {
     StateType stateType;
     int precedence;
-    std::string identifier;
+    std::string tokenClass;
 };
 
 struct TransEdges {
@@ -41,7 +41,7 @@ public:
 
     int getPrecedence();
 
-    std::string getIdentifier();
+    std::string getTokenClass();
 
     virtual void addTransition(stateID node_to, char transition) = 0;
 
