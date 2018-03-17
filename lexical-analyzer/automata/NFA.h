@@ -15,7 +15,7 @@
 class NFA : public Automata {
 public:
     stateID createNode();
-    stateID createNode(StateType type, int precendence, std::string *identifier);
+    stateID createNode(StateType type, int precedence, std::string identifier);
 };
 
 #endif //COMPLIER_NFA_H

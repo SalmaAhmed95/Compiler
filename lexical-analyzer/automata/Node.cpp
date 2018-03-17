@@ -9,25 +9,25 @@ Node::Node(stateID id) {
     Node::ID = id;
     Node::stateSpec.stateType = INTERMEDIATE;
     Node::stateSpec.precedence = 0;
-    Node::stateSpec.identiifer = " ";
+    Node::stateSpec.tokenClass = "";
 }
 
 Node::Node(stateID id, StateSpec *spec) {
     Node::ID = id;
     Node::stateSpec.stateType = spec->stateType;
     Node::stateSpec.precedence = spec->precedence;
-    int bufferSize = spec->identiifer.length() + 1;
-    Node::stateSpec.identiifer = spec->identiifer.substr(0, bufferSize);
+    int bufferSize = spec->tokenClass.length() + 1;
+    Node::stateSpec.tokenClass = spec->tokenClass.substr(0, bufferSize);
 }
 
-int Node::getPrecendence() {
+int Node::getPrecedence() {
     return stateSpec.precedence;
 }
 
 
-std::string Node::getIdentifier() {
+std::string Node::getTokenClass() {
 
-    return std::string(Node::stateSpec.identiifer);
+    return std::string(Node::stateSpec.tokenClass);
 }
 
 

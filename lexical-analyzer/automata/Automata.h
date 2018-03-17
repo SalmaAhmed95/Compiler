@@ -18,7 +18,7 @@ public:
 
     virtual stateID createNode() = 0;
 
-    virtual stateID createNode(StateType type, int precendence, std::string *identifier) = 0;
+    virtual stateID createNode(StateType type, int precendence, std::string identifier) = 0;
 
     void addTransition(char transition, stateID from, stateID to);
 
@@ -27,7 +27,7 @@ public:
 
     bool isPHI(stateID curState);
 
-    int getPrecendence(stateID curState);
+    int getPrecedence(stateID curState);
 
     std::string getIdentifier(stateID curState);
 
