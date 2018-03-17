@@ -17,12 +17,6 @@ enum StateType {
     ACCEPTED, PHI, INTERMEDIATE
 };
 
-struct Edge {
-    stateID from;
-    stateID to;
-    char transition;
-};
-
 struct StateSpec {
     StateType stateType;
     int precedence;
@@ -32,11 +26,6 @@ struct StateSpec {
 struct TransEdges {
     char transition;
     std::vector<stateID> nextStates;
-};
-
-struct TransEdgesDfa {
-    char transition;
-    int nextState;
 };
 
 

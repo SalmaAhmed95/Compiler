@@ -312,6 +312,33 @@ lexical-analyzer/automata/Node.cpp.s:
 	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.s
 .PHONY : lexical-analyzer/automata/Node.cpp.s
 
+lexical-analyzer/automata/RegexToNfaConverter.o: lexical-analyzer/automata/RegexToNfaConverter.cpp.o
+
+.PHONY : lexical-analyzer/automata/RegexToNfaConverter.o
+
+# target to build an object file
+lexical-analyzer/automata/RegexToNfaConverter.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.o
+.PHONY : lexical-analyzer/automata/RegexToNfaConverter.cpp.o
+
+lexical-analyzer/automata/RegexToNfaConverter.i: lexical-analyzer/automata/RegexToNfaConverter.cpp.i
+
+.PHONY : lexical-analyzer/automata/RegexToNfaConverter.i
+
+# target to preprocess a source file
+lexical-analyzer/automata/RegexToNfaConverter.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.i
+.PHONY : lexical-analyzer/automata/RegexToNfaConverter.cpp.i
+
+lexical-analyzer/automata/RegexToNfaConverter.s: lexical-analyzer/automata/RegexToNfaConverter.cpp.s
+
+.PHONY : lexical-analyzer/automata/RegexToNfaConverter.s
+
+# target to generate assembly for a file
+lexical-analyzer/automata/RegexToNfaConverter.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.s
+.PHONY : lexical-analyzer/automata/RegexToNfaConverter.cpp.s
+
 lexical-analyzer/automata/main.o: lexical-analyzer/automata/main.cpp.o
 
 .PHONY : lexical-analyzer/automata/main.o
@@ -365,6 +392,33 @@ lexical-analyzer/code-parser/CodeParser.s: lexical-analyzer/code-parser/CodePars
 lexical-analyzer/code-parser/CodeParser.cpp.s:
 	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.s
 .PHONY : lexical-analyzer/code-parser/CodeParser.cpp.s
+
+lexical-analyzer/dfa-minimizer/DfaMinimizer.o: lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o
+
+.PHONY : lexical-analyzer/dfa-minimizer/DfaMinimizer.o
+
+# target to build an object file
+lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o
+.PHONY : lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o
+
+lexical-analyzer/dfa-minimizer/DfaMinimizer.i: lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.i
+
+.PHONY : lexical-analyzer/dfa-minimizer/DfaMinimizer.i
+
+# target to preprocess a source file
+lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.i
+.PHONY : lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.i
+
+lexical-analyzer/dfa-minimizer/DfaMinimizer.s: lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.s
+
+.PHONY : lexical-analyzer/dfa-minimizer/DfaMinimizer.s
+
+# target to generate assembly for a file
+lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.s
+.PHONY : lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.s
 
 lexical-analyzer/grammar-parser/ProductionParser.o: lexical-analyzer/grammar-parser/ProductionParser.cpp.o
 
@@ -531,12 +585,18 @@ help:
 	@echo "... lexical-analyzer/automata/Node.o"
 	@echo "... lexical-analyzer/automata/Node.i"
 	@echo "... lexical-analyzer/automata/Node.s"
+	@echo "... lexical-analyzer/automata/RegexToNfaConverter.o"
+	@echo "... lexical-analyzer/automata/RegexToNfaConverter.i"
+	@echo "... lexical-analyzer/automata/RegexToNfaConverter.s"
 	@echo "... lexical-analyzer/automata/main.o"
 	@echo "... lexical-analyzer/automata/main.i"
 	@echo "... lexical-analyzer/automata/main.s"
 	@echo "... lexical-analyzer/code-parser/CodeParser.o"
 	@echo "... lexical-analyzer/code-parser/CodeParser.i"
 	@echo "... lexical-analyzer/code-parser/CodeParser.s"
+	@echo "... lexical-analyzer/dfa-minimizer/DfaMinimizer.o"
+	@echo "... lexical-analyzer/dfa-minimizer/DfaMinimizer.i"
+	@echo "... lexical-analyzer/dfa-minimizer/DfaMinimizer.s"
 	@echo "... lexical-analyzer/grammar-parser/ProductionParser.o"
 	@echo "... lexical-analyzer/grammar-parser/ProductionParser.i"
 	@echo "... lexical-analyzer/grammar-parser/ProductionParser.s"

@@ -37,6 +37,14 @@ CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaToDfaConverter.cpp.o: ../le
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.o: ../lexical-analyzer/automata/Node.cpp
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.o: ../lexical-analyzer/automata/Node.h
 
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.o: ../lexical-analyzer/automata/Automata.h
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.o: ../lexical-analyzer/automata/NFA.h
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.o: ../lexical-analyzer/automata/NfaNode.h
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.o: ../lexical-analyzer/automata/Node.h
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.o: ../lexical-analyzer/automata/RegexToNfaConverter.cpp
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.o: ../lexical-analyzer/automata/RegexToNfaConverter.hpp
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.o: ../lexical-analyzer/grammar-parser/Token.hpp
+
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o: ../lexical-analyzer/automata/Automata.h
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o: ../lexical-analyzer/automata/NFA.h
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o: ../lexical-analyzer/automata/NfaNode.h
@@ -45,6 +53,13 @@ CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o: ../lexical-analyze
 
 CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o: ../lexical-analyzer/code-parser/CodeParser.cpp
 CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o: ../lexical-analyzer/code-parser/CodeParser.h
+
+CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o: ../lexical-analyzer/automata/Automata.h
+CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o: ../lexical-analyzer/automata/DFA.h
+CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o: ../lexical-analyzer/automata/DfaNode.h
+CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o: ../lexical-analyzer/automata/Node.h
+CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o: ../lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp
+CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o: ../lexical-analyzer/dfa-minimizer/DfaMinimizer.h
 
 CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o: ../lexical-analyzer/grammar-parser/ProductionParser.cpp
 CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o: ../lexical-analyzer/grammar-parser/ProductionParser.hpp

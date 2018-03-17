@@ -37,6 +37,14 @@ CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaToDfaConverter.cpp.o
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.o
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.cpp
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
+CMakeFiles/Compiler.dir/lexical-analyzer/automata/RegexToNfaConverter.cpp.o
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/RegexToNfaConverter.cpp
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/RegexToNfaConverter.hpp
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h
@@ -46,6 +54,13 @@ CMakeFiles/Compiler.dir/lexical-analyzer/automata/main.cpp.o
 CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.cpp
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.h
+CMakeFiles/Compiler.dir/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp.o
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DfaNode.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp
+ /home/karfass/CLionProjects/Compiler/lexical-analyzer/dfa-minimizer/DfaMinimizer.h
 CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp
  /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp

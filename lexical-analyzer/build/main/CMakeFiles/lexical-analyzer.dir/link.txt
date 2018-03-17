@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/lexical-analyzer.dir/main.cpp.o  -o lexical-analyzer -rdynamic ../grammar-parser/libgrammar-parser.a 

@@ -22,11 +22,24 @@ std::vector<char> CodeParser::parseFile() {
 }
 
 char CodeParser::getChar() {
-    return chars[index];
+    char c = chars[index];
+    index++;
+    return c;
 }
 
 void CodeParser::setStartIndex(int i) {
     index = i;
+}
+
+int CodeParser::getCurIndex() {
+    return index;
+}
+
+std::string CodeParser::getSubString(int startIndex,int lastIndex) {
+    std::string subString = "";
+    for (int i =startIndex; i < lastIndex; i++) {
+        subString += chars[i];
+    }
 }
 
 bool CodeParser::hasChars() {

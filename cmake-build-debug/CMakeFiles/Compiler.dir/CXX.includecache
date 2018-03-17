@@ -88,6 +88,20 @@ string
 vector
 -
 
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/RegexToNfaConverter.cpp
+RegexToNfaConverter.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/RegexToNfaConverter.hpp
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/RegexToNfaConverter.hpp
+../grammar-parser/Token.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp
+NFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h
+iostream
+-
+stack
+-
+
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/main.cpp
 iostream
 -
@@ -105,6 +119,16 @@ CodeParser.h
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.h
 
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.h
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp
+DfaMinimizer.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/dfa-minimizer/DfaMinimizer.h
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/dfa-minimizer/DfaMinimizer.h
+../automata/Automata.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
+../automata/DFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.h
 
 /home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp
 ProductionParser.hpp

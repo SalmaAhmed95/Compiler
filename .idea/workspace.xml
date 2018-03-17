@@ -11,6 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="556993df-8a44-4fab-ba19-a97fe1378ae1" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaNode.cpp.o" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o" afterPath="" />
@@ -48,6 +49,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical-analyzer/automata/Node.h" afterPath="$PROJECT_DIR$/lexical-analyzer/automata/Node.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lexical-analyzer/main/CMakeLists.txt" afterPath="$PROJECT_DIR$/lexical-analyzer/main/CMakeLists.txt" />
     </list>
+=======
+    <list default="true" id="556993df-8a44-4fab-ba19-a97fe1378ae1" name="Default" comment="" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,6 +62,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="NFA.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NFA.cpp">
           <provider selected="true" editor-type-id="text-editor">
@@ -105,6 +110,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="468">
               <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+=======
+      <file leaf-file-name="PatternMatcher.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="67" lean-forward="true" selection-start-line="17" selection-start-column="67" selection-end-line="17" selection-end-column="67" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
               <folding />
             </state>
           </provider>
@@ -113,8 +125,13 @@
       <file leaf-file-name="Node.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/Node.h">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-252">
               <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+=======
+            <state relative-caret-position="123">
+              <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
               <folding>
                 <element signature="e#91#105#0" expanded="true" />
               </folding>
@@ -122,6 +139,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="Automata.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/Automata.h">
           <provider selected="true" editor-type-id="text-editor">
@@ -130,15 +148,31 @@
               <folding>
                 <element signature="e#99#116#0" expanded="true" />
               </folding>
+=======
+      <file leaf-file-name="CodeParser.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="582">
+              <caret line="37" column="65" lean-forward="false" selection-start-line="37" selection-start-column="65" selection-end-line="37" selection-end-column="65" />
+              <folding />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="NfaToDfaConverter.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NfaToDfaConverter.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
               <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+=======
+      <file leaf-file-name="CodeParser.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
               <folding />
             </state>
           </provider>
@@ -156,6 +190,7 @@
         <option value="$PROJECT_DIR$/lexical-analyzer/pattern-matcher/CodeParser.h" />
         <option value="$PROJECT_DIR$/lexical-analyzer/utils/SymbolTable.cpp" />
         <option value="$PROJECT_DIR$/lexical-analyzer/utils/SymbolTable.h" />
+        <option value="$PROJECT_DIR$/lexical-analyzer/automata/Node.h" />
         <option value="$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.cpp" />
         <option value="$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.h" />
         <option value="$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.h" />
@@ -222,6 +257,7 @@
               <item name="Compiler" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="lexical-analyzer" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="automata" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -234,6 +270,9 @@
               <item name="Compiler" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="Compiler" type="462c0819:PsiDirectoryNode" />
               <item name="Test" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="code-parser" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
             </path>
           </expand>
           <select />
@@ -291,31 +330,53 @@
       <option name="presentableId" value="Default" />
       <updated>1521208125621</updated>
       <workItem from="1521208128133" duration="2464000" />
+<<<<<<< HEAD
       <workItem from="1521211798747" duration="3281000" />
       <workItem from="1521236687115" duration="14059000" />
       <workItem from="1521277808455" duration="5291000" />
       <workItem from="1521283241304" duration="2086000" />
+=======
+      <workItem from="1521211798747" duration="4932000" />
+      <workItem from="1521218598719" duration="3955000" />
+      <workItem from="1521223523122" duration="1623000" />
+      <workItem from="1521225302026" duration="208000" />
+      <workItem from="1521237150316" duration="222000" />
+      <workItem from="1521237552637" duration="654000" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="27181000" />
+=======
+    <option name="totallyTimeSpent" value="14058000" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
   </component>
   <component name="ToolWindowManager">
     <frame x="91" y="6" width="1855" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26175982" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27588934" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -360,24 +421,115 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NfaToDfaConverter.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="14" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding>
+            <element signature="e#110#138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="65" lean-forward="false" selection-start-line="37" selection-start-column="65" selection-end-line="37" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="49" lean-forward="false" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+          <folding>
+            <element signature="e#110#138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="65" lean-forward="false" selection-start-line="37" selection-start-column="65" selection-end-line="37" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="49" lean-forward="false" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
           <folding>
             <element signature="e#118#134#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NfaToDfaConverter.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="65" lean-forward="false" selection-start-line="37" selection-start-column="65" selection-end-line="37" selection-end-column="65" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/RegexToNfaConverter.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
@@ -389,36 +541,74 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="7" lean-forward="false" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/DFA.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
             <element signature="e#89#105#0" expanded="false" />
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="74" lean-forward="false" selection-start-line="26" selection-start-column="74" selection-end-line="26" selection-end-column="74" />
+          <folding>
+            <element signature="e#110#138#0" expanded="true" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NfaNode.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="24" />
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="30" lean-forward="false" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/Automata.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="40" lean-forward="false" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/Node.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
@@ -439,6 +629,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -447,6 +639,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="774">
@@ -476,13 +669,47 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.h">
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="74" lean-forward="false" selection-start-line="23" selection-start-column="74" selection-end-line="23" selection-end-column="74" />
+          <folding>
+            <element signature="e#110#138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#110#138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/DFA.cpp">
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/DFA.cpp" />
+=======
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -509,7 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -527,6 +753,16 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/main/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
     <entry file="file://$PROJECT_DIR$/Test/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -556,6 +792,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -585,12 +822,44 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/build/automata/Makefile">
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NFA.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NfaNode.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NfaNode.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/DFA.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/DfaNode.h">
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1404">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -618,19 +887,59 @@
         <state relative-caret-position="378">
           <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
           <folding />
+=======
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="40" lean-forward="false" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/DFA.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NFA.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/Node.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="43" column="34" lean-forward="true" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/DfaNode.cpp">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="144">
           <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
           <folding />
+=======
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/Node.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NfaNode.h">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="270">
           <caret line="15" column="4" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="46" />
           <folding />
@@ -669,10 +978,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="17" column="80" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="80" />
+=======
+        <state relative-caret-position="340">
+          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/Automata.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="19" column="26" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="582">
+          <caret line="37" column="65" lean-forward="false" selection-start-line="37" selection-start-column="65" selection-end-line="37" selection-end-column="65" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NfaToDfaConverter.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -697,14 +1025,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/lexical-analyzer/code-parser/CodeParser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/Automata.h">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="468">
           <caret line="41" column="28" lean-forward="false" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="28" />
+=======
+        <state relative-caret-position="123">
+          <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
           <folding>
             <element signature="e#99#116#0" expanded="true" />
           </folding>
@@ -713,6 +1052,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lexical-analyzer/automata/NfaNode.cpp">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="252">
           <caret line="15" column="63" lean-forward="true" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
           <folding />
@@ -731,6 +1071,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+=======
+        <state relative-caret-position="289">
+          <caret line="17" column="67" lean-forward="true" selection-start-line="17" selection-start-column="67" selection-end-line="17" selection-end-column="67" />
+>>>>>>> 328a6c4c296e74d191799e1bdfd8449f83f07aca
           <folding />
         </state>
       </provider>

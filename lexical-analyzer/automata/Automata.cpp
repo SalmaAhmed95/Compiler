@@ -34,8 +34,6 @@ std::string Automata::getIdentifier(stateID curState) {
     return curNode->getIdentifier();
 }
 
-std::string getIdentifier(stateID curState);
-
 stateID Automata::getRootID() { return ROOT_ID; }
 
 std::set<char> Automata::getAllAttributes() { return attributes; }
@@ -47,6 +45,7 @@ std::vector<stateID> Automata::getTransitions(stateID curState,
     Node *curNode = graph[curState];
     return curNode->getTransitions(transition);
 }
+
 
 std::vector<TransEdges> Automata::getTransitions(stateID curState) {
     Node *curNode = graph[curState];

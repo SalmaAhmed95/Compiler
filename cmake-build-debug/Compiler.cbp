@@ -84,21 +84,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeCache.txt">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/cmake-build-debug/cmake_install.cmake">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/cmake-build-debug/complier.cbp">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/CMakeLists.txt">
-			<Option target="Compiler"/>
-		</Unit>
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.cpp">
 			<Option target="Compiler"/>
 		</Unit>
@@ -141,49 +126,25 @@
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h">
 			<Option target="Compiler"/>
 		</Unit>
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/RegexToNfaConverter.cpp">
+			<Option target="Compiler"/>
+		</Unit>
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/RegexToNfaConverter.hpp">
+			<Option target="Compiler"/>
+		</Unit>
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/main.cpp">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/CMakeCache.txt">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/Makefile">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/automata/Makefile">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/automata/cmake_install.cmake">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/automata/libautomata.a">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/cmake_install.cmake">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/grammar-parser/Makefile">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/grammar-parser/cmake_install.cmake">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/grammar-parser/libgrammar-parser.a">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/main/Makefile">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/main/cmake_install.cmake">
-			<Option target="Compiler"/>
-		</Unit>
-		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/main/lexical-analyzer">
 			<Option target="Compiler"/>
 		</Unit>
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.cpp">
 			<Option target="Compiler"/>
 		</Unit>
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.h">
+			<Option target="Compiler"/>
+		</Unit>
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp">
+			<Option target="Compiler"/>
+		</Unit>
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/dfa-minimizer/DfaMinimizer.h">
 			<Option target="Compiler"/>
 		</Unit>
 		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp">

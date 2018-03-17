@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/karfass/CLionProjects/Compiler/cmake-build-debug
 CMakeFiles/Compiler.dir/all:
 	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/depend
 	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target Compiler"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17 "Built target Compiler"
 .PHONY : CMakeFiles/Compiler.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/Compiler.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Compiler.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles 17
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Compiler.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Compiler.dir/rule

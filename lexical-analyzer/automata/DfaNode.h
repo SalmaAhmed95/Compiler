@@ -14,10 +14,24 @@ public:
 
 
      DfaNode(stateID id);
-     DfaNode(stateID id, StateSpec *stateSpec);
+     DfaNode(stateID id, StateSpec* stateSpec);
+    /**
+     * @param transition the char of the transition
+     * @param node_to the stateId of the sink of the transition
+     */
      void addTransition(stateID node_to, char transition);
-     std::vector<TransEdges> getTransitions();
-     std::vector<stateID> getTransitions(char transition);
+
+    /**
+     * @return a vector of TransEdges which represents all possible transitions for the current state.
+     */
+    std::vector<TransEdges> getTransitions();
+
+    /**
+     * @param transition a char that represents the transition attribute.
+     * @return a vector of size 1 which represents the next state for the given transition.
+     */
+    std::vector<stateID> getTransitions(char transition);
+
 
 private:
 
