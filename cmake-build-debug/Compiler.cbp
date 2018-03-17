@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/salma/Compiler/cmake-build-debug"/>
+				<Option working_dir="/home/karfass/CLionProjects/Compiler/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/salma/Compiler/cmake-build-debug"/>
+				<Option working_dir="/home/karfass/CLionProjects/Compiler/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/salma/Compiler/cmake-build-debug"/>
+				<Option working_dir="/home/karfass/CLionProjects/Compiler/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Compiler">
-				<Option output="/home/salma/Compiler/cmake-build-debug/Compiler" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/salma/Compiler/cmake-build-debug"/>
+				<Option output="/home/karfass/CLionProjects/Compiler/cmake-build-debug/Compiler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/karfass/CLionProjects/Compiler/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 Compiler"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 Compiler"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Compiler/fast">
-				<Option output="/home/salma/Compiler/cmake-build-debug/Compiler" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/salma/Compiler/cmake-build-debug"/>
+				<Option output="/home/karfass/CLionProjects/Compiler/cmake-build-debug/Compiler" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/karfass/CLionProjects/Compiler/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,140 +77,146 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 Compiler/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/salma/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 Compiler/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/salma/Compiler/cmake-build-debug/CMakeCache.txt">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeCache.txt">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/cmake-build-debug/Makefile">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/cmake-build-debug/Makefile">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/cmake-build-debug/cmake_install.cmake">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/cmake-build-debug/cmake_install.cmake">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/cmake-build-debug/complier.cbp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/cmake-build-debug/complier.cbp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/CMakeLists.txt">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/CMakeLists.txt">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/Automata.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/Automata.h">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/DFA.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/DFA.h">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.h">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/DfaNode.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DfaNode.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/DfaNode.h">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DfaNode.h">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/NFA.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/NFA.h">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/NfaNode.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/NfaNode.h">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.h">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/Node.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaToDfaConverter.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/automata/Node.h">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaToDfaConverter.h">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/CMakeCache.txt">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/Makefile">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/automata/Makefile">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/CMakeCache.txt">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/automata/cmake_install.cmake">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/Makefile">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/automata/libautomata.a">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/automata/Makefile">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/cmake_install.cmake">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/automata/cmake_install.cmake">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/grammar-parser/Makefile">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/automata/libautomata.a">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/grammar-parser/cmake_install.cmake">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/cmake_install.cmake">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/grammar-parser/libgrammar-parser.a">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/grammar-parser/Makefile">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/main/Makefile">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/grammar-parser/cmake_install.cmake">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/main/cmake_install.cmake">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/grammar-parser/libgrammar-parser.a">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/build/main/lexical-analyzer">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/main/Makefile">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/code-parser/CodeParser.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/main/cmake_install.cmake">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/code-parser/CodeParser.h">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/build/main/lexical-analyzer">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.h">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/grammar-parser/Properties.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/grammar-parser/Properties.hpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/grammar-parser/Token.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Properties.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/grammar-parser/Token.hpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Properties.hpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/main/main.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/pattern-matcher/PatternMatcher.h">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/main/main.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/utils/SymbolTable.cpp">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/pattern-matcher/PatternMatcher.cpp">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/lexical-analyzer/utils/SymbolTable.h">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/pattern-matcher/PatternMatcher.h">
 			<Option target="Compiler"/>
 		</Unit>
-		<Unit filename="/home/salma/Compiler/CMakeLists.txt">
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/utils/SymbolTable.cpp">
+			<Option target="Compiler"/>
+		</Unit>
+		<Unit filename="/home/karfass/CLionProjects/Compiler/lexical-analyzer/utils/SymbolTable.h">
+			<Option target="Compiler"/>
+		</Unit>
+		<Unit filename="/home/karfass/CLionProjects/Compiler/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

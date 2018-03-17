@@ -3,6 +3,7 @@
 //
 #include "NFA.h"
 //
+
 stateID NFA ::createNode() {
         Node* newNode = new NfaNode(lastNodeID);
         NFA::graph.push_back(newNode);

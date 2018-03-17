@@ -2,8 +2,8 @@
 // Created by karfass on 14/03/18.
 //
 
-#ifndef COMPLIER_NFA_H
-#define COMPLIER_NFA_H
+#ifndef COMPLIER_DFA_H
+#define COMPLIER_DFA_H
 
 #include<string>
 #include <vector>
@@ -13,8 +13,8 @@
 
 class DFA : public Automata {
 public:
-    virtual stateID createNode() = 0;
+    stateID createNode();
 
 };
 
-#endif //COMPLIER_NFA_H
+#endif //COMPLIER_DFA_H

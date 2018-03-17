@@ -11,6 +11,7 @@
 #include "NfaNode.h"
 
 
+
 class NFA : public Automata {
 public:
     stateID createNode();

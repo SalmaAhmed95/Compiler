@@ -8,13 +8,16 @@
 #include "Node.h"
 #include <set>
 
+#define ROOT_ID 0
+
+
 class Automata {
 
 public:
   Automata();
 
   virtual stateID createNode() = 0;
-
+  virtual stateID createNode(StateType) = 0;
   void addTransition(char transition, stateID from, stateID to);
 
   void setAcceptance(stateID id, AcceptanceSpec *acceptanceSpec1);
@@ -35,5 +38,6 @@ protected:
   stateID lastNodeID;
   std::vector<Node *> graph;
   std::set<char> attributes;
+
 };
 #endif // COMPLIER_AUTOMATA_H

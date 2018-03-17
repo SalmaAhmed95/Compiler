@@ -39,6 +39,6 @@ set(SOURCE_FILES
         lexical-analyzer/grammar-parser/Token.cpp
         lexical-analyzer/grammar-parser/Token.hpp
         lexical-analyzer/main/main.cpp
-        lexical-analyzer/CMakeLists.txt lexical-analyzer/pattern-matcher/PatternMatcher.cpp lexical-analyzer/pattern-matcher/PatternMatcher.h lexical-analyzer/code-parser/CodeParser.cpp lexical-analyzer/code-parser/CodeParser.h lexical-analyzer/utils/SymbolTable.cpp lexical-analyzer/utils/SymbolTable.h)
+        lexical-analyzer/CMakeLists.txt lexical-analyzer/pattern-matcher/PatternMatcher.cpp lexical-analyzer/pattern-matcher/PatternMatcher.h lexical-analyzer/code-parser/CodeParser.cpp lexical-analyzer/code-parser/CodeParser.h lexical-analyzer/utils/SymbolTable.cpp lexical-analyzer/utils/SymbolTable.h lexical-analyzer/automata/NfaToDfaConverter.h lexical-analyzer/automata/NfaToDfaConverter.cpp)
 
 add_executable(Compiler ${SOURCE_FILES})

@@ -3,6 +3,7 @@
 //
 #include "DFA.h"
 //
+
 stateID DFA ::createNode() {
     Node* newNode = new DfaNode(DFA::lastNodeID);
     DFA::graph.push_back(newNode);

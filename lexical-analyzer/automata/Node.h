@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 
+
 typedef int stateID;
 
 struct Edge {
@@ -41,6 +42,9 @@ public:
   Node();
 
   void setAcceptanceState(AcceptanceSpec *spec);
+  void setPHIState();
+  bool isAccepted();
+  bool isPHI();
   AcceptanceSpec *getAcceptance();
 
   virtual void addTransition(stateID node_to, char transition) = 0;
@@ -52,6 +56,7 @@ protected:
   StateType stateType;
   AcceptanceSpec spec;
   Node(stateID id);
+
 };
 
 #endif // COMPLIER_NODE_H

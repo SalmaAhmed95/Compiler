@@ -4,7 +4,8 @@
 
 #include "Automata.h"
 
-Automata::Automata() : lastNodeID(0) {}
+Automata::Automata() : lastNodeID(0) {
+}
 
 void Automata::addTransition(char transition, stateID from, stateID to) {
   Node *fromNode = graph[from];
@@ -22,7 +23,7 @@ AcceptanceSpec *Automata::getAcceptance(stateID id) {
   return curNode->getAcceptance();
 }
 
-stateID Automata::getRootID() { return 0; }
+stateID Automata::getRootID() { return ROOT_ID; }
 
 std::set<char> Automata::getAllAttributes() { return attributes; }
 

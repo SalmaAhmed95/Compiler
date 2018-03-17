@@ -28,6 +28,9 @@ CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaNode.cpp.o: ../lexical-anal
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.o: ../lexical-analyzer/automata/Node.cpp
 CMakeFiles/Compiler.dir/lexical-analyzer/automata/Node.cpp.o: ../lexical-analyzer/automata/Node.h
 
+CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o: ../lexical-analyzer/code-parser/CodeParser.cpp
+CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o: ../lexical-analyzer/code-parser/CodeParser.h
+
 CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o: ../lexical-analyzer/grammar-parser/ProductionParser.cpp
 CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o: ../lexical-analyzer/grammar-parser/ProductionParser.hpp
 CMakeFiles/Compiler.dir/lexical-analyzer/grammar-parser/ProductionParser.cpp.o: ../lexical-analyzer/grammar-parser/Properties.hpp
@@ -43,4 +46,15 @@ CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o: ../lexical-analyzer/gr
 CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o: ../lexical-analyzer/grammar-parser/Properties.hpp
 CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o: ../lexical-analyzer/grammar-parser/Token.hpp
 CMakeFiles/Compiler.dir/lexical-analyzer/main/main.cpp.o: ../lexical-analyzer/main/main.cpp
+
+CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o: ../lexical-analyzer/automata/Automata.h
+CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o: ../lexical-analyzer/automata/DFA.h
+CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o: ../lexical-analyzer/automata/DfaNode.h
+CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o: ../lexical-analyzer/automata/Node.h
+CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o: ../lexical-analyzer/code-parser/CodeParser.h
+CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o: ../lexical-analyzer/pattern-matcher/PatternMatcher.cpp
+CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o: ../lexical-analyzer/pattern-matcher/PatternMatcher.h
+
+CMakeFiles/Compiler.dir/lexical-analyzer/utils/SymbolTable.cpp.o: ../lexical-analyzer/utils/SymbolTable.cpp
+CMakeFiles/Compiler.dir/lexical-analyzer/utils/SymbolTable.cpp.o: ../lexical-analyzer/utils/SymbolTable.h
 

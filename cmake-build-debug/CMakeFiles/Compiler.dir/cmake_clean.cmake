@@ -12,6 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Compiler.dir/lexical-analyzer/pattern-matcher/PatternMatcher.cpp.o"
   "CMakeFiles/Compiler.dir/lexical-analyzer/code-parser/CodeParser.cpp.o"
   "CMakeFiles/Compiler.dir/lexical-analyzer/utils/SymbolTable.cpp.o"
+  "CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaToDfaConverter.cpp.o"
   "Compiler.pdb"
   "Compiler"
 )

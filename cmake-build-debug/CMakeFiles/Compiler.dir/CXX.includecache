@@ -6,67 +6,67 @@
 
 #IncludeRegexTransform: 
 
-/home/salma/Compiler/lexical-analyzer/automata/Automata.cpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.cpp
 Automata.h
-/home/salma/Compiler/lexical-analyzer/automata/Automata.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
 
-/home/salma/Compiler/lexical-analyzer/automata/Automata.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
+Node.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
 set
 -
-Node.h
-/home/salma/Compiler/lexical-analyzer/automata/Node.h
 
-/home/salma/Compiler/lexical-analyzer/automata/DFA.cpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.cpp
 DFA.h
-/home/salma/Compiler/lexical-analyzer/automata/DFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.h
 
-/home/salma/Compiler/lexical-analyzer/automata/DFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.h
 string
 -
 vector
 -
 Automata.h
-/home/salma/Compiler/lexical-analyzer/automata/Automata.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
 DfaNode.h
-/home/salma/Compiler/lexical-analyzer/automata/DfaNode.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DfaNode.h
 
-/home/salma/Compiler/lexical-analyzer/automata/DfaNode.cpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DfaNode.cpp
 DfaNode.h
-/home/salma/Compiler/lexical-analyzer/automata/DfaNode.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DfaNode.h
 
-/home/salma/Compiler/lexical-analyzer/automata/DfaNode.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DfaNode.h
 Node.h
-/home/salma/Compiler/lexical-analyzer/automata/Node.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
 
-/home/salma/Compiler/lexical-analyzer/automata/NFA.cpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.cpp
 NFA.h
-/home/salma/Compiler/lexical-analyzer/automata/NFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h
 
-/home/salma/Compiler/lexical-analyzer/automata/NFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NFA.h
 string
 -
 vector
 -
 Automata.h
-/home/salma/Compiler/lexical-analyzer/automata/Automata.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Automata.h
 NfaNode.h
-/home/salma/Compiler/lexical-analyzer/automata/NfaNode.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.h
 
-/home/salma/Compiler/lexical-analyzer/automata/NfaNode.cpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.cpp
 NfaNode.h
-/home/salma/Compiler/lexical-analyzer/automata/NfaNode.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.h
 iostream
 -
 
-/home/salma/Compiler/lexical-analyzer/automata/NfaNode.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/NfaNode.h
 Node.h
-/home/salma/Compiler/lexical-analyzer/automata/Node.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
 
-/home/salma/Compiler/lexical-analyzer/automata/Node.cpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.cpp
 Node.h
-/home/salma/Compiler/lexical-analyzer/automata/Node.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
 
-/home/salma/Compiler/lexical-analyzer/automata/Node.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/Node.h
 map
 -
 set
@@ -76,15 +76,25 @@ string
 vector
 -
 
-/home/salma/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp
-ProductionParser.hpp
-/home/salma/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.cpp
+vector
+-
+fstream
+-
+CodeParser.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.h
 
-/home/salma/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.h
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.cpp
+ProductionParser.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
 Properties.hpp
-/home/salma/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
 Token.hpp
-/home/salma/Compiler/lexical-analyzer/grammar-parser/Token.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp
 ctype.h
 -
 map
@@ -96,11 +106,11 @@ stack
 vector
 -
 
-/home/salma/Compiler/lexical-analyzer/grammar-parser/Properties.cpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Properties.cpp
 Properties.hpp
-/home/salma/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
 
-/home/salma/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Properties.hpp
 fstream
 -
 iostream
@@ -110,15 +120,35 @@ map
 string
 -
 
-/home/salma/Compiler/lexical-analyzer/grammar-parser/Token.cpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.cpp
 Token.hpp
-/home/salma/Compiler/lexical-analyzer/grammar-parser/Token.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp
 
-/home/salma/Compiler/lexical-analyzer/grammar-parser/Token.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/Token.hpp
 string
 -
 
-/home/salma/Compiler/lexical-analyzer/main/main.cpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/main/main.cpp
 ../grammar-parser/ProductionParser.hpp
-/home/salma/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/grammar-parser/ProductionParser.hpp
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/pattern-matcher/PatternMatcher.cpp
+PatternMatcher.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/pattern-matcher/PatternMatcher.h
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/pattern-matcher/PatternMatcher.h
+../automata/DFA.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/automata/DFA.h
+../code-parser/CodeParser.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/code-parser/CodeParser.h
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/utils/SymbolTable.cpp
+SymbolTable.h
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/utils/SymbolTable.h
+
+/home/karfass/CLionProjects/Compiler/lexical-analyzer/utils/SymbolTable.h
+string
+-
+vector
+-
 

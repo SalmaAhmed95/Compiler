@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/salma/Downloads/clion-2017.2.2/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/karfass/clion-2017.2.2/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/salma/Downloads/clion-2017.2.2/bin/cmake/bin/cmake -E remove -f
+RM = /home/karfass/clion-2017.2.2/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/salma/Compiler
+CMAKE_SOURCE_DIR = /home/karfass/CLionProjects/Compiler
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/salma/Compiler/cmake-build-debug
+CMAKE_BINARY_DIR = /home/karfass/CLionProjects/Compiler/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/salma/Compiler/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/salma/Downloads/clion-2017.2.2/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/karfass/clion-2017.2.2/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/salma/Downloads/clion-2017.2.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/karfass/clion-2017.2.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/salma/Compiler/cmake-build-debug/CMakeFiles /home/salma/Compiler/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles /home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/salma/Compiler/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/karfass/CLionProjects/Compiler/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -257,6 +257,33 @@ lexical-analyzer/automata/NfaNode.s: lexical-analyzer/automata/NfaNode.cpp.s
 lexical-analyzer/automata/NfaNode.cpp.s:
 	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaNode.cpp.s
 .PHONY : lexical-analyzer/automata/NfaNode.cpp.s
+
+lexical-analyzer/automata/NfaToDfaConverter.o: lexical-analyzer/automata/NfaToDfaConverter.cpp.o
+
+.PHONY : lexical-analyzer/automata/NfaToDfaConverter.o
+
+# target to build an object file
+lexical-analyzer/automata/NfaToDfaConverter.cpp.o:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaToDfaConverter.cpp.o
+.PHONY : lexical-analyzer/automata/NfaToDfaConverter.cpp.o
+
+lexical-analyzer/automata/NfaToDfaConverter.i: lexical-analyzer/automata/NfaToDfaConverter.cpp.i
+
+.PHONY : lexical-analyzer/automata/NfaToDfaConverter.i
+
+# target to preprocess a source file
+lexical-analyzer/automata/NfaToDfaConverter.cpp.i:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaToDfaConverter.cpp.i
+.PHONY : lexical-analyzer/automata/NfaToDfaConverter.cpp.i
+
+lexical-analyzer/automata/NfaToDfaConverter.s: lexical-analyzer/automata/NfaToDfaConverter.cpp.s
+
+.PHONY : lexical-analyzer/automata/NfaToDfaConverter.s
+
+# target to generate assembly for a file
+lexical-analyzer/automata/NfaToDfaConverter.cpp.s:
+	$(MAKE) -f CMakeFiles/Compiler.dir/build.make CMakeFiles/Compiler.dir/lexical-analyzer/automata/NfaToDfaConverter.cpp.s
+.PHONY : lexical-analyzer/automata/NfaToDfaConverter.cpp.s
 
 lexical-analyzer/automata/Node.o: lexical-analyzer/automata/Node.cpp.o
 
@@ -498,6 +525,9 @@ help:
 	@echo "... lexical-analyzer/automata/NfaNode.o"
 	@echo "... lexical-analyzer/automata/NfaNode.i"
 	@echo "... lexical-analyzer/automata/NfaNode.s"
+	@echo "... lexical-analyzer/automata/NfaToDfaConverter.o"
+	@echo "... lexical-analyzer/automata/NfaToDfaConverter.i"
+	@echo "... lexical-analyzer/automata/NfaToDfaConverter.s"
 	@echo "... lexical-analyzer/automata/Node.o"
 	@echo "... lexical-analyzer/automata/Node.i"
 	@echo "... lexical-analyzer/automata/Node.s"

@@ -24,3 +24,16 @@ AcceptanceSpec *Node::getAcceptance() {
   copySpec->type = spec.type.substr(0, bufferSize);
   return copySpec;
 }
+
+
+void Node::setPHIState(){
+  Node::stateType = PHI;
+}
+
+bool Node::isAccepted(){
+  return stateType == ACCEPTED;
+}
+
+bool Node::isPHI(){
+  return stateType == PHI;
+}
