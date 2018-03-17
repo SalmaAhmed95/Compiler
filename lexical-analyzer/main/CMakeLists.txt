@@ -9,6 +9,7 @@ add_executable(lexical-analyzer
 # Specify here the libraries this program depends on
 target_link_libraries(lexical-analyzer
     grammar-parser
+    automata
 )
 
 install(TARGETS lexical-analyzer DESTINATION bin)

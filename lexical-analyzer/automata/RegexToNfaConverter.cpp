@@ -6,7 +6,7 @@ NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
   std::vector<struct SubNfa *> allNfa;
   for (int i = 0; i < tokens.size(); i++) {
     struct SubNfa *tokenNfa = convertToken(tokens[i], nfa);
-    nfa->addTransition(EPS, rootID, tokenNfa->startID);
+    nfa->addTransition(EPS_TRANS, rootID, tokenNfa->startID);
     delete tokenNfa;
   }
   return nfa;
@@ -18,11 +18,13 @@ struct SubNfa *RegexToNfaConverter::convertToken(Token *token, NFA *nfa) {
   for (int i = 0; i < (int)postfixRegex.size(); i++) {
     if (isBinaryOperation(postfixRegex[i])) {
       doBinaryOperation(nfaStack, nfa, postfixRegex[i]);
-    } else {
+    } else if (isUnaryOperation(postfixRegex[i])) {
       doUnaryOperation(nfaStack, nfa, postfixRegex[i]);
+    } else {
+      nfaStack.push(buildChar(postfixRegex[i], nfa));
     }
   }
-  if ((int)nfaStack.size() > 1) {
+  if ((int)nfaStack.size() < 1) {
     return NULL;
   }
   struct SubNfa *totalNfaToken = nfaStack.top();
@@ -45,10 +47,10 @@ void RegexToNfaConverter::doBinaryOperation(
   nfaStack.pop();
   struct SubNfa *finalNfa;
   switch (operation) {
-  case '|':
+  case OR_OP:
     finalNfa = buildOr(firstNfa, secondNfa, nfa);
     break;
-  case '#':
+  case CONC_OP:
     finalNfa = buildConcatenate(firstNfa, secondNfa, nfa);
     break;
   default:
@@ -68,10 +70,10 @@ void RegexToNfaConverter::doUnaryOperation(
   nfaStack.pop();
   struct SubNfa *finalNfa;
   switch (operation) {
-  case '*':
+  case STAR_OP:
     finalNfa = buildStar(subNfa, nfa);
     break;
-  case '+':
+  case PLUS_OP:
     finalNfa = buildPlus(subNfa, nfa);
     break;
   default:
@@ -92,7 +94,7 @@ struct SubNfa *RegexToNfaConverter::buildChar(char transition, NFA *nfa) {
 struct SubNfa *RegexToNfaConverter::buildConcatenate(struct SubNfa *firstNfa,
                                                      struct SubNfa *secondNfa,
                                                      NFA *nfa) {
-  nfa->addTransition(EPS, firstNfa->endID, secondNfa->startID);
+  nfa->addTransition(EPS_TRANS, firstNfa->endID, secondNfa->startID);
   return createSubNfa(firstNfa->startID, secondNfa->endID);
 }
 
@@ -101,27 +103,27 @@ struct SubNfa *RegexToNfaConverter::buildOr(struct SubNfa *firstNfa,
                                             NFA *nfa) {
   stateID startID = nfa->createNode();
   stateID endID = nfa->createNode();
-  nfa->addTransition(EPS, startID, firstNfa->startID);
-  nfa->addTransition(EPS, startID, secondNfa->startID);
-  nfa->addTransition(EPS, firstNfa->endID, endID);
-  nfa->addTransition(EPS, secondNfa->endID, endID);
+  nfa->addTransition(EPS_TRANS, startID, firstNfa->startID);
+  nfa->addTransition(EPS_TRANS, startID, secondNfa->startID);
+  nfa->addTransition(EPS_TRANS, firstNfa->endID, endID);
+  nfa->addTransition(EPS_TRANS, secondNfa->endID, endID);
   return createSubNfa(startID, endID);
 }
 
 struct SubNfa *RegexToNfaConverter::buildStar(struct SubNfa *subNfa, NFA *nfa) {
   stateID startID = nfa->createNode();
   stateID endID = nfa->createNode();
-  nfa->addTransition(EPS, startID, subNfa->startID);
-  nfa->addTransition(EPS, startID, endID);
-  nfa->addTransition(EPS, subNfa->endID, endID);
-  nfa->addTransition(EPS, subNfa->endID, subNfa->startID);
+  nfa->addTransition(EPS_TRANS, startID, subNfa->startID);
+  nfa->addTransition(EPS_TRANS, startID, endID);
+  nfa->addTransition(EPS_TRANS, subNfa->endID, endID);
+  nfa->addTransition(EPS_TRANS, subNfa->endID, subNfa->startID);
   return createSubNfa(startID, endID);
 }
 
 struct SubNfa *RegexToNfaConverter::buildPlus(struct SubNfa *subNfa, NFA *nfa) {
   stateID endID = nfa->createNode();
-  nfa->addTransition(EPS, subNfa->endID, endID);
-  nfa->addTransition(EPS, subNfa->endID, subNfa->startID);
+  nfa->addTransition(EPS_TRANS, subNfa->endID, endID);
+  nfa->addTransition(EPS_TRANS, subNfa->endID, subNfa->startID);
   return createSubNfa(subNfa->startID, endID);
 }
 
@@ -134,5 +136,9 @@ struct SubNfa *RegexToNfaConverter::createSubNfa(stateID startID,
 }
 
 bool RegexToNfaConverter::isBinaryOperation(char operation) {
-  return operation == '|' || operation == '#';
+  return operation == OR_OP || operation == CONC_OP;
+}
+
+bool RegexToNfaConverter::isUnaryOperation(char operation) {
+  return operation == STAR_OP || operation == PLUS_OP;
 }
