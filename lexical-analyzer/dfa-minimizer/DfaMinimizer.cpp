@@ -13,13 +13,13 @@ void partition(std::set<stateID> *setToBePartitioned,
                std::vector<std::set<stateID >> *next,
                DFA *dfaGraph);
 
-void updateStateToSetIdMap(std::set<stateID> *sets, int index);
+void updateStateToSetIdMap(std::set<stateID> *set, int index);
 
 bool areEquivalentStates(stateID a, stateID b, DFA *dfaGraph);
 
-Automata *createMinimizedDfa(std::vector<std::set<stateID>> *sets, Automata *dfaGraph);
+DFA *createMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph);
 
-Automata *minimizeDfa(DFA dfaGraph) {
+DFA *minimizeDfa(DFA dfaGraph) {
     std::vector<std::set<stateID>> sets1;
     std::vector<std::set<stateID>> sets2;
     std::vector<std::set<stateID >> *prev = &sets1;
@@ -32,7 +32,7 @@ Automata *minimizeDfa(DFA dfaGraph) {
         for (std::set<stateID> set: *prev) {
             partition(&set, next, &dfaGraph);
         }
-        for (int setIndex = 0; setIndex < next->size(); setIndex++) {
+        for (unsigned int setIndex = 0; setIndex < next->size(); setIndex++) {
             updateStateToSetIdMap(&(next->at(setIndex)), setIndex);
         }
 
@@ -42,7 +42,7 @@ Automata *minimizeDfa(DFA dfaGraph) {
         next = tmp;
 
     } while (prev->size() != next->size());
-    Automata *minimizedDfa = createMinimizedDfa(prev, &dfaGraph);
+    DFA *minimizedDfa = createMinimizedDfa(prev, &dfaGraph);
     delete (stateToSetId);
     return minimizedDfa;
 }
@@ -52,14 +52,14 @@ void init(DFA *dfaGraph, std::vector<std::set<stateID>> *sets) {
 
     //initial sets
     for (stateID i = 0; i < dfaGraph->getNumberOfStates(); i++) {
-        if (dfaGraph->isAcceptance(i)) {
+        if (dfaGraph->isAccepted(i)) {
             sets->push_back(std::set<stateID>());
             sets->back().insert(i);
         } else {
             sets->front().insert(i);
         }
     }
-    for (int i = 0; i < sets->size(); i++) {
+    for (unsigned int i = 0; i < sets->size(); i++) {
         updateStateToSetIdMap(&(sets->at(i)), i);
     }
 }
@@ -111,20 +111,27 @@ bool areEquivalentStates(const stateID a, const stateID b, DFA *dfaGraph) {
     return true;
 }
 
-Automata *createMinimizedDfa(std::vector<std::set<stateID>> *sets, Automata *dfaGraph) {
+DFA *createMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
     DFA *minimizedDfa = new DFA();
 
-    // create nodes with acceptance values
-    for (int i = 0; i < sets->size(); i++) {
-        minimizedDfa->createNode();
-        if (dfaGraph->isAcceptance(*sets->at(i).begin())) {
-            minimizedDfa->setAcceptance(i, true);
+    //Create States to represent the sets ignoring the PHI state
+    for (unsigned int i = 0; i < sets->size(); i++) {
+        stateID stateInSet = *(sets->at(i).begin());
+        int statePrecedence = dfaGraph->getPrecedence(stateInSet);
+        std::string stateIdentifier = dfaGraph->getTokenClass(stateInSet);
+        if (dfaGraph->isAccepted(stateInSet)) {
+            minimizedDfa->createNode(StateType::ACCEPTED, statePrecedence, stateIdentifier);
+        } else if (dfaGraph->isPHI(stateInSet)) {
+            sets->erase(sets->begin() + i);
+            i--;
+        } else {
+            minimizedDfa->createNode(StateType::INTERMEDIATE, statePrecedence, stateIdentifier);
         }
     }
 
     // get index of the set containing the root
-    int rootSetIndex;
-    for (int i = 0; i < sets->size(); i++) {
+    int rootSetIndex = 0;
+    for (unsigned int i = 0; i < sets->size(); i++) {
         if (sets->at(i).count(dfaGraph->getRootID())) {
             rootSetIndex = i;
             break;
@@ -146,8 +153,7 @@ Automata *createMinimizedDfa(std::vector<std::set<stateID>> *sets, Automata *dfa
             stateID oldFrom = *(sets->at(from).begin());
             stateID oldTo = dfaGraph->getTransitions(oldFrom, attribute).front();
             stateID to = (*stateToSetId->find(oldTo)).second;
-            Edge edge = Edge(from, to, attribute);
-            minimizedDfa->addTransition(&edge);
+            minimizedDfa->addTransition(attribute, from, to);
         }
     }
     return minimizedDfa;

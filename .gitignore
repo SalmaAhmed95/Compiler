@@ -1,2 +1,4 @@
 .idea/
 lexical-analyzer/build
+cmake-build-debug/
+CMakeLists.txt
