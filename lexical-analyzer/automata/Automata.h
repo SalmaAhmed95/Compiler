@@ -41,10 +41,6 @@ public:
 
     std::vector<TransEdges> getTransitions(stateID curState);
 
-    bool isAcceptance(stateID stateId);
-
-    bool setAcceptance(stateID stateId, bool acceptance);
-
 protected:
     stateID lastNodeID;
     std::vector<Node *> graph;
