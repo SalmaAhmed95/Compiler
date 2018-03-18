@@ -22,7 +22,6 @@ public:
 
     void addTransition(char transition, stateID from, stateID to);
 
-
     bool isAccepted(stateID curState);
 
     bool isPHI(stateID curState);
@@ -30,6 +29,8 @@ public:
     int getPrecedence(stateID curState);
 
     std::string getTokenClass(stateID curState);
+
+    StateType getStateType(stateID curState);
 
     stateID getRootID();
 

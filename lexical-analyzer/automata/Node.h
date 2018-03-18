@@ -21,6 +21,7 @@ struct StateSpec {
     StateType stateType;
     int precedence;
     std::string tokenClass;
+    StateSpec() :stateType (INTERMEDIATE) , precedence(0),tokenClass(""){}
 };
 
 struct TransEdges {
@@ -42,6 +43,8 @@ public:
     int getPrecedence();
 
     std::string getTokenClass();
+
+    StateType getStateType();
 
     virtual void addTransition(stateID node_to, char transition) = 0;
 
