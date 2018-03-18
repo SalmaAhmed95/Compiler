@@ -25,9 +25,11 @@ public:
 
   bool isAccepted(stateID curState);
 
+
   bool isPHI(stateID curState);
 
   int getPrecedence(stateID curState);
+
 
   stateID getRootID();
 
@@ -35,7 +37,12 @@ public:
 
   std::set<char> getAllAttributes();
 
+
+    StateType getStateType(stateID curState);
+
+
   stateID getNumberOfStates();
+
 
   std::vector<stateID> getTransitions(stateID curState, char transition);
 

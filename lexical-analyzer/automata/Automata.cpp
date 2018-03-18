@@ -3,6 +3,7 @@
 //
 
 #include "Automata.h"
+#include "Node.h"
 
 Automata::Automata() : lastNodeID(0) {}
 
@@ -30,6 +31,12 @@ int Automata::getPrecedence(stateID curState) {
 std::string Automata::getTokenClass(stateID curState) {
   Node *curNode = graph[curState];
   return curNode->getTokenClass();
+}
+
+
+StateType Automata::getStateType(stateID curState){
+    Node *curNode = graph[curState];
+    return curNode->getStateType();
 }
 
 stateID Automata::getRootID() { return ROOT_ID; }

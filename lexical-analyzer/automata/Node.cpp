@@ -6,10 +6,7 @@
 Node::Node() {}
 
 Node::Node(stateID id) {
-  Node::ID = id;
-  Node::stateSpec.stateType = INTERMEDIATE;
-  Node::stateSpec.precedence = 0;
-  Node::stateSpec.tokenClass = "";
+    Node::ID = id;
 }
 
 Node::Node(stateID id, StateSpec *spec) {
@@ -27,9 +24,17 @@ std::string Node::getTokenClass() {
   return std::string(Node::stateSpec.tokenClass);
 }
 
-bool Node::isAccepted() { return stateSpec.stateType == ACCEPTED; }
+
+StateType Node::getStateType(){
+    return stateSpec.stateType;
+}
+bool Node::isAccepted() {
+    return stateSpec.stateType == ACCEPTED;
+}
+
 
 bool Node::isPHI() { return stateSpec.stateType == PHI; }
+
 
 void Node::setStateSpec(int precedence, std::string tokenClass,
                         StateType type) {

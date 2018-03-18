@@ -15,9 +15,12 @@ typedef int stateID;
 enum StateType { ACCEPTED, PHI, INTERMEDIATE };
 
 struct StateSpec {
-  StateType stateType;
-  int precedence;
-  std::string tokenClass;
+
+    StateType stateType;
+    int precedence;
+    std::string tokenClass;
+    StateSpec() :stateType (INTERMEDIATE) , precedence(0),tokenClass(""){}
+
 };
 
 struct TransEdges {
@@ -38,9 +41,11 @@ public:
 
   std::string getTokenClass();
 
-  void setStateSpec(int precedence, std::string tokenClass, StateType type);
 
-  virtual void addTransition(stateID node_to, char transition) = 0;
+    StateType getStateType();
+    virtual void addTransition(stateID node_to, char transition) = 0;
+
+  void setStateSpec(int precedence, std::string tokenClass, StateType type);
 
   virtual std::vector<stateID> getTransitions(char transition) = 0;
 
