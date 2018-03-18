@@ -29,22 +29,23 @@ DFA *NfaToDfaConverter::getDFA(NFA *nfa) {
         std::set<char> arrtibutes = nfa->getAllAttributes();
         for (std::set<char>::iterator it = arrtibutes.begin(); it != arrtibutes.end(); ++it) {
             char transition = *it;
-            SetOfNfaStates newStates;
-            getNextState(&newStates, &temp.nfaStates, &epsTransitions,transition, nfa);
-            int nextNodeID = 0;
-            std::map<SetOfNfaStates, stateID>::iterator dfaState = setOfDfaStates.find(newStates);
-            if (dfaState == setOfDfaStates.end()) {
-                nextNodeID = dfa->createNode(newStates.stateSpec.stateType,
-                                             newStates.stateSpec.precedence, newStates.stateSpec.tokenClass);
-                setOfDfaStates.insert(std::pair<SetOfNfaStates, stateID>(newStates, nextNodeID));
-                NfaStatesToDfa newState(nextNodeID, newStates.states);
-                queueDfaStates.push(newState);
+            if (transition != EPS_TRANS) {
+                SetOfNfaStates newStates;
+                getNextState(&newStates, &temp.nfaStates, &epsTransitions, transition, nfa);
+                int nextNodeID = 0;
+                std::map<SetOfNfaStates, stateID>::iterator dfaState = setOfDfaStates.find(newStates);
+                if (dfaState == setOfDfaStates.end()) {
+                    nextNodeID = dfa->createNode(newStates.stateSpec.stateType,
+                                                 newStates.stateSpec.precedence, newStates.stateSpec.tokenClass);
+                    setOfDfaStates.insert(std::pair<SetOfNfaStates, stateID>(newStates, nextNodeID));
+                    NfaStatesToDfa newState(nextNodeID, newStates.states);
+                    queueDfaStates.push(newState);
 
-            } else {
-                nextNodeID = dfaState->second;
+                } else {
+                    nextNodeID = dfaState->second;
+                }
+                dfa->addTransition(transition, currentNode, nextNodeID);
             }
-            dfa->addTransition(transition, currentNode, nextNodeID);
-
         }
 
     }
