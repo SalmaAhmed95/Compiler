@@ -10,20 +10,15 @@
 class NfaNode : public Node {
 
 public:
+  NfaNode(stateID id);
+  NfaNode(stateID id, StateSpec *stateSpec);
+  void addTransition(stateID node_to, char transition);
 
+  std::vector<TransEdges> getTransitions();
 
-    NfaNode(stateID id);
-    NfaNode(stateID id, StateSpec *stateSpec);
-    void addTransition(stateID node_to, char transition);
-
-    std::vector<TransEdges> getTransitions();
-
-    std::vector<stateID> getTransitions(char transition);
+  std::vector<stateID> getTransitions(char transition);
 
 private:
-
-    std::multimap<char, stateID> transitions;
-
-
+  std::multimap<char, stateID> transitions;
 };
-#endif //COMPLIER_NFANODE_H
+#endif // COMPLIER_NFANODE_H

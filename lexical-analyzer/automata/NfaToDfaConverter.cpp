@@ -1,8 +1,9 @@
 //
 // Created by karfass on 17/03/18.
 //
-#include <queue>
 #include "NfaToDfaConverter.h"
+#include <queue>
+
 
 #define EPS_TRANS '`'
 
@@ -60,22 +61,49 @@ std::vector<SetOfNfaStates> NfaToDfaConverter::constructEpsTransitionTable(NFA *
     return epsTable;
 }
 
+
+
+
+void NfaToDfaConverter::getNextState(SetOfNfaStates *nextStates, std::set<stateID> *states, std::vector<SetOfNfaStates>* epsTable,
+                                     char transition, NFA *nfa) {
+    std::set<stateID>::iterator nfaState;
+    for(nfaState = states->begin(); nfaState != states->end(); ++nfaState) {
+        std::vector<stateID> certainTransitions = nfa->getTransitions(*nfaState,transition);
+        std::vector<stateID> :: iterator nfaNextState;
+        for(nfaNextState = certainTransitions.begin(); nfaNextState != certainTransitions.end(); ++nfaNextState) {
+            std::set<stateID >:: iterator nfaNextStateEps;
+
+            for (nfaNextStateEps = (*epsTable)[*nfaNextState].states.begin();
+                 nfaNextStateEps != (*epsTable)[*nfaNextState].states.end(); ++nfaNextStateEps ){
+                nextStates->states.insert(*nfaNextStateEps);
+                updateSetOfNfaStatesSpec(&nextStates->stateSpec, nfa->getStateType(*nfaNextStateEps),
+                                         nfa->getPrecedence(*nfaNextStateEps), nfa->getTokenClass(*nfaNextStateEps));
+            }
+        }
+    }
+    if (nextStates->states.empty() == 0){
+        nextStates->stateSpec.stateType = PHI;
+    }
+}
+
+
+
 void NfaToDfaConverter::getEpsTransitionsForState(stateID curState, std::vector<SetOfNfaStates> *epsTable, NFA *nfa) {
-    epsTable->[curState]->states.insert(curState);
-    updateSetOfNfaStatesSpec(epsTable->[curState].stateSpec, nfa->getStateType(curState),
+    (*epsTable)[curState].states.insert(curState);
+    updateSetOfNfaStatesSpec(&(*epsTable)[curState].stateSpec, nfa->getStateType(curState),
                              nfa->getPrecedence(curState), nfa->getTokenClass(curState));
 
-    std::vector epsTransitions = nfa->getTransitions(curState, EPS_TRANS);
+    std::vector<stateID> epsTransitions = nfa->getTransitions(curState, EPS_TRANS);
     for (auto nextState : epsTransitions) {
-        epsTable->[curState]->states.insert(nextState);
-        updateSetOfNfaStatesSpec(epsTable->[nextState].stateSpec, nfa->getStateType(nextState),
+        (*epsTable)[curState].states.insert(nextState);
+        updateSetOfNfaStatesSpec(&(*epsTable)[curState].stateSpec, nfa->getStateType(nextState),
                                  nfa->getPrecedence(nextState), nfa->getTokenClass(nextState));
-        if (epsTable->[epsTable]->states == 0) {
+        if ((*epsTable)[curState].states.size() == 0) {
             getEpsTransitionsForState(nextState, epsTable, nfa);
         }
-        for (auto recuNextState : epsTable->[nextState].states) {
-            epsTable->[curState]->states.insert(recuNextState);
-            updateSetOfNfaStatesSpec(epsTable->[recuNextState].stateSpec, nfa->getStateType(recuNextState),
+        for (auto recuNextState : (*epsTable)[nextState].states) {
+            (*epsTable)[curState].states.insert(recuNextState);
+            updateSetOfNfaStatesSpec(&(*epsTable)[curState].stateSpec, nfa->getStateType(recuNextState),
                                      nfa->getPrecedence(recuNextState), nfa->getTokenClass(recuNextState));
         }
     }
@@ -97,16 +125,3 @@ void NfaToDfaConverter::updateSetOfNfaStatesSpec(StateSpec *mainState, StateType
     }
 }
 
-void NfaToDfaConverter::getNextState(SetOfNfaStates *nextStates, std::set<stateID> *states, std::vector<SetOfNfaStates>* epsTable,
-                                     char transition, NFA *nfa) {
-                for( auto nfaState : *states) {
-                    std::vector<stateID> certainTransitions = nfa->getTransitions(nfaState,transition);
-                    for(auto nfaNextState : certainTransitions) {
-                         for (auto nfaNextStateEps : epsTable->[nfaNextState].states){
-                             nextStates->states.insert(nfaNextStateEps);
-                             updateSetOfNfaStatesSpec(&nextStates->stateSpec, nfa->getStateType(nfaNextStateEps),
-                                                      nfa->getPrecedence(nfaNextStateEps), nfa->getTokenClass(nfaNextStateEps));
-                         }
-                    }
-                }
-}

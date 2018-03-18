@@ -5,14 +5,18 @@
 #ifndef COMPILER_NFATODFACONVERTER_H
 #define COMPILER_NFATODFACONVERTER_H
 
-
 #include "DFA.h"
 #include "NFA.h"
 
 struct SetOfNfaStates {
+
     StateSpec stateSpec;
     std::set<stateID> states;
+    bool operator <(const SetOfNfaStates& x) const{
+        return states == x.states;
+    }
 };
+
 
 struct NfaStatesToDfa {
     stateID dfaID;
@@ -21,6 +25,7 @@ struct NfaStatesToDfa {
 };
 
 class NfaToDfaConverter {
+
     public:
     DFA *getDFA(NFA *nfa);
 
@@ -31,5 +36,6 @@ class NfaToDfaConverter {
     void getNextState(SetOfNfaStates *nextStates, std::set<stateID> *states, std::vector<SetOfNfaStates>* epsTable,
                       char transition, NFA *nfa);
     void updateSetOfNfaStatesSpec(StateSpec *mainState, StateType nextType ,int nextPrecedence, std::string nextTokenClass);
+
 };
-#endif //COMPILER_NFATODFACONVERTER_H
+#endif // COMPILER_NFATODFACONVERTER_H

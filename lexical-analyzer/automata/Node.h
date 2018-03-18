@@ -10,56 +10,54 @@
 #include <string>
 #include <vector>
 
-
 typedef int stateID;
 
-enum StateType {
-    ACCEPTED, PHI, INTERMEDIATE
-};
+enum StateType { ACCEPTED, PHI, INTERMEDIATE };
 
 struct StateSpec {
+
     StateType stateType;
     int precedence;
     std::string tokenClass;
     StateSpec() :stateType (INTERMEDIATE) , precedence(0),tokenClass(""){}
+
 };
 
 struct TransEdges {
-    char transition;
-    std::vector<stateID> nextStates;
+  char transition;
+  std::vector<stateID> nextStates;
 };
-
-
 
 class Node {
 
 public:
-    Node();
+  Node();
 
-    bool isAccepted();
+  bool isAccepted();
 
-    bool isPHI();
+  bool isPHI();
 
-    int getPrecedence();
+  int getPrecedence();
 
-    std::string getTokenClass();
+  std::string getTokenClass();
+
 
     StateType getStateType();
-
     virtual void addTransition(stateID node_to, char transition) = 0;
 
-    virtual std::vector<stateID> getTransitions(char transition) = 0;
+  void setStateSpec(int precedence, std::string tokenClass, StateType type);
 
-    virtual std::vector<TransEdges> getTransitions() = 0;
+  virtual std::vector<stateID> getTransitions(char transition) = 0;
+
+  virtual std::vector<TransEdges> getTransitions() = 0;
 
 protected:
-    stateID ID;
-    StateSpec stateSpec;
+  stateID ID;
+  StateSpec stateSpec;
 
-    Node(stateID id);
+  Node(stateID id);
 
-    Node(stateID id, StateSpec *spec);
-
+  Node(stateID id, StateSpec *spec);
 };
 
 #endif // COMPLIER_NODE_H
