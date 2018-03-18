@@ -9,7 +9,6 @@
 #include "../automata/DFA.h"
 #include "../code-parser/CodeParser.h"
 
-#define  SPACE ' '
 
 class PatternMatcher {
 public:

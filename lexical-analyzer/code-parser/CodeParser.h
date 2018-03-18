@@ -5,6 +5,8 @@
 #ifndef COMPILER_CODEPARSER_H
 #define COMPILER_CODEPARSER_H
 
+#define  SPACE ' '
+#define  NEWLINE '\n'
 
 class CodeParser {
 
@@ -22,6 +24,8 @@ public:
     std::string getSubString(int startIndex , int lastIndex);
 
     bool hasChars();
+
+    bool isDelimeter(char c);
 
 private:
     std::string codeFile;

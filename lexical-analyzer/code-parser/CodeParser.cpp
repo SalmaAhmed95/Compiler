@@ -49,3 +49,8 @@ bool CodeParser::hasChars() {
         return false;
     return true;
 }
+bool CodeParser::isDelimeter(char c) {
+    if(c == SPACE || c == NEWLINE)
+        return true;
+    return false;
+}
