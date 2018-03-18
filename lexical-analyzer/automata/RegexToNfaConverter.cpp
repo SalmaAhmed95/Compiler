@@ -3,12 +3,14 @@
 NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
   NFA *nfa = new NFA();
   stateID rootID = nfa->createNode();
-  Token *token = new Token("hello", "a*", 10);
+  Token *token = new Token("hello", "*", 10);
   struct SubNfa *s = convertToken(token, nfa);
-  nfa->addTransition(EPS_TRANS, rootID, s->startID);
+  if (s)
+    nfa->addTransition(EPS_TRANS, rootID, s->startID);
   for (int i = 0; i < tokens.size(); i++) {
     struct SubNfa *tokenNfa = convertToken(tokens[i], nfa);
-    nfa->addTransition(EPS_TRANS, rootID, tokenNfa->startID);
+    if (tokenNfa)
+      nfa->addTransition(EPS_TRANS, rootID, tokenNfa->startID);
     delete tokenNfa;
   }
   return nfa;
@@ -27,7 +29,7 @@ struct SubNfa *RegexToNfaConverter::convertToken(Token *token, NFA *nfa) {
       nfaStack.push(buildChar(postfixRegex[i], nfa, createdNodes));
     }
   }
-  if ((int)nfaStack.size() < 1) {
+  if ((int)nfaStack.size() != 1) {
     return NULL;
   }
   struct SubNfa *totalNfaToken = nfaStack.top();
