@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <fstream>
+#include <iostream>
 #include "CodeParser.h"
 
 CodeParser::CodeParser(std::string fileName) {
@@ -14,9 +15,9 @@ std::vector<char> CodeParser::parseFile() {
     std::ifstream file(codeFile);
     std::string temp;
     char c;
-    while (file.get(c))       // loop getting single characters
+    while (file.get(c)) {      // loop getting single characters
         chars.push_back(c);
-
+    }
     file.close();
     return chars;
 }
@@ -36,14 +37,15 @@ int CodeParser::getCurIndex() {
 }
 
 std::string CodeParser::getSubString(int startIndex,int lastIndex) {
-    std::string subString = "";
-    for (int i =startIndex; i < lastIndex; i++) {
+    std::string subString;
+    for (int i = startIndex; i < lastIndex; i++) {
         subString += chars[i];
     }
+    return subString;
 }
 
 bool CodeParser::hasChars() {
-    if (index == chars.size() - 1)
+    if (index == chars.size() +1)
         return false;
     return true;
 }
