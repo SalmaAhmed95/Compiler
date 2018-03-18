@@ -1,4 +1,3 @@
-#include "../grammar-parser/Token.hpp"
 #include "TestToken.hpp"
 
 TestToken::TestToken() {}
