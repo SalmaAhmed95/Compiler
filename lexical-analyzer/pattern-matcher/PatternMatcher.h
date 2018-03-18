@@ -18,7 +18,7 @@ public:
 
     void analyzeCode();
 
-    void recoveryRoutine();
+    void recoveryRoutine(int startIndex);
 
 private:
     DFA *minDFA;

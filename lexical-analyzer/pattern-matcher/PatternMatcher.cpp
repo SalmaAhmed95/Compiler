@@ -3,6 +3,7 @@
 //
 
 #include "PatternMatcher.h"
+#include "../error/ErrorHandler.h"
 
 PatternMatcher::PatternMatcher(DFA *dfa, std::string inputFile) {
     minDFA = dfa;
@@ -13,11 +14,11 @@ PatternMatcher::PatternMatcher(DFA *dfa, std::string inputFile) {
 void PatternMatcher::analyzeCode() {
     stateID startDFA = minDFA->getRootID();
     while (parser->hasChars()) {
-        findMatch(startDFA, parser->getCurIndex());
-//        if (!findMatch(startDFA, parser->getCurIndex())) {
-//            recoveryRoutine();
-//            // then try to continue finding patterns (handle later)
-//        }
+        int curIndex = parser->getCurIndex();
+        if (!findMatch(startDFA,curIndex)) {
+            // if match not found print error then advance ptr & try to continue finding patterns
+            recoveryRoutine(curIndex+1);
+        }
     }
 }
 
@@ -56,6 +57,12 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
 
 }
 
-void PatternMatcher::recoveryRoutine() {
+void PatternMatcher::recoveryRoutine(int startIndex) {
+    /*drop one letter from stream in order to start matching again from after that letter*/
+    parser->setStartIndex(startIndex);
+    //print message from error handler
+    //send this error message to a writer to write it
+    ErrorHandler::lexicalError;
+
 
 }
