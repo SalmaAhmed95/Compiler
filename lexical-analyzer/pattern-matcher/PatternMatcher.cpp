@@ -41,8 +41,6 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
         curState = nextState[0];
         c = parser->getChar();
     }
-    if (c == SPACE)
-        parser->setStartIndex(parser->getCurIndex() + 1);
     if (matchIndex == -1) {
         return false;
     } else {
