@@ -1,17 +1,20 @@
 #include "RegexToNfaConverter.hpp"
 
 NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
-    NFA *nfa = new NFA();
-    stateID rootID = nfa->createNode();
-    Token *token = new Token("hello", "ab#c|*", 10);
-    struct SubNfa *s = convertToken(token, nfa);
+  NFA *nfa = new NFA();
+  stateID rootID = nfa->createNode();
+  Token *token = new Token("hello", "*", 10);
+  struct SubNfa *s = convertToken(token, nfa);
+  if (s)
     nfa->addTransition(EPS_TRANS, rootID, s->startID);
-    for (int i = 0; i < tokens.size(); i++) {
-        struct SubNfa *tokenNfa = convertToken(tokens[i], nfa);
-        nfa->addTransition(EPS_TRANS, rootID, tokenNfa->startID);
-        delete tokenNfa;
-    }
-    return nfa;
+  for (int i = 0; i < tokens.size(); i++) {
+    struct SubNfa *tokenNfa = convertToken(tokens[i], nfa);
+    if (tokenNfa)
+      nfa->addTransition(EPS_TRANS, rootID, tokenNfa->startID);
+    delete tokenNfa;
+  }
+  return nfa;
+
 }
 
 struct SubNfa *RegexToNfaConverter::convertToken(Token *token, NFA *nfa) {
@@ -27,7 +30,7 @@ struct SubNfa *RegexToNfaConverter::convertToken(Token *token, NFA *nfa) {
             nfaStack.push(buildChar(postfixRegex[i], nfa, createdNodes));
         }
     }
-    if ((int) nfaStack.size() < 1) {
+    if ((int)nfaStack.size() != 1) {
         return NULL;
     }
     struct SubNfa *totalNfaToken = nfaStack.top();
@@ -35,7 +38,11 @@ struct SubNfa *RegexToNfaConverter::convertToken(Token *token, NFA *nfa) {
     nfa->setStateSpec(totalNfaToken->endID, token->getPriority(),
                       token->getType(), ACCEPTED);
     return totalNfaToken;
-}
+  }
+
+
+
+
 
 void RegexToNfaConverter::doBinaryOperation(
         std::stack<struct SubNfa *> &nfaStack, NFA *nfa, char operation,

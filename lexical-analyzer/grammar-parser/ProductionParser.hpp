@@ -17,7 +17,7 @@ public:
                                                std::string propertiesFileName);
   virtual ~ProductionParser();
 
-private:
+protected:
   static std::string removeSpaces(std::string str);
   static void processLine(std::string line, std::vector<Token *> &tokens,
                           Properties::PropertiesData *propertiesData,

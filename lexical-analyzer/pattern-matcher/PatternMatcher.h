@@ -9,7 +9,6 @@
 #include "../automata/DFA.h"
 #include "../code-parser/CodeParser.h"
 
-#define  SPACE ' '
 
 class PatternMatcher {
 public:
@@ -19,7 +18,7 @@ public:
 
     void analyzeCode();
 
-    void recoveryRoutine();
+    void recoveryRoutine(int startIndex);
 
 private:
     DFA *minDFA;
