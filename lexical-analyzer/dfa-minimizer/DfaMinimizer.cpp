@@ -17,34 +17,35 @@ void updateStateToSetIdMap(std::set<stateID> *set, int index);
 
 bool areEquivalentStates(stateID a, stateID b, DFA *dfaGraph);
 
-DFA *buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph);
+DFA buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph);
 
 void initMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph, DFA *minimizedDfa);
 
-DFA *minimizeDfa(DFA dfaGraph) {
+
+void printSets(std::vector<std::set<stateID>> *sets);
+
+DFA minimizeDfa(DFA dfaGraph) {
     std::vector<std::set<stateID>> sets1;
     std::vector<std::set<stateID>> sets2;
     std::vector<std::set<stateID >> *prev = &sets1;
     std::vector<std::set<stateID>> *next = &sets2;
     stateToSetId = new std::map<stateID, int>();
 
-    initSets(&dfaGraph, &sets1);
-
+    initSets(&dfaGraph, prev);
     do {
+        next->clear();
         for (std::set<stateID> set: *prev) {
             partition(&set, next, &dfaGraph);
         }
         for (unsigned int setIndex = 0; setIndex < next->size(); setIndex++) {
             updateStateToSetIdMap(&(next->at(setIndex)), setIndex);
         }
-
-        //swap pointers to update the prev for the next partitioning.
+        //swap pointers
         std::vector<std::set<stateID >> *tmp = prev;
         prev = next;
         next = tmp;
-
     } while (prev->size() != next->size());
-    DFA *minimizedDfa = buildMinimizedDfa(prev, &dfaGraph);
+    DFA minimizedDfa = buildMinimizedDfa(prev, &dfaGraph);
     delete (stateToSetId);
     return minimizedDfa;
 }
@@ -54,12 +55,15 @@ void initSets(DFA *dfaGraph, std::vector<std::set<stateID>> *sets) {
 
     //initial sets
     for (stateID i = 0; i < dfaGraph->getNumberOfStates(); i++) {
-        if (dfaGraph->isAccepted(i) || dfaGraph->isPHI(i)) {
+        if (dfaGraph->isAccepted(i)) {
             sets->push_back(std::set<stateID>());
             sets->back().insert(i);
         } else {
             sets->front().insert(i);
         }
+    }
+    if (sets->front().empty()) {
+        sets->erase(sets->begin());
     }
     for (unsigned int i = 0; i < sets->size(); i++) {
         updateStateToSetIdMap(&(sets->at(i)), i);
@@ -96,7 +100,7 @@ void partition(std::set<stateID> *setToBePartitioned,
 
 void updateStateToSetIdMap(std::set<stateID> *set, int index) {
     for (stateID state: *set) {
-        stateToSetId->insert(std::pair<stateID, int>(state, index));
+        stateToSetId->operator[](state) = index;
     }
 }
 
@@ -113,18 +117,17 @@ bool areEquivalentStates(const stateID a, const stateID b, DFA *dfaGraph) {
     return true;
 }
 
-DFA *buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
-    DFA *minimizedDfa = new DFA();
-
-    initMinimizedDfa(sets, dfaGraph, minimizedDfa);
+DFA buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
+    DFA minimizedDfa;
+    initMinimizedDfa(sets, dfaGraph, &minimizedDfa);
 
     //Build the minimized DFA
-    for (stateID from = 0; from < sets->size(); from) {
+    for (stateID from = 0; from < sets->size(); from++) {
         for (char attribute: dfaGraph->getAllAttributes()) {
             stateID oldFrom = *(sets->at(from).begin());
             stateID oldTo = dfaGraph->getTransitions(oldFrom, attribute).front();
             stateID to = (*stateToSetId->find(oldTo)).second;
-            minimizedDfa->addTransition(attribute, from, to);
+            minimizedDfa.addTransition(attribute, from, to);
         }
     }
     return minimizedDfa;
@@ -156,4 +159,13 @@ void initMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph, DFA *
 
     // update the map for the elements at the prev root index
     updateStateToSetIdMap(&(sets->at(rootSetIndex)), rootSetIndex);
+}
+
+void printSets(std::vector<std::set<stateID>> *sets) {
+    for (auto set: *sets) {
+        for (stateID stateId: set) {
+            std::cout << stateId << " ";
+        }
+        std::cout << std::endl;
+    }
 }
