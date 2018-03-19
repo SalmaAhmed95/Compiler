@@ -10,32 +10,33 @@
 
 struct SetOfNfaStates {
 
-    StateSpec stateSpec;
-    std::set<stateID> states;
-    bool operator <(const SetOfNfaStates& x) const{
-        return states == x.states;
-    }
+  StateSpec stateSpec;
+  std::set<stateID> states;
+  bool operator<(const SetOfNfaStates &x) const { return states == x.states; }
 };
 
-
 struct NfaStatesToDfa {
-    stateID dfaID;
-    std::set<stateID> nfaStates;
-    NfaStatesToDfa(stateID dfaID, std::set<stateID> states) : dfaID(dfaID), nfaStates(states){}
+  stateID dfaID;
+  std::set<stateID> nfaStates;
+  NfaStatesToDfa(stateID dfaID, std::set<stateID> states)
+      : dfaID(dfaID), nfaStates(states) {}
 };
 
 class NfaToDfaConverter {
 
-    public:
-    DFA *getDFA(NFA *nfa);
+public:
+  DFA *getDFA(NFA *nfa);
 
-   private:
-    NfaToDfaConverter();
-    std::vector<SetOfNfaStates> constructEpsTransitionTable(NFA *nfa);
-    void getEpsTransitionsForState(stateID  curState,std::vector<SetOfNfaStates>* epsTable, NFA *nfa);
-    void getNextState(SetOfNfaStates *nextStates, std::set<stateID> *states, std::vector<SetOfNfaStates>* epsTable,
-                      char transition, NFA *nfa);
-    void updateSetOfNfaStatesSpec(StateSpec *mainState, StateType nextType ,int nextPrecedence, std::string nextTokenClass);
-
+private:
+  NfaToDfaConverter();
+  std::vector<SetOfNfaStates> constructEpsTransitionTable(NFA *nfa);
+  void getEpsTransitionsForState(stateID curState,
+                                 std::vector<SetOfNfaStates> *epsTable,
+                                 NFA *nfa);
+  void getNextState(SetOfNfaStates *nextStates, std::set<stateID> *states,
+                    std::vector<SetOfNfaStates> *epsTable, char transition,
+                    NFA *nfa);
+  void updateSetOfNfaStatesSpec(StateSpec *mainState, StateType nextType,
+                                int nextPrecedence, std::string nextTokenClass);
 };
 #endif // COMPILER_NFATODFACONVERTER_H

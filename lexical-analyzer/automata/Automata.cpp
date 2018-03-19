@@ -33,10 +33,9 @@ std::string Automata::getTokenClass(stateID curState) {
   return curNode->getTokenClass();
 }
 
-
-StateType Automata::getStateType(stateID curState){
-    Node *curNode = graph[curState];
-    return curNode->getStateType();
+StateType Automata::getStateType(stateID curState) {
+  Node *curNode = graph[curState];
+  return curNode->getStateType();
 }
 
 stateID Automata::getRootID() { return ROOT_ID; }
