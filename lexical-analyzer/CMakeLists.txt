@@ -7,7 +7,12 @@ project(Compiler)
 
 enable_testing()
 
+#add_subdirectory(code-parser)
 add_subdirectory(grammar-parser)
 add_subdirectory(main)
 add_subdirectory(automata)
-add_subdirectory(tests)
+add_subdirectory(dfa-minimizer)
+add_subdirectory(error)
+add_subdirectory(pattern-matcher)
+add_subdirectory(utils)
+#add_subdirectory(tests)
