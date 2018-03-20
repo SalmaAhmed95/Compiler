@@ -22,7 +22,8 @@ const char ProductionParser::EPS = '`';
 
 std::map<char, int> ProductionParser::precedence;
 
-struct RegexChar *makeRegexChar(char c, TokenCharType charType) {
+struct RegexChar *ProductionParser::makeRegexChar(char c,
+                                                  TokenCharType charType) {
   struct RegexChar *regexChar = new RegexChar;
   regexChar->c = c;
   regexChar->charType = charType;

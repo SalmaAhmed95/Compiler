@@ -12,4 +12,8 @@ std::string Token::getType() { return type; }
 
 std::vector<RegexChar *> Token::getPostfixRegix() { return postfixRegex; }
 
-Token::~Token() {}
+Token::~Token() {
+  for (int i = 0; i < postfixRegex.size(); i++) {
+    delete postfixRegex[i];
+  }
+}

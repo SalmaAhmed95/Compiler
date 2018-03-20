@@ -58,6 +58,7 @@ protected:
   static std::string trim(std::string str, std::string whitespace);
   static std::string formulateSpaces(std::string str, std::string fill,
                                      std::string whitespace);
+  static struct RegexChar *makeRegexChar(char c, TokenCharType charType);
 
   /* Properies file key data. */
   static std::string REG_DEF_EQU;
