@@ -6,6 +6,7 @@ set(automata_SRCS
     NfaNode.cpp
     Node.cpp
     RegexToNfaConverter.cpp
+    NfaToDfaConverter.cpp
 )
 
 set(automata_HEADERS
@@ -16,6 +17,7 @@ set(automata_HEADERS
     NfaNode.h
     Node.h
     RegexToNfaConverter.hpp
+    NfaToDfaConverter.h
 )
 
 

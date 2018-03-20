@@ -42,8 +42,8 @@ private:
   static void doUnaryOperation(std::stack<struct SubNfa *> &nfaStack, NFA *nfa,
                                char operation,
                                std::vector<stateID> &createdNodes);
-  static bool isBinaryOperation(char operation);
-  static bool isUnaryOperation(char operation);
+  static bool isBinaryOperation(RegexChar *regexChar);
+  static bool isUnaryOperation(RegexChar *regexChar);
   static StateType getState(bool isLast);
 };
 

@@ -49,15 +49,16 @@ protected:
                                   Properties::PropertiesData *propertiesData);
   static bool isRegularExpression(std::string line,
                                   Properties::PropertiesData *propertiesData);
-  static std::string getPostfix(std::string infix, char lambda);
+  static std::vector<RegexChar *> getPostfix(std::string infix, char lambda);
   static std::string preprocessInfix(std::string infix);
-  static int getPrecedence(const char c, bool isSkip);
+  static int getPrecedence(const char c, TokenCharType charType);
   static Properties::PropertiesData *
   loadProperties(std::string propertiesFileName);
   static void loadPrecedence();
   static std::string trim(std::string str, std::string whitespace);
   static std::string formulateSpaces(std::string str, std::string fill,
                                      std::string whitespace);
+  static struct RegexChar *makeRegexChar(char c, TokenCharType charType);
 
   /* Properies file key data. */
   static std::string REG_DEF_EQU;

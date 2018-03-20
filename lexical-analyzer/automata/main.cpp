@@ -24,7 +24,7 @@
 //#include "NFA.h"
 //#include <iostream>
 //
-//int main() {
+// int main() {
 //  NFA *automata = new NFA();
 //  stateID node1ID = automata->createNode();
 //

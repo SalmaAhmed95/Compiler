@@ -2,23 +2,30 @@
 #define TOKEN_H
 
 #include <string>
+#include <vector>
+
+enum TokenCharType { CHAR, OPERATOR, DEFAULT_TYPE };
+
+struct RegexChar {
+  char c;
+  TokenCharType charType;
+};
 
 class Token {
 public:
   Token();
-  Token(std::string type, std::string postfixRegex, int priority);
+  Token(std::string type, std::vector<RegexChar *> postfixRegex, int priority);
   virtual ~Token();
   int getPriority();
-  std::string getPostfixRegix();
+  std::vector<RegexChar *> getPostfixRegix();
   std::string getType();
-  void setPriority(int priority);
-  void setPostfixRegex(std::string postfixRegex);
-  void setType(std::string type);
+  TokenCharType getCharType(int index);
 
 private:
-  std::string postfixRegex;
   std::string type;
   int priority;
+  std::vector<RegexChar *> postfixRegex;
+  int postFixRegexIter;
 };
 
 #endif

@@ -22,6 +22,13 @@ const char ProductionParser::EPS = '`';
 
 std::map<char, int> ProductionParser::precedence;
 
+struct RegexChar *ProductionParser::makeRegexChar(char c,
+                                                  TokenCharType charType) {
+  struct RegexChar *regexChar = new RegexChar;
+  regexChar->c = c;
+  regexChar->charType = charType;
+}
+
 ProductionParser::ProductionParser() {}
 
 std::vector<Token *>
@@ -168,7 +175,9 @@ void ProductionParser::processPunctuation(std::string line,
   }
   std::set<std::string>::iterator puncIter = punctuations.begin();
   while (puncIter != punctuations.end()) {
-    Token *puncToken = new Token(*puncIter, *puncIter, PUNCTUATION_PRIORITY);
+    std::vector<RegexChar *> v;
+    v.push_back(makeRegexChar((*puncIter)[0], CHAR));
+    Token *puncToken = new Token(*puncIter, v, PUNCTUATION_PRIORITY);
     tokens.push_back(puncToken);
     puncIter++;
   }
@@ -272,28 +281,30 @@ std::string ProductionParser::preprocessInfix(std::string infix) {
   return modifiedInfix;
 }
 
-int ProductionParser::getPrecedence(const char c, bool isSkip) {
-  return ((isSkip || !precedence.count(c)) ? DEFAULT_PREC : precedence[c]);
+int ProductionParser::getPrecedence(const char c, TokenCharType charType) {
+  return ((charType == CHAR || !precedence.count(c)) ? DEFAULT_PREC
+                                                     : precedence[c]);
 }
 
-std::string ProductionParser::getPostfix(std::string infix, char lambda) {
+std::vector<RegexChar *> ProductionParser::getPostfix(std::string infix,
+                                                      char lambda) {
   infix = preprocessInfix(infix);
-  std::string postfixRegex = "";
+  std::vector<RegexChar *> postfixRegex;
   std::stack<char> postfixStack;
-  std::stack<bool> skip;
+  std::stack<TokenCharType> skip;
   for (int i = 0; i < (int)infix.size(); i++) {
-    bool skipReservedOperator = infix[i] == '\\';
-    i += skipReservedOperator;
-    char currChar = infix[i] == lambda && skipReservedOperator ? EPS : infix[i];
+    TokenCharType charType = infix[i] == '\\' ? CHAR : DEFAULT_TYPE;
+    i += charType == CHAR;
+    char currChar = infix[i] == lambda && charType == CHAR ? EPS : infix[i];
     if (i >= (int)infix.size()) {
-      return NULL;
+      return postfixRegex;
     }
-    if (currChar == BRACKET_OPEN && !skipReservedOperator) {
+    if (currChar == BRACKET_OPEN && charType == DEFAULT_TYPE) {
       postfixStack.push(currChar);
-      skip.push(skipReservedOperator);
-    } else if (currChar == BRACKET_CLOSE && !skipReservedOperator) {
-      while (postfixStack.size() > 0 && postfixStack.top() != '(') {
-        postfixRegex = postfixRegex + postfixStack.top() + "";
+      skip.push(charType);
+    } else if (currChar == BRACKET_CLOSE && charType == DEFAULT_TYPE) {
+      while (postfixStack.size() > 0 && postfixStack.top() != BRACKET_OPEN) {
+        postfixRegex.push_back(makeRegexChar(postfixStack.top(), skip.top()));
         postfixStack.pop();
         skip.pop();
       }
@@ -303,10 +314,9 @@ std::string ProductionParser::getPostfix(std::string infix, char lambda) {
       bool stop = false;
       while ((int)postfixStack.size() > 0 && !stop) {
         char c = postfixStack.top();
-        bool opSkip = skip.top();
-        if (getPrecedence(c, opSkip) >=
-            getPrecedence(currChar, skipReservedOperator)) {
-          postfixRegex = postfixRegex + postfixStack.top() + "";
+        TokenCharType opSkip = skip.top();
+        if (getPrecedence(c, opSkip) >= getPrecedence(currChar, charType)) {
+          postfixRegex.push_back(makeRegexChar(postfixStack.top(), skip.top()));
           postfixStack.pop();
           skip.pop();
         } else {
@@ -314,12 +324,14 @@ std::string ProductionParser::getPostfix(std::string infix, char lambda) {
         }
       }
       postfixStack.push(currChar);
-      skip.push(skipReservedOperator);
+      skip.push(charType == CHAR || !precedence.count(currChar) ? CHAR
+                                                                : OPERATOR);
     }
   }
   while (!postfixStack.empty()) {
-    postfixRegex = postfixRegex + postfixStack.top();
+    postfixRegex.push_back(makeRegexChar(postfixStack.top(), skip.top()));
     postfixStack.pop();
+    skip.pop();
   }
   return postfixRegex;
 }
