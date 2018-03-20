@@ -37,6 +37,8 @@ DFA *NfaToDfaConverter::getDFA(NFA *nfa) {
     for (std::set<char>::iterator it = arrtibutes.begin();
          it != arrtibutes.end(); ++it) {
       char transition = *it;
+        if (transition == '&')
+        std::cout<<"char "<<transition<<std::endl;
       if (transition != EPS_TRANS) {
         SetOfNfaStates newStates;
         getNextState(&newStates, &curNode.nfaStates, &epsTable, transition,

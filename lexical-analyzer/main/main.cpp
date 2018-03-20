@@ -102,12 +102,17 @@ int main() {
     //std::cout<<nfa->getNumberOfStates();
    // nfa->print();
     DFA *dfa = NfaToDfaConverter::getDFA(nfa);
-   // std::cout<<dfa->getNumberOfStates();
+
+    // std::cout<<dfa->getNumberOfStates();
     //dfa->print();
+
     DFA* dfaMin = minimizeDfa(dfa);
-    //dfaMin.print();
+
+    //dfaMin->print();
     PatternMatcher *pattern = new PatternMatcher(dfaMin, "code.txt");
-     pattern->analyzeCode();
+
+    pattern->analyzeCode();
+
 
   return 0;
 }

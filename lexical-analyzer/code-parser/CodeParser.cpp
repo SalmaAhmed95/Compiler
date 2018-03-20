@@ -45,12 +45,10 @@ std::string CodeParser::getSubString(int startIndex,int lastIndex) {
 }
 
 bool CodeParser::hasChars() {
-    if (index == chars.size() +1)
+    if (index == chars.size())
         return false;
     return true;
 }
 bool CodeParser::isDelimeter(char c) {
-    if(c == SPACE || c == NEWLINE)
-        return true;
-    return false;
+    return iswspace(c);
 }

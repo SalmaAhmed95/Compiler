@@ -135,6 +135,26 @@ DFA *buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
             minimizedDfa->addTransition(attribute, from, to);
         }
     }
+
+
+    for (auto set: *sets) {
+        for (stateID state: set) {
+            std::cout << state << "\t";
+            if (dfaGraph->getTokenClass(state) == "id") {
+                for (char att: dfaGraph->getAllAttributes()) {
+                    if (stateToSetId->operator[](dfaGraph->getTransitions(state, att)[0]) != 5 &&
+                        stateToSetId->operator[](dfaGraph->getTransitions(state, att)[0]) != 0) {
+                        stateID to = dfaGraph->getTransitions(state, att)[0];
+                        std::cout << "(" << att << ", " << dfaGraph->getTokenClass(to) << "), ";
+                    }
+                }
+                std::cout << std::endl;
+            }
+            std::cout<<std::endl;
+        }
+    }
+
+
     return minimizedDfa;
 }
 

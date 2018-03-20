@@ -8,7 +8,7 @@
 #include <string>
 
 class ErrorHandler {
-private:
+public:
     enum Error {
         lexicalError
 
