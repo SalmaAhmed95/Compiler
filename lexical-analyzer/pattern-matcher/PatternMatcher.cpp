@@ -62,7 +62,7 @@ void PatternMatcher::recoveryRoutine(int startIndex) {
     parser->setStartIndex(startIndex);
     //print message from error handler
     //send this error message to a writer to write it
-    ErrorHandler::lexicalError;
+   // ErrorHandler::lexicalError;
 
 
 }
