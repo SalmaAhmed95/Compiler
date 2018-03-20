@@ -1,7 +1,10 @@
 #include "../automata/DFA.h"
+#include "../automata/NfaToDfaConverter.h"
 #include "../automata/RegexToNfaConverter.hpp"
+#include "../code-parser/CodeParser.h"
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
+#include "../pattern-matcher/PatternMatcher.h"
 
 int main() {
 
@@ -139,5 +142,15 @@ int main() {
       }
       std::cout << std::endl;
   } */
+
+  std::vector<Token *> tokens =
+      ProductionParser::loadLexicalRules("lexical_rules.txt", "properties.ini");
+  NFA *nfa = RegexToNfaConverter::getNfa(tokens);
+  DFA *dfa = NfaToDfaConverter::getDFA(nfa);
+  DFA dfaMin = minimizeDfa(*dfa);
+  // CodeParser *p = new CodeParser("aa.txt");
+  PatternMatcher *pattern = new PatternMatcher(&dfaMin, "code.txt");
+  pattern->analyzeCode();
+
   return 0;
 }

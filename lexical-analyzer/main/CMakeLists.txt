@@ -10,6 +10,11 @@ add_executable(lexical-analyzer
 target_link_libraries(lexical-analyzer
     grammar-parser
     automata
+    #code-parser
+    dfa-minimizer
+    error-handler
+    pattern-matcher
+    utils-lib
 )
 
 install(TARGETS lexical-analyzer DESTINATION bin)
