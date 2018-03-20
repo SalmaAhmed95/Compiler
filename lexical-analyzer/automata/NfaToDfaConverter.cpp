@@ -56,8 +56,7 @@ DFA *NfaToDfaConverter::getDFA(NFA *nfa) {
       }
     }
   }
-}
-return dfa;
+  return dfa;
 }
 
 void NfaToDfaConverter::getNextState(SetOfNfaStates *nextStates,
@@ -84,10 +83,6 @@ void NfaToDfaConverter::getNextState(SetOfNfaStates *nextStates,
   if (nextStates->states.empty()) {
     nextStates->stateSpec.stateType = PHI;
   }
-}
-if (nextStates->states.empty() == 0) {
-  nextStates->stateSpec.stateType = PHI;
-}
 }
 
 std::vector<SetOfNfaStates>
@@ -127,13 +122,6 @@ void NfaToDfaConverter::getEpsTransitionsForState(
           nfa->getPrecedence(recuNextState), nfa->getTokenClass(recuNextState));
     }
   }
-  for (auto recuNextState : (*epsTable)[nextState].states) {
-    (*epsTable)[curState].states.insert(recuNextState);
-    updateSetOfNfaStatesSpec(
-        &(*epsTable)[curState].stateSpec, nfa->getStateType(recuNextState),
-        nfa->getPrecedence(recuNextState), nfa->getTokenClass(recuNextState));
-  }
-}
 }
 
 void NfaToDfaConverter::updateSetOfNfaStatesSpec(StateSpec *mainState,
@@ -149,5 +137,4 @@ void NfaToDfaConverter::updateSetOfNfaStatesSpec(StateSpec *mainState,
       mainState->tokenClass.assign(nextTokenClass);
     }
   }
-}
 }

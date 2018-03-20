@@ -5,17 +5,19 @@
 
 int main() {
 
-  std::vector<Token *> tokens =
-      ProductionParser::loadLexicalRules("lexical_rules.txt", "properties.ini");
-  // for (int i = 0; i < tokens.size(); i++) {
+  // std::vector<Token *> tokens =
+  //     ProductionParser::loadLexicalRules("lexical_rules.txt",
+  //     "properties.ini");
+  // for (int i = 0; i < 1; i++) {
   //   std::cout << tokens[i]->getType() << '\n';
   //   for (int j = 0; j < tokens[i]->getPostfixRegix().size(); j++) {
-  //     std::cout << tokens[i]->getPostfixRegix()[j]->c;
+  //     std::cout << tokens[i]->getPostfixRegix()[j]->c << "("
+  //               << tokens[i]->getPostfixRegix()[j]->charType << ")";
   //   }
   //   std::cout << '\n';
   // }
-  NFA *nfa = RegexToNfaConverter::getNfa(tokens);
-  nfa->print();
+  // NFA *nfa = RegexToNfaConverter::getNfa(tokens);
+  // nfa->print();
   /*//  NFA *nfa = RegexToNfaConverter::getNfa(tokens);
   //  nfa->print();
   //  std::cout << "HERE" << std::endl;
