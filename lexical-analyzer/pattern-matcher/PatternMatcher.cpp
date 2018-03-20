@@ -26,6 +26,7 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
     stateID curState = startDFA;
     std::vector<stateID> nextState;
     std::string match;
+    std::string tokenType;
     int matchIndex = -1;
     int prevPercedence = INT16_MIN;
     char c = parser->getChar();
@@ -35,8 +36,8 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
         if (minDFA->isAccepted(nextState[0]) && minDFA->getPrecedence(curState) >= prevPercedence) {
             matchIndex = parser->getCurIndex();
             match = parser->getSubString(startChar, matchIndex);
+            tokenType = minDFA->getTokenClass(nextState[0]);
             prevPercedence = minDFA->getPrecedence(curState);
-            //std::cout << "match: " << match << std::endl;
         }
 
         curState = nextState[0];
@@ -45,11 +46,9 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
     if (matchIndex == -1) {
         return false;
     } else {
-        std::cout << "match: " << match << matchIndex << std::endl;
         parser->setStartIndex(matchIndex);
-
-        std::string tokenType = minDFA->getTokenClass(curState);
         analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
+        std::cout << "match: " << match <<" "<<tokenType<< std::endl;
         //if(tokenType == IDENTIFIER) insert into symbol table for next phase
 
         return true;

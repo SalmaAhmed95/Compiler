@@ -25,6 +25,8 @@ set(SOURCE_FILES
         lexical-analyzer/code-parser/CodeParser.h
         lexical-analyzer/dfa-minimizer/DfaMinimizer.cpp
         lexical-analyzer/dfa-minimizer/DfaMinimizer.h
+        lexical-analyzer/error/ErrorHandler.cpp
+        lexical-analyzer/error/ErrorHandler.h
         lexical-analyzer/grammar-parser/ProductionParser.cpp
         lexical-analyzer/grammar-parser/ProductionParser.hpp
         lexical-analyzer/grammar-parser/Properties.cpp

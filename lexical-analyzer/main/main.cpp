@@ -3,13 +3,13 @@
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
 
-<<<<<<< HEAD
+
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../automata/NfaToDfaConverter.h"
 #include "../pattern-matcher/PatternMatcher.h"
-=======
+
 int main() {
->>>>>>> 9ead957320340633a027f5a2f04f9f26c26b1c56
+
 
   // std::vector<Token *> tokens =
   //     ProductionParser::loadLexicalRules("lexical_rules.txt",
@@ -147,9 +147,14 @@ int main() {
     std::vector<Token *> tokens =
             ProductionParser::loadLexicalRules("lexical_rules.txt", "properties.ini");
     NFA *nfa = RegexToNfaConverter::getNfa(tokens);
+    //std::cout<<nfa->getNumberOfStates();
+   // nfa->print();
     DFA *dfa = NfaToDfaConverter::getDFA(nfa);
-    DFA dfaMin = minimizeDfa(*dfa);
-    PatternMatcher *pattern = new PatternMatcher(&dfaMin, "code.txt");
+   // std::cout<<dfa->getNumberOfStates();
+    //dfa->print();
+    DFA* dfaMin = minimizeDfa(dfa);
+    //dfaMin.print();
+    PatternMatcher *pattern = new PatternMatcher(dfaMin, "code.txt");
      pattern->analyzeCode();
     return 0;
 }

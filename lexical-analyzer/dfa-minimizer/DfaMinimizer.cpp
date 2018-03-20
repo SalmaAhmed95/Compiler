@@ -17,25 +17,25 @@ void updateStateToSetIdMap(std::set<stateID> *set, int index);
 
 bool areEquivalentStates(stateID a, stateID b, DFA *dfaGraph);
 
-DFA buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph);
+DFA* buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph);
 
 void initMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph, DFA *minimizedDfa);
 
 
 void printSets(std::vector<std::set<stateID>> *sets);
 
-DFA minimizeDfa(DFA dfaGraph) {
+DFA* minimizeDfa(DFA* dfaGraph) {
     std::vector<std::set<stateID>> sets1;
     std::vector<std::set<stateID>> sets2;
     std::vector<std::set<stateID >> *prev = &sets1;
     std::vector<std::set<stateID>> *next = &sets2;
     stateToSetId = new std::map<stateID, int>();
 
-    initSets(&dfaGraph, prev);
+    initSets(dfaGraph, prev);
     do {
         next->clear();
         for (std::set<stateID> set: *prev) {
-            partition(&set, next, &dfaGraph);
+            partition(&set, next, dfaGraph);
         }
         for (unsigned int setIndex = 0; setIndex < next->size(); setIndex++) {
             updateStateToSetIdMap(&(next->at(setIndex)), setIndex);
@@ -45,7 +45,7 @@ DFA minimizeDfa(DFA dfaGraph) {
         prev = next;
         next = tmp;
     } while (prev->size() != next->size());
-    DFA minimizedDfa = buildMinimizedDfa(prev, &dfaGraph);
+    DFA* minimizedDfa = buildMinimizedDfa(prev, dfaGraph);
     delete (stateToSetId);
     return minimizedDfa;
 }
@@ -117,9 +117,9 @@ bool areEquivalentStates(const stateID a, const stateID b, DFA *dfaGraph) {
     return true;
 }
 
-DFA buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
-    DFA minimizedDfa;
-    initMinimizedDfa(sets, dfaGraph, &minimizedDfa);
+DFA* buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
+    DFA* minimizedDfa = new DFA();
+    initMinimizedDfa(sets, dfaGraph, minimizedDfa);
 
     //Build the minimized DFA
     for (stateID from = 0; from < sets->size(); from++) {
@@ -127,7 +127,7 @@ DFA buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
             stateID oldFrom = *(sets->at(from).begin());
             stateID oldTo = dfaGraph->getTransitions(oldFrom, attribute).front();
             stateID to = (*stateToSetId->find(oldTo)).second;
-            minimizedDfa.addTransition(attribute, from, to);
+            minimizedDfa->addTransition(attribute, from, to);
         }
     }
     return minimizedDfa;

@@ -69,7 +69,8 @@ void Automata::print() {
   }
   print(nodeID, visited);
   for(int i = 0; i < lastNodeID; i++) {
-    std::cout << i << " acc_state: " << graph[i]->getStateType() << " precedence " << graph[i]->getPrecedence() << std::endl;
+    std::cout << i << " acc_state: " << graph[i]->getStateType() << " precedence " << graph[i]->getPrecedence() <<" token class  "<<
+              graph[i]->getTokenClass()<< std::endl;
   }
   delete[] visited;
 }

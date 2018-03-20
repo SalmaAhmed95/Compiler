@@ -28,6 +28,11 @@ DFA *NfaToDfaConverter::getDFA(NFA *nfa) {
     NfaStatesToDfa curNode = queueDfaStates.front();
     int curNodeID = curNode.dfaID;
     queueDfaStates.pop();
+    /*printing dfa states*/
+   /* std::cout<<"states of cur dfa"<<std::endl;
+    for (auto curNFA: curNode.nfaStates) {
+       std::cout<<curNFA<<" "<<std::endl;
+    }*/
     std::set<char> arrtibutes = nfa->getAllAttributes();
     for (std::set<char>::iterator it = arrtibutes.begin();
          it != arrtibutes.end(); ++it) {
@@ -129,11 +134,13 @@ void NfaToDfaConverter::updateSetOfNfaStatesSpec(StateSpec *mainState,
                                                  int nextPrecedence,
                                                  std::string nextTokenClass) {
   if (nextType == ACCEPTED) {
+    if (mainState->stateType == INTERMEDIATE) {
+      mainState->tokenClass.assign(nextTokenClass);
+      mainState->precedence = nextPrecedence;
+    }
     mainState->stateType = ACCEPTED;
     if (nextPrecedence > mainState->precedence) {
       mainState->precedence = nextPrecedence;
-      mainState->tokenClass.assign(nextTokenClass);
-    } else {
       mainState->tokenClass.assign(nextTokenClass);
     }
   }
