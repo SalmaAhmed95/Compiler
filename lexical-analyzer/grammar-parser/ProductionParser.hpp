@@ -49,9 +49,9 @@ protected:
                                   Properties::PropertiesData *propertiesData);
   static bool isRegularExpression(std::string line,
                                   Properties::PropertiesData *propertiesData);
-  static std::string getPostfix(std::string infix, char lambda);
+  static std::vector<RegexChar *> getPostfix(std::string infix, char lambda);
   static std::string preprocessInfix(std::string infix);
-  static int getPrecedence(const char c, bool isSkip);
+  static int getPrecedence(const char c, TokenCharType charType);
   static Properties::PropertiesData *
   loadProperties(std::string propertiesFileName);
   static void loadPrecedence();

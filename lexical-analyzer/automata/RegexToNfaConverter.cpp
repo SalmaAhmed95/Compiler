@@ -3,10 +3,17 @@
 NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
   NFA *nfa = new NFA();
   stateID rootID = nfa->createNode();
-  Token *token = new Token("hello", "*", 10);
-  struct SubNfa *s = convertToken(token, nfa);
-  if (s)
-    nfa->addTransition(EPS_TRANS, rootID, s->startID);
+  // std::vector<RegexChar *> v;
+  // RegexChar *r1 = new RegexChar, *r2 = new RegexChar;
+  // r1->c = 'a', r1->charType = CHAR, r2->c = '*', r2->charType = OPERATOR;
+  // v.push_back(r1);
+  // v.push_back(r2);
+  // Token *token = new Token("hello", v, 10);
+  // struct SubNfa *s = convertToken(token, nfa);
+  // if (s)
+  //   nfa->addTransition(EPS_TRANS, rootID, s->startID),
+  //       std::cout << "/* message */" << '\n';
+  // ;
   for (int i = 0; i < tokens.size(); i++) {
     struct SubNfa *tokenNfa = convertToken(tokens[i], nfa);
     if (tokenNfa)
@@ -18,15 +25,15 @@ NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
 
 struct SubNfa *RegexToNfaConverter::convertToken(Token *token, NFA *nfa) {
   std::stack<struct SubNfa *> nfaStack;
-  std::string postfixRegex = token->getPostfixRegix();
+  std::vector<RegexChar *> postfixRegex = token->getPostfixRegix();
   std::vector<stateID> createdNodes;
   for (int i = 0; i < (int)postfixRegex.size(); i++) {
     if (isBinaryOperation(postfixRegex[i])) {
-      doBinaryOperation(nfaStack, nfa, postfixRegex[i], createdNodes);
+      doBinaryOperation(nfaStack, nfa, postfixRegex[i]->c, createdNodes);
     } else if (isUnaryOperation(postfixRegex[i])) {
-      doUnaryOperation(nfaStack, nfa, postfixRegex[i], createdNodes);
+      doUnaryOperation(nfaStack, nfa, postfixRegex[i]->c, createdNodes);
     } else {
-      nfaStack.push(buildChar(postfixRegex[i], nfa, createdNodes));
+      nfaStack.push(buildChar(postfixRegex[i]->c, nfa, createdNodes));
     }
   }
   if ((int)nfaStack.size() != 1) {
@@ -153,10 +160,12 @@ struct SubNfa *RegexToNfaConverter::createSubNfa(stateID startID,
   return subNfa;
 }
 
-bool RegexToNfaConverter::isBinaryOperation(char operation) {
-  return operation == OR_OP || operation == CONC_OP;
+bool RegexToNfaConverter::isBinaryOperation(RegexChar *regexChar) {
+  return regexChar->charType == OPERATOR &&
+         (regexChar->c == OR_OP || regexChar->c == CONC_OP);
 }
 
-bool RegexToNfaConverter::isUnaryOperation(char operation) {
-  return operation == STAR_OP || operation == PLUS_OP;
+bool RegexToNfaConverter::isUnaryOperation(RegexChar *regexChar) {
+  return regexChar->charType == OPERATOR &&
+         (regexChar->c == STAR_OP || regexChar->c == PLUS_OP);
 }
