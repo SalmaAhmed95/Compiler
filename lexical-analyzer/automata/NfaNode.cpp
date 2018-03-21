@@ -5,40 +5,33 @@
 #include "NfaNode.h"
 #include <iostream>
 
-NfaNode::NfaNode(stateID id) : Node(id) {}
+NfaNode::NfaNode(stateID id, int minAsciiCodeValue, int maxAsciiCoedValue) : Node(id) {
+  NfaNode::offsetCharIndex = minAsciiCodeValue;
+  NfaNode::charRange = maxAsciiCoedValue - minAsciiCodeValue + 1;
+  NfaNode::transitions.resize(charRange);
+ // for (int i = 0; i <charRange; i++) {}
 
-NfaNode::NfaNode(stateID id, StateSpec *stateSpec) : Node(id, stateSpec) {}
+}
+
+NfaNode::NfaNode(stateID id, StateSpec *stateSpec, int minAsciiCodeValue, int maxAsciiCoedValue) : Node(id, stateSpec) {}
 
 void NfaNode::addTransition(stateID node_to, char transition) {
-  transitions.insert(std::pair<char, stateID>(transition, node_to));
+  transitions[transition - offsetCharIndex].push_back(node_to);
+
 }
 
 std::vector<stateID> NfaNode::getTransitions(char transition) {
-  std::vector<stateID> nextstates;
-  std::pair<std::multimap<char, stateID>::iterator,
-            std::multimap<char, stateID>::iterator>
-      ret;
-  ret = transitions.equal_range(transition);
-  for (std::multimap<char, int>::iterator it = ret.first; it != ret.second;
-       ++it) {
-    nextstates.push_back(it->second);
-  }
-  return nextstates;
+  return transitions[transition - offsetCharIndex];
 }
 
 std::vector<TransEdges> NfaNode::getTransitions() {
   std::vector<TransEdges> allTransitions;
-  std::set<char> char_transitions;
-  for (std::multimap<char, int>::iterator it = transitions.begin();
-       it != transitions.end(); ++it) {
-    char charT = (*it).first;
-    if (char_transitions.find(charT) == char_transitions.end()) {
-      char_transitions.insert(charT);
+  for (int i = 0; i < charRange; i++) {
+    char charT = (char) (offsetCharIndex + i);
       TransEdges newTransition;
       newTransition.transition = charT;
       newTransition.nextStates = getTransitions(charT);
       allTransitions.push_back(newTransition);
-    }
   }
   return allTransitions;
 }

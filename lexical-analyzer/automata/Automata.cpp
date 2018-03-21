@@ -93,3 +93,9 @@ void Automata::print(stateID nodeID, bool *visited) {
     }
   }
 }
+
+Automata::~Automata(){
+  for(int i = 0; i < (int)graph.size(); i++) {
+    delete graph[i];
+  }
+}
