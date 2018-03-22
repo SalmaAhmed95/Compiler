@@ -12,6 +12,6 @@
  * @param dfaGraph the DFA automata to be minimized
  * @return a minimized DFA automata
  */
-DFA* minimizeDfa(DFA* dfaGraph);
+DFA *minimizeDfa(DFA *dfaGraph);
 
-#endif //COMPILER_DFAMINIMIZER_H
+#endif // COMPILER_DFAMINIMIZER_H

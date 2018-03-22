@@ -17,14 +17,14 @@ void updateStateToSetIdMap(std::set<stateID> *set, int index);
 
 bool areEquivalentStates(stateID a, stateID b, DFA *dfaGraph);
 
-DFA* buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph);
+DFA *buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph);
 
 void initMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph, DFA *minimizedDfa);
 
 
 void printSets(std::vector<std::set<stateID>> *sets);
 
-DFA* minimizeDfa(DFA* dfaGraph) {
+DFA *minimizeDfa(DFA *dfaGraph) {
     std::vector<std::set<stateID>> sets1;
     std::vector<std::set<stateID>> sets2;
     std::vector<std::set<stateID >> *prev = &sets1;
@@ -45,21 +45,26 @@ DFA* minimizeDfa(DFA* dfaGraph) {
         prev = next;
         next = tmp;
     } while (prev->size() != next->size());
-    DFA* minimizedDfa = buildMinimizedDfa(prev, dfaGraph);
+    DFA *minimizedDfa = buildMinimizedDfa(prev, dfaGraph);
     delete (stateToSetId);
     return minimizedDfa;
 }
 
 void initSets(DFA *dfaGraph, std::vector<std::set<stateID>> *sets) {
     sets->resize(1);
-
+    std::map<std::string, std::set<stateID>> tokensToAccepted;
     //initial sets
     for (stateID i = 0; i < dfaGraph->getNumberOfStates(); i++) {
         if (dfaGraph->isAccepted(i)) {
-            sets->push_back(std::set<stateID>());
-            sets->back().insert(i);
+            tokensToAccepted[dfaGraph->getTokenClass(i)].insert(i);
         } else {
             sets->front().insert(i);
+        }
+    }
+    for (auto it :tokensToAccepted) {
+        sets->push_back(std::set<stateID>());
+        for (stateID state: it.second) {
+            sets->back().insert(state);
         }
     }
     if (sets->front().empty()) {
@@ -117,8 +122,8 @@ bool areEquivalentStates(const stateID a, const stateID b, DFA *dfaGraph) {
     return true;
 }
 
-DFA* buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
-    DFA* minimizedDfa = new DFA();
+DFA *buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
+    DFA *minimizedDfa = new DFA();
     initMinimizedDfa(sets, dfaGraph, minimizedDfa);
 
     //Build the minimized DFA
@@ -130,6 +135,16 @@ DFA* buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph) {
             minimizedDfa->addTransition(attribute, from, to);
         }
     }
+
+   /* for (int i = 0; i < minimizedDfa->getNumberOfStates();i++) {
+        std::cout << i << "("<<minimizedDfa->getTokenClass(i)<<")" << " --->";
+        for (char att: minimizedDfa->getAllAttributes()) {
+            std::cout << "(" << att << ", " << minimizedDfa->getTransitions(i,att)[0] << ") ";
+        }
+        std::cout<<std::endl;
+    }*/
+
+
     return minimizedDfa;
 }
 

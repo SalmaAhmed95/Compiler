@@ -8,13 +8,12 @@
 #include <string>
 
 class ErrorHandler {
-private:
-    enum Error {
-        lexicalError
+public:
+  enum Error {
+    lexicalError
 
-    };
-    static const std::string errors[];
+  };
+  static const std::string errors[];
 };
 
-
-#endif //COMPILER_ERRORHANDLER_H
+#endif // COMPILER_ERRORHANDLER_H

@@ -27,6 +27,7 @@ std::vector<TransEdges> DfaNode::getTransitions() {
 
 std::vector<stateID> DfaNode::getTransitions(char transition) {
   std::vector<stateID> nextstates;
+  if (transitions.find(transition) != transitions.end())
   nextstates.push_back(transitions.find(transition)->second);
 
   return nextstates;

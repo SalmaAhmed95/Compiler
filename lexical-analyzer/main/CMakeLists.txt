@@ -12,7 +12,7 @@ target_link_libraries(lexical-analyzer
     automata
     #code-parser
     dfa-minimizer
-    error-handler
+    #error-handler
     pattern-matcher
     utils-lib
 )

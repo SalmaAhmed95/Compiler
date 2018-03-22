@@ -1,24 +1,18 @@
 #include "RegexToNfaConverter.hpp"
 
 NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
-  NFA *nfa = new NFA();
+  std::pair<int, int> range = getAsciiRange(tokens);
+  NFA *nfa = new NFA(range.first, range.second);
   stateID rootID = nfa->createNode();
-  // std::vector<RegexChar *> v;
-  // RegexChar *r1 = new RegexChar, *r2 = new RegexChar;
-  // r1->c = 'a', r1->charType = CHAR, r2->c = '*', r2->charType = OPERATOR;
-  // v.push_back(r1);
-  // v.push_back(r2);
-  // Token *token = new Token("hello", v, 10);
-  // struct SubNfa *s = convertToken(token, nfa);
-  // if (s)
-  //   nfa->addTransition(EPS_TRANS, rootID, s->startID),
-  //       std::cout << "/* message */" << '\n';
-  // ;
   for (int i = 0; i < tokens.size(); i++) {
-    struct SubNfa *tokenNfa = convertToken(tokens[i], nfa);
-    if (tokenNfa)
-      nfa->addTransition(EPS_TRANS, rootID, tokenNfa->startID);
-    delete tokenNfa;
+    if (validatePostfix(tokens[i])) {
+      struct SubNfa *tokenNfa = convertToken(tokens[i], nfa);
+      if (tokenNfa)
+        nfa->addTransition(EPS_TRANS, rootID, tokenNfa->startID);
+      delete tokenNfa;
+    } else {
+      // std::cout << "ERROR" << std::endl; error handler
+    }
   }
   return nfa;
 }
@@ -168,4 +162,30 @@ bool RegexToNfaConverter::isBinaryOperation(RegexChar *regexChar) {
 bool RegexToNfaConverter::isUnaryOperation(RegexChar *regexChar) {
   return regexChar->charType == OPERATOR &&
          (regexChar->c == STAR_OP || regexChar->c == PLUS_OP);
+}
+
+bool RegexToNfaConverter::validatePostfix(Token *token) {
+  int stackArgs = 0;
+  for (int i = 0; i < token->getPostfixRegix().size(); i++) {
+    if (isBinaryOperation(token->getPostfixRegix()[i])) {
+      stackArgs--;
+    } else if (!isUnaryOperation(token->getPostfixRegix()[i])) {
+      stackArgs++;
+    }
+  }
+  return stackArgs == 1;
+}
+
+std::pair<int, int>
+RegexToNfaConverter::getAsciiRange(std::vector<Token *> tokens) {
+  std::pair<int, int> range = {INT_MAX, INT_MIN};
+  for (int i = 0; i < tokens.size(); i++) {
+    for (int j = 0; j < tokens[i]->getPostfixRegix().size(); j++) {
+      range.first =
+          std::min(range.first, (int)tokens[i]->getPostfixRegix()[j]->c);
+      range.second =
+          std::max(range.second, (int)tokens[i]->getPostfixRegix()[j]->c);
+    }
+  }
+  return range;
 }

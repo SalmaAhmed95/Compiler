@@ -9,9 +9,11 @@
 DFA *NfaToDfaConverter::getDFA(NFA *nfa) {
   DFA *dfa = new DFA();
   std::vector<SetOfNfaStates> epsTable;
+  std::vector<std::vector<SetOfNfaStates>> transitionTable;
   std::queue<NfaStatesToDfa> queueDfaStates;
   std::map<SetOfNfaStates, stateID> mapDfaStates;
   epsTable = constructEpsTransitionTable(nfa);
+  transitionTable = constructTransitionTable(nfa);
   std::vector<SetOfNfaStates>::iterator it;
   /*pushing start closure and creating the start node for the dfa*/
   int nfaRootID = nfa->getRootID();
@@ -24,23 +26,17 @@ DFA *NfaToDfaConverter::getDFA(NFA *nfa) {
   queueDfaStates.push(root);
   /*main loop*/
   int i = 0;
+  //    std::cout << "finished construction\n";
   while (!queueDfaStates.empty()) {
     NfaStatesToDfa curNode = queueDfaStates.front();
     int curNodeID = curNode.dfaID;
     queueDfaStates.pop();
-    /*printing dfa states*/
-   /* std::cout<<"states of cur dfa"<<std::endl;
-    for (auto curNFA: curNode.nfaStates) {
-       std::cout<<curNFA<<" "<<std::endl;
-    }*/
-    std::set<char> arrtibutes = nfa->getAllAttributes();
-    for (std::set<char>::iterator it = arrtibutes.begin();
-         it != arrtibutes.end(); ++it) {
-      char transition = *it;
+    int charIndex = 0;
+    for (auto transition : nfa->getAllAttributes()) {
       if (transition != EPS_TRANS) {
         SetOfNfaStates newStates;
-        getNextState(&newStates, &curNode.nfaStates, &epsTable, transition,
-                     nfa);
+        getNextState(&newStates, &curNode.nfaStates, &epsTable,
+                     &transitionTable, transition, charIndex, nfa);
 
         int nextNodeID;
         std::map<SetOfNfaStates, stateID>::iterator nextDfaState =
@@ -59,35 +55,73 @@ DFA *NfaToDfaConverter::getDFA(NFA *nfa) {
         }
         dfa->addTransition(transition, curNodeID, nextNodeID);
       }
+      charIndex++;
     }
   }
   return dfa;
 }
 
-void NfaToDfaConverter::getNextState(SetOfNfaStates *nextStates,
-                                     std::set<stateID> *curNfaStates,
-                                     std::vector<SetOfNfaStates> *epsTable,
-                                     char transition, NFA *nfa) {
+void NfaToDfaConverter::getNextState(
+    SetOfNfaStates *nextStates, std::set<stateID> *curNfaStates,
+    std::vector<SetOfNfaStates> *epsTable,
+    std::vector<std::vector<SetOfNfaStates>> *transitionTable, char transition,
+    int charIndex, NFA *nfa) {
   /*iterating over current nfa states to get next transitions*/
   for (auto nfaState : *curNfaStates) {
-    std::vector<stateID> nextNfaStates =
-        nfa->getTransitions(nfaState, transition);
-    /*iterating over next nfa states to get their epsilon transitions
-     * transitions*/
-    for (auto nextNfaState : nextNfaStates) {
-      /*iterating over the epsilon transitions*/
-      for (auto nfaNextStateEps : (*epsTable)[nextNfaState].states) {
-        nextStates->states.insert(nfaNextStateEps);
-        updateSetOfNfaStatesSpec(&nextStates->stateSpec,
-                                 nfa->getStateType(nfaNextStateEps),
-                                 nfa->getPrecedence(nfaNextStateEps),
-                                 nfa->getTokenClass(nfaNextStateEps));
-      }
+    //        std::cout<<transitionTable->size()<< "
+    //        "<<(*transitionTable)[0].size()<<" \n";
+    //        std::cout<<nfaState<<" "<<charIndex<<"  \n";
+    if ((*transitionTable)[nfaState][charIndex].stateSpec.stateType ==
+            INTERMEDIATE &&
+        (*transitionTable)[nfaState][charIndex].states.empty()) {
+      //            std::cout << "inside if\n";
+      getNextStateForChar(&(*transitionTable)[nfaState][charIndex], nfaState,
+                          epsTable, transition, nfa);
+    }
+    for (auto nextState : (*transitionTable)[nfaState][charIndex].states) {
+      nextStates->states.insert(nextState);
+    }
+    updateSetOfNfaStatesSpec(
+        &nextStates->stateSpec,
+        (*transitionTable)[nfaState][charIndex].stateSpec.stateType,
+        (*transitionTable)[nfaState][charIndex].stateSpec.precedence,
+        (*transitionTable)[nfaState][charIndex].stateSpec.tokenClass);
+  }
+  //    std::cout << "finished getNextState\n";
+}
+
+void NfaToDfaConverter::getNextStateForChar(
+    SetOfNfaStates *nextStates, stateID curNfaState,
+    std::vector<SetOfNfaStates> *epsTable, char transition, NFA *nfa) {
+  //    std::cout << "started getNextStateForChar\n";
+  std::vector<stateID> nextNfaStates =
+      nfa->getTransitions(curNfaState, transition);
+  /*iterating over next nfa states to get their epsilon transitions
+   * transitions*/
+  for (auto nextNfaState : nextNfaStates) {
+    /*iterating over the epsilon transitions*/
+    for (auto nfaNextStateEps : (*epsTable)[nextNfaState].states) {
+      nextStates->states.insert(nfaNextStateEps);
+      updateSetOfNfaStatesSpec(&nextStates->stateSpec,
+                               nfa->getStateType(nfaNextStateEps),
+                               nfa->getPrecedence(nfaNextStateEps),
+                               nfa->getTokenClass(nfaNextStateEps));
     }
   }
   if (nextStates->states.empty()) {
     nextStates->stateSpec.stateType = PHI;
   }
+  //    std::cout << "finished getNextStateForChar\n";
+}
+
+std::vector<std::vector<SetOfNfaStates>>
+NfaToDfaConverter::constructTransitionTable(NFA *nfa) {
+  std::vector<std::vector<SetOfNfaStates>> transitionTable(
+      nfa->getNumberOfStates());
+  for (int i = 0; i < nfa->getNumberOfStates(); i++) {
+    transitionTable[i].resize(nfa->getAllAttributes().size());
+  }
+  return transitionTable;
 }
 
 std::vector<SetOfNfaStates>

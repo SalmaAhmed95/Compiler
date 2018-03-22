@@ -2,8 +2,11 @@
 #define REGEX_TO_NFA_H
 #include "../grammar-parser/Token.hpp"
 #include "NFA.h"
+#include <algorithm>
 #include <iostream>
+#include <limits.h>
 #include <stack>
+#include <utility>
 
 #define EPS_TRANS '`'
 #define OR_OP '|'
@@ -45,6 +48,8 @@ private:
   static bool isBinaryOperation(RegexChar *regexChar);
   static bool isUnaryOperation(RegexChar *regexChar);
   static StateType getState(bool isLast);
+  static bool validatePostfix(Token *token);
+  static std::pair<int, int> getAsciiRange(std::vector<Token *> tokens);
 };
 
 #endif

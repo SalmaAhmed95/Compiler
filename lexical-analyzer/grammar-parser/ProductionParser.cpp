@@ -38,10 +38,11 @@ ProductionParser::loadLexicalRules(std::string lexicalRulesFileName,
   loadPrecedence();
   int priority = DEFAULT_PRIORITY;
   std::map<std::string, std::string> variables;
-  Properties::PropertiesData *propertiesData =
-      loadProperties(propertiesFileName);
+  Properties::PropertiesData propertiesData;
+  loadProperties(propertiesFileName, propertiesData);
   std::vector<Token *> formulatedTokens;
   std::ifstream lexicalRules(lexicalRulesFileName.c_str());
+  handleFileNotFound(lexicalRules);
   std::string inputRuleLine;
   while (getline(lexicalRules, inputRuleLine)) {
     inputRuleLine = trim(inputRuleLine, " \t");
@@ -64,7 +65,7 @@ void ProductionParser::loadPrecedence() {
 
 void ProductionParser::processLine(
     std::string line, std::vector<Token *> &tokens,
-    Properties::PropertiesData *propertiesData,
+    Properties::PropertiesData propertiesData,
     std::map<std::string, std::string> &variables, int priority) {
   if (isReservedWord(line, propertiesData)) {
     processReservedWord(line, tokens);
@@ -80,8 +81,8 @@ void ProductionParser::processLine(
 void ProductionParser::processRegularExpression(
     std::string line, std::vector<Token *> &tokens, int priority,
     std::map<std::string, std::string> &variables,
-    Properties::PropertiesData *properties) {
-  int firstOcc = line.find(properties->find(REG_EXP_EQU)->second[0]);
+    Properties::PropertiesData properties) {
+  int firstOcc = line.find(properties.find(REG_EXP_EQU)->second[0]);
   std::string tokenType = formulateSpaces(line.substr(0, firstOcc), "", " \t");
   std::string regex = line.substr(firstOcc + 1);
   if (variables.count(tokenType)) {
@@ -91,17 +92,17 @@ void ProductionParser::processRegularExpression(
   regex = formulateSpaces(regex, "", " \t");
   regex = substituteRanges(regex);
   char lambda = 0;
-  if (properties->find(LAMBDA) != properties->end() &&
-      properties->find(LAMBDA)->second.size() == 2) {
-    lambda = properties->find(LAMBDA)->second[1];
+  if (properties.find(LAMBDA) != properties.end() &&
+      properties.find(LAMBDA)->second.size() == 2) {
+    lambda = properties.find(LAMBDA)->second[1];
   }
   tokens.push_back(new Token(tokenType, getPostfix(regex, lambda), priority));
 }
 
 void ProductionParser::processRegularDefinition(
     std::string line, std::map<std::string, std::string> &variables,
-    Properties::PropertiesData *properties) {
-  int firstOcc = line.find(properties->find(REG_DEF_EQU)->second[0]);
+    Properties::PropertiesData properties) {
+  int firstOcc = line.find(properties.find(REG_DEF_EQU)->second[0]);
   std::string variableName =
       formulateSpaces(line.substr(0, firstOcc), "", " \t");
   std::string regex = line.substr(firstOcc + 1);
@@ -211,54 +212,51 @@ void ProductionParser::processReservedWord(std::string line,
 }
 
 bool ProductionParser::isReservedWord(
-    std::string line, Properties::PropertiesData *propertiesData) {
-  return propertiesData->find(START_RESERVED_ENCLOSING) !=
-             propertiesData->end() &&
-         propertiesData->find(END_RESERVED_ENCLOSING) !=
-             propertiesData->end() &&
+    std::string line, Properties::PropertiesData propertiesData) {
+  return propertiesData.find(START_RESERVED_ENCLOSING) !=
+             propertiesData.end() &&
+         propertiesData.find(END_RESERVED_ENCLOSING) != propertiesData.end() &&
          std::string(1, line[0]) ==
-             propertiesData->find(START_RESERVED_ENCLOSING)->second &&
+             propertiesData.find(START_RESERVED_ENCLOSING)->second &&
          std::string(1, line[(int)line.size() - 1]) ==
-             propertiesData->find(END_RESERVED_ENCLOSING)->second;
+             propertiesData.find(END_RESERVED_ENCLOSING)->second;
 }
 
 bool ProductionParser::isPunctuation(
-    std::string line, Properties::PropertiesData *propertiesData) {
-  return propertiesData->find(START_PUNC_ENLCOSING) != propertiesData->end() &&
-         propertiesData->find(END_PUNC_ENCLOSING) != propertiesData->end() &&
+    std::string line, Properties::PropertiesData propertiesData) {
+  return propertiesData.find(START_PUNC_ENLCOSING) != propertiesData.end() &&
+         propertiesData.find(END_PUNC_ENCLOSING) != propertiesData.end() &&
          std::string(1, line[0]) ==
-             propertiesData->find(START_PUNC_ENLCOSING)->second &&
+             propertiesData.find(START_PUNC_ENLCOSING)->second &&
          std::string(1, line[(int)line.size() - 1]) ==
-             propertiesData->find(END_PUNC_ENCLOSING)->second;
+             propertiesData.find(END_PUNC_ENCLOSING)->second;
 }
 
 bool ProductionParser::isRegularDefinition(
-    std::string line, Properties::PropertiesData *propertiesData) {
+    std::string line, Properties::PropertiesData propertiesData) {
   if (!isalpha(line[0])) {
     return false;
   }
   std::string str = formulateSpaces(line, "", " \t");
   for (int i = 1; i < (int)str.size(); i++) {
     if (!isalpha(str[i]) && !isdigit(str[i])) {
-      return propertiesData->find(REG_DEF_EQU) != propertiesData->end() &&
-             std::string(1, str[i]) ==
-                 propertiesData->find(REG_DEF_EQU)->second;
+      return propertiesData.find(REG_DEF_EQU) != propertiesData.end() &&
+             std::string(1, str[i]) == propertiesData.find(REG_DEF_EQU)->second;
     }
   }
   return false;
 }
 
 bool ProductionParser::isRegularExpression(
-    std::string line, Properties::PropertiesData *propertiesData) {
+    std::string line, Properties::PropertiesData propertiesData) {
   if (!isalpha(line[0])) {
     return false;
   }
   std::string str = formulateSpaces(line, "", " \t");
   for (int i = 1; i < (int)str.size(); i++) {
     if (!isalpha(str[i]) && !isdigit(str[i])) {
-      return propertiesData->find(REG_EXP_EQU) != propertiesData->end() &&
-             std::string(1, str[i]) ==
-                 propertiesData->find(REG_EXP_EQU)->second;
+      return propertiesData.find(REG_EXP_EQU) != propertiesData.end() &&
+             std::string(1, str[i]) == propertiesData.find(REG_EXP_EQU)->second;
     }
   }
   return false;
@@ -361,12 +359,19 @@ std::string ProductionParser::formulateSpaces(std::string str, std::string fill,
   return result;
 }
 
-Properties::PropertiesData *
-ProductionParser::loadProperties(std::string propertiesFileName) {
-  Properties::PropertiesData *propertiesData = new Properties::PropertiesData;
+void ProductionParser::loadProperties(
+    std::string propertiesFileName,
+    Properties::PropertiesData &propertiesData) {
   std::ifstream propertiesFile(propertiesFileName.c_str());
-  propertiesFile >> *propertiesData;
-  return propertiesData;
+  handleFileNotFound(propertiesFile);
+  propertiesFile >> propertiesData;
+}
+
+void ProductionParser::handleFileNotFound(std::ifstream &file) {
+  if (!file) {
+    std::cout << "File not found" << std::endl;
+    exit(0);
+  }
 }
 
 ProductionParser::~ProductionParser() {}
