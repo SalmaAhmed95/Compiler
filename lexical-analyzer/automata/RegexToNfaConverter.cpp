@@ -5,13 +5,13 @@ NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
   NFA *nfa = new NFA(range.first, range.second);
   stateID rootID = nfa->createNode();
   for (int i = 0; i < tokens.size(); i++) {
-    if(validatePostfix(tokens[i])) {
+    if (validatePostfix(tokens[i])) {
       struct SubNfa *tokenNfa = convertToken(tokens[i], nfa);
       if (tokenNfa)
         nfa->addTransition(EPS_TRANS, rootID, tokenNfa->startID);
       delete tokenNfa;
     } else {
-      //std::cout << "ERROR" << std::endl; error handler
+      // std::cout << "ERROR" << std::endl; error handler
     }
   }
   return nfa;
@@ -166,22 +166,25 @@ bool RegexToNfaConverter::isUnaryOperation(RegexChar *regexChar) {
 
 bool RegexToNfaConverter::validatePostfix(Token *token) {
   int stackArgs = 0;
-  for(int i = 0; i < token->getPostfixRegix().size(); i++) {
-    if(isBinaryOperation(token->getPostfixRegix()[i])) {
+  for (int i = 0; i < token->getPostfixRegix().size(); i++) {
+    if (isBinaryOperation(token->getPostfixRegix()[i])) {
       stackArgs--;
-    } else if(!isUnaryOperation(token->getPostfixRegix()[i])) {
+    } else if (!isUnaryOperation(token->getPostfixRegix()[i])) {
       stackArgs++;
     }
   }
   return stackArgs == 1;
 }
 
-std::pair<int, int> RegexToNfaConverter::getAsciiRange(std::vector<Token *> tokens) {
+std::pair<int, int>
+RegexToNfaConverter::getAsciiRange(std::vector<Token *> tokens) {
   std::pair<int, int> range = {INT_MAX, INT_MIN};
-  for(int i = 0; i < tokens.size(); i++) {
-    for(int j = 0; j < tokens[i]->getPostfixRegix().size(); j++) {
-      range.first = std::min(range.first, (int)tokens[i]->getPostfixRegix()[j]->c);
-      range.second = std::max(range.second, (int)tokens[i]->getPostfixRegix()[j]->c);
+  for (int i = 0; i < tokens.size(); i++) {
+    for (int j = 0; j < tokens[i]->getPostfixRegix().size(); j++) {
+      range.first =
+          std::min(range.first, (int)tokens[i]->getPostfixRegix()[j]->c);
+      range.second =
+          std::max(range.second, (int)tokens[i]->getPostfixRegix()[j]->c);
     }
   }
   return range;

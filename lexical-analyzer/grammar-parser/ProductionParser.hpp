@@ -52,14 +52,14 @@ protected:
   static std::vector<RegexChar *> getPostfix(std::string infix, char lambda);
   static std::string preprocessInfix(std::string infix);
   static int getPrecedence(const char c, TokenCharType charType);
-  static void
-  loadProperties(std::string propertiesFileName, Properties::PropertiesData &propertiesData);
+  static void loadProperties(std::string propertiesFileName,
+                             Properties::PropertiesData &propertiesData);
   static void loadPrecedence();
   static std::string trim(std::string str, std::string whitespace);
   static std::string formulateSpaces(std::string str, std::string fill,
                                      std::string whitespace);
   static struct RegexChar *makeRegexChar(char c, TokenCharType charType);
-    static void handleFileNotFound(std::ifstream &file);
+  static void handleFileNotFound(std::ifstream &file);
 
   /* Properies file key data. */
   static std::string REG_DEF_EQU;
