@@ -5,8 +5,7 @@
 #ifndef COMPILER_CODEPARSER_H
 #define COMPILER_CODEPARSER_H
 
-#define  SPACE ' '
-#define  NEWLINE '\n'
+#define IDENTIFIER "identifier"
 
 class CodeParser {
 
@@ -26,6 +25,8 @@ public:
     bool hasChars();
 
     bool isDelimeter(char c);
+
+    std::string getIdentifierClass(std::string propertiesFileName);
 
 private:
     std::string codeFile;

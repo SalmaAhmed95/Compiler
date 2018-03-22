@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include "CodeParser.h"
+#include "../grammar-parser/Properties.hpp"
 
 CodeParser::CodeParser(std::string fileName) {
     codeFile = fileName;
@@ -36,7 +37,7 @@ int CodeParser::getCurIndex() {
     return index;
 }
 
-std::string CodeParser::getSubString(int startIndex,int lastIndex) {
+std::string CodeParser::getSubString(int startIndex, int lastIndex) {
     std::string subString;
     for (int i = startIndex; i < lastIndex; i++) {
         subString += chars[i];
@@ -49,6 +50,16 @@ bool CodeParser::hasChars() {
         return false;
     return true;
 }
+
 bool CodeParser::isDelimeter(char c) {
     return iswspace(c);
+}
+
+std::string CodeParser::getIdentifierClass(std::string propertiesFileName) {
+    Properties::PropertiesData properties;
+    std::ifstream propertiesFile(propertiesFileName.c_str());
+    propertiesFile >> properties;
+    return properties.find(IDENTIFIER)->second;
+
+
 }

@@ -26,11 +26,16 @@ int main() {
     std::cout<<"Finished DFA \n";
     DFA* dfaMin = minimizeDfa(dfa);
     std::cout<<"Finished Minimization\n";
-   PatternMatcher *pattern = new PatternMatcher(dfaMin, "code.txt");
+    //TODO call non default constructor if main has paramters for output file else default constructor
+    FileWriter *writer = new FileWriter();
+    PatternMatcher *pattern = new PatternMatcher(dfaMin, "code.txt","properties.ini",writer);
     pattern->analyzeCode();
+    writer->closeFile();
+    std::cout<<"Finished Matching\n";
     delete nfa;
     delete dfa;
     delete dfaMin;
     delete pattern;
+    delete writer;
   return 0;
 }
