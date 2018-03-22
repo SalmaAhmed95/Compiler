@@ -12,7 +12,7 @@ class SymbolTable {
 public:
     SymbolTable();
 
-    void insertIntoTable(std::string identifierVal);
+    void insert(std::string identifierVal);
 
     std::vector<std::string> getAllIndetifiers();
 

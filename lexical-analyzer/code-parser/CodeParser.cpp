@@ -2,6 +2,7 @@
 // Created by salma on 16/03/18.
 //
 
+#include "../grammar-parser/Properties.hpp"
 #include "CodeParser.h"
 
 CodeParser::CodeParser(std::string fileName) { codeFile = fileName; }
@@ -40,4 +41,15 @@ bool CodeParser::hasChars() {
     return false;
   return true;
 }
+
 bool CodeParser::isDelimeter(char c) { return iswspace(c); }
+
+std::string CodeParser::getIdentifierClass(std::string propertiesFileName) {
+  Properties::PropertiesData properties;
+  std::ifstream propertiesFile(propertiesFileName.c_str());
+  propertiesFile >> properties;
+  if (properties.find(IDENTIFIER) != properties.end()) {
+    return properties.find(IDENTIFIER)->second;
+  }
+  return IDENTIFIER;
+}

@@ -15,6 +15,7 @@ target_link_libraries(lexical-analyzer
     #error-handler
     pattern-matcher
     utils-lib
+    #file-writer
 )
 
 install(TARGETS lexical-analyzer DESTINATION bin)

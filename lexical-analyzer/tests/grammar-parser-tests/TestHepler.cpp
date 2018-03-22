@@ -37,3 +37,11 @@ bool isOperator(char c, TokenCharType charType) {
          (c == ProductionParser::OR || c == ProductionParser::CONCATENATE ||
           c == ProductionParser::STAR || c == ProductionParser::PLUS);
 }
+
+std::string getRange(char startC, char endC) {
+  std::string range = "";
+  for (char i = startC; i <= endC; i++) {
+    range = range + i + (i != endC ? "|" : "");
+  }
+  return range;
+}

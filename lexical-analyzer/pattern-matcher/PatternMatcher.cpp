@@ -2,12 +2,17 @@
 // // Created by salma on 16/03/18.
 // //
 
+#include "../file-writer/FileWriter.h"
 #include "PatternMatcher.h"
 
-PatternMatcher::PatternMatcher(DFA *dfa, std::string inputFile) {
+PatternMatcher::PatternMatcher(DFA *dfa, std::string inputFile,
+                               std::string properties, FileWriter *writer) {
   minDFA = dfa;
   parser = new CodeParser(inputFile);
   parser->parseFile();
+  propertiesFile = properties;
+  fwriter = writer;
+  symbolTable = new SymbolTable();
 }
 
 void PatternMatcher::analyzeCode() {
@@ -46,18 +51,19 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
     c = parser->getChar();
     it = attr.find(c);
   }
-  if (parser->isDelimeter(c) && matchIndex == -1)
+
+  if (parser->isDelimeter(c) && matchIndex == -1) {
     return true;
-  else if (matchIndex == -1) {
+  } else if (matchIndex == -1) {
     return false;
   } else {
     parser->setStartIndex(matchIndex);
     analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
-    std::cout << "match: " << match << " " << tokenType << std::endl;
+    fwriter->writeMatch(match, tokenType);
     std::string tokenType = minDFA->getTokenClass(curState);
     analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
-    // if(tokenType == IDENTIFIER) insert into symbol table for next phase
-
+    if (tokenType == parser->getIdentifierClass(propertiesFile))
+      symbolTable->insert(match);
     return true;
   }
 }
@@ -68,6 +74,5 @@ void PatternMatcher::recoveryRoutine(int startIndex) {
    * letter*/
   parser->setStartIndex(startIndex);
   // print message from error handler
-  // send this error message to a writer to write it
-  std::cout << ErrorHandler::errors[ErrorHandler::lexicalError] << "\n";
+  fwriter->writeError(ErrorHandler::errors[ErrorHandler::lexicalError]);
 }

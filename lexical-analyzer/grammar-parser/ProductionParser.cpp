@@ -75,6 +75,8 @@ void ProductionParser::processLine(
     processRegularDefinition(line, variables, propertiesData);
   } else if (isRegularExpression(line, propertiesData)) {
     processRegularExpression(line, tokens, priority, variables, propertiesData);
+  } else {
+    std::cout << "No match for lexical rules" << '\n';
   }
 }
 
@@ -272,6 +274,10 @@ std::string ProductionParser::preprocessInfix(std::string infix) {
       if (c1 != '(' && c2 != ')' && (!precedence.count(c2) || c2 == '(') &&
           c1 != OR && c1 != '\\') {
         modifiedInfix = modifiedInfix + CONCATENATE + "";
+      }
+      if (c1 != '(' && c2 != ')' && c2 == CONCATENATE && c1 != OR &&
+          c1 != '\\') {
+        modifiedInfix = modifiedInfix + CONCATENATE + "\\";
       }
     }
   }

@@ -12,6 +12,8 @@ std::vector<Token *> buildTokens(std::vector<std::string> fakeTokensType,
 Token *buildToken(std::string tokenType, std::string fakeTokenStr,
                   int tokenPrecendence);
 
+std::string getRange(char startC, char endC);
+
 std::vector<RegexChar *> getRegexChars(std::string fakeTokenRegex);
 
 bool isOperator(char c, TokenCharType charType);
