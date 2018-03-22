@@ -23,33 +23,35 @@ void PatternMatcher::analyzeCode() {
 }
 
 bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
-    stateID curState = startDFA;
-    std::vector<stateID> nextState;
-    std::string match;
-    std::string tokenType;
-    int matchIndex = -1;
-    int prevPercedence = INT16_MIN;
-    char c = parser->getChar();
-    while (parser->hasChars() && !parser->isDelimeter(c) && !minDFA->isPHI(curState)) {
-        nextState = minDFA->getTransitions(curState, c);
-        //std::cout<<curState<<" "<<c<<std::endl;
-        if (minDFA->isAccepted(nextState[0]) && minDFA->getPrecedence(curState) >= prevPercedence) {
-            matchIndex = parser->getCurIndex();
-            match = parser->getSubString(startChar, matchIndex);
-            tokenType = minDFA->getTokenClass(nextState[0]);
-            prevPercedence = minDFA->getPrecedence(curState);
-        }
-
-        curState = nextState[0];
-        c = parser->getChar();
+  stateID curState = startDFA;
+  std::vector<stateID> nextState;
+  std::string match;
+  std::string tokenType;
+  int matchIndex = -1;
+  int prevPercedence = INT16_MIN;
+  char c = parser->getChar();
+  while (parser->hasChars() && !parser->isDelimeter(c) &&
+         !minDFA->isPHI(curState)) {
+    nextState = minDFA->getTransitions(curState, c);
+    // std::cout<<curState<<" "<<c<<std::endl;
+    if (minDFA->isAccepted(nextState[0]) &&
+        minDFA->getPrecedence(curState) >= prevPercedence) {
+      matchIndex = parser->getCurIndex();
+      match = parser->getSubString(startChar, matchIndex);
+      tokenType = minDFA->getTokenClass(nextState[0]);
+      prevPercedence = minDFA->getPrecedence(curState);
     }
-    if (matchIndex == -1) {
-        return false;
-    } else {
-        parser->setStartIndex(matchIndex);
-        analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
-        std::cout << "match: " << match <<" "<<tokenType<< std::endl;
-        //if(tokenType == IDENTIFIER) insert into symbol table for next phase
+
+    curState = nextState[0];
+    c = parser->getChar();
+  }
+  if (matchIndex == -1) {
+    return false;
+  } else {
+    parser->setStartIndex(matchIndex);
+    analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
+    std::cout << "match: " << match << " " << tokenType << std::endl;
+    // if(tokenType == IDENTIFIER) insert into symbol table for next phase
 
     std::string tokenType = minDFA->getTokenClass(curState);
     analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));

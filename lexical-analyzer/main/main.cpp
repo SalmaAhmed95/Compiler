@@ -5,9 +5,8 @@
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
 
-
-#include "../dfa-minimizer/DfaMinimizer.h"
 #include "../automata/NfaToDfaConverter.h"
+#include "../dfa-minimizer/DfaMinimizer.h"
 #include "../pattern-matcher/PatternMatcher.h"
 
 int main() {
@@ -96,18 +95,18 @@ int main() {
             automata->addTransition(alphabets[i], 7, 8);
         }*/
 
-    std::vector<Token *> tokens =
-            ProductionParser::loadLexicalRules("lexical_rules.txt", "properties.ini");
-    NFA *nfa = RegexToNfaConverter::getNfa(tokens);
-    //std::cout<<nfa->getNumberOfStates();
-   // nfa->print();
-    DFA *dfa = NfaToDfaConverter::getDFA(nfa);
-   // std::cout<<dfa->getNumberOfStates();
-    //dfa->print();
-    DFA* dfaMin = minimizeDfa(dfa);
-    //dfaMin.print();
-    PatternMatcher *pattern = new PatternMatcher(dfaMin, "code.txt");
-     pattern->analyzeCode();
+  std::vector<Token *> tokens =
+      ProductionParser::loadLexicalRules("lexical_rules.txt", "properties.ini");
+  NFA *nfa = RegexToNfaConverter::getNfa(tokens);
+  // std::cout<<nfa->getNumberOfStates();
+  // nfa->print();
+  DFA *dfa = NfaToDfaConverter::getDFA(nfa);
+  // std::cout<<dfa->getNumberOfStates();
+  // dfa->print();
+  DFA *dfaMin = minimizeDfa(dfa);
+  // dfaMin.print();
+  PatternMatcher *pattern = new PatternMatcher(dfaMin, "code.txt");
+  pattern->analyzeCode();
 
   return 0;
 }
