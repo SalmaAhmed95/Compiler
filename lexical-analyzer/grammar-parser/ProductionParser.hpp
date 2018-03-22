@@ -1,3 +1,6 @@
+#ifndef PRODUCTION_PARSER_H
+#define PRODUCTION_PARSER_H
+
 #include "Properties.hpp"
 #include "Token.hpp"
 #include <ctype.h>
@@ -90,3 +93,5 @@ protected:
     DEFAULT_PREC
   };
 };
+
+#endif
