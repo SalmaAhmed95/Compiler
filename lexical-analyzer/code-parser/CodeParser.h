@@ -5,6 +5,10 @@
 #ifndef COMPILER_CODEPARSER_H
 #define COMPILER_CODEPARSER_H
 
+#include <fstream>
+#include <iostream>
+#include <vector>
+
 #define SPACE ' '
 #define NEWLINE '\n'
 

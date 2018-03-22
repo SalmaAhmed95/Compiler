@@ -3,9 +3,6 @@
 //
 
 #include "CodeParser.h"
-#include <fstream>
-#include <iostream>
-#include <vector>
 
 CodeParser::CodeParser(std::string fileName) { codeFile = fileName; }
 

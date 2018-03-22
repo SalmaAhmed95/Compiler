@@ -15,7 +15,17 @@ public:
   ProductionParser();
   static std::vector<Token *> loadLexicalRules(std::string lexicalRulesFileName,
                                                std::string propertiesFileName);
+
+  static struct RegexChar *makeRegexChar(char c, TokenCharType charType);
   virtual ~ProductionParser();
+
+  static const char CONCATENATE;
+  static const char OR;
+  static const char STAR;
+  static const char PLUS;
+  static const char BRACKET_OPEN;
+  static const char BRACKET_CLOSE;
+  static const char EPS;
 
 protected:
   static std::string removeSpaces(std::string str);
@@ -58,7 +68,6 @@ protected:
   static std::string trim(std::string str, std::string whitespace);
   static std::string formulateSpaces(std::string str, std::string fill,
                                      std::string whitespace);
-  static struct RegexChar *makeRegexChar(char c, TokenCharType charType);
   static void handleFileNotFound(std::ifstream &file);
 
   /* Properies file key data. */
@@ -69,15 +78,6 @@ protected:
   static std::string START_PUNC_ENLCOSING;
   static std::string END_PUNC_ENCLOSING;
   static std::string LAMBDA;
-
-  static const char CONCATENATE;
-  static const char OR;
-  static const char STAR;
-  static const char PLUS;
-  static const char BRACKET_OPEN;
-  static const char BRACKET_CLOSE;
-
-  static const char EPS;
 
   static std::map<char, int> precedence;
 
