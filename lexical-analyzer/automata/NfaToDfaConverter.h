@@ -37,19 +37,12 @@ private:
   static void
   getNextState(SetOfNfaStates *nextStates, std::set<stateID> *states,
                std::vector<SetOfNfaStates> *epsTable,
-               std::vector<std::vector<SetOfNfaStates>> *transitionTable,
-               char transition, int charIndex, NFA *nfa);
+               char transition,  NFA *nfa);
 
   static void updateSetOfNfaStatesSpec(StateSpec *mainState, StateType nextType,
                                        int nextPrecedence,
                                        std::string nextTokenClass);
 
-  static void getNextStateForChar(SetOfNfaStates *nextStates,
-                                  stateID curNfaState,
-                                  std::vector<SetOfNfaStates> *epsTable,
-                                  char transition, NFA *nfa);
 
-  static std::vector<std::vector<SetOfNfaStates>>
-  constructTransitionTable(NFA *nfa);
 };
 #endif // COMPILER_NFATODFACONVERTER_H
