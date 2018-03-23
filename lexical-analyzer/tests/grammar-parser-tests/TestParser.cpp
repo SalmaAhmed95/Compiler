@@ -153,15 +153,6 @@ void validateFiles(std::string f1, std::string f2) {
   ASSERT_TRUE(file2 != NULL) << FILE_NOT_FOUND;
 }
 
-// void addTokenToList(std::string type, std::string regex, int prec,
-//                     std::vector<std::string> &fakeTokensType,
-//                     std::vector<std::string> &fakeTokensRegex,
-//                     std::vector<int> &fakeTokensPrecedence) {
-//   fakeTokensType.push_back(type);
-//   fakeTokensRegex.push_back(regex);
-//   fakeTokensPrecedence.push_back(prec);
-// }
-
 void testProductions(std::vector<Token *> realTokens,
                      std::vector<Token *> fakeTokens) {
   ASSERT_TRUE(realTokens.size() == fakeTokens.size());

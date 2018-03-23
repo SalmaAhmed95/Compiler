@@ -34,11 +34,14 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
   std::string tokenType;
   int matchIndex = -1;
   int prevPercedence = INT16_MIN;
-  char c = parser->getChar();
+  char c;
   std::set<char> attr = minDFA->getAllAttributes();
-  std::set<char>::iterator it = attr.find(c);
-  while (parser->hasChars() && !parser->isDelimeter(c) &&
-         !minDFA->isPHI(curState) && it != attr.end()) {
+  std::set<char>::iterator it;
+  while (parser->hasChars()) {
+    c = parser->getChar();
+    it = attr.find(c);
+    if (parser->isDelimeter(c) || minDFA->isPHI(curState) || it == attr.end())
+      break;
     nextState = minDFA->getTransitions(curState, c);
     if (minDFA->isAccepted(nextState[0]) &&
         minDFA->getPrecedence(curState) >= prevPercedence) {
@@ -48,8 +51,6 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
       prevPercedence = minDFA->getPrecedence(curState);
     }
     curState = nextState[0];
-    c = parser->getChar();
-    it = attr.find(c);
   }
 
   if (parser->isDelimeter(c) && matchIndex == -1) {
