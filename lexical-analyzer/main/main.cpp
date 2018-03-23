@@ -23,7 +23,7 @@ int main() {
     std::cout << "Finished NFA" << std::endl;
     DFA *dfa = NfaToDfaConverter::getDFA(nfa);
     std::cout << "Finished DFA \n";
-    DFA *dfaMin = minimizeDfa(dfa);
+    DFA *dfaMin = DfaMinimizer::getInstance().minimizeDfa(dfa);
     std::cout << "Finished Minimization\n";
     // TODO call non default constructor if main has paramters for output file
     // else default constructor
