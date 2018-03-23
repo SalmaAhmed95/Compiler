@@ -30,7 +30,6 @@ std::vector<stateID> NfaNode::getTransitions(char transition) {
 std::vector<TransEdges> NfaNode::getTransitions() {
   std::vector<TransEdges> allTransitions;
   for (int i = 0; i < charRange; i++) {
-<<<<<<< HEAD
     char charT = (char) (offsetCharIndex + i);
     if (charT != EPS_TRANS) {
       TransEdges newTransition;
@@ -38,13 +37,6 @@ std::vector<TransEdges> NfaNode::getTransitions() {
       newTransition.nextStates = getTransitions(charT);
       allTransitions.push_back(newTransition);
     }
-=======
-    char charT = (char)(offsetCharIndex + i);
-    TransEdges newTransition;
-    newTransition.transition = charT;
-    newTransition.nextStates = getTransitions(charT);
-    allTransitions.push_back(newTransition);
->>>>>>> 98e6cab655dd732a3cd303e786ca94b4bc0525d6
   }
   return allTransitions;
 }
