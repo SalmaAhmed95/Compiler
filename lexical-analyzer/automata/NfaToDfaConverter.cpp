@@ -4,7 +4,7 @@
 #include "NfaToDfaConverter.h"
 #include <queue>
 
-#define EPS_TRANS '`'
+#include "Definitions.h"
 
 DFA *NfaToDfaConverter::getDFA(NFA *nfa) {
     DFA *dfa = new DFA();
