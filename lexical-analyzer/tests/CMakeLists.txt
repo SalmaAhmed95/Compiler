@@ -40,3 +40,4 @@ include_directories("${source_dir}/googletest/include"
                     "${source_dir}/googlemock/include")
 
 add_subdirectory(grammar-parser-tests)
+add_subdirectory(automata-tests)
