@@ -37,7 +37,7 @@ std::string CodeParser::getSubString(int startIndex, int lastIndex) {
 }
 
 bool CodeParser::hasChars() {
-  if (index == chars.size() - 1)
+  if (index == chars.size())
     return false;
   return true;
 }
