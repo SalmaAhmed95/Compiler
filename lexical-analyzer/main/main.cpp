@@ -4,9 +4,6 @@
 #include "../code-parser/CodeParser.h"
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
-
-#include "../automata/NfaToDfaConverter.h"
-#include "../dfa-minimizer/DfaMinimizer.h"
 #include "../pattern-matcher/PatternMatcher.h"
 
 void deleteTokens(std::vector<Token *> v) {
@@ -25,7 +22,7 @@ int main() {
     std::cout << "Finished DFA \n";
     DFA *dfaMin = DfaMinimizer::getInstance().minimizeDfa(dfa);
     std::cout << "Finished Minimization\n";
-    // TODO call non default constructor if main has paramters for output file
+    // TODO call non default constructor if main has parameters for output file
     // else default constructor
     FileWriter *writer = new FileWriter();
     writer->writeTransitionTable(dfaMin);

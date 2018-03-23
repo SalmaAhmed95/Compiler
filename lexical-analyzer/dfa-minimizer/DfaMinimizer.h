@@ -57,6 +57,8 @@ private:
     void initMinimizedDfa(std::vector<std::set<stateID>> *sets,
                           DFA *dfaGraph,
                           DFA *minimizedDfa);
+
+    void printSets(std::vector<std::set<stateID>> *sets);
 };
 
 #endif // COMPILER_DFAMINIMIZER_H
