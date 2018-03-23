@@ -28,7 +28,6 @@ void PatternMatcher::analyzeCode() {
 }
 
 bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
-    std::cout << "here" << "\n";
     stateID curState = startDFA;
     std::vector<stateID> nextState;
     std::string match;
@@ -44,7 +43,6 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
         if (parser->isDelimeter(c) || minDFA->isPHI(curState) || it == attr.end())
             break;
         nextState = minDFA->getTransitions(curState, c);
-        std::cout << c;
         if (minDFA->isAccepted(nextState[0]) &&
             minDFA->getPrecedence(curState) >= prevPercedence) {
             matchIndex = parser->getCurIndex();
