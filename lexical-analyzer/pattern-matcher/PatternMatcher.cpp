@@ -28,29 +28,29 @@ void PatternMatcher::analyzeCode() {
 }
 
 bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
-  stateID curState = startDFA;
-  std::vector<stateID> nextState;
-  std::string match;
-  std::string tokenType;
-  int matchIndex = -1;
-  int prevPercedence = INT16_MIN;
-  char c;
-  std::set<char> attr = minDFA->getAllAttributes();
-  std::set<char>::iterator it;
-  while (parser->hasChars()) {
-    c = parser->getChar();
-    it = attr.find(c);
-    if (parser->isDelimeter(c) || minDFA->isPHI(curState) || it == attr.end())
-      break;
-    nextState = minDFA->getTransitions(curState, c);
-    if (minDFA->isAccepted(nextState[0]) &&
-        minDFA->getPrecedence(curState) >= prevPercedence) {
-      matchIndex = parser->getCurIndex();
-      match = parser->getSubString(startChar, matchIndex);
-      tokenType = minDFA->getTokenClass(nextState[0]);
-      prevPercedence = minDFA->getPrecedence(curState);
-    }
-    curState = nextState[0];
+    stateID curState = startDFA;
+    std::vector<stateID> nextState;
+    std::string match;
+    std::string tokenType;
+    int matchIndex = -1;
+    int prevPercedence = INT16_MIN;
+    char c;
+    std::set<char> attr = minDFA->getAllAttributes();
+    std::set<char>::iterator it;
+    while (parser->hasChars()) {
+
+        c = parser->getChar();
+        it = attr.find(c);
+        if (parser->isDelimeter(c) || minDFA->isPHI(curState) || it == attr.end())
+            break;
+        nextState = minDFA->getTransitions(curState, c);
+        if (minDFA->isAccepted(nextState[0])) {
+            matchIndex = parser->getCurIndex();
+            match = parser->getSubString(startChar, matchIndex);
+            tokenType = minDFA->getTokenClass(nextState[0]);
+            prevPercedence = minDFA->getPrecedence(nextState[0]);
+        }
+        curState = nextState[0];
   }
 
   if (parser->isDelimeter(c) && matchIndex == -1) {
