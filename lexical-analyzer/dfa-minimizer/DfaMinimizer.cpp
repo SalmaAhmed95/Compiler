@@ -37,14 +37,25 @@ DFA *DfaMinimizer::minimizeDfa(DFA *dfaGraph) {
 }
 
 void DfaMinimizer::initSets(DFA *dfaGraph, std::vector<std::set<stateID>> *sets) {
-    sets->resize(1);
+    sets->resize(2);
     std::map<std::string, std::set<stateID>> tokensToAccepted;
     //Add non accepted states and group the accepted ones by TokenClass
     for (stateID i = 0; i < dfaGraph->getNumberOfStates(); i++) {
         if (dfaGraph->isAccepted(i)) {
             tokensToAccepted[dfaGraph->getTokenClass(i)].insert(i);
+        } else if (dfaGraph->isPHI(i)) {
+            sets->back().insert(i);
         } else {
             sets->front().insert(i);
+        }
+    }
+
+    //Remove the empty sets should it is necessary.
+    for (std::vector<std::set<stateID>>::iterator it = sets->begin();
+         it != sets->end(); it++) {
+        if ((*it).empty()) {
+            sets->erase(it);
+            it--;
         }
     }
 
@@ -54,11 +65,6 @@ void DfaMinimizer::initSets(DFA *dfaGraph, std::vector<std::set<stateID>> *sets)
         for (stateID state: it.second) {
             sets->back().insert(state);
         }
-    }
-
-    //Remove the First Set in case it's empty because all the states are accepted
-    if (sets->front().empty()) {
-        sets->erase(sets->begin());
     }
 
     //update the stateToSetId mapping
@@ -131,6 +137,18 @@ DFA *DfaMinimizer::buildMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *
 }
 
 void DfaMinimizer::initMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *dfaGraph, DFA *minimizedDfa) {
+    int rootOldIndex = stateToSetId->operator[](dfaGraph->getRootID());
+    int rootNewIndex = 0;
+
+    // swap the root set with the set at index 0
+    iter_swap(sets->begin() + rootNewIndex, sets->begin() + rootOldIndex);
+
+    // update the map for the elements at index dfaGraph->getRootID();
+    updateStateToSetIdMap(&(sets->at(rootNewIndex)), rootNewIndex);
+
+    // update the map for the elements at the prev root index
+    updateStateToSetIdMap(&(sets->at(rootOldIndex)), rootOldIndex);
+
     //Create States to represent the sets
     for (unsigned int i = 0; i < sets->size(); i++) {
         stateID stateInSet = *(sets->at(i).begin());
@@ -138,22 +156,14 @@ void DfaMinimizer::initMinimizedDfa(std::vector<std::set<stateID>> *sets, DFA *d
                                  dfaGraph->getPrecedence(stateInSet),
                                  dfaGraph->getTokenClass(stateInSet));
     }
+}
 
-    // get index of the set containing the root
-    int rootSetIndex = 0;
+void DfaMinimizer::printSets(std::vector<std::set<stateID>> *sets) {
     for (unsigned int i = 0; i < sets->size(); i++) {
-        if (sets->at(i).count(dfaGraph->getRootID())) {
-            rootSetIndex = i;
-            break;
+        std::cout << i << "\t";
+        for (stateID stateId: sets->at(i)) {
+            std::cout << stateId << " ";
         }
+        std::cout << std::endl;
     }
-
-    // swap the root set with the set at index 0
-    iter_swap(sets->begin() + dfaGraph->getRootID(), sets->begin() + rootSetIndex);
-
-    // update the map for the elements at index dfaGraph->getRootID();
-    updateStateToSetIdMap(&(sets->at(dfaGraph->getRootID())), dfaGraph->getRootID());
-
-    // update the map for the elements at the prev root index
-    updateStateToSetIdMap(&(sets->at(rootSetIndex)), rootSetIndex);
 }

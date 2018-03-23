@@ -6,6 +6,7 @@
 
 #include "Definitions.h"
 
+
 DFA *NfaToDfaConverter::getDFA(NFA *nfa) {
     DFA *dfa = new DFA();
     std::vector<SetOfNfaStates> epsTable;

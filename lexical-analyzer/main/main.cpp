@@ -4,9 +4,6 @@
 #include "../code-parser/CodeParser.h"
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
-
-#include "../automata/NfaToDfaConverter.h"
-#include "../dfa-minimizer/DfaMinimizer.h"
 #include "../pattern-matcher/PatternMatcher.h"
 
 #define FILES_NUM 4
