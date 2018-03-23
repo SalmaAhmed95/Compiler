@@ -5,34 +5,39 @@
 #ifndef COMPILER_CODEPARSER_H
 #define COMPILER_CODEPARSER_H
 
-#define  SPACE ' '
-#define  NEWLINE '\n'
+#include <fstream>
+#include <iostream>
+#include <vector>
+
+#define SPACE ' '
+#define NEWLINE '\n'
+#define IDENTIFIER "identifier"
 
 class CodeParser {
 
 public:
-    explicit CodeParser(std::string fileName);
+  explicit CodeParser(std::string fileName);
 
-    std::vector<char> parseFile();
+  std::vector<char> parseFile();
 
-    char getChar();
+  char getChar();
 
-    void setStartIndex(int i);
+  void setStartIndex(int i);
 
-    int getCurIndex();
+  int getCurIndex();
 
-    std::string getSubString(int startIndex , int lastIndex);
+  std::string getSubString(int startIndex, int lastIndex);
 
-    bool hasChars();
+  bool hasChars();
 
-    bool isDelimeter(char c);
+  bool isDelimeter(char c);
+
+  std::string getIdentifierClass(std::string propertiesFileName);
 
 private:
-    std::string codeFile;
-    int index = 0;
-    std::vector<char> chars;
-
+  std::string codeFile;
+  int index = 0;
+  std::vector<char> chars;
 };
 
-
-#endif //COMPILER_CODEPARSER_H
+#endif // COMPILER_CODEPARSER_H

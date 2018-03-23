@@ -1,3 +1,6 @@
+#ifndef PRODUCTION_PARSER_H
+#define PRODUCTION_PARSER_H
+
 #include "Properties.hpp"
 #include "Token.hpp"
 #include <ctype.h>
@@ -15,7 +18,17 @@ public:
   ProductionParser();
   static std::vector<Token *> loadLexicalRules(std::string lexicalRulesFileName,
                                                std::string propertiesFileName);
+
+  static struct RegexChar *makeRegexChar(char c, TokenCharType charType);
   virtual ~ProductionParser();
+
+  static const char CONCATENATE;
+  static const char OR;
+  static const char STAR;
+  static const char PLUS;
+  static const char BRACKET_OPEN;
+  static const char BRACKET_CLOSE;
+  static const char EPS;
 
 protected:
   static std::string removeSpaces(std::string str);
@@ -52,14 +65,13 @@ protected:
   static std::vector<RegexChar *> getPostfix(std::string infix, char lambda);
   static std::string preprocessInfix(std::string infix);
   static int getPrecedence(const char c, TokenCharType charType);
-  static void
-  loadProperties(std::string propertiesFileName, Properties::PropertiesData &propertiesData);
+  static void loadProperties(std::string propertiesFileName,
+                             Properties::PropertiesData &propertiesData);
   static void loadPrecedence();
   static std::string trim(std::string str, std::string whitespace);
   static std::string formulateSpaces(std::string str, std::string fill,
                                      std::string whitespace);
-  static struct RegexChar *makeRegexChar(char c, TokenCharType charType);
-    static void handleFileNotFound(std::ifstream &file);
+  static void handleFileNotFound(std::ifstream &file);
 
   /* Properies file key data. */
   static std::string REG_DEF_EQU;
@@ -69,15 +81,6 @@ protected:
   static std::string START_PUNC_ENLCOSING;
   static std::string END_PUNC_ENCLOSING;
   static std::string LAMBDA;
-
-  static const char CONCATENATE;
-  static const char OR;
-  static const char STAR;
-  static const char PLUS;
-  static const char BRACKET_OPEN;
-  static const char BRACKET_CLOSE;
-
-  static const char EPS;
 
   static std::map<char, int> precedence;
 
@@ -90,3 +93,5 @@ protected:
     DEFAULT_PREC
   };
 };
+
+#endif

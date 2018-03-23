@@ -4,9 +4,9 @@
 #include "NFA.h"
 //
 
-NFA::NFA(int minAsciiCodeValue, int maxAsciiCodeValue){
-    NFA::minAsciiCodeValue = minAsciiCodeValue;
-    NFA::maxAsciiCodeValue = maxAsciiCodeValue;
+NFA::NFA(int minAsciiCodeValue, int maxAsciiCodeValue) {
+  NFA::minAsciiCodeValue = minAsciiCodeValue;
+  NFA::maxAsciiCodeValue = maxAsciiCodeValue;
 }
 
 stateID NFA::createNode() {
@@ -22,12 +22,11 @@ stateID NFA::createNode(StateType type, int precedence,
   newSpec.tokenClass = tokenClass;
   newSpec.stateType = type;
   newSpec.precedence = precedence;
-  Node *newNode = new NfaNode(lastNodeID, &newSpec, minAsciiCodeValue, maxAsciiCodeValue);
+  Node *newNode =
+      new NfaNode(lastNodeID, &newSpec, minAsciiCodeValue, maxAsciiCodeValue);
   NFA::graph.push_back(newNode);
   NFA::lastNodeID++;
   return (NFA::lastNodeID - 1);
 }
 
-void NFA::setNfaRange(int minAsciiCodeValue, int maxAsciiCodeValue){
-
-}
+void NFA::setNfaRange(int minAsciiCodeValue, int maxAsciiCodeValue) {}

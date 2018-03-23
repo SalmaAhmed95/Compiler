@@ -27,6 +27,8 @@ set(SOURCE_FILES
         lexical-analyzer/dfa-minimizer/DfaMinimizer.h
         lexical-analyzer/error/ErrorHandler.cpp
         lexical-analyzer/error/ErrorHandler.h
+        lexical-analyzer/file-writer/FileWriter.cpp
+        lexical-analyzer/file-writer/FileWriter.h
         lexical-analyzer/grammar-parser/ProductionParser.cpp
         lexical-analyzer/grammar-parser/ProductionParser.hpp
         lexical-analyzer/grammar-parser/Properties.cpp

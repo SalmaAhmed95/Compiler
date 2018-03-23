@@ -75,6 +75,8 @@ void ProductionParser::processLine(
     processRegularDefinition(line, variables, propertiesData);
   } else if (isRegularExpression(line, propertiesData)) {
     processRegularExpression(line, tokens, priority, variables, propertiesData);
+  } else {
+    std::cout << "No match for lexical rules" << '\n';
   }
 }
 
@@ -215,8 +217,7 @@ bool ProductionParser::isReservedWord(
     std::string line, Properties::PropertiesData propertiesData) {
   return propertiesData.find(START_RESERVED_ENCLOSING) !=
              propertiesData.end() &&
-         propertiesData.find(END_RESERVED_ENCLOSING) !=
-             propertiesData.end() &&
+         propertiesData.find(END_RESERVED_ENCLOSING) != propertiesData.end() &&
          std::string(1, line[0]) ==
              propertiesData.find(START_RESERVED_ENCLOSING)->second &&
          std::string(1, line[(int)line.size() - 1]) ==
@@ -242,8 +243,7 @@ bool ProductionParser::isRegularDefinition(
   for (int i = 1; i < (int)str.size(); i++) {
     if (!isalpha(str[i]) && !isdigit(str[i])) {
       return propertiesData.find(REG_DEF_EQU) != propertiesData.end() &&
-             std::string(1, str[i]) ==
-                 propertiesData.find(REG_DEF_EQU)->second;
+             std::string(1, str[i]) == propertiesData.find(REG_DEF_EQU)->second;
     }
   }
   return false;
@@ -258,8 +258,7 @@ bool ProductionParser::isRegularExpression(
   for (int i = 1; i < (int)str.size(); i++) {
     if (!isalpha(str[i]) && !isdigit(str[i])) {
       return propertiesData.find(REG_EXP_EQU) != propertiesData.end() &&
-             std::string(1, str[i]) ==
-                 propertiesData.find(REG_EXP_EQU)->second;
+             std::string(1, str[i]) == propertiesData.find(REG_EXP_EQU)->second;
     }
   }
   return false;
@@ -275,6 +274,10 @@ std::string ProductionParser::preprocessInfix(std::string infix) {
       if (c1 != '(' && c2 != ')' && (!precedence.count(c2) || c2 == '(') &&
           c1 != OR && c1 != '\\') {
         modifiedInfix = modifiedInfix + CONCATENATE + "";
+      }
+      if (c1 != '(' && c2 != ')' && c2 == CONCATENATE && c1 != OR &&
+          c1 != '\\') {
+        modifiedInfix = modifiedInfix + CONCATENATE + "\\";
       }
     }
   }
@@ -362,15 +365,16 @@ std::string ProductionParser::formulateSpaces(std::string str, std::string fill,
   return result;
 }
 
-void
-ProductionParser::loadProperties(std::string propertiesFileName, Properties::PropertiesData &propertiesData) {
+void ProductionParser::loadProperties(
+    std::string propertiesFileName,
+    Properties::PropertiesData &propertiesData) {
   std::ifstream propertiesFile(propertiesFileName.c_str());
   handleFileNotFound(propertiesFile);
   propertiesFile >> propertiesData;
 }
 
-void ProductionParser::handleFileNotFound(std::ifstream &file){
-  if(!file) {
+void ProductionParser::handleFileNotFound(std::ifstream &file) {
+  if (!file) {
     std::cout << "File not found" << std::endl;
     exit(0);
   }

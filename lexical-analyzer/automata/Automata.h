@@ -47,7 +47,7 @@ public:
                     StateType stateType);
 
   void print();
-    ~Automata();
+  ~Automata();
 
 protected:
   stateID lastNodeID;
