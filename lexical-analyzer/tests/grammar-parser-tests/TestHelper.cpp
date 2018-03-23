@@ -45,3 +45,12 @@ std::string getRange(char startC, char endC) {
   }
   return range;
 }
+
+void addTokenToList(std::string type, std::string regex, int prec,
+                    std::vector<std::string> &fakeTokensType,
+                    std::vector<std::string> &fakeTokensRegex,
+                    std::vector<int> &fakeTokensPrecedence) {
+  fakeTokensType.push_back(type);
+  fakeTokensRegex.push_back(regex);
+  fakeTokensPrecedence.push_back(prec);
+}

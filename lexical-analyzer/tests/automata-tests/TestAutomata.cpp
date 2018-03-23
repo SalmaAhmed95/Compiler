@@ -61,6 +61,7 @@ TEST(TestAutomata, AddingTransitionsNfa_5) {
   testTrans(nfa->getAllAttributes(), 'a', 'z');
   std::vector<TransEdges> transition = nfa->getTransitions(0);
   testGetTransOfNode(transition, 'a', 'z');
+  delete nfa;
 }
 
 TEST(TestAutomata, AddingTransitionsDfa_6) {
@@ -80,6 +81,7 @@ TEST(TestAutomata, AddingTransitionsDfa_6) {
   testTrans(dfa->getAllAttributes(), 'a', 'z');
   std::vector<TransEdges> transition = dfa->getTransitions(0);
   testGetTransOfNode(transition, 'a', 'z');
+  delete dfa;
 }
 
 void testGetTransOfNode(std::vector<TransEdges> transition, char startChar,

@@ -1,3 +1,6 @@
+#ifndef TEST_AUTOMATA_H
+#define TEST_AUTOMATA_H
+
 #include "../../automata/Automata.h"
 #include "../../automata/DFA.h"
 #include "../../automata/NFA.h"
@@ -24,3 +27,5 @@ protected:
 
   virtual void TearDown();
 };
+
+#endif
