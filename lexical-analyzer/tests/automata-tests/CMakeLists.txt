@@ -6,6 +6,8 @@ set(SRCS
   TestRegexToNfaConverter.hpp
   ../grammar-parser-tests/TestHelper.cpp
   ../grammar-parser-tests/TestHelper.hpp
+  TestNfaToDfaConverter.hpp
+  TestNfaToDfaConverter.cpp
 )
 
 ADD_EXECUTABLE(automata-tests ${SRCS})

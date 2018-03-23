@@ -1,6 +1,7 @@
 #ifndef REGEX_TO_NFA_H
 #define REGEX_TO_NFA_H
 #include "../grammar-parser/Token.hpp"
+#include "Definitions.h"
 #include "NFA.h"
 #include <algorithm>
 #include <iostream>
@@ -8,7 +9,7 @@
 #include <stack>
 #include <utility>
 
-#define EPS_TRANS '`'
+// #define EPS_TRANS '`'
 #define OR_OP '|'
 #define CONC_OP '#'
 #define STAR_OP '*'

@@ -5,16 +5,11 @@
 #ifndef COMPILER_DEFINITIONS_H
 #define COMPILER_DEFINITIONS_H
 
-
-
-
 #define EPS_TRANS '`'
 typedef int stateID;
 
-
-
 struct TransEdges {
-    char transition;
-    std::vector<stateID> nextStates;
+  char transition;
+  std::vector<stateID> nextStates;
 };
-#endif //COMPILER_DEFINITIONS_H
+#endif // COMPILER_DEFINITIONS_H

@@ -24,14 +24,12 @@ void deleteTokens(std::vector<Token *> v) {
 void getFileNames(int argc, char **argv, std::string &lexicalRules,
                   std::string &properties, std::string &code,
                   std::string &output) {
-  std::cout << argc << '\n';
   if (argc != FILES_NUM + 1) {
     lexicalRules = DEFAULT_LEXICAL;
     properties = DEFAULT_PROPERTIES;
     code = DEFAULT_CODE;
     output = DEFAULT_OUTPUT;
   } else {
-    std::cout << "/* message */" << '\n';
     lexicalRules = argv[1];
     properties = argv[2];
     code = argv[3];

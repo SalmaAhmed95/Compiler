@@ -11,7 +11,7 @@ NFA *RegexToNfaConverter::getNfa(std::vector<Token *> tokens) {
         nfa->addTransition(EPS_TRANS, rootID, tokenNfa->startID);
       delete tokenNfa;
     } else {
-      // std::cout << "ERROR" << std::endl; error handler
+      std::cout << "ERROR expression" << std::endl;
     }
   }
   return nfa;
