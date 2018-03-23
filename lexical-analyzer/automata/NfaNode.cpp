@@ -17,7 +17,11 @@ NfaNode::NfaNode(stateID id, int minAsciiCodeValue, int maxAsciiCoedValue)
 
 NfaNode::NfaNode(stateID id, StateSpec *stateSpec, int minAsciiCodeValue,
                  int maxAsciiCoedValue)
-    : Node(id, stateSpec) {}
+    : Node(id, stateSpec) {
+  NfaNode::offsetCharIndex = minAsciiCodeValue;
+  NfaNode::charRange = maxAsciiCoedValue - minAsciiCodeValue + 1;
+  NfaNode::transitions.resize(charRange);
+}
 
 void NfaNode::addTransition(stateID node_to, char transition) {
   transitions[transition - offsetCharIndex].push_back(node_to);

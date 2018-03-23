@@ -18,4 +18,9 @@ std::vector<RegexChar *> getRegexChars(std::string fakeTokenRegex);
 
 bool isOperator(char c, TokenCharType charType);
 
+void addTokenToList(std::string type, std::string regex, int prec,
+                    std::vector<std::string> &fakeTokensType,
+                    std::vector<std::string> &fakeTokensRegex,
+                    std::vector<int> &fakeTokensPrecedence);
+
 #endif

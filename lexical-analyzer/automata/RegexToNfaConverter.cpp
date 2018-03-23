@@ -178,7 +178,7 @@ bool RegexToNfaConverter::validatePostfix(Token *token) {
 
 std::pair<int, int>
 RegexToNfaConverter::getAsciiRange(std::vector<Token *> tokens) {
-  std::pair<int, int> range = {INT_MAX, INT_MIN};
+  std::pair<int, int> range = {EPS_TRANS, EPS_TRANS};
   for (int i = 0; i < tokens.size(); i++) {
     for (int j = 0; j < tokens[i]->getPostfixRegix().size(); j++) {
       range.first =
