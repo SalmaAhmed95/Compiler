@@ -47,8 +47,10 @@ void FileWriter::writeTransitionTable(DFA *dfaMin) {
             file << "Start";
             fillSpaces(5);
         }
-        else if (dfaMin->isPHI(i))
+        else if (dfaMin->isPHI(i)){
             file << "Phi";
+            fillSpaces(7);
+        }
         else{
             file << dfaMin->getTokenClass(i);
             fillSpaces(10 - dfaMin->getTokenClass(i).length());
