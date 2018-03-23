@@ -12,9 +12,5 @@ struct TransEdges {
   char transition;
   std::vector<stateID> nextStates;
 };
-<<<<<<< HEAD
-#endif // COMPILER_DEFINITIONS_H
-=======
 
-#endif //COMPILER_DEFINITIONS_H
->>>>>>> 5822aa44425d3e64d9055db948c064fc3d43951e
+#endif // COMPILER_DEFINITIONS_H
