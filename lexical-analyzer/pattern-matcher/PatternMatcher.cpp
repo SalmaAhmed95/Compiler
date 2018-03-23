@@ -38,17 +38,17 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
     std::set<char> attr = minDFA->getAllAttributes();
     std::set<char>::iterator it;
     while (parser->hasChars()) {
+
         c = parser->getChar();
         it = attr.find(c);
         if (parser->isDelimeter(c) || minDFA->isPHI(curState) || it == attr.end())
             break;
         nextState = minDFA->getTransitions(curState, c);
-        if (minDFA->isAccepted(nextState[0]) &&
-            minDFA->getPrecedence(curState) >= prevPercedence) {
+        if (minDFA->isAccepted(nextState[0])) {
             matchIndex = parser->getCurIndex();
             match = parser->getSubString(startChar, matchIndex);
             tokenType = minDFA->getTokenClass(nextState[0]);
-            prevPercedence = minDFA->getPrecedence(curState);
+            prevPercedence = minDFA->getPrecedence(nextState[0]);
         }
         curState = nextState[0];
     }

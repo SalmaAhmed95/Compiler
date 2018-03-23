@@ -11,10 +11,9 @@
 #define EPS_TRANS '`'
 typedef int stateID;
 
-
-
 struct TransEdges {
     char transition;
     std::vector<stateID> nextStates;
 };
+
 #endif //COMPILER_DEFINITIONS_H
