@@ -9,8 +9,8 @@
 #include <set>
 #include <string>
 #include <vector>
+#include "Definitions.h"
 
-typedef int stateID;
 
 enum StateType { ACCEPTED, PHI, INTERMEDIATE };
 
@@ -22,10 +22,6 @@ struct StateSpec {
   StateSpec() : stateType(INTERMEDIATE), precedence(0), tokenClass("") {}
 };
 
-struct TransEdges {
-  char transition;
-  std::vector<stateID> nextStates;
-};
 
 class Node {
 

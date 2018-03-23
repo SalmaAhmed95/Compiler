@@ -1,5 +1,7 @@
 #include "TestAutomata.hpp"
 
+const std::string TRANSITIONS_MISS_MATCH = "Transitions miss match";
+
 TestAutomata::TestAutomata() {}
 
 TestAutomata::~TestAutomata(){};
@@ -57,6 +59,39 @@ TEST(TestAutomata, AddingTransitionsNfa_5) {
     nfa->addTransition(trans, rootNodeId, to);
   }
   testTrans(nfa->getAllAttributes(), 'a', 'z');
+  std::vector<TransEdges> transition = nfa->getTransitions(0);
+  testGetTransOfNode(transition, 'a', 'z');
+}
+
+TEST(TestAutomata, AddingTransitionsDfa_6) {
+  Automata *dfa = new DFA;
+  int rootNodeId = dfa->createNode(INTERMEDIATE, 0, "");
+  EXPECT_EQ(rootNodeId, 0);
+  EXPECT_EQ(dfa->getStateType(0), INTERMEDIATE);
+  for (int i = 1; i <= 26; i++) {
+    int currentNodeId = dfa->createNode(ACCEPTED, 50 - i, "id");
+    testNodeCreation(dfa, currentNodeId, i, true, false, 0, ACCEPTED, "id",
+                     50 - i, i + 1);
+  }
+  int to = 1;
+  for (char trans = 'a'; trans <= 'z'; trans++, to++) {
+    dfa->addTransition(trans, rootNodeId, to);
+  }
+  testTrans(dfa->getAllAttributes(), 'a', 'z');
+  std::vector<TransEdges> transition = dfa->getTransitions(0);
+  testGetTransOfNode(transition, 'a', 'z');
+}
+
+void testGetTransOfNode(std::vector<TransEdges> transition, char startChar,
+                        char endChar) {
+  int sz = (int)endChar - (int)startChar + 1;
+  ASSERT_TRUE((int)transition.size() == sz) << TRANSITIONS_MISS_MATCH;
+  for (int i = 0; i < 26; i++, startChar++) {
+    TransEdges t = transition[i];
+    ASSERT_TRUE(t.nextStates.size() == 1) << TRANSITIONS_MISS_MATCH;
+    EXPECT_EQ(t.transition, startChar);
+    ASSERT_TRUE(startChar <= endChar);
+  }
 }
 
 void testTrans(std::set<char> trans, char startTrans, char endTrans) {

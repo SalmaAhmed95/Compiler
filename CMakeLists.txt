@@ -39,6 +39,6 @@ set(SOURCE_FILES
         lexical-analyzer/pattern-matcher/PatternMatcher.cpp
         lexical-analyzer/pattern-matcher/PatternMatcher.h
         lexical-analyzer/utils/SymbolTable.cpp
-        lexical-analyzer/utils/SymbolTable.h)
+        lexical-analyzer/utils/SymbolTable.h lexical-analyzer/automata/Definitions.h)
 
 add_executable(Compiler ${SOURCE_FILES})

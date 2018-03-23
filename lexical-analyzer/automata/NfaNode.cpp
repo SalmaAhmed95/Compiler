@@ -3,6 +3,9 @@
 //
 
 #include "NfaNode.h"
+#include "Definitions.h"
+
+
 #include <iostream>
 
 NfaNode::NfaNode(stateID id, int minAsciiCodeValue, int maxAsciiCoedValue)
@@ -10,7 +13,6 @@ NfaNode::NfaNode(stateID id, int minAsciiCodeValue, int maxAsciiCoedValue)
   NfaNode::offsetCharIndex = minAsciiCodeValue;
   NfaNode::charRange = maxAsciiCoedValue - minAsciiCodeValue + 1;
   NfaNode::transitions.resize(charRange);
-  // for (int i = 0; i <charRange; i++) {}
 }
 
 NfaNode::NfaNode(stateID id, StateSpec *stateSpec, int minAsciiCodeValue,
@@ -32,11 +34,13 @@ std::vector<stateID> NfaNode::getTransitions(char transition) {
 std::vector<TransEdges> NfaNode::getTransitions() {
   std::vector<TransEdges> allTransitions;
   for (int i = 0; i < charRange; i++) {
-    char charT = (char)(offsetCharIndex + i);
-    TransEdges newTransition;
-    newTransition.transition = charT;
-    newTransition.nextStates = getTransitions(charT);
-    allTransitions.push_back(newTransition);
+    char charT = (char) (offsetCharIndex + i);
+    if (charT != EPS_TRANS) {
+      TransEdges newTransition;
+      newTransition.transition = charT;
+      newTransition.nextStates = getTransitions(charT);
+      allTransitions.push_back(newTransition);
+    }
   }
   return allTransitions;
 }

@@ -10,6 +10,9 @@ void testNodeCreation(Automata *automata, stateID realNodeId, stateID nodeId,
 
 void testTrans(std::set<char> trans, char startTrans, char endTrans);
 
+void testGetTransOfNode(std::vector<TransEdges> transition, char startChar,
+                        char endChar);
+
 class TestAutomata : public ::testing::Test {
 
 protected:
