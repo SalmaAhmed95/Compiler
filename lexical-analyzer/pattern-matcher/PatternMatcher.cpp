@@ -7,24 +7,24 @@
 
 PatternMatcher::PatternMatcher(DFA *dfa, std::string inputFile,
                                std::string properties, FileWriter *writer) {
-    minDFA = dfa;
-    parser = new CodeParser(inputFile);
-    parser->parseFile();
-    propertiesFile = properties;
-    fwriter = writer;
-    symbolTable = new SymbolTable();
+  minDFA = dfa;
+  parser = new CodeParser(inputFile);
+  parser->parseFile();
+  propertiesFile = properties;
+  fwriter = writer;
+  symbolTable = new SymbolTable();
 }
 
 void PatternMatcher::analyzeCode() {
-    stateID startDFA = minDFA->getRootID();
-    while (parser->hasChars()) {
-        int curIndex = parser->getCurIndex();
-        if (!findMatch(startDFA, curIndex)) {
-            // if match not found print error then advance ptr & try to continue
-            // finding patterns
-            recoveryRoutine(curIndex + 1);
-        }
+  stateID startDFA = minDFA->getRootID();
+  while (parser->hasChars()) {
+    int curIndex = parser->getCurIndex();
+    if (!findMatch(startDFA, curIndex)) {
+      // if match not found print error then advance ptr & try to continue
+      // finding patterns
+      recoveryRoutine(curIndex + 1);
     }
+  }
 }
 
 bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
@@ -51,29 +51,29 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
             prevPercedence = minDFA->getPrecedence(nextState[0]);
         }
         curState = nextState[0];
-    }
+  }
 
-    if (parser->isDelimeter(c) && matchIndex == -1) {
-        return true;
-    } else if (matchIndex == -1) {
-        return false;
-    } else {
-        parser->setStartIndex(matchIndex);
-        analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
-        fwriter->writeMatch(match, tokenType);
-        std::string tokenType = minDFA->getTokenClass(curState);
-        analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
-        if (tokenType == parser->getIdentifierClass(propertiesFile))
-            symbolTable->insert(match);
-        return true;
-    }
+  if (parser->isDelimeter(c) && matchIndex == -1) {
+    return true;
+  } else if (matchIndex == -1) {
+    return false;
+  } else {
+    parser->setStartIndex(matchIndex);
+    analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
+    fwriter->writeMatch(match, tokenType);
+    std::string tokenType = minDFA->getTokenClass(curState);
+    analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
+    if (tokenType == parser->getIdentifierClass(propertiesFile))
+      symbolTable->insert(match);
+    return true;
+  }
 }
 
 void PatternMatcher::recoveryRoutine(int startIndex) {
-    /*drop one letter from stream in order to start matching again from after
-    that
-     * letter*/
-    parser->setStartIndex(startIndex);
-    // print message from error handler
-    fwriter->writeError(ErrorHandler::errors[ErrorHandler::lexicalError]);
+  /*drop one letter from stream in order to start matching again from after
+  that
+   * letter*/
+  parser->setStartIndex(startIndex);
+  // print message from error handler
+  fwriter->writeError(ErrorHandler::errors[ErrorHandler::lexicalError]);
 }
