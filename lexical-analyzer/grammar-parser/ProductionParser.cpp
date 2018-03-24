@@ -18,7 +18,7 @@ const char ProductionParser::PLUS = '+';
 const char ProductionParser::BRACKET_OPEN = '(';
 const char ProductionParser::BRACKET_CLOSE = ')';
 
-const char ProductionParser::EPS = '`';
+const char ProductionParser::EPS = ' ';
 
 std::map<char, int> ProductionParser::precedence;
 

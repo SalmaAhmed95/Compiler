@@ -5,7 +5,7 @@
 #ifndef COMPILER_DEFINITIONS_H
 #define COMPILER_DEFINITIONS_H
 
-#define EPS_TRANS '`'
+#define EPS_TRANS ' '
 typedef int stateID;
 
 struct TransEdges {
