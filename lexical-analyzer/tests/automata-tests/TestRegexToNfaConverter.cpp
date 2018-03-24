@@ -22,7 +22,7 @@ TEST(TestRegexToNfaConverter, StarTest_1) {
       buildTokens(fakeTokensType, fakeTokensRegex, fakeTokensPrecedence);
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
   NFA *fakeNfa =
-      new NFA((int)std::min(STAR_OP, 'a'), (int)std::max('a', STAR_OP));
+      new NFA((int)std::min(EPS_TRANS, 'a'), (int)std::max('a', STAR_OP));
   for (int i = 0; i < 5; i++) {
     fakeNfa->createNode();
   }
@@ -79,7 +79,7 @@ TEST(TestRegexToNfaConverter, ConcatenateTest_3) {
   fakeTokens.push_back(new Token("concatenate", reg, 10));
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
   NFA *fakeNfa =
-      new NFA((int)std::min(CONC_OP, 'b'), (int)std::max(CONC_OP, 'b'));
+      new NFA((int)std::min(EPS_TRANS, 'b'), (int)std::max(CONC_OP, 'b'));
   for (int i = 0; i < 5; i++) {
     fakeNfa->createNode();
   }
@@ -105,7 +105,7 @@ TEST(TestRegexToNfaConverter, PlusTest_4) {
       buildTokens(fakeTokensType, fakeTokensRegex, fakeTokensPrecedence);
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
   NFA *fakeNfa =
-      new NFA((int)std::min(PLUS_OP, 'a'), (int)std::max(PLUS_OP, 'a'));
+      new NFA((int)std::min(EPS_TRANS, 'a'), (int)std::max(PLUS_OP, 'a'));
   for (int i = 0; i < 4; i++) {
     fakeNfa->createNode();
   }
@@ -134,7 +134,7 @@ TEST(TestRegexToNfaConverter, CombinedMultiTest_5) {
   fakeTokens.push_back(new Token("combined2", reg2, 20));
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
   NFA *fakeNfa =
-      new NFA((int)std::min(OR_OP, CONC_OP), (int)std::max(OR_OP, CONC_OP));
+      new NFA((int)std::min(EPS_TRANS, CONC_OP), (int)std::max(OR_OP, CONC_OP));
   for (int i = 0; i < 22; i++) {
     fakeNfa->createNode();
   }
@@ -164,7 +164,7 @@ TEST(TestRegexToNfaConverter, CombinedSingleTest_5) {
   fakeTokens.push_back(new Token("combined", reg, 10));
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
   NFA *fakeNfa =
-      new NFA((int)std::min(OR_OP, CONC_OP), (int)std::max(OR_OP, CONC_OP));
+      new NFA((int)std::min(EPS_TRANS, CONC_OP), (int)std::max(OR_OP, CONC_OP));
   for (int i = 0; i < 16; i++) {
     fakeNfa->createNode();
   }
