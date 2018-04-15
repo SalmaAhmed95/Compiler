@@ -17,6 +17,7 @@ const char ProductionParser::STAR = '*';
 const char ProductionParser::PLUS = '+';
 const char ProductionParser::BRACKET_OPEN = '(';
 const char ProductionParser::BRACKET_CLOSE = ')';
+const char ProductionParser::RANGE_OP = '-';
 
 const char ProductionParser::EPS = ' ';
 
@@ -27,6 +28,7 @@ struct RegexChar *ProductionParser::makeRegexChar(char c,
   struct RegexChar *regexChar = new RegexChar;
   regexChar->c = c;
   regexChar->charType = charType;
+  return regexChar;
 }
 
 ProductionParser::ProductionParser() {}
@@ -57,6 +59,7 @@ ProductionParser::loadLexicalRules(std::string lexicalRulesFileName,
 
 void ProductionParser::loadPrecedence() {
   precedence[BRACKET_OPEN] = BRACKET_PREC;
+  precedence[RANGE_OP] = RANGE_PREC;
   precedence[OR] = OR_PREC;
   precedence[CONCATENATE] = CONCATENATE_PREC;
   precedence[STAR] = STAR_PREC;
@@ -92,7 +95,6 @@ void ProductionParser::processRegularExpression(
   }
   regex = substituteVariables(regex, variables);
   regex = formulateSpaces(regex, "", " \t");
-  regex = substituteRanges(regex);
   char lambda = 0;
   if (properties.find(LAMBDA) != properties.end() &&
       properties.find(LAMBDA)->second.size() == 2) {
@@ -113,7 +115,7 @@ void ProductionParser::processRegularDefinition(
   }
   regex = substituteVariables(regex, variables);
   regex = formulateSpaces(regex, "", " \t");
-  variables[variableName] = substituteRanges(regex);
+  variables[variableName] = regex;
 }
 
 std::string ProductionParser::substituteVariables(
@@ -140,7 +142,7 @@ std::string ProductionParser::substituteVariables(
 }
 
 bool ProductionParser::isRange(std::string str, int ind) {
-  return ind + 2 < (int)str.size() && str[ind + 1] == '-' &&
+  return ind + 2 < (int)str.size() && str[ind + 1] == RANGE_OP &&
          ((isalpha(str[ind]) && isalpha(str[ind + 2])) ||
           (isdigit(str[ind]) && isdigit(str[ind + 2])));
 }
@@ -272,11 +274,11 @@ std::string ProductionParser::preprocessInfix(std::string infix) {
       char c2 = infix[i + 1];
       modifiedInfix = modifiedInfix + c1 + "";
       if (c1 != '(' && c2 != ')' && (!precedence.count(c2) || c2 == '(') &&
-          c1 != OR && c1 != '\\') {
+          c1 != OR && c1 != '\\' && c1 != RANGE_OP) {
         modifiedInfix = modifiedInfix + CONCATENATE + "";
       }
       if (c1 != '(' && c2 != ')' && c2 == CONCATENATE && c1 != OR &&
-          c1 != '\\') {
+          c1 != '\\' && c1 != RANGE_OP) {
         modifiedInfix = modifiedInfix + CONCATENATE + "\\";
       }
     }

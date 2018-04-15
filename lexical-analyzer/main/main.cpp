@@ -5,6 +5,7 @@
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
 #include "../pattern-matcher/PatternMatcher.h"
+#include "time.h"
 
 #define FILES_NUM 4
 
@@ -35,11 +36,13 @@ void getFileNames(int argc, char **argv, std::string &lexicalRules,
 }
 
 int main(int argc, char **argv) {
+  clock_t startTime = clock();
   std::string lexicalRules, code, properties, output;
   getFileNames(argc, argv, lexicalRules, properties, code, output);
   std::vector<Token *> tokens =
       ProductionParser::loadLexicalRules(lexicalRules, properties);
   NFA *nfa = RegexToNfaConverter::getNfa(tokens);
+  std::cout << "NFA nodes = " << nfa->getNumberOfStates() << '\n';
   deleteTokens(tokens);
   std::cout << "Finished NFA" << std::endl;
   DFA *dfa = NfaToDfaConverter::getDFA(nfa);
@@ -60,5 +63,6 @@ int main(int argc, char **argv) {
   delete dfaMin;
   delete matcher;
   delete writer;
+  std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
   return 0;
 }

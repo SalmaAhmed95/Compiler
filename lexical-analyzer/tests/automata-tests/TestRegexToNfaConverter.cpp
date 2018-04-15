@@ -22,7 +22,7 @@ TEST(TestRegexToNfaConverter, StarTest_1) {
       buildTokens(fakeTokensType, fakeTokensRegex, fakeTokensPrecedence);
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
   NFA *fakeNfa =
-      new NFA((int)std::min(EPS_TRANS, 'a'), (int)std::max('a', STAR_OP));
+      new NFA((int)std::min(EPS_TRANS, 'a'), (int)std::max('a', STAR_OPER));
   for (int i = 0; i < 5; i++) {
     fakeNfa->createNode();
   }
@@ -49,8 +49,8 @@ TEST(TestRegexToNfaConverter, OrTest_2) {
   std::vector<Token *> fakeTokens =
       buildTokens(fakeTokensType, fakeTokensRegex, fakeTokensPrecedence);
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
-  NFA *fakeNfa =
-      new NFA((int)std::min(EPS_TRANS, OR_OP), (int)std::max(EPS_TRANS, OR_OP));
+  NFA *fakeNfa = new NFA((int)std::min(EPS_TRANS, OR_OPER),
+                         (int)std::max(EPS_TRANS, OR_OPER));
   for (int i = 0; i < 7; i++) {
     fakeNfa->createNode();
   }
@@ -79,7 +79,7 @@ TEST(TestRegexToNfaConverter, ConcatenateTest_3) {
   fakeTokens.push_back(new Token("concatenate", reg, 10));
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
   NFA *fakeNfa =
-      new NFA((int)std::min(EPS_TRANS, 'b'), (int)std::max(CONC_OP, 'b'));
+      new NFA((int)std::min(EPS_TRANS, 'b'), (int)std::max(CONC_OPER, 'b'));
   for (int i = 0; i < 5; i++) {
     fakeNfa->createNode();
   }
@@ -105,7 +105,7 @@ TEST(TestRegexToNfaConverter, PlusTest_4) {
       buildTokens(fakeTokensType, fakeTokensRegex, fakeTokensPrecedence);
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
   NFA *fakeNfa =
-      new NFA((int)std::min(EPS_TRANS, 'a'), (int)std::max(PLUS_OP, 'a'));
+      new NFA((int)std::min(EPS_TRANS, 'a'), (int)std::max(PLUS_OPER, 'a'));
   for (int i = 0; i < 4; i++) {
     fakeNfa->createNode();
   }
@@ -128,13 +128,13 @@ TEST(TestRegexToNfaConverter, CombinedMultiTest_5) {
   std::vector<RegexChar *> reg2;
   reg2.push_back(ProductionParser::makeRegexChar('a', CHAR));
   reg2.push_back(ProductionParser::makeRegexChar('b', CHAR));
-  reg2.push_back(ProductionParser::makeRegexChar(OR_OP, OPERATOR));
+  reg2.push_back(ProductionParser::makeRegexChar(OR_OPER, OPERATOR));
   std::vector<Token *> fakeTokens;
   fakeTokens.push_back(new Token("combined", reg, 10));
   fakeTokens.push_back(new Token("combined2", reg2, 20));
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
-  NFA *fakeNfa =
-      new NFA((int)std::min(EPS_TRANS, CONC_OP), (int)std::max(OR_OP, CONC_OP));
+  NFA *fakeNfa = new NFA((int)std::min(EPS_TRANS, CONC_OPER),
+                         (int)std::max(OR_OPER, CONC_OPER));
   for (int i = 0; i < 22; i++) {
     fakeNfa->createNode();
   }
@@ -163,8 +163,8 @@ TEST(TestRegexToNfaConverter, CombinedSingleTest_5) {
   std::vector<Token *> fakeTokens;
   fakeTokens.push_back(new Token("combined", reg, 10));
   NFA *nfa = RegexToNfaConverter::getNfa(fakeTokens);
-  NFA *fakeNfa =
-      new NFA((int)std::min(EPS_TRANS, CONC_OP), (int)std::max(OR_OP, CONC_OP));
+  NFA *fakeNfa = new NFA((int)std::min(EPS_TRANS, CONC_OPER),
+                         (int)std::max(OR_OPER, CONC_OPER));
   for (int i = 0; i < 16; i++) {
     fakeNfa->createNode();
   }
@@ -180,14 +180,14 @@ TEST(TestRegexToNfaConverter, CombinedSingleTest_5) {
 
 void makeSpecialReg(std::vector<RegexChar *> &reg) {
   reg.push_back(ProductionParser::makeRegexChar('a', CHAR));
-  reg.push_back(ProductionParser::makeRegexChar(PLUS_OP, OPERATOR));
+  reg.push_back(ProductionParser::makeRegexChar(PLUS_OPER, OPERATOR));
   reg.push_back(ProductionParser::makeRegexChar('a', CHAR));
   reg.push_back(ProductionParser::makeRegexChar('b', CHAR));
-  reg.push_back(ProductionParser::makeRegexChar(CONC_OP, OPERATOR));
+  reg.push_back(ProductionParser::makeRegexChar(CONC_OPER, OPERATOR));
   reg.push_back(ProductionParser::makeRegexChar('c', CHAR));
-  reg.push_back(ProductionParser::makeRegexChar(OR_OP, OPERATOR));
-  reg.push_back(ProductionParser::makeRegexChar(OR_OP, OPERATOR));
-  reg.push_back(ProductionParser::makeRegexChar(STAR_OP, OPERATOR));
+  reg.push_back(ProductionParser::makeRegexChar(OR_OPER, OPERATOR));
+  reg.push_back(ProductionParser::makeRegexChar(OR_OPER, OPERATOR));
+  reg.push_back(ProductionParser::makeRegexChar(STAR_OPER, OPERATOR));
 }
 
 void addSpecialTrans(NFA *fakeNfa) {

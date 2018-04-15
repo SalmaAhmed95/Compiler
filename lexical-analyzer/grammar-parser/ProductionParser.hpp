@@ -28,6 +28,7 @@ public:
   static const char PLUS;
   static const char BRACKET_OPEN;
   static const char BRACKET_CLOSE;
+  static const char RANGE_OP;
   static const char EPS;
 
 protected:
@@ -87,6 +88,7 @@ protected:
   enum OperatorsPrecedence {
     BRACKET_PREC,
     OR_PREC,
+    RANGE_PREC,
     CONCATENATE_PREC,
     STAR_PREC,
     PLUS_PREC,
