@@ -17,9 +17,11 @@ public:
 
     bool findMatch(stateID startDFA, int startChar);
 
-    void analyzeCode();
+    std::vector<std::string> analyzeCode();
 
     void recoveryRoutine(int startIndex);
+    
+    
 
 private:
     DFA *minDFA;
@@ -28,8 +30,8 @@ private:
     std::string propertiesFile;
     SymbolTable *symbolTable;
 
-    // to insert attribute value and corresponding type once match is found
-    std::multimap<std::string, std::string> analysisTable;
+    // to insert tokens in order
+    std::vector<std::string> analysisTable;
 };
 
 #endif // COMPILER_PATTERNMATCHER_H

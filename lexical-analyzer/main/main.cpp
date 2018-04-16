@@ -55,7 +55,10 @@ int main(int argc, char **argv) {
   writer->writeTransitionTable(dfaMin);
   PatternMatcher *matcher =
       new PatternMatcher(dfaMin, code, properties, writer);
-  matcher->analyzeCode();
+  std::vector<std::string> tokensTable = matcher->analyzeCode();
+  for (int i=0;i<tokensTable.size();i++){
+      std::cout<<tokensTable[i]<<std::endl;
+  }
   writer->closeFile();
   std::cout << "Finished Matching\n";
   delete nfa;

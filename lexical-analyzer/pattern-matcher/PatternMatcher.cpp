@@ -15,7 +15,7 @@ PatternMatcher::PatternMatcher(DFA *dfa, std::string inputFile,
   symbolTable = new SymbolTable();
 }
 
-void PatternMatcher::analyzeCode() {
+std::vector<std::string> PatternMatcher::analyzeCode() {
   stateID startDFA = minDFA->getRootID();
   while (parser->hasChars()) {
     int curIndex = parser->getCurIndex();
@@ -25,6 +25,7 @@ void PatternMatcher::analyzeCode() {
       recoveryRoutine(curIndex + 1);
     }
   }
+  return analysisTable;
 }
 
 bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
@@ -59,10 +60,9 @@ bool PatternMatcher::findMatch(stateID startDFA, int startChar) {
     return false;
   } else {
     parser->setStartIndex(matchIndex);
-    analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
     fwriter->writeMatch(match, tokenType);
     std::string tokenType = minDFA->getTokenClass(curState);
-    analysisTable.insert(std::pair<std::string, std::string>(match, tokenType));
+    analysisTable.push_back(match);
     if (tokenType == parser->getIdentifierClass(propertiesFile))
       symbolTable->insert(match);
     return true;
