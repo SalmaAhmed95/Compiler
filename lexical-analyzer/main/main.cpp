@@ -5,6 +5,7 @@
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
 #include "../pattern-matcher/PatternMatcher.h"
+#include "../../parser/CFGParser.h"
 #include "time.h"
 
 #define FILES_NUM 4
