@@ -1,3 +1,5 @@
+#ifndef COMPLIER_CFG_H
+#define COMPLIER_CFG_H
 
 #include <map>
 #include <string>
@@ -5,11 +7,13 @@
 #include <map>
 #include <vector>
 
+
 #define EPSILONSYMBOl "\L"
 
 enum SymbolType {
     TERMINAL, NON_TERMINAL, START, EPSILON
 };
+
 
 struct Symbol {
     std::string name;
@@ -35,3 +39,5 @@ public:
 private:
     CFGParser();
 };
+
+#endif
