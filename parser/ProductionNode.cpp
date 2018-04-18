@@ -9,6 +9,8 @@ void ProductionNode::addDependent(ProductionNode *dependent) {
   dependents.push_back(dependent);
 }
 
+Symbol ProductionNode::getSymbol() { return symbol; }
+
 std::vector<ProductionNode *> ProductionNode::getDependents() {
   return dependents;
 }
