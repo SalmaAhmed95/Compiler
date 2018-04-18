@@ -1,6 +1,6 @@
 
+#include <map>
 #include <string>
-#include <unordered_map>
 #include <vector>
 
 enum SymbolType { TERMINAL, NON_TERMINAL, EPSILION };
@@ -17,7 +17,7 @@ struct Production {
 
 class CFGParser {
 public:
-  static std::unordered_map<Symbol, std::vector<Production>>
+  static std::map<Symbol, std::vector<Production>>
   getCFGRules(std::string fileName);
 
 private:

@@ -1,21 +1,21 @@
-#include <CFGParser.h>
+#include "CFGParser.h"
 #include <map>
 #include <set>
 #include <vector>
 
 class Grammar {
 
-<<<<<<< HEAD
 public:
   void getGrammerTable(std::string fileName);
 
-=======
->>>>>>> ec9264f72672440ea29412e127ed1a174879ee96
 private:
   std::map<Symbol, std::vector<Symbol>> first, follow;
   std::set<Symbol> terminals, nonTerminals;
-}
-<<<<<<< HEAD
+  std::set<Symbol>
+  getTerminals(std::map<Symbol, std::vector<Production>> rules);
+  std::set<Symbol>
+  getNonTerminals(std::map<Symbol, std::vector<Production>> rules);
+};
 
 /*
 
@@ -29,7 +29,3 @@ getTable (file){
 
 
 */
-
-`
-=======
->>>>>>> ec9264f72672440ea29412e127ed1a174879ee96

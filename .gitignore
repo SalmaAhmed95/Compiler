@@ -1,5 +1,6 @@
 .idea/
 lexical-analyzer/build
+build/
 cmake-build-debug/*
 !cmake-build-debug/properties.ini
 !cmake-build-debug/lexical_rules.txt
