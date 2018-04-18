@@ -20,4 +20,5 @@ public:
     static std::unordered_map<Symbol, std::vector<Production>> getCFGRules(std::string fileName);
 private:
     CFGParser();
+
 };

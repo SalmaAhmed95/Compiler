@@ -40,5 +40,5 @@ set(SOURCE_FILES
         lexical-analyzer/pattern-matcher/PatternMatcher.h
         lexical-analyzer/utils/SymbolTable.cpp
         lexical-analyzer/utils/SymbolTable.h lexical-analyzer/automata/Definitions.h
-        parser/CFGParser.h)
+        parser/CFGParser.h parser/CFGParser.cpp)
 add_executable(Compiler ${SOURCE_FILES})
