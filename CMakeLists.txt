@@ -41,10 +41,8 @@ set(SOURCE_FILES
         lexical-analyzer/utils/SymbolTable.cpp
         lexical-analyzer/utils/SymbolTable.h lexical-analyzer/automata/Definitions.h
         parser/CFGParser.h
-<<<<<<< HEAD
-        parser/Grammar.h parser/Grammar.cpp)
-=======
         parser/Grammar.h
-        parser/Grammar.cpp)
->>>>>>> 3ba09491efd2f832a50d347c3fb3cc677f42f839
+        parser/Grammar.cpp
+        parser/ProductionNode.h
+        parser/ProductionNode.cpp)
 add_executable(Compiler ${SOURCE_FILES})
