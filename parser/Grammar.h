@@ -11,9 +11,9 @@ class Grammar {
 public:
     void getGrammerTable(std::string fileName);
 
-
+    void printSets(std::map<Symbol, std::set<Symbol>> set);
 private:
-    std::map<Symbol, std::vector<Symbol>> first, follow;
+    std::map<Symbol, std::set<Symbol>> first, follow;
     std::set<Symbol> terminals, nonTerminals;
 
     std::set<Symbol>
@@ -22,12 +22,13 @@ private:
     std::set<Symbol>
     getNonTerminals(std::map<Symbol, std::vector<Production>> rules);
 
-    //TODO take this map from return of CFGParser
-    static std::map<Symbol, std::vector<Production>> productions;
+    bool isTerminal(Symbol t);
+    bool hasEpsilon(std::set<Symbol> first);
 
+    //TODO take this map from return of CFGParser
+    std::map<Symbol, std::vector<Production>> productions;
     void constructFollowSet();
 
-    std::vector<Symbol> getFollow(Symbol t);
 };
 
 /*

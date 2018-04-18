@@ -2,6 +2,7 @@
 // Created by salma on 18/04/18.
 //
 
+#include <iostream>
 #include "Grammar.h"
 
 
@@ -31,24 +32,67 @@ Grammar::getNonTerminals(std::map<Symbol, std::vector<Production>> rules) {
     return nonTerminals;
 }
 
+
 /*constructs the follow set for every non terminal*/
 void Grammar::constructFollowSet() {
-    for (auto t : nonTerminals) {
-        std::vector<Symbol> followSet = getFollow(t);
-        follow.insert(std::pair<Symbol, std::vector<Symbol>>(t, followSet));
+    bool update = true;
+    while (update) {
+        update = false;
+        for (auto it = productions.begin(); it != productions.end(); it++) {
+            std::vector<Production> rhsRules = it->second;
+            for (auto rule : rhsRules) {
+                std::vector<Symbol> symbols = rule.production;
+                std::set<Symbol> followSet;
+                for (int i = symbols.size() - 1; i >= 0; i++) {
+                    Symbol symbol = symbols[i];
+                    if(symbol.type == START)
+                        followSet.insert(Symbol(END,TERMINAL));
+                    if (symbol.type == EPSILON)
+                        continue;
+                    else if (isTerminal(symbol)) {
+                        followSet.clear();
+                        followSet.insert(symbol);
+                    } else {
+
+                        if (i == symbols.size() - 1)
+                            followSet.insert(follow[it->first].begin(), follow[it->first].end());
+                        int prevSize = follow[symbol].size();
+                        follow[symbol].insert(followSet.begin(), followSet.end());
+                        if (prevSize < follow[symbol].size())
+                            update = true;
+
+                        if (!hasEpsilon(first[symbol])) {
+                            followSet.clear();
+                        }
+                        followSet.insert(first[symbol].begin(), first[symbol].end());
+                        followSet.erase(Symbol(EPSILONSYMBOl, EPSILON));
+
+                    }
+                }
+            }
+        }
     }
 }
 
-/* sets the follow set for a certain nonTerminal t
- * then pushes the symbol along with its follow set
- * to the map of follow**/
-std::vector<Symbol> Grammar::getFollow(Symbol t) {
-    std::vector<Symbol> followSet;
-    if (t.type == START) {
-        Symbol end(END, TERMINAL);
-        followSet.push_back(end);
-    }
-    for (auto it = productions.begin(); it != productions.end(); it++) {
+bool Grammar::isTerminal(Symbol t) {
+    if (t.type == TERMINAL)
+        return true;
+    return false;
+}
 
+bool Grammar::hasEpsilon(std::set<Symbol> first) {
+    Symbol epsilon(EPSILONSYMBOl, EPSILON);
+    if (first.find(epsilon) != first.end())
+        return true;
+    return false;
+}
+
+void Grammar::printSets(std::map<Symbol, std::set<Symbol>> set) {
+    for(auto f: follow){
+        std::cout<<f.first.name<<">>>>";
+        for(auto s: f.second){
+            std::cout<<s.name<<" ";
+        }
+        std::cout<<std::endl;
     }
 }

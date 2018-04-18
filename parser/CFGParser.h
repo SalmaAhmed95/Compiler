@@ -5,8 +5,10 @@
 #include <map>
 #include <vector>
 
+#define EPSILONSYMBOl "\L"
+
 enum SymbolType {
-    TERMINAL, NON_TERMINAL, START, EPSILION
+    TERMINAL, NON_TERMINAL, START, EPSILON
 };
 
 struct Symbol {
