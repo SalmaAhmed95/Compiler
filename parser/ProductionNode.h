@@ -8,6 +8,8 @@ public:
   std::vector<ProductionNode *> getDependents();
   Symbol getSymbol();
   void setEps();
+  bool containsEps();
+  void changeDependecies(int val);
 
 private:
   ProductionNode();
