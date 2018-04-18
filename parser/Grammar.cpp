@@ -32,6 +32,26 @@ Grammar::buildGraph(std::map<Symbol, std::vector<Production>> rules) {
   std::vector<ProductionNode *> nodes;
   std::map<Symbol, ProductionNode *> graph;
   buildNodes(nodes, graph, rules);
+  for (auto it = rules.begin(); it != rules.end(); it++) {
+    ProductionNode *dependentNode = graph[it->first];
+    std::vector<Production> productions = it->second;
+    for (auto prod : productions) {
+      std::vector<Symbol> symbols = prod.production;
+      for (auto symbol : symbols) {
+        bool stop = false;
+        if (symbol.type == TERMINAL) {
+          stop = true;
+        } else {
+          ProductionNode *currentNode = graph[symbol];
+          stop = !currentNode->containsEps();
+          currentNode->addDependent(dependentNode);
+        }
+        if (stop) {
+          break;
+        }
+      }
+    }
+  }
 }
 
 void Grammar::buildNodes(std::vector<ProductionNode *> &nodes,

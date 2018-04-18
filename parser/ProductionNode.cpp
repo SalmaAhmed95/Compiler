@@ -14,3 +14,5 @@ std::vector<ProductionNode *> ProductionNode::getDependents() {
 }
 
 void ProductionNode::setEps() { hasEps = true; }
+
+bool ProductionNode::containsEps() { return hasEps; }
