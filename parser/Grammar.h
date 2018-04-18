@@ -1,3 +1,4 @@
+
 #include <map>
 #include <set>
 #include <vector>
@@ -14,6 +15,13 @@ public:
 private:
     std::map<Symbol, std::vector<Symbol>> first, follow;
     std::set<Symbol> terminals, nonTerminals;
+
+    std::set<Symbol>
+    getTerminals(std::map<Symbol, std::vector<Production>> rules);
+
+    std::set<Symbol>
+    getNonTerminals(std::map<Symbol, std::vector<Production>> rules);
+
     //TODO take this map from return of CFGParser
     static std::map<Symbol, std::vector<Production>> productions;
 
@@ -21,7 +29,6 @@ private:
 
     std::vector<Symbol> getFollow(Symbol t);
 };
-
 
 /*
 
