@@ -43,20 +43,14 @@ ParsingTable Grammar::getGrammerTable(std::string fileName) {
     p6.production.push_back(id);
     rules[f].push_back(p5);
     rules[f].push_back(p6);
+    std::cout<<std::endl<<"First Sets" <<std::endl;
     constructFirst(rules);
     constructFollowSet(rules);
+    std::cout<<std::endl<<"Follow Sets" <<std::endl;
+    printSets(follow);
     constructParsingTable(rules);
-
-    std::cout<<std::endl;
-    for (auto &outer_map_pair : parsingTable.table) {
-        std::cout << outer_map_pair.first.name << " contains: " << std::endl;
-        for (auto &inner_map_pair : outer_map_pair.second) {
-            std::cout << inner_map_pair.first.name << ": ";
-            for (auto prod: inner_map_pair.second.production)
-                std::cout << prod.name << " ";
-            std::cout<<std::endl;
-        }
-    }
+    std::cout<<std::endl<<"Parsing Table" <<std::endl;
+    printParsingTable(parsingTable);
     return parsingTable;
 
 }
@@ -271,5 +265,16 @@ void Grammar::printSets(std::map<Symbol, std::set<Symbol>> set) {
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl;
 }
+
+void Grammar::printParsingTable(ParsingTable parsingTable){
+    for (auto &outer_map_pair : parsingTable.table) {
+        std::cout << outer_map_pair.first.name << " contains: " << std::endl;
+        for (auto &inner_map_pair : outer_map_pair.second) {
+            std::cout << inner_map_pair.first.name << ": ";
+            for (auto prod: inner_map_pair.second.production)
+                std::cout << prod.name << " ";
+            std::cout<<std::endl;
+        }
+    }
+};

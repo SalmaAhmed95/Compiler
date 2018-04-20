@@ -16,7 +16,6 @@ public:
 
     ParsingTable getGrammerTable(std::string fileName);
 
-    void printSets(std::map<Symbol, std::set<Symbol>> set);
 
 private:
     std::map<Symbol, std::set<Symbol>> first, follow;
@@ -45,6 +44,10 @@ private:
     void constructFollowSet(std::map<Symbol, std::vector<Production>> rules);
 
     void constructParsingTable(std::map<Symbol, std::vector<Production>> rules);
+
+    void printSets(std::map<Symbol, std::set<Symbol>> set);
+
+    void printParsingTable(ParsingTable parsingTable);
 
 };
 
