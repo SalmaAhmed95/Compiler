@@ -36,8 +36,8 @@ set(SOURCE_FILES
         lexical-analyzer/grammar-parser/Token.cpp
         lexical-analyzer/grammar-parser/Token.hpp
         lexical-analyzer/main/main.cpp
-        lexical-analyzer/pattern-matcher/PatternMatcher.cpp
-        lexical-analyzer/pattern-matcher/PatternMatcher.h
+        lexical-analyzer/tokenizer/Tokenizer.cpp
+        lexical-analyzer/tokenizer/Tokenizer.h
         lexical-analyzer/utils/SymbolTable.cpp
         lexical-analyzer/utils/SymbolTable.h lexical-analyzer/automata/Definitions.h
         parser/CFGParser.h

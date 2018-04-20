@@ -2,8 +2,8 @@
 // Created by salma on 16/03/18.
 //
 
-#ifndef COMPILER_PATTERNMATCHER_H
-#define COMPILER_PATTERNMATCHER_H
+#ifndef COMPILER_Tokenizer_H
+#define COMPILER_Tokenizer_H
 
 #include "../automata/DFA.h"
 #include "../code-parser/CodeParser.h"
@@ -11,13 +11,18 @@
 #include "../file-writer/FileWriter.h"
 #include "../utils/SymbolTable.h"
 
-class PatternMatcher {
+#define EMPTYSTRING ""
+class Tokenizer {
 public:
-    PatternMatcher(DFA *dfa, std::string inputFile,std::string properties, FileWriter *writer);
+    Tokenizer(DFA *dfa, std::string inputFile,std::string properties, FileWriter *writer);
 
     bool findMatch(stateID startDFA, int startChar);
 
-    std::vector<std::string> analyzeCode();
+    std::string nextToken();
+
+    bool hasTokens();
+
+    bool tokenFound();
 
     void recoveryRoutine(int startIndex);
     
@@ -29,9 +34,7 @@ private:
     FileWriter *fwriter;
     std::string propertiesFile;
     SymbolTable *symbolTable;
-
-    // to insert tokens in order
-    std::vector<std::string> analysisTable;
+    std::string token;
 };
 
-#endif // COMPILER_PATTERNMATCHER_H
+#endif // COMPILER_Tokenizer_H
