@@ -95,7 +95,7 @@ void Grammar::constructFirst(std::map<Symbol, std::vector<Production>> rules) {
           ProductionNode *nextNode = graph[symbol];
           first[currentNode->getSymbol()].insert(first[symbol].begin(),
                                                  first[symbol].end());
-          stop = !(nextNode->containsEps());
+          stop = !nextNode->containsEps();
         }
         if (stop) {
           break;
@@ -183,7 +183,7 @@ void Grammar::constructFollowSet() {
       for (auto rule : rhsRules) {
         std::vector<Symbol> symbols = rule.production;
         std::set<Symbol> followSet;
-        for (int i = symbols.size() - 1; i >= 0; i++) {
+        for (int i = symbols.size() - 1; i >= 0; i--) {
           Symbol symbol = symbols[i];
           if (symbol.type == START)
             followSet.insert(Symbol(END, TERMINAL));
@@ -229,10 +229,11 @@ bool Grammar::hasEpsilon(std::set<Symbol> first) {
 
 void Grammar::printSets(std::map<Symbol, std::set<Symbol>> set) {
   for (auto f : follow) {
-    std::cout << f.first.name << ">>>>";
+    std::cout << f.first.name << " >>  ";
     for (auto s : f.second) {
       std::cout << s.name << " ";
     }
     std::cout << std::endl;
   }
+  std::cout << std::endl;
 }

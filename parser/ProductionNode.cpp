@@ -1,18 +1,18 @@
 #include "ProductionNode.h"
 
 ProductionNode::ProductionNode(Symbol _symbol)
-    : dependenceyCount(0), symbol(_symbol), hasEps(false) {}
+        : dependenceyCount(0), symbol(_symbol), hasEps(false) {}
 
 int ProductionNode::getDependenceyCount() { return dependenceyCount; }
 
 void ProductionNode::addDependent(ProductionNode *dependent) {
-  dependents.push_back(dependent);
+    dependents.push_back(dependent);
 }
 
 Symbol ProductionNode::getSymbol() { return symbol; }
 
 std::vector<ProductionNode *> ProductionNode::getDependents() {
-  return dependents;
+    return dependents;
 }
 
 void ProductionNode::setEps() { hasEps = true; }

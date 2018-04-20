@@ -44,5 +44,5 @@ set(SOURCE_FILES
         parser/Grammar.h
         parser/Grammar.cpp
         parser/ProductionNode.h
-        parser/ProductionNode.cpp)
+        parser/ProductionNode.cpp parser/Test.cpp parser/ParseTable.cpp parser/ParseTable.h)
 add_executable(Compiler ${SOURCE_FILES})
