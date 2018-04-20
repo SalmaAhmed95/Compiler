@@ -8,7 +8,7 @@
 #include <vector>
 
 
-#define EPSILONSYMBOl "\L"
+#define EPSILONSYMBOl "\\L"
 
 enum SymbolType {
     TERMINAL, NON_TERMINAL, START, EPSILON
@@ -22,13 +22,16 @@ struct Symbol {
     bool operator<(const Symbol &x) const { return name < x.name; }
 
     Symbol(std::string symbolName, SymbolType symbolType) {
-        name = symbolName;
-        type = symbolType;
+        this->name = symbolName;
+        this->type = symbolType;
     }
 };
 
 struct Production {
     std::vector<Symbol> production;
+    Production(std::vector<Symbol> s){
+        this->production = s;
+    }
 };
 
 class CFGParser {
