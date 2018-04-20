@@ -1,3 +1,5 @@
+#include "../../parser/CFGParser.h"
+#include "../../parser/Grammar.h"
 #include "../automata/DFA.h"
 #include "../automata/NfaToDfaConverter.h"
 #include "../automata/RegexToNfaConverter.hpp"
@@ -5,7 +7,6 @@
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
 #include "../pattern-matcher/PatternMatcher.h"
-#include "../../parser/CFGParser.h"
 #include "time.h"
 
 #define FILES_NUM 4
@@ -57,8 +58,8 @@ int main(int argc, char **argv) {
   PatternMatcher *matcher =
       new PatternMatcher(dfaMin, code, properties, writer);
   std::vector<std::string> tokensTable = matcher->analyzeCode();
-  for (int i=0;i<tokensTable.size();i++){
-      std::cout<<tokensTable[i]<<std::endl;
+  for (int i = 0; i < tokensTable.size(); i++) {
+    std::cout << tokensTable[i] << std::endl;
   }
   writer->closeFile();
   std::cout << "Finished Matching\n";
@@ -68,5 +69,7 @@ int main(int argc, char **argv) {
   delete matcher;
   delete writer;
   std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
+  Grammar g;
+  g.getGrammerTable("");
   return 0;
 }
