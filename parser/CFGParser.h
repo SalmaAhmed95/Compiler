@@ -1,24 +1,57 @@
 
-#include <string>
-#include <vector>
-#include <unordered_map>
+#ifndef COMPILER_CFGPARSER_H
+#define COMPILER_CFGPARSER_H
 
-enum SymbolType { TERMINAL, NON_TERMINAL};
+#include <map>
+#include <string>
+#include <iostream>
+#include <map>
+#include <vector>
+#include "../lexical-analyzer/grammar-parser/Properties.hpp"
+
+enum SymbolType {
+    TERMINAL, NON_TERMINAL, START, EPSILION
+};
 
 struct Symbol {
     std::string name;
     SymbolType type;
-//TODO comparator
+
+    bool operator<(const Symbol &x) const { return name < x.name; }
+
+    Symbol(std::string symbolName, SymbolType symbolType) {
+        name = symbolName;
+        type = symbolType;
+    }
+
+    void print() {
+        std::cout<<"name "<<name<<" type "<<type;
+    }
 };
 
 struct Production {
     std::vector<Symbol> production;
+    void print() {
+        std::cout <<"current production  ";
+        for (Symbol symbol : production) {
+            std::cout<<symbol.name<<"  type  "<<symbol.type<<"  ";
+        }
+        std::cout<<std::endl;
+    }
 };
 
 class CFGParser {
 public:
-    static std::unordered_map<Symbol, std::vector<Production>> getCFGRules(std::string fileName);
+   static std::map<Symbol, std::vector<Production>> getCFGRules(std::string rulesFileName, std::string propertiesFileName);
 private:
     CFGParser();
-
+    static std::ifstream openFile (std::string fileName);
+    static void parseLine(std::string &line, std::map <Symbol, std::vector<Production>> *rules);
+    static std::vector<Production> calculateProductions(std::string &rhs);
+    static void loadProperties(std::string propertiesFileName,
+                               Properties::PropertiesData &propertiesData);
+    static void handleFileNotFound(std::ifstream &file);
+    static void errorRoutine();
 };
+
+#endif //COMPILER_CFGPARSER_H

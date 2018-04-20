@@ -5,6 +5,7 @@
 #include "../file-writer/FileWriter.h"
 #include "PatternMatcher.h"
 
+
 PatternMatcher::PatternMatcher(DFA *dfa, std::string inputFile,
                                std::string properties, FileWriter *writer) {
   minDFA = dfa;

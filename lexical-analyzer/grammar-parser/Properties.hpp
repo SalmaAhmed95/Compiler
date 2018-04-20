@@ -1,3 +1,6 @@
+#ifndef COMPILER_PROPERTIES_H
+#define COMPILER_PROPERTIES_H
+
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -19,3 +22,5 @@ std::ostream &operator<<(std::ostream &outStream, const PropertiesData &prop);
 /* Checks that the current read line is a line that should be skipped. */
 bool isSkipLine(std::string str, std::string::size_type begin);
 }
+
+#endif //COMPILER_PROPERTIES_H

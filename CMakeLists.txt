@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.5)
 project(Compiler)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -40,5 +40,6 @@ set(SOURCE_FILES
         lexical-analyzer/pattern-matcher/PatternMatcher.h
         lexical-analyzer/utils/SymbolTable.cpp
         lexical-analyzer/utils/SymbolTable.h lexical-analyzer/automata/Definitions.h
-        parser/CFGParser.h parser/CFGParser.cpp)
+        parser/CFGParser.h parser/CFGParser.cpp
+        parser/Grammar.h parser/Grammar.cpp lexical-analyzer/utils/StringUtils.h lexical-analyzer/utils/StringUtils.cpp)
 add_executable(Compiler ${SOURCE_FILES})

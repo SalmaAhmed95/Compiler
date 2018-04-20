@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 
+
 #define SPACE ' '
 #define NEWLINE '\n'
 #define IDENTIFIER "identifier"
