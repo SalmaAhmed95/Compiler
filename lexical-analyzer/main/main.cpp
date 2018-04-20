@@ -1,12 +1,14 @@
+#include "../../parser/CFGParser.h"
+#include "../../parser/Grammar.h"
 #include "../automata/DFA.h"
 #include "../automata/NfaToDfaConverter.h"
 #include "../automata/RegexToNfaConverter.hpp"
 #include "../code-parser/CodeParser.h"
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
-#include "../pattern-matcher/PatternMatcher.h"
-#include "../../parser/CFGParser.h"
+#include "../tokenizer/Tokenizer.h"
 #include "time.h"
+#include "../tokenizer/Tokenizer.h"
 
 #define FILES_NUM 4
 
@@ -54,24 +56,30 @@ int main(int argc, char **argv) {
   // else default constructor
   FileWriter *writer = new FileWriter(output);
   writer->writeTransitionTable(dfaMin);
-  PatternMatcher *matcher =
-      new PatternMatcher(dfaMin, code, properties, writer);
-  std::vector<std::string> tokensTable = matcher->analyzeCode();
-  for (int i=0;i<tokensTable.size();i++){
-      std::cout<<tokensTable[i]<<std::endl;
-  }
+
+  Tokenizer *tokenizer =
+      new Tokenizer(dfaMin, code, properties, writer);
+    //TODO get only 2 tokens not all tokens and insert them into a queue to be used by parser
+    // and repeat when queue becomes empty
+    std::queue<std::string> parserInput;
+    while(tokenizer->hasTokens()){
+        std::string token =  tokenizer->nextToken();
+        if(tokenizer->tokenFound())
+            parserInput.push(token);
+
+    }
+
   writer->closeFile();
   std::cout << "Finished Matching\n";
   delete nfa;
   delete dfa;
   delete dfaMin;
-  delete matcher;
+  delete tokenizer;
   delete writer;
   std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
-//    std::string rhs = "'if'  | STATEMENT_LIST STATEMENT";
-//    std::vector<Production> test = CFGParser::calculateProductions(rhs);
-//    std::cout<<test.size();
-   std::map <Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile.txt","properties.ini");
+
+
+ /*  std::map <Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile.txt","properties.ini");
 
    std::map <Symbol, std::vector<Production>> :: iterator it;
    for (it = result.begin(); it != result.end(); it++) {
@@ -82,5 +90,5 @@ int main(int argc, char **argv) {
      }
    }
 
-    return 0;
+    return 0;*/
 }

@@ -130,7 +130,7 @@ std::vector<Production> CFGParser::calculateProductions(std::string &rhs){
                     errorRoutine();
                 }
                 curToken.append(1,curChar);
-                Symbol newTerminal (curToken, EPSILION);
+                Symbol newTerminal (curToken, EPSILON);
                 rules.back().production.push_back(newTerminal);
                 curToken.clear();
             } else {

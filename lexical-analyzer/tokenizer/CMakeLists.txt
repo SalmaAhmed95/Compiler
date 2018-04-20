@@ -1,12 +1,12 @@
 set(PatternMatcher_SRCS
-    PatternMatcher.cpp
+        Tokenizer.cpp
     ../code-parser/CodeParser.cpp
     ../error/ErrorHandler.cpp
     ../file-writer/FileWriter.cpp
 )
 
 set(PatternMatcher_HEADERS
-    PatternMatcher.h
+        Tokenizer.h
     ../code-parser/CodeParser.h
     ../error/ErrorHandler.h
     ../file-writer/FileWriter.h

@@ -1,4 +1,5 @@
 
+
 #ifndef COMPILER_CFGPARSER_H
 #define COMPILER_CFGPARSER_H
 
@@ -9,8 +10,10 @@
 #include <vector>
 #include "../lexical-analyzer/grammar-parser/Properties.hpp"
 
+#define EPSILONSYMBOl "\\L"
+
 enum SymbolType {
-    TERMINAL, NON_TERMINAL, START, EPSILION
+    TERMINAL, NON_TERMINAL, START, EPSILON
 };
 
 struct Symbol {
@@ -39,6 +42,9 @@ struct Production {
         std::cout<<std::endl;
     }
 };
+struct ParsingTable {
+    std::map<Symbol, std::map<Symbol, Production>> table;
+};
 
 class CFGParser {
 public:
@@ -54,4 +60,6 @@ private:
     static void errorRoutine();
 };
 
+
 #endif //COMPILER_CFGPARSER_H
+
