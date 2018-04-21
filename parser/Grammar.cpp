@@ -3,7 +3,7 @@
 //
 
 #include "Grammar.h"
-#include "ParserTable.h"
+#include "ParsingTable.h"
 #include <iostream>
 
 ParsingTable Grammar::getGrammerTable(std::string fileName) {
@@ -242,10 +242,10 @@ void Grammar::constructParsingTable(std::map<Symbol, std::vector<Production>> ru
             //TODO if a cell in table has 2 values issue error
             if (hasEpsilon(first[symbols[0]])) {
                 for (auto terminal : follow[symbols[0]])
-                    ParserTable::insertProduction(parsingTable, it->first, terminal, prod);
+                    parsingTable.insertProduction(it->first, terminal, prod);
             } else {
                 for (auto terminal : first[symbols[0]])
-                    ParserTable::insertProduction(parsingTable, it->first, terminal, prod);
+                    parsingTable.insertProduction(it->first, terminal, prod);
             }
             /*TO BE HANDLED WHEN MATCHING INPUT :
              * empty enteries that doesnot exist in the map are considered error*/
@@ -265,7 +265,7 @@ void Grammar::printSets(std::map<Symbol, std::set<Symbol>> set) {
 }
 
 void Grammar::printParsingTable(ParsingTable parsingTable){
-    for (auto &outer_map_pair : parsingTable.table) {
+    for (auto &outer_map_pair : parsingTable.parsingTable) {
         std::cout << outer_map_pair.first.name << " contains: " << std::endl;
         for (auto &inner_map_pair : outer_map_pair.second) {
             std::cout << inner_map_pair.first.name << ": ";

@@ -3,6 +3,7 @@
 
 #include "CFGParser.h"
 #include "ProductionNode.h"
+#include "ParsingTable.h"
 #include <map>
 #include <queue>
 #include <set>

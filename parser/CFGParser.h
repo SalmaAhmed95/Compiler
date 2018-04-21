@@ -46,9 +46,6 @@ struct Production {
         std::cout<<std::endl;
     }
 };
-struct ParsingTable {
-    std::map<Symbol, std::map<Symbol, Production>> table;
-};
 
 class CFGParser {
 public:

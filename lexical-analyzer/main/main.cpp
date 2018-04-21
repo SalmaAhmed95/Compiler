@@ -4,7 +4,6 @@
 #include "../automata/DFA.h"
 #include "../automata/NfaToDfaConverter.h"
 #include "../automata/RegexToNfaConverter.hpp"
-#include "../code-parser/CodeParser.h"
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
 #include "../tokenizer/Tokenizer.h"
@@ -63,7 +62,7 @@ int main(int argc, char **argv) {
         if(tokenizer->tokenFound()) {
           Symbol symbol;
           symbol.name = token;
-          std::pair<Production, std::string> result = Parser::getInstance().parse(&symbol);
+          //std::pair<Production, std::string> result = Parser::getInstance().parse(&symbol);
           //TODO print result
         }
     }
@@ -77,6 +76,8 @@ int main(int argc, char **argv) {
   delete writer;
   std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
 
+  Grammar grammar;
+  grammar.getGrammerTable("");
 
  /*  std::map <Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile.txt","properties.ini");
 
