@@ -21,10 +21,15 @@ struct Symbol {
     name = symbolName;
     type = symbolType;
   }
+
+  Symbol() {};
 };
 
 struct Production {
   std::vector<Symbol> production;
+  Symbol lhs;
+
+
 };
 
 class CFGParser {

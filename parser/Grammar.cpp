@@ -19,26 +19,33 @@ void Grammar::getGrammerTable(std::string fileName) {
   Symbol star("*", TERMINAL);
   Symbol plus("+", TERMINAL);
   Production p1, p2, peps, p3, p4, p5, p6;
+  peps.lhs = e;//TODO CHANGE IT TO THE CORRECT SYMBOL
   peps.production.push_back(eps);
+  p1.lhs = e;//TODO CHANGE IT TO THE CORRECT SYMBOL
   p1.production.push_back(t);
   p1.production.push_back(ed);
+  p2.lhs = e;//TODO CHANGE IT TO THE CORRECT SYMBOL
   p2.production.push_back(plus);
   p2.production.push_back(t);
   p2.production.push_back(ed);
   rules[e].push_back(p1);
   rules[ed].push_back(p2);
   rules[ed].push_back(peps);
+  p3.lhs = e;//TODO CHANGE IT TO THE CORRECT SYMBOL
   p3.production.push_back(f);
   p3.production.push_back(td);
   rules[t].push_back(p3);
+  p4.lhs = e;//TODO CHANGE IT TO THE CORRECT SYMBOL
   p4.production.push_back(star);
   p4.production.push_back(f);
   p4.production.push_back(td);
   rules[td].push_back(p4);
   rules[td].push_back(peps);
+  p5.lhs = e;//TODO CHANGE IT TO THE CORRECT SYMBOL
   p5.production.push_back(bo);
   p5.production.push_back(e);
   p5.production.push_back(bc);
+  p6.lhs = e;//TODO CHANGE IT TO THE CORRECT SYMBOL
   p6.production.push_back(id);
   rules[f].push_back(p5);
   rules[f].push_back(p6);

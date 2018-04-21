@@ -1,13 +1,12 @@
 #include "../../parser/CFGParser.h"
 #include "../../parser/Grammar.h"
+#include "../../parser/Parser.h"
 #include "../automata/DFA.h"
 #include "../automata/NfaToDfaConverter.h"
 #include "../automata/RegexToNfaConverter.hpp"
 #include "../code-parser/CodeParser.h"
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
-#include "../tokenizer/Tokenizer.h"
-#include "time.h"
 #include "../tokenizer/Tokenizer.h"
 
 #define FILES_NUM 4
@@ -57,16 +56,16 @@ int main(int argc, char **argv) {
   FileWriter *writer = new FileWriter(output);
   writer->writeTransitionTable(dfaMin);
 
-  Tokenizer *tokenizer =
-      new Tokenizer(dfaMin, code, properties, writer);
-    //TODO get only 2 tokens not all tokens and insert them into a queue to be used by parser
-    // and repeat when queue becomes empty
-    std::queue<std::string> parserInput;
+  //TODO Parser::initialize(parseTable);
+  Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, writer);
     while(tokenizer->hasTokens()){
         std::string token =  tokenizer->nextToken();
-        if(tokenizer->tokenFound())
-            parserInput.push(token);
-
+        if(tokenizer->tokenFound()) {
+          Symbol symbol;
+          symbol.name = token;
+          std::pair<Production, std::string> result = Parser::getInstance().parse(&symbol);
+          //TODO print result
+        }
     }
 
   writer->closeFile();
