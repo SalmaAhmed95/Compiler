@@ -2,18 +2,19 @@
 #define COMPILER_PARSER_H
 
 #include <vector>
+#include <stack>
 #include "CFGParser.h"
-#include "ParseTable.h"
+#include "ParserTable.h"
 
 class Parser {
 public:
 
     static Parser &getInstance() {
         static Parser parser; // Guaranteed to be destroyed. Instantiated on first use
-        return instance;
+        return parser;
     }
 
-    static void initialize(ParseTable *parseTable);
+    static void initialize(ParserTable *parseTable);
 
     std::pair<Production, std::string> parse(Symbol* token);
 
@@ -24,7 +25,7 @@ public:
 private:
     Parser() {};
     std::stack<Symbol> *stack;
-    ParseTable *parseTable;
+    ParserTable *parseTable;
 };
 
 #endif //COMPILER_PARSER_H

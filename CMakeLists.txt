@@ -40,9 +40,12 @@ set(SOURCE_FILES
         lexical-analyzer/tokenizer/Tokenizer.h
         lexical-analyzer/utils/SymbolTable.cpp
         lexical-analyzer/utils/SymbolTable.h lexical-analyzer/automata/Definitions.h
-        parser/CFGParser.h
-        parser/Grammar.h
-        parser/Grammar.cpp
+
+        parser/CFGParser.h parser/CFGParser.cpp
+        parser/Grammar.h parser/Grammar.cpp lexical-analyzer/utils/StringUtils.h lexical-analyzer/utils/StringUtils.cpp
+
+        parser/Grammar.h  parser/Grammar.cpp
         parser/ProductionNode.h
-        parser/ProductionNode.cpp parser/Test.cpp parser/ParseTable.cpp parser/ParseTable.h)
+        parser/ProductionNode.cpp parser/Test.cpp parser/ParserTable.cpp parser/ParserTable.h)
+
 add_executable(Compiler ${SOURCE_FILES})

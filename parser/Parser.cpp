@@ -1,4 +1,3 @@
-#include <stack>
 #include "Parser.h"
 
 std::pair<Production, std::string> Parser::parse(Symbol *token) {

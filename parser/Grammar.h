@@ -14,13 +14,14 @@ class Grammar {
 
 public:
 
-    void getGrammerTable(std::string fileName);
+    ParsingTable getGrammerTable(std::string fileName);
 
-    void printSets(std::map<Symbol, std::set<Symbol>> set);
 
 private:
     std::map<Symbol, std::set<Symbol>> first, follow;
     std::set<Symbol> terminals, nonTerminals;
+    ParsingTable parsingTable;
+
 
     void constructTerminals(std::map<Symbol, std::vector<Production>> rules);
 
@@ -40,10 +41,13 @@ private:
 
     bool hasEpsilon(std::set<Symbol> first);
 
-    //TODO take this map from return of CFGParser
-    std::map<Symbol, std::vector<Production>> productions;
+    void constructFollowSet(std::map<Symbol, std::vector<Production>> rules);
 
-    void constructFollowSet();
+    void constructParsingTable(std::map<Symbol, std::vector<Production>> rules);
+
+    void printSets(std::map<Symbol, std::set<Symbol>> set);
+
+    void printParsingTable(ParsingTable parsingTable);
 
 };
 
