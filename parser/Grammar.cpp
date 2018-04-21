@@ -6,7 +6,7 @@
 #include "ParsingTable.h"
 #include <iostream>
 
-ParsingTable Grammar::getGrammerTable(std::string fileName) {
+ParsingTable Grammar::getGrammarTable(std::string fileName) {
     std::map<Symbol, std::vector<Production>> rules;
     Symbol e("E", START);
     Symbol ed("ED", NON_TERMINAL);
@@ -85,7 +85,7 @@ void Grammar::constructFirst(std::map<Symbol, std::vector<Production>> rules) {
     buildGraph(rules, nodes, graph);
     std::queue<ProductionNode *> nonTerminalsQueue;
     for (auto node : nodes) {
-        if (node->getDependenceyCount() == 0) {
+        if (node->getDependencyCount() == 0) {
             nonTerminalsQueue.push(node);
         }
     }
@@ -117,8 +117,8 @@ void Grammar::constructFirst(std::map<Symbol, std::vector<Production>> rules) {
         }
         std::vector<ProductionNode *> dependents = currentNode->getDependents();
         for (auto dependent : dependents) {
-            dependent->changeDependecies(-1);
-            if (dependent->getDependenceyCount() == 0) {
+            dependent->changeDependencies(-1);
+            if (dependent->getDependencyCount() == 0) {
                 nonTerminalsQueue.push(dependent);
             }
         }
@@ -150,7 +150,7 @@ void Grammar::buildGraph(std::map<Symbol, std::vector<Production>> rules,
                     ProductionNode *currentNode = graph[symbol];
                     stop = !currentNode->containsEps();
                     currentNode->addDependent(dependentNode);
-                    dependentNode->changeDependecies(1);
+                    dependentNode->changeDependencies(1);
                 }
                 if (stop) {
                     break;

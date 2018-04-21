@@ -4,7 +4,7 @@ class ProductionNode {
 public:
     ProductionNode(Symbol _symbol);
 
-    int getDependenceyCount();
+    int getDependencyCount();
 
     void addDependent(ProductionNode *dependent);
 
@@ -16,13 +16,13 @@ public:
 
     bool containsEps();
 
-    void changeDependecies(int val);
+    void changeDependencies(int val);
 
 private:
     ProductionNode();
 
     Symbol symbol;
     std::vector<ProductionNode *> dependents;
-    int dependenceyCount;
+    int dependencyCount;
     bool hasEps;
 };

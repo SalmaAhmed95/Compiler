@@ -16,6 +16,9 @@ public:
 
     Production getProduction(Symbol nonTerminal, Symbol terminal);
 
+    bool isEmpty(Symbol *pSymbol, Symbol *pSymbol1);
+
+    bool isSync(Symbol *pSymbol, Symbol *pSymbol1);
 
 private:
     std::map<Symbol, std::map<Symbol, Production>> parsingTable;
