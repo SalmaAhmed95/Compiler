@@ -21,3 +21,4 @@ bool ParsingTable::isSync(Symbol nonTerminal, Symbol terminal) {
     Production prod = parsingTable[nonTerminal][terminal];
     return prod.production[0].name == SYNC;
 }
+

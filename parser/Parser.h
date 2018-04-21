@@ -4,28 +4,30 @@
 #include <vector>
 #include <stack>
 #include "CFGParser.h"
-#include "ParserTable.h"
+#include "ParsingTable.h"
 
 class Parser {
 public:
 
     static Parser &getInstance() {
-        static Parser parser; // Guaranteed to be destroyed. Instantiated on first use
-        return parser;
+        static Parser *parser;
+        return *parser;
     }
 
-    static void initialize(ParserTable *parseTable);
+    void initialize(ParsingTable *parseTable);
 
-    std::pair<Production, std::string> parse(Symbol* token);
+    std::pair<Production, std::string> *parse(Symbol *token);
 
-    Parser(Parser const &) = delete;
-
-    void operator=(Parser const &)  = delete;
 
 private:
     Parser() {};
+
+    Parser(Parser const &);
+
+    void operator=(Parser const &);
+
     std::stack<Symbol> *stack;
-    ParserTable *parseTable;
+    ParsingTable *parseTable;
 };
 
 #endif //COMPILER_PARSER_H

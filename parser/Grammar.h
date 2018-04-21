@@ -15,7 +15,7 @@ class Grammar {
 
 public:
 
-    ParsingTable getGrammerTable(std::string fileName);
+    ParsingTable getGrammarTable(std::string fileName);
 
 
 private:
@@ -53,5 +53,4 @@ private:
     void printParsingTable(ParsingTable parsingTable);
 
 };
-
 #endif

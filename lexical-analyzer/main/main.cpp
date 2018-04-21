@@ -55,14 +55,15 @@ int main(int argc, char **argv) {
   FileWriter *writer = new FileWriter(output);
   writer->writeTransitionTable(dfaMin);
 
-  //TODO Parser::initialize(parseTable);
+  ParsingTable parsingTable; //TODO Build the parsing table.
+  //Parser::getInstance().initialize(&parsingTable);
   Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, writer);
     while(tokenizer->hasTokens()){
         std::string token =  tokenizer->nextToken();
         if(tokenizer->tokenFound()) {
           Symbol symbol;
           symbol.name = token;
-          //std::pair<Production, std::string> result = Parser::getInstance().parse(&symbol);
+          //std::pair<Production, std::string>* result = Parser::getInstance().parse(&symbol);
           //TODO print result
         }
     }
@@ -77,7 +78,8 @@ int main(int argc, char **argv) {
   std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
 
   Grammar grammar;
-  grammar.getGrammerTable("input.txt");
+  grammar.getGrammarTable("input.txt");
+
 
  /*  std::map <Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile.txt","properties.ini");
 

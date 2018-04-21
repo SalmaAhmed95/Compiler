@@ -19,7 +19,6 @@ public:
     bool isEmpty(Symbol nonTerminal, Symbol terminal);
     bool isSync(Symbol nonTerminal, Symbol terminal);
 
-
 private:
     std::map<Symbol, std::map<Symbol, Production>> parsingTable;
     void insertProduction(Symbol nonTerminal,Symbol terminal, Production production );
