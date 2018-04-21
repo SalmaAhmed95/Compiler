@@ -46,6 +46,8 @@ private:
 
     void constructParsingTable(std::map<Symbol, std::vector<Production>> rules);
 
+    void addSyncEntries(std::map<Symbol, std::set<Symbol>> follow);
+
     void printSets(std::map<Symbol, std::set<Symbol>> set);
 
     void printParsingTable(ParsingTable parsingTable);

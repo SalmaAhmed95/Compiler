@@ -5,11 +5,19 @@
 #include "ParsingTable.h"
 
 Production ParsingTable::getProduction(Symbol nonTerminal, Symbol terminal) {
-   return parsingTable[nonTerminal][terminal];
+    return parsingTable[nonTerminal][terminal];
 }
 
 void ParsingTable::insertProduction(Symbol nonTerminal, Symbol terminal, Production production) {
-    std::map<Symbol, Production> inner;
-    inner.insert(std::make_pair(terminal, production));
-    parsingTable.insert(std::make_pair(nonTerminal, inner));
+    parsingTable[nonTerminal].insert(std::make_pair(terminal, production));
+}
+
+bool ParsingTable::isEmpty(Symbol nonTerminal, Symbol terminal) {
+    auto it = parsingTable[nonTerminal].find(terminal);
+    return (it == parsingTable[nonTerminal].end());
+}
+
+bool ParsingTable::isSync(Symbol nonTerminal, Symbol terminal) {
+    Production prod = parsingTable[nonTerminal][terminal];
+    return prod.production[0].name == SYNC;
 }

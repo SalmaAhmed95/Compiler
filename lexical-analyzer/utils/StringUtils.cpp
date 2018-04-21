@@ -47,5 +47,5 @@ std::vector<std::string> StringUtils::splitString( std::string &str, const std::
 std::string StringUtils::trimWhiteSpaces(std::string &str){
     size_t startIndex = getFirstChar(str);
     size_t endIndex = getLastChar(str);
-    return str.substr(startIndex, endIndex);
+    return str.substr(startIndex, endIndex + 1);
 }

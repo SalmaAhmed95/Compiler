@@ -10,11 +10,14 @@
 
 #include <map>
 
+#define SYNC "sync"
 class ParsingTable {
 
 public:
 
     Production getProduction(Symbol nonTerminal, Symbol terminal);
+    bool isEmpty(Symbol nonTerminal, Symbol terminal);
+    bool isSync(Symbol nonTerminal, Symbol terminal);
 
 
 private:

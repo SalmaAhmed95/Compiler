@@ -1,6 +1,6 @@
 #include "../../parser/CFGParser.h"
 #include "../../parser/Grammar.h"
-#include "../../parser/Parser.h"
+//#include "../../parser/Parser.h"
 #include "../automata/DFA.h"
 #include "../automata/NfaToDfaConverter.h"
 #include "../automata/RegexToNfaConverter.hpp"
@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
   std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
 
   Grammar grammar;
-  grammar.getGrammerTable("");
+  grammar.getGrammerTable("input.txt");
 
  /*  std::map <Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile.txt","properties.ini");
 
@@ -88,7 +88,7 @@ int main(int argc, char **argv) {
      for (Production production : it->second) {
        production.print();
      }
-   }
+   }*/
 
-    return 0;*/
+    return 0;
 }

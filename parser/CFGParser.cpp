@@ -11,8 +11,8 @@
 #define TERMINAL_IDENTIFIER '\''
 #define OR_SEPARATOR  '|'
 
-const std::string  DEFINITION_SEPARATOR =  "::==";
-const std::string LAMBDA_SYMBOL = "\\l";
+const std::string  DEFINITION_SEPARATOR =  "::=";
+const std::string LAMBDA_SYMBOL = "\\L";
 
 
 void CFGParser::parseLine(std::string &curRule, std::map <Symbol, std::vector<Production>> *rules){
@@ -24,6 +24,7 @@ void CFGParser::parseLine(std::string &curRule, std::map <Symbol, std::vector<Pr
             errorRoutine();
         } else {
             std::string nonTerminal = StringUtils::trimWhiteSpaces(tokens[0]);
+            std::cout<<tokens[0]<<"\n";
             Symbol newSymbol(nonTerminal, NON_TERMINAL);
             if (rules->empty()) {
                 newSymbol.type = START;
