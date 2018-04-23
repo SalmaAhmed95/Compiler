@@ -24,7 +24,6 @@ struct Symbol {
         name = symbolName;
         type = symbolType;
     }
-
     Symbol(){
         name = "";
         type = NON_TERMINAL;
@@ -33,7 +32,6 @@ struct Symbol {
         return name == rhs.name && (type == rhs.type || (type == START && rhs.type == NON_TERMINAL));
     }
 
-
     void print() {
         std::cout<<"name "<<name<<" type "<<type;
     }
@@ -41,6 +39,7 @@ struct Symbol {
 
 struct Production {
     std::vector<Symbol> production;
+
     void print() {
         std::cout <<"current production  ";
         for (Symbol symbol : production) {
@@ -48,9 +47,6 @@ struct Production {
         }
         std::cout<<std::endl;
     }
-};
-struct ParsingTable {
-    std::map<Symbol, std::map<Symbol, Production>> table;
 };
 
 class CFGParser {

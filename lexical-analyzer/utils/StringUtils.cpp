@@ -53,5 +53,4 @@ std::string StringUtils::trimWhiteSpaces(std::string &str){
     if (endIndex == -1){
         return "";
     }
-    return str.substr(startIndex, endIndex + 1);
 }

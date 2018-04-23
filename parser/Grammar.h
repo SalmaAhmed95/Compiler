@@ -3,6 +3,7 @@
 
 #include "CFGParser.h"
 #include "ProductionNode.h"
+#include "ParsingTable.h"
 #include <map>
 #include <queue>
 #include <set>
@@ -14,7 +15,7 @@ class Grammar {
 
 public:
 
-    ParsingTable getGrammerTable(std::string fileName);
+    ParsingTable getGrammarTable(std::string fileName);
 
 
 private:
@@ -45,10 +46,11 @@ private:
 
     void constructParsingTable(std::map<Symbol, std::vector<Production>> rules);
 
+    void addSyncEntries(std::map<Symbol, std::set<Symbol>> follow);
+
     void printSets(std::map<Symbol, std::set<Symbol>> set);
 
     void printParsingTable(ParsingTable parsingTable);
 
 };
-
 #endif

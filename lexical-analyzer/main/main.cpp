@@ -1,14 +1,13 @@
 #include "../../parser/CFGParser.h"
 #include "../../parser/Grammar.h"
+//#include "../../parser/Parser.h"
 #include "../automata/DFA.h"
 #include "../automata/NfaToDfaConverter.h"
 #include "../automata/RegexToNfaConverter.hpp"
-#include "../code-parser/CodeParser.h"
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
 #include "../tokenizer/Tokenizer.h"
-#include "time.h"
-#include "../tokenizer/Tokenizer.h"
+#include "../../parser/Parser.h"
 
 #define FILES_NUM 4
 
@@ -57,16 +56,23 @@ int main(int argc, char **argv) {
   FileWriter *writer = new FileWriter(output);
   writer->writeTransitionTable(dfaMin);
 
-  Tokenizer *tokenizer =
-      new Tokenizer(dfaMin, code, properties, writer);
-    //TODO get only 2 tokens not all tokens and insert them into a queue to be used by parser
-    // and repeat when queue becomes empty
-    std::queue<std::string> parserInput;
+  Grammar grammar;
+  ParsingTable parsingTable = grammar.getGrammarTable("input.txt");
+  Parser::getInstance().initialize(parsingTable);
+  Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, writer);
     while(tokenizer->hasTokens()){
         std::string token =  tokenizer->nextToken();
-        if(tokenizer->tokenFound())
-            parserInput.push(token);
+        if(tokenizer->tokenFound()) {
+          Symbol symbol;
+          symbol.name = token;
+          std::pair<std::pair<Symbol, Production>, std::string> result = Parser::getInstance().parse(symbol);
+        }
+    }
 
+    if (Parser::getInstance().wasSuccessful()) {
+        std::cout<<"SUCCESS!" << std::endl;
+    } else {
+        std::cout<<"FAIL" << std::endl;
     }
 
   writer->closeFile();
@@ -78,6 +84,9 @@ int main(int argc, char **argv) {
   delete writer;
   std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
 
+//  Grammar grammar;
+//  grammar.getGrammarTable("input.txt");
+
 
   std::map <Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile3.txt","properties.ini");
 
@@ -88,7 +97,7 @@ int main(int argc, char **argv) {
      for (Production production : it->second) {
        production.print();
      }
-   }
+   }*/
 
     return 0;
 }
