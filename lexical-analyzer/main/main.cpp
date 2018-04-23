@@ -7,6 +7,7 @@
 #include "../dfa-minimizer/DfaMinimizer.h"
 #include "../grammar-parser/ProductionParser.hpp"
 #include "../tokenizer/Tokenizer.h"
+#include "../../parser/Parser.h"
 
 #define FILES_NUM 4
 
@@ -55,17 +56,23 @@ int main(int argc, char **argv) {
   FileWriter *writer = new FileWriter(output);
   writer->writeTransitionTable(dfaMin);
 
-  ParsingTable parsingTable; //TODO Build the parsing table.
-  //Parser::getInstance().initialize(&parsingTable);
+  Grammar grammar;
+  ParsingTable parsingTable = grammar.getGrammarTable("input.txt");
+  Parser::getInstance().initialize(parsingTable);
   Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, writer);
     while(tokenizer->hasTokens()){
         std::string token =  tokenizer->nextToken();
         if(tokenizer->tokenFound()) {
           Symbol symbol;
           symbol.name = token;
-          //std::pair<Production, std::string>* result = Parser::getInstance().parse(&symbol);
-          //TODO print result
+          std::pair<std::pair<Symbol, Production>, std::string> result = Parser::getInstance().parse(symbol);
         }
+    }
+
+    if (Parser::getInstance().wasSuccessful()) {
+        std::cout<<"SUCCESS!" << std::endl;
+    } else {
+        std::cout<<"FAIL" << std::endl;
     }
 
   writer->closeFile();
@@ -77,8 +84,8 @@ int main(int argc, char **argv) {
   delete writer;
   std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
 
-  Grammar grammar;
-  grammar.getGrammarTable("input.txt");
+//  Grammar grammar;
+//  grammar.getGrammarTable("input.txt");
 
 
  /*  std::map <Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile.txt","properties.ini");

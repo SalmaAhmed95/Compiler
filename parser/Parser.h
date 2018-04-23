@@ -14,10 +14,11 @@ public:
         return *parser;
     }
 
-    void initialize(ParsingTable *parseTable);
+    void initialize(ParsingTable parseTable);
 
-    std::pair<Production, std::string> *parse(Symbol *token);
+    std::pair<std::pair<Symbol, Production>, std::string> parse(Symbol token);
 
+    bool wasSuccessful();
 
 private:
     Parser() {};
@@ -27,7 +28,7 @@ private:
     void operator=(Parser const &);
 
     std::stack<Symbol> *stack;
-    ParsingTable *parseTable;
+    ParsingTable parseTable;
 };
 
 #endif //COMPILER_PARSER_H

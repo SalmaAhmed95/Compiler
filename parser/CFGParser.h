@@ -36,7 +36,6 @@ struct Symbol {
 
 struct Production {
     std::vector<Symbol> production;
-    Symbol lhs; //TODO set the lhs of the productions while building the grammar.
 
     void print() {
         std::cout <<"current production  ";
