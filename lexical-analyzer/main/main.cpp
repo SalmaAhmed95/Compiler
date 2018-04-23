@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
   std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
 
 
- /*  std::map <Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile.txt","properties.ini");
+  std::map <Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile3.txt","properties.ini");
 
    std::map <Symbol, std::vector<Production>> :: iterator it;
    for (it = result.begin(); it != result.end(); it++) {
@@ -90,5 +90,5 @@ int main(int argc, char **argv) {
      }
    }
 
-    return 0;*/
+    return 0;
 }

@@ -6,21 +6,20 @@
 #include <iostream>
 #include "StringUtils.h"
 
-std::size_t StringUtils::getFirstChar(std::string &line){
-    std::size_t index = 0;
-    while (!line.empty() && isDelimiter(line.at(index)) && index < line.length()){
+int StringUtils::getFirstChar(std::string &line){
+    int index = -1;
+    if (!line.empty()){
+        index = 0;
+    }
+   while (!line.empty() && index < line.length() && isDelimiter(line.at(index)) ){
         index++;
     }
-    if (!line.empty() && index != line.length()) {
-        return index;
-    } else {
-        return std::string::npos;
-    }
+    return index;
 };
 
-std::size_t StringUtils::getLastChar(std::string &line){
-    std::size_t index = line.length() - 1;
-    while (isDelimiter(line.at(index))){
+int StringUtils::getLastChar(std::string &line){
+    int index = line.length() - 1;
+    while (index >= 0 && isDelimiter(line.at(index))){
         index--;
     }
     return index;
@@ -37,15 +36,22 @@ std::vector<std::string> StringUtils::splitString( std::string &str, const std::
         std::string token = str.substr(prevfound, found - prevfound);
         prevfound = found + delimiter.length();
         found = str.find(delimiter, prevfound);
+        token = trimWhiteSpaces(token);
+        if (!token.empty())
         tokens.push_back(token);
     }
     std::string token = str.substr(prevfound, str.length());
-    tokens.push_back(token);
+    token = trimWhiteSpaces(token);
+    if (!token.empty())
+        tokens.push_back(token);
     return tokens;
 }
 
 std::string StringUtils::trimWhiteSpaces(std::string &str){
-    size_t startIndex = getFirstChar(str);
-    size_t endIndex = getLastChar(str);
-    return str.substr(startIndex, endIndex);
+    int startIndex = getFirstChar(str);
+    int endIndex = getLastChar(str);
+    if (endIndex == -1){
+        return "";
+    }
+    return str.substr(startIndex, endIndex + 1);
 }

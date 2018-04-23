@@ -19,13 +19,20 @@ enum SymbolType {
 struct Symbol {
     std::string name;
     SymbolType type;
-
     bool operator<(const Symbol &x) const { return name < x.name; }
-
     Symbol(std::string symbolName, SymbolType symbolType) {
         name = symbolName;
         type = symbolType;
     }
+
+    Symbol(){
+        name = "";
+        type = NON_TERMINAL;
+    }
+    bool operator== (const Symbol& rhs) const{
+        return name == rhs.name && (type == rhs.type || (type == START && rhs.type == NON_TERMINAL));
+    }
+
 
     void print() {
         std::cout<<"name "<<name<<" type "<<type;
@@ -51,12 +58,19 @@ public:
    static std::map<Symbol, std::vector<Production>> getCFGRules(std::string rulesFileName, std::string propertiesFileName);
 private:
     CFGParser();
-    static std::ifstream openFile (std::string fileName);
-    static void parseLine(std::string &line, std::map <Symbol, std::vector<Production>> *rules);
-    static std::vector<Production> calculateProductions(std::string &rhs);
+    static std::ifstream *openFile (std::string fileName);
+    static void parseLine(std::string &line, std::string &startSymbolName, std::map <Symbol, std::vector<Production>> *rules);
+    static std::vector<Production> calculateProductions(std::string &rhs, std::string &startSymbolName);
     static void loadProperties(std::string propertiesFileName,
                                Properties::PropertiesData &propertiesData);
     static void handleFileNotFound(std::ifstream &file);
+    static bool checkRulesValidaty(std::map <Symbol, std::vector<Production>> *rules);
+    static void performLeftRecusiveElimination(std::map <Symbol, std::vector<Production>> *rules);
+    static bool checkLeftRecusive(Symbol &first, Symbol &rhsSymbol, Production &curRule,
+                                  std::vector<Production> *alpha, std::vector<Production> *beta);
+    static void performleftFactoring (std::map <Symbol, std::vector<Production>> *rules);
+    static void checkLeftFactoring(std::map <Symbol, std::vector<Production>> *rules,
+                                   std::map <Symbol, std::vector<Production>>::iterator it);
     static void errorRoutine();
 };
 
