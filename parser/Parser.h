@@ -5,6 +5,7 @@
 #include <stack>
 #include "CFGParser.h"
 #include "ParsingTable.h"
+#include "Grammar.h"
 
 class Parser {
 public:

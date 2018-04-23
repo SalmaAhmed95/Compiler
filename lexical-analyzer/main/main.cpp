@@ -22,25 +22,27 @@ void deleteTokens(std::vector<Token *> v) {
 }
 
 void getFileNames(int argc, char **argv, std::string &lexicalRules,
-                  std::string &properties, std::string &code,
-                  std::string &output) {
+                  std::string &properties,
+                  std::string &code,
+                  std::string &lexicalOutput,
+                  std::string& parserOutput) {
   if (argc != FILES_NUM + 1) {
     lexicalRules = DEFAULT_LEXICAL;
     properties = DEFAULT_PROPERTIES;
     code = DEFAULT_CODE;
-    output = DEFAULT_OUTPUT;
+    lexicalOutput = DEFAULT_OUTPUT;
   } else {
     lexicalRules = argv[1];
     properties = argv[2];
     code = argv[3];
-    output = argv[4];
+    lexicalOutput = argv[4];
   }
 }
 
 int main(int argc, char **argv) {
   clock_t startTime = clock();
-  std::string lexicalRules, code, properties, output;
-  getFileNames(argc, argv, lexicalRules, properties, code, output);
+  std::string lexicalRules, code, properties, lexicalOutput, parserOutput;
+  getFileNames(argc, argv, lexicalRules, properties, code, lexicalOutput, parserOutput);
   std::vector<Token *> tokens =
       ProductionParser::loadLexicalRules(lexicalRules, properties);
   NFA *nfa = RegexToNfaConverter::getNfa(tokens);
@@ -51,21 +53,23 @@ int main(int argc, char **argv) {
   std::cout << "Finished DFA \n";
   DFA *dfaMin = DfaMinimizer::getInstance().minimizeDfa(dfa);
   std::cout << "Finished Minimization\n";
-  // TODO call non default constructor if main has paramters for output file
+  // TODO call non default constructor if main has paramters for lexicalOutput file
   // else default constructor
-  FileWriter *writer = new FileWriter(output);
+  FileWriter *writer = new FileWriter(lexicalOutput);
   writer->writeTransitionTable(dfaMin);
 
-  Grammar grammar;
+  FileWriter parserWriter = FileWriter(parserOutput);
+    Grammar grammar;
   ParsingTable parsingTable = grammar.getGrammarTable("input.txt");
-  Parser::getInstance().initialize(parsingTable);
-  Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, writer);
+    Parser::getInstance().initialize(parsingTable);
+    Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, writer);
     while(tokenizer->hasTokens()){
         std::string token =  tokenizer->nextToken();
         if(tokenizer->tokenFound()) {
           Symbol symbol;
           symbol.name = token;
           std::pair<std::pair<Symbol, Production>, std::string> result = Parser::getInstance().parse(symbol);
+          parserWriter.writeParserResult(result);
         }
     }
 
@@ -97,7 +101,7 @@ int main(int argc, char **argv) {
      for (Production production : it->second) {
        production.print();
      }
-   }*/
+   }
 
     return 0;
 }

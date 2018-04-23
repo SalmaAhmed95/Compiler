@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include "../automata/DFA.h"
+#include "../../parser/CFGParser.h"
 
 #define  DEFAULT_OUTPUT "output.txt"
 #define  SPACING 20
@@ -26,6 +27,9 @@ public:
     void closeFile();
 
     void writeTransitionTable(DFA* dfaMin);
+
+    void writeParserResult(std::pair<std::pair<Symbol, Production>, std::string> parserResult);
+
 private:
     std::ofstream file;
     std::string fileName;

@@ -43,15 +43,13 @@ void FileWriter::writeTransitionTable(DFA *dfaMin) {
         file << "\n" << i;
         std::string s = std::to_string(i);
         fillSpaces(4 - s.length());
-        if (i == 0){
+        if (i == 0) {
             file << "Start";
             fillSpaces(5);
-        }
-        else if (dfaMin->isPHI(i)){
+        } else if (dfaMin->isPHI(i)) {
             file << "Phi";
             fillSpaces(7);
-        }
-        else{
+        } else {
             file << dfaMin->getTokenClass(i);
             fillSpaces(10 - dfaMin->getTokenClass(i).length());
         }
@@ -86,4 +84,10 @@ void FileWriter::drawLine(int length) {
     file << "\n";
 
 
+}
+
+void FileWriter::writeParserResult(std::pair<std::pair<Symbol, Production>, std::string> parserResult) {
+    if (parserResult.second.empty()) {
+        file << parserResult.first.first.toString() << " --> " << parserResult.first.second.toString() << std::endl;
+    }
 }

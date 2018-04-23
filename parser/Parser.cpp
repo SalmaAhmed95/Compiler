@@ -2,7 +2,7 @@
 
 std::pair<std::pair<Symbol, Production>, std::string> Parser::parse(Symbol token) {
     Symbol top = stack->top();
-    std::pair<std::pair<Symbol, Production> , std::string> result;
+    std::pair<std::pair<Symbol, Production>, std::string> result;
     if (top.type == SymbolType::TERMINAL) {
         if (top.name != token.name) {
             result.second = "Error: missing " + top.name + ", inserted";
@@ -33,7 +33,7 @@ std::pair<std::pair<Symbol, Production>, std::string> Parser::parse(Symbol token
 void Parser::initialize(ParsingTable parseTable) {
     Parser::parseTable = parseTable;
     stack = new std::stack<Symbol>();
-    stack->push(Symbol("$", SymbolType::START));
+    stack->push(Symbol(END, SymbolType::START));
 }
 
 bool Parser::wasSuccessful() {

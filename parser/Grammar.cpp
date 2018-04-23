@@ -7,7 +7,9 @@
 #include <iostream>
 
 ParsingTable Grammar::getGrammarTable(std::string fileName) {
+    std::cout<<fileName;
     std::map<Symbol, std::vector<Production>> rules = CFGParser::getCFGRules(fileName ,"properties.ini");
+    std::cout<<"GGG";
 //    Symbol e("E", START);
 //    Symbol ed("ED", NON_TERMINAL);
 //    Symbol t("T", NON_TERMINAL);
