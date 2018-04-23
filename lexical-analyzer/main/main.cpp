@@ -1,3 +1,4 @@
+#include <ctime>
 #include "../../parser/CFGParser.h"
 #include "../../parser/Grammar.h"
 //#include "../../parser/Parser.h"
@@ -56,7 +57,7 @@ int main(int argc, char **argv) {
   FileWriter *writer = new FileWriter(output);
   writer->writeTransitionTable(dfaMin);
 
-  Grammar grammar;
+ /* Grammar grammar;
   ParsingTable parsingTable = grammar.getGrammarTable("input.txt");
   Parser::getInstance().initialize(parsingTable);
   Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, writer);
@@ -73,14 +74,14 @@ int main(int argc, char **argv) {
         std::cout<<"SUCCESS!" << std::endl;
     } else {
         std::cout<<"FAIL" << std::endl;
-    }
+    }*/
 
   writer->closeFile();
   std::cout << "Finished Matching\n";
   delete nfa;
   delete dfa;
   delete dfaMin;
-  delete tokenizer;
+  //delete tokenizer;
   delete writer;
   std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
 
@@ -92,12 +93,12 @@ int main(int argc, char **argv) {
 
    std::map <Symbol, std::vector<Production>> :: iterator it;
    for (it = result.begin(); it != result.end(); it++) {
-     std::cout<<"NonTerminal name "<<it->first.name<<" type "<<it->first.type<<"\n";
+     std::cout<<"NonTerminal name #"<<it->first.name<<"# type "<<it->first.type<<"\n";
      std::vector<Production> rules = it->second;
      for (Production production : it->second) {
        production.print();
      }
-   }*/
+   }
 
     return 0;
 }
