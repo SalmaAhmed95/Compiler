@@ -49,6 +49,7 @@ struct Production {
         for (Symbol symbol: production) {
             string += symbol.name;
         }
+        return string;
     }
 
     void print() {

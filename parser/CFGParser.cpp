@@ -26,13 +26,13 @@ void CFGParser::parseLine(std::string &curRule, std::string &firstSymbolName, st
        if (tokens.size() != 2) {
             errorRoutine();
         } else {
-            std::string nonTerminal = StringUtils::trimWhiteSpaces(tokens[0]);
-            std::cout<<tokens[0]<<"\n";
+            std::string nonTerminal = tokens[0];
             Symbol newSymbol(nonTerminal, NON_TERMINAL);
             if (rules->empty()) {
                 newSymbol.type = START;
                 firstSymbolName = nonTerminal;
             }
+
             std::vector<Production> productions = calculateProductions(tokens[1],firstSymbolName);
             std::map<Symbol, std::vector<Production>>::iterator it;
             it = rules->find(newSymbol);
@@ -43,7 +43,6 @@ void CFGParser::parseLine(std::string &curRule, std::string &firstSymbolName, st
                     curRules.push_back(production);
                 }
                 rules->erase(it);
-                std::cout<< newSymbol.name<<"\n";
                 rules->insert(std::pair<Symbol, std::vector<Production>>(newSymbol, curRules));
             } else {
                 rules->insert(std::pair<Symbol, std::vector<Production>>(newSymbol, productions));
@@ -76,9 +75,11 @@ CFGParser::getCFGRules(std::string rulesFileName, std::string propertiesFileName
     if (!curRule.empty()) {
         parseLine(curRule, startSymbolName, &rules);
     }
+
     if (!checkRulesValidaty(&rules)) {
         errorRoutine();
     }
+
     performLeftRecusiveElimination(&rules);
     inFile->close();
     return rules;

@@ -6,10 +6,8 @@
 #include "ParsingTable.h"
 #include <iostream>
 
-ParsingTable Grammar::getGrammarTable(std::string fileName) {
-    std::cout<<fileName;
+ParsingTable* Grammar::getGrammarTable(std::string fileName) {
     std::map<Symbol, std::vector<Production>> rules = CFGParser::getCFGRules(fileName ,"properties.ini");
-    std::cout<<"GGG";
 //    Symbol e("E", START);
 //    Symbol ed("ED", NON_TERMINAL);
 //    Symbol t("T", NON_TERMINAL);
@@ -60,14 +58,16 @@ ParsingTable Grammar::getGrammarTable(std::string fileName) {
     printSets(follow);
     constructParsingTable(rules);
     std::cout << std::endl << "Parsing Table" << std::endl;
-    printParsingTable(parsingTable);
+    printParsingTable(*parsingTable);
     return parsingTable;
 }
 
 void Grammar::constructNonTerminals(
         std::map<Symbol, std::vector<Production>> rules) {
     for (auto it = rules.begin(); it != rules.end(); it++) {
-        terminals.insert(it->first);
+        nonTerminals.insert(it->first);
+        if(it->first.type == START)
+            parsingTable->setStartSymbol(it->first);
     }
 }
 
@@ -79,7 +79,7 @@ void Grammar::constructTerminals(
             std::vector<Symbol> symbols = prod.production;
             for (auto symbol : symbols) {
                 if (symbol.type == TERMINAL) {
-                    nonTerminals.insert(symbol);
+                    terminals.insert(symbol);
                     first[symbol].insert(symbol);
                 } else if (symbol.type == EPSILON) {
                     first[symbol].insert(symbol);
@@ -262,10 +262,10 @@ void Grammar::constructParsingTable(std::map<Symbol, std::vector<Production>> ru
             //TODO if a cell in table has 2 values issue error
             if (hasEpsilon(first[symbols[0]])) {
                 for (auto terminal : follow[it->first])
-                    parsingTable.insertProduction(it->first, terminal, prod);
+                    parsingTable->insertProduction(it->first, terminal, prod);
             } else {
                 for (auto terminal : first[symbols[0]])
-                    parsingTable.insertProduction(it->first, terminal, prod);
+                    parsingTable->insertProduction(it->first, terminal, prod);
             }
         }
     }
@@ -277,12 +277,12 @@ void Grammar::addSyncEntries(std::map<Symbol, std::set<Symbol>> follow) {
     sync.production.push_back(Symbol(SYNC,TERMINAL));
     for (auto f : follow) {
         for (auto s : f.second) {
-            if(parsingTable.isEmpty(f.first,s))
-               parsingTable.insertProduction(f.first,s,sync);
-            else if(parsingTable.parsingTable[f.first][s].production[0].type == EPSILON)
+            if(parsingTable->isEmpty(f.first,s))
+               parsingTable->insertProduction(f.first,s,sync);
+            else if(parsingTable->parsingTable[f.first][s].production[0].type == EPSILON)
                 continue;
             else
-                parsingTable.insertProduction(f.first,s,sync);
+                parsingTable->insertProduction(f.first,s,sync);
 
         }
     }

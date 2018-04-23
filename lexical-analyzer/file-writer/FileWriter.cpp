@@ -5,6 +5,8 @@
 #include <cmath>
 #include "FileWriter.h"
 
+#define DEFAULT_OUTPUT "output"
+
 FileWriter::FileWriter() {
     fileName = DEFAULT_OUTPUT;
     file.open(fileName);
@@ -86,8 +88,10 @@ void FileWriter::drawLine(int length) {
 
 }
 
-void FileWriter::writeParserResult(std::pair<std::pair<Symbol, Production>, std::string> parserResult) {
-    if (parserResult.second.empty()) {
-        file << parserResult.first.first.toString() << " --> " << parserResult.first.second.toString() << std::endl;
+void FileWriter::writeParserResult(ParseResult parserResult) {
+    if (parserResult.msg.empty()) {
+        file << parserResult.rule.first.toString() << " ----> " << parserResult.rule.second.toString() << std::endl;
+    } else {
+        file << parserResult.msg << std::endl;
     }
 }
