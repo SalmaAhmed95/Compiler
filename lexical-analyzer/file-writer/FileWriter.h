@@ -10,7 +10,7 @@
 #include <fstream>
 #include "../automata/DFA.h"
 #include "../../parser/CFGParser.h"
-#include "../../parser/Parser.h"
+#include "../../parser/ParseResult.h"
 
 #define  SPACING 20
 
@@ -26,7 +26,7 @@ public:
 
     void closeFile();
 
-    void writeTransitionTable(DFA* dfaMin);
+    void writeTransitionTable(DFA *dfaMin);
 
     void writeParserResult(ParseResult parserResult);
 
@@ -35,7 +35,8 @@ private:
     std::string fileName;
 
     void fillSpaces(int spaceNum);
-    void drawLine (int length);
+
+    void drawLine(int length);
 };
 
 

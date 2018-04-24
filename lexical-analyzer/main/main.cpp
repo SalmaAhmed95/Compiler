@@ -1,7 +1,6 @@
 #include <ctime>
 #include "../../parser/CFGParser.h"
 #include "../../parser/Grammar.h"
-//#include "../../parser/Parser.h"
 #include "../automata/DFA.h"
 #include "../automata/NfaToDfaConverter.h"
 #include "../automata/RegexToNfaConverter.hpp"
@@ -60,60 +59,24 @@ int main(int argc, char **argv) {
     std::cout << "Finished Minimization\n";
     // TODO call non default constructor if main has paramters for lexicalOutput file
     // else default constructor
-    FileWriter *writer = new FileWriter(lexicalOutput);
-    writer->writeTransitionTable(dfaMin);
 
+    FileWriter *lexicalWriter = new FileWriter(lexicalOutput);
+    lexicalWriter->writeTransitionTable(dfaMin);
+    lexicalWriter->closeFile();
+
+    Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, lexicalWriter);
     FileWriter parserWriter = FileWriter(parserOutput);
     Grammar grammar;
     ParsingTable *parsingTable = grammar.getGrammarTable("input.txt");
+    Parser::getInstance().parse(parsingTable, tokenizer, &parserWriter);
 
-
-    std::cout << "==========================================" << std::endl;
-    Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, writer);
-    Parser::getInstance().initialize(parsingTable);
-    ParseResult result(true);
-    std::string token;
-    while (tokenizer->hasTokens()) {
-        if (result.tokenDone) {
-            token = tokenizer->nextToken();
-        }
-        if (tokenizer->tokenFound()) {
-            Symbol symbol;
-            symbol.name = token;
-            result = Parser::getInstance().parse(symbol);
-            parserWriter.writeParserResult(result);
-        }
-    }
-
-    while (!Parser::getInstance().isDone()) {
-        Symbol endSymbol = Symbol(END, START);
-        result = Parser::getInstance().parse(endSymbol);
-        parserWriter.writeParserResult(result);
-    }
-
-    writer->closeFile();
     std::cout << "Finished Matching\n";
     delete nfa;
     delete dfa;
     delete dfaMin;
-    //delete tokenizer;
-    delete writer;
+    delete tokenizer;
+    delete lexicalWriter;
     std::cout << (clock() - startTime) * 1.0 / CLOCKS_PER_SEC << '\n';
-
-//  Grammar grammar;
-//  grammar.getGrammarTable("input.txt");
-
-//
-//    std::map<Symbol, std::vector<Production>> result = CFGParser::getCFGRules("Inputfile3.txt", "properties.ini");
-//
-//    std::map<Symbol, std::vector<Production>>::iterator it;
-//    for (it = result.begin(); it != result.end(); it++) {
-//        std::cout << "NonTerminal name #" << it->first.name << "# type " << it->first.type << "\n";
-//        std::vector<Production> rules = it->second;
-//        for (Production production : it->second) {
-//            production.print();
-//        }
-//    }
 
     return 0;
 }

@@ -1,5 +1,29 @@
 #include "Parser.h"
 
+void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer) {
+    initialize(parsingTable);
+
+    ParseResult result(true);
+    std::string token;
+    while (tokenizer->hasTokens()) {
+        if (result.tokenDone) {
+            token = tokenizer->nextToken();
+        }
+        if (tokenizer->tokenFound()) {
+            Symbol symbol;
+            symbol.name = token;
+            result = Parser::getInstance().parse(symbol);
+            writer->writeParserResult(result);
+        }
+    }
+
+    while (!Parser::getInstance().isDone()) {
+        Symbol endSymbol = Symbol(END, START);
+        result = Parser::getInstance().parse(endSymbol);
+        writer->writeParserResult(result);
+    }
+}
+
 ParseResult Parser::parse(Symbol token) {
     std::cout << "\t\t\t" << token.toString() << std::endl;
     Symbol top = stack->top();

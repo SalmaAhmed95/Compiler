@@ -6,24 +6,8 @@
 #include "CFGParser.h"
 #include "ParsingTable.h"
 #include "Grammar.h"
-
-
-struct ParseResult {
-    std::string msg;
-    std::pair<Symbol, Production> rule;
-    bool tokenDone;
-
-    ParseResult() {
-        tokenDone = false;
-        msg = "";
-    }
-
-    ParseResult(bool tokenMatched) {
-        this->tokenDone = tokenMatched;
-        msg = "";
-    }
-};
-
+#include "ParseResult.h"
+#include "../lexical-analyzer/tokenizer/Tokenizer.h"
 
 class Parser {
 public:
@@ -33,11 +17,7 @@ public:
         return parser;
     }
 
-    void initialize(ParsingTable *parseTable);
-
-    ParseResult parse(Symbol token);
-
-    bool isDone();
+    void parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer);
 
 private:
 
@@ -46,6 +26,12 @@ private:
     Parser(Parser const &);
 
     void operator=(Parser const &);
+
+    void initialize(ParsingTable *parseTable);
+
+    ParseResult parse(Symbol token);
+
+    bool isDone();
 
     std::stack<Symbol> *stack;
     ParsingTable *parseTable;
