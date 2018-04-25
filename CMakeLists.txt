@@ -52,6 +52,6 @@ set(SOURCE_FILES
         parser/ParsingTable.cpp
         parser/ParsingTable.h
         parser/Parser.h
-        parser/Parser.cpp)
+        parser/Parser.cpp parser/ParseResult.h)
 
 add_executable(Compiler ${SOURCE_FILES})

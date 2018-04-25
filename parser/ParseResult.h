@@ -9,15 +9,8 @@ struct ParseResult {
     bool tokenDone;
 
     ParseResult() {
-        tokenDone = false;
         msg = "";
     }
-
-    ParseResult(bool tokenMatched) {
-        this->tokenDone = tokenMatched;
-        msg = "";
-    }
-
 };
 
 

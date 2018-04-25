@@ -20,6 +20,7 @@ public:
     void parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer);
 
 private:
+    const Symbol END_SYMBOL = Symbol(END, START);
 
     Parser() {};
 
@@ -30,8 +31,6 @@ private:
     void initialize(ParsingTable *parseTable);
 
     ParseResult parse(Symbol token);
-
-    bool isDone();
 
     std::stack<Symbol> *stack;
     ParsingTable *parseTable;
