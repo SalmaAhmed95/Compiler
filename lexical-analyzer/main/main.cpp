@@ -62,14 +62,14 @@ int main(int argc, char **argv) {
 
     FileWriter *lexicalWriter = new FileWriter(lexicalOutput);
     lexicalWriter->writeTransitionTable(dfaMin);
-    lexicalWriter->closeFile();
 
     Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, lexicalWriter);
     FileWriter parserWriter = FileWriter(parserOutput);
     Grammar grammar;
     ParsingTable *parsingTable = grammar.getGrammarTable("input.txt");
     Parser::getInstance().parse(parsingTable, tokenizer, &parserWriter);
-
+    
+    lexicalWriter->closeFile();
     std::cout << "Finished Matching\n";
     delete nfa;
     delete dfa;
