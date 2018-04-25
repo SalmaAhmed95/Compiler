@@ -57,8 +57,6 @@ int main(int argc, char **argv) {
     std::cout << "Finished DFA \n";
     DFA *dfaMin = DfaMinimizer::getInstance().minimizeDfa(dfa);
     std::cout << "Finished Minimization\n";
-    // TODO call non default constructor if main has paramters for lexicalOutput file
-    // else default constructor
 
     FileWriter *lexicalWriter = new FileWriter(lexicalOutput);
     lexicalWriter->writeTransitionTable(dfaMin);
