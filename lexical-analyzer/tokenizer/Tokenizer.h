@@ -12,9 +12,10 @@
 #include "../utils/SymbolTable.h"
 
 #define EMPTYSTRING ""
+
 class Tokenizer {
 public:
-    Tokenizer(DFA *dfa, std::string inputFile,std::string properties, FileWriter *writer);
+    Tokenizer(DFA *dfa, std::string inputFile, std::string properties, FileWriter *writer);
 
     bool findMatch(stateID startDFA, int startChar);
 
@@ -25,8 +26,7 @@ public:
     bool tokenFound();
 
     void recoveryRoutine(int startIndex);
-    
-    
+
 
 private:
     DFA *minDFA;

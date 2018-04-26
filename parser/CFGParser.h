@@ -32,9 +32,15 @@ struct Symbol {
         return name == rhs.name && (type == rhs.type || (type == START && rhs.type == NON_TERMINAL));
     }
 
+
     bool operator!= (const Symbol& rhs) const{
         return name != rhs.name || (type != rhs.type);
     }
+
+    std::string toString () {
+        return name;
+    }
+
     void print() {
         std::cout<<"name "<<name<<" type "<<type;
     }
@@ -42,6 +48,14 @@ struct Symbol {
 
 struct Production {
     std::vector<Symbol> production;
+
+    std::string toString() {
+        std::string string;
+        for (Symbol symbol: production) {
+            string += symbol.name;
+        }
+        return string;
+    }
 
     void print() {
         std::cout <<"current production  ";

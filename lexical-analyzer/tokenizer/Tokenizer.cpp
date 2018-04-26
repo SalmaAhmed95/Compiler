@@ -2,7 +2,6 @@
 // // Created by salma on 16/03/18.
 // //
 
-#include "../file-writer/FileWriter.h"
 #include "Tokenizer.h"
 
 Tokenizer::Tokenizer(DFA *dfa, std::string inputFile,
@@ -14,14 +13,15 @@ Tokenizer::Tokenizer(DFA *dfa, std::string inputFile,
     fwriter = writer;
     symbolTable = new SymbolTable();
 }
+
 std::string Tokenizer::nextToken() {
     stateID startDFA = minDFA->getRootID();
-        int curIndex = parser->getCurIndex();
-        if (!findMatch(startDFA, curIndex)) {
-            // if match not found print error then advance ptr & try to continue
-            // finding patterns
-            recoveryRoutine(curIndex + 1);
-        }
+    int curIndex = parser->getCurIndex();
+    if (!findMatch(startDFA, curIndex)) {
+        // if match not found print error then advance ptr & try to continue
+        // finding patterns
+        recoveryRoutine(curIndex + 1);
+    }
     return token;
 }
 
@@ -31,7 +31,7 @@ bool Tokenizer::findMatch(stateID startDFA, int startChar) {
     std::string match;
     std::string tokenType;
     int matchIndex = -1;
-    token ="";
+    token = "";
     int prevPercedence = INT16_MIN;
     char c;
     std::set<char> attr = minDFA->getAllAttributes();
@@ -65,15 +65,17 @@ bool Tokenizer::findMatch(stateID startDFA, int startChar) {
         return true;
     }
 }
+
 bool Tokenizer::hasTokens() {
     parser->hasChars();
 }
 
 bool Tokenizer::tokenFound() {
-    if(token!="")
+    if (token != "")
         return true;
     else false;
 }
+
 void Tokenizer::recoveryRoutine(int startIndex) {
     /*drop one letter from stream in order to start matching again from after
     that

@@ -5,6 +5,8 @@
 #include <cmath>
 #include "FileWriter.h"
 
+#define DEFAULT_OUTPUT "output"
+
 FileWriter::FileWriter() {
     fileName = DEFAULT_OUTPUT;
     file.open(fileName);
@@ -43,15 +45,13 @@ void FileWriter::writeTransitionTable(DFA *dfaMin) {
         file << "\n" << i;
         std::string s = std::to_string(i);
         fillSpaces(4 - s.length());
-        if (i == 0){
+        if (i == 0) {
             file << "Start";
             fillSpaces(5);
-        }
-        else if (dfaMin->isPHI(i)){
+        } else if (dfaMin->isPHI(i)) {
             file << "Phi";
             fillSpaces(7);
-        }
-        else{
+        } else {
             file << dfaMin->getTokenClass(i);
             fillSpaces(10 - dfaMin->getTokenClass(i).length());
         }
@@ -86,4 +86,12 @@ void FileWriter::drawLine(int length) {
     file << "\n";
 
 
+}
+
+void FileWriter::writeParserResult(ParseResult parserResult) {
+    if (parserResult.msg.empty()) {
+        file << parserResult.rule.first.toString() << " ----> " << parserResult.rule.second.toString() << std::endl;
+    } else {
+        file << parserResult.msg << std::endl;
+    }
 }

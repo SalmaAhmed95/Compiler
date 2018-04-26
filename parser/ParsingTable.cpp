@@ -22,3 +22,12 @@ bool ParsingTable::isSync(Symbol nonTerminal, Symbol terminal) {
     return prod.production[0].name == SYNC;
 }
 
+
+Symbol ParsingTable::getStartSymbol() {
+    return start;
+}
+
+void ParsingTable::setStartSymbol(Symbol start) {
+    this->start = start;
+}
+

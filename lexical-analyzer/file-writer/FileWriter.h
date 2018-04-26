@@ -9,8 +9,9 @@
 #include <iostream>
 #include <fstream>
 #include "../automata/DFA.h"
+#include "../../parser/CFGParser.h"
+#include "../../parser/ParseResult.h"
 
-#define  DEFAULT_OUTPUT "output.txt"
 #define  SPACING 20
 
 class FileWriter {
@@ -25,13 +26,17 @@ public:
 
     void closeFile();
 
-    void writeTransitionTable(DFA* dfaMin);
+    void writeTransitionTable(DFA *dfaMin);
+
+    void writeParserResult(ParseResult parserResult);
+
 private:
     std::ofstream file;
     std::string fileName;
 
     void fillSpaces(int spaceNum);
-    void drawLine (int length);
+
+    void drawLine(int length);
 };
 
 

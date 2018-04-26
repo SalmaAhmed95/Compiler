@@ -3,5 +3,5 @@ lexical-analyzer/build
 build/
 cmake-build-debug/*
 !cmake-build-debug/properties.ini
-!cmake-build-debug/lexical_rules.txt
-!cmake-build-debug/code.txt
+!cmake-build-debug/*.txt
+cmake-build-debug/CMakeCache.txt

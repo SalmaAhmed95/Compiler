@@ -15,13 +15,14 @@ class Grammar {
 
 public:
 
-    ParsingTable getGrammarTable(std::string fileName);
+    ParsingTable* getGrammarTable(std::string fileName);
 
+    void printParsingTable(ParsingTable parsingTable);
 
 private:
     std::map<Symbol, std::set<Symbol>> first, follow;
     std::set<Symbol> terminals, nonTerminals;
-    ParsingTable parsingTable;
+    ParsingTable* parsingTable = new ParsingTable;
 
 
     void constructTerminals(std::map<Symbol, std::vector<Production>> rules);
@@ -49,8 +50,5 @@ private:
     void addSyncEntries(std::map<Symbol, std::set<Symbol>> follow);
 
     void printSets(std::map<Symbol, std::set<Symbol>> set);
-
-    void printParsingTable(ParsingTable parsingTable);
-
 };
 #endif
