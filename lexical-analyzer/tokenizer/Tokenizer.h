@@ -13,13 +13,30 @@
 
 #define EMPTYSTRING ""
 
+struct Lexeme {
+    std::string name;
+    std::string lexemeType;
+
+    Lexeme() {}
+
+    Lexeme(std::string, std::string lexemeType) {
+        this->name = name;
+        this->lexemeType = lexemeType;
+    }
+
+    bool operator==(const Lexeme &lexeme) const {
+        return name == lexeme.name && lexemeType == lexeme.lexemeType;
+    }
+};
+
 class Tokenizer {
 public:
+
     Tokenizer(DFA *dfa, std::string inputFile, std::string properties, FileWriter *writer);
 
     bool findMatch(stateID startDFA, int startChar);
 
-    std::string nextToken();
+    struct Lexeme nextToken();
 
     bool hasTokens();
 
@@ -34,7 +51,7 @@ private:
     FileWriter *fwriter;
     std::string propertiesFile;
     SymbolTable *symbolTable;
-    std::string token;
+    struct Lexeme token;
 };
 
 #endif // COMPILER_Tokenizer_H

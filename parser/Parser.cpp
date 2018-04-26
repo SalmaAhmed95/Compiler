@@ -3,7 +3,7 @@
 void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer) {
     initialize(parsingTable);
 
-    std::string token;
+    Lexeme token;
     ParseResult result;
     result.tokenDone = true;
 
@@ -13,49 +13,51 @@ void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter 
             token = tokenizer->nextToken();
         }
         if (tokenizer->tokenFound()) {
-            Symbol symbol;
-            symbol.name = token;
-            result = Parser::getInstance().parse(symbol);
+            result = Parser::getInstance().parse(token);
             writer->writeParserResult(result);
         }
     }
 
     // For the remaining elements in the stack with the END symbol
     while (!stack->empty()) {
-        result = Parser::getInstance().parse(END_SYMBOL);
+        std::cout << "HERE" << std::endl;
+        result = Parser::getInstance().parse(END_LEXEME);
+        if (!stack->empty()) {
+            stack->pop();
+        }
         writer->writeParserResult(result);
     }
 }
 
-ParseResult Parser::parse(Symbol token) {
+ParseResult Parser::parse(Lexeme token) {
     // To remove all the epsilons then start matching another symbol so the output message will not be empty
     while (stack->top().type == EPSILON) { stack->pop(); }
 
     Symbol top = stack->top();
     ParseResult result;
-    if (top.type == START && token.type == START) {
+    if (top.type == START && token == END_LEXEME) {
         stack->pop();
         result.msg = "FINISHED MATCHING";
         result.tokenDone = true;
     } else if (top.type == SymbolType::TERMINAL) {
-        if (top.name != token.name) {
+        if (top.name != token.lexemeType) {
             result.msg = "Error: missing " + top.toString() + ", inserted";
             result.tokenDone = false;
         } else {
-            result.msg = "Matched " + token.toString();
+            result.msg = "Matched " + token.name;
             result.tokenDone = true;
         }
         stack->pop();
     } else {
-        if (parseTable->isEmpty(top, token)) {
-            result.msg = "Error: (illegal " + top.toString() + ") - discard " + token.toString();
+        if (parseTable->isEmpty(top, Symbol(token.lexemeType, TERMINAL))) {
+            result.msg = "Error: (illegal " + top.toString() + ") - discard " + token.name;
             result.tokenDone = true;
-        } else if (parseTable->isSync(top, token)) {
+        } else if (parseTable->isSync(top, Symbol(token.lexemeType, TERMINAL))) {
             result.msg = "Error: Looking for a synchronizing token";
             result.tokenDone = false;
             stack->pop();
         } else {
-            Production prod = parseTable->getProduction(top, token);
+            Production prod = parseTable->getProduction(top, Symbol(token.lexemeType, TERMINAL));
             result.rule.first = stack->top();
             result.rule.second = prod;
             result.tokenDone = false;

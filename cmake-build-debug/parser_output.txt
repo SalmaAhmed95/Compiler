@@ -1,14 +1,70 @@
-Error: (illegal E) - discard *
-Error: (illegal E) - discard +
-E ----> TED
-T ----> FTD
-F ----> id
-Matched id
-TD ----> \L
-ED ----> \L
-Error: (illegal `) - discard )
-Error: (illegal `) - discard +
-Error: (illegal `) - discard (
-Error: (illegal `) - discard id
-Error: (illegal `) - discard *
+METHOD_BODY ----> STATEMENT_LIST
+STATEMENT_LIST ----> DECLARATION STATEMENT_LIST0
+DECLARATION ----> PRIMITIVE_TYPE id ;
+PRIMITIVE_TYPE ----> int
+Matched int
+Matched x
+Matched ;
+STATEMENT_LIST0 ----> STATEMENT STATEMENT_LIST0
+STATEMENT ----> ASSIGNMENT
+ASSIGNMENT ----> id assign EXPRESSION ;
+Matched x
+Matched =
+EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
+SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
+TERM ----> num TERM0
+Matched 5
+TERM0 ----> \L
+SIMPLE_EXPRESSION0 ----> \L
+EXPRESSION0 ----> \L
+Matched ;
+STATEMENT_LIST0 ----> STATEMENT STATEMENT_LIST0
+STATEMENT ----> IF
+IF ----> if ( EXPRESSION ) { STATEMENT } else { STATEMENT }
+Matched if
+Matched (
+EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
+SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
+TERM ----> id TERM0
+Matched x
+TERM0 ----> \L
+SIMPLE_EXPRESSION0 ----> \L
+EXPRESSION0 ----> relop SIMPLE_EXPRESSION
+Matched >
+SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
+TERM ----> num TERM0
+Matched 2
+TERM0 ----> \L
+SIMPLE_EXPRESSION0 ----> \L
+Matched )
+Matched {
+STATEMENT ----> ASSIGNMENT
+ASSIGNMENT ----> id assign EXPRESSION ;
+Matched x
+Matched =
+EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
+SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
+TERM ----> num TERM0
+Matched 0
+TERM0 ----> \L
+SIMPLE_EXPRESSION0 ----> \L
+EXPRESSION0 ----> \L
+Matched ;
+Matched }
+Matched else
+Matched {
+STATEMENT ----> ASSIGNMENT
+ASSIGNMENT ----> id assign EXPRESSION ;
+Matched x
+Matched =
+EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
+SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
+TERM ----> num TERM0
+Matched 7
+TERM0 ----> \L
+SIMPLE_EXPRESSION0 ----> \L
+EXPRESSION0 ----> \L
+Matched ;
+Matched }
+STATEMENT_LIST0 ----> \L
 FINISHED MATCHING

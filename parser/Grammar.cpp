@@ -44,7 +44,7 @@ ParsingTable* Grammar::getGrammarTable(std::string fileName) {
 //    rules[f].push_back(p5);
 //    rules[f].push_back(p6);
     for(auto rule : rules){
-        std::cout<<rule.first.name<<">>";
+        std::cout<<rule.first.name <<"  TYPE  "<<rule.first.type<<">>";
         for(auto prod : rule.second){
             prod.print();
         }
@@ -66,8 +66,10 @@ void Grammar::constructNonTerminals(
         std::map<Symbol, std::vector<Production>> rules) {
     for (auto it = rules.begin(); it != rules.end(); it++) {
         nonTerminals.insert(it->first);
-        if(it->first.type == START)
+        if(it->first.type == START) {
             parsingTable->setStartSymbol(it->first);
+            follow[it->first].insert(Symbol(END, TERMINAL));
+        }
     }
 }
 

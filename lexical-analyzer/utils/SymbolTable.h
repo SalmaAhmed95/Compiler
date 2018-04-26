@@ -6,18 +6,18 @@
 #define COMPILER_SYMBOLTABLE_H
 
 #include <string>
-#include <vector>
+#include <set>
 
 class SymbolTable {
 public:
-    SymbolTable();
+    static void insert(std::string identifierVal);
 
-    void insert(std::string identifierVal);
+    static bool contains(std::string id);
 
-    std::vector<std::string> getAllIndetifiers();
+    static std::set<std::string> getAllIndetifiers();
 
 protected:
-    std::vector<std::string> *table;
+    static std::set<std::string> table;
 };
 
 
