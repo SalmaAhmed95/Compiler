@@ -113,11 +113,13 @@ void Grammar::constructFirst(std::map<Symbol, std::vector<Production>> rules) {
                 if (symbol.type == TERMINAL || symbol.type == EPSILON) {
                     first[currentNode->getSymbol()].insert(symbol);
                     stop = true;
-                } else {
+                } else if (graph[symbol] != NULL) {
                     ProductionNode *nextNode = graph[symbol];
                     first[currentNode->getSymbol()].insert(first[symbol].begin(),
                                                            first[symbol].end());
                     stop = !nextNode->containsEps();
+                } else {
+                    exit(0);
                 }
                 if (stop) {
                     break;
