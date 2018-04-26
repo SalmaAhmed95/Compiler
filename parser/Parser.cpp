@@ -20,7 +20,6 @@ void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter 
 
     // For the remaining elements in the stack with the END symbol
     while (!stack->empty()) {
-        std::cout << "HERE" << std::endl;
         result = Parser::getInstance().parse(END_LEXEME);
         if (!stack->empty()) {
             stack->pop();

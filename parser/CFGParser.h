@@ -36,6 +36,10 @@ struct Symbol {
         return name == rhs.name && (type == rhs.type || (type == START && rhs.type == NON_TERMINAL));
     }
 
+    bool operator!=(const Symbol &rhs) const {
+        return name != rhs.name || (type != rhs.type);
+    }
+
     std::string toString() {
         return name;
     }
@@ -87,17 +91,27 @@ private:
 
     static bool checkRulesValidaty(std::map<Symbol, std::vector<Production>> *rules);
 
-    static void performLeftRecusiveElimination(std::map<Symbol, std::vector<Production>> *rules);
+    static void performLeftRecursiveElimination(std::map<Symbol, std::vector<Production>> *rules);
 
-    static bool checkLeftRecusive(Symbol &first, Symbol &rhsSymbol, Production &curRule,
-                                  std::vector<Production> *alpha, std::vector<Production> *beta);
+    static bool checkLeftRecursive(Symbol &first, Symbol &rhsSymbol, Production &curRule,
+                                   std::vector<Production> *alpha, std::vector<Production> *beta);
 
-    static void performleftFactoring(std::map<Symbol, std::vector<Production>> *rules);
+    static void excuteLeftFactoring(std::map<Symbol, std::vector<Production>> *curRules);
 
-    static void checkLeftFactoring(std::map<Symbol, std::vector<Production>> *rules,
+    static std::map<Symbol, std::vector<Production>>::iterator
+    performLeftFactoring(std::map<Symbol, std::vector<Production>> *tempRules,
+                         std::map<Symbol, std::vector<Production>> *curRules, std::vector<Production> &productions,
+                         Symbol firstSymbol);
+
+    static void checkLeftFactoring(std::map<Symbol, std::vector<Production>> *tempRules,
+                                   std::map<Symbol, std::vector<Production>> *curRules,
                                    std::map<Symbol, std::vector<Production>>::iterator it);
 
     static void errorRoutine();
+
+    static std::string getNewSymbolName(std::map<Symbol, std::vector<Production>> *curRules,
+                                        std::map<Symbol, std::vector<Production>> *tempRules,
+                                        std::string &firstSymbolName);
 };
 
 

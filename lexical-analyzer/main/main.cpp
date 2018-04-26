@@ -58,8 +58,10 @@ int main(int argc, char **argv) {
     DFA *dfaMin = DfaMinimizer::getInstance().minimizeDfa(dfa);
     std::cout << "Finished Minimization\n";
 
+
     FileWriter *lexicalWriter = new FileWriter(lexicalOutput);
     lexicalWriter->writeTransitionTable(dfaMin);
+
 
     Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, lexicalWriter);
     FileWriter parserWriter = FileWriter(parserOutput);
