@@ -146,13 +146,17 @@ void FileWriter::writeLeftDerivation(std::list<Symbol> *derivationLeftSide,
     for (auto symbol: *derivationLeftSide) {
         file << symbol.toString() << " ";
     }
+
     auto endIterator = stack->end(), newLine = stack->end();
     endIterator--, newLine--, newLine--;
+
     for (auto it = stack->begin(); it != endIterator; it++) {
         file << (*it).toString() << (it == newLine ? "" : " ");
     }
+
     if (!errorMsg.empty()) {
         file << " ---> " << errorMsg;
     }
+
     file << std::endl;
 }

@@ -2,10 +2,6 @@
 // Created by karfass on 18/04/2018.
 
 #include "CFGParser.h"
-#include <fstream>
-#include <set>
-#include <climits>
-#include "../lexical-analyzer/utils/StringUtils.h"
 
 #define START_LINE '#'
 #define TERMINAL_IDENTIFIER '\''
@@ -23,15 +19,18 @@ void CFGParser::parseLine(std::string &curRule, std::string &firstSymbolName, st
         curRule = curRule.erase(0, index + 1);
         std::vector<std::string> tokens = StringUtils::splitString(curRule, DEFINITION_SEPARATOR);
        if (tokens.size() != 2) {
-            errorRoutine();
+            errorRoutine(ErrorHandler::MULTIPLE_DEFINITIONS);
         } else {
             std::string nonTerminal = tokens[0];
-            Symbol newSymbol(nonTerminal, NON_TERMINAL);
-            if (rules->empty()) {
-                newSymbol.type = START;
-                firstSymbolName = nonTerminal;
+           Symbol newSymbol(nonTerminal, NON_TERMINAL);
+            if (checkNonTerminalValidity(tokens[0])) {
+                if (rules->empty()) {
+                    newSymbol.type = START;
+                    firstSymbolName = nonTerminal;
+                }
+            } else {
+                errorRoutine(ErrorHandler::NONTERMINAL_INVALID);
             }
-
             std::vector<Production> productions = calculateProductions(tokens[1],firstSymbolName);
             std::map<Symbol, std::vector<Production>>::iterator it;
             it = rules->find(newSymbol);
@@ -48,13 +47,31 @@ void CFGParser::parseLine(std::string &curRule, std::string &firstSymbolName, st
             }
         }
     } else {
-        errorRoutine();
+        errorRoutine(ErrorHandler::MISSING_START_SYMBOL);
     }
     curRule.clear();
 }
 
-std::map<Symbol, std::vector<Production>>
-CFGParser::getCFGRules(std::string rulesFileName, std::string propertiesFileName) {
+bool CFGParser::checkNonTerminalValidity(std::string &lhs) {
+    int indexNonDelimiterChar = StringUtils::getFirstChar(lhs);
+    bool delimiterFound = false;
+    if (indexNonDelimiterChar != lhs.length()){
+        for (int i = indexNonDelimiterChar; i < lhs.length(); i++) {
+            if (StringUtils::isDelimiter(lhs.at(i))){
+                delimiterFound = true;
+            } else {
+                if (delimiterFound) {
+                    return false;
+                }
+            }
+        }
+    }else{
+        return false;
+    }
+    return true;
+}
+std::map<Symbol, std::vector<Production>> CFGParser::getCFGRules(std::string rulesFileName,
+                                                                 std::string propertiesFileName) {
     std::map<Symbol, std::vector<Production>> rules;
     std::ifstream *inFile = openFile(rulesFileName);
     Properties::PropertiesData propertiesData;
@@ -75,24 +92,14 @@ CFGParser::getCFGRules(std::string rulesFileName, std::string propertiesFileName
         parseLine(curRule, startSymbolName, &rules);
     }
 
-   if (!checkRulesValidaty(&rules)) {
-        errorRoutine();
+   if (!checkRulesValidity(&rules)) {
+        errorRoutine(ErrorHandler::MISSING_NONTERMINAL_DEFINITION);
     }
+    executeLeftRecursiveElimination(&rules);
+    executeLeftFactoring(&rules);
 
-    performLeftRecursiveElimination(&rules);
-    excuteLeftFactoring(&rules);
     inFile->close();
     return rules;
-}
-
-std::ifstream *CFGParser::openFile(std::string fileName) {
-    std::ifstream *inFile = new std::ifstream;
-    inFile->open(fileName);
-    if (!inFile) {
-        std::cout << "Unable to find grammer rules file";
-        exit(1);
-    }
-    return inFile;
 }
 
 
@@ -122,36 +129,41 @@ std::vector<Production> CFGParser::calculateProductions(std::string &rhs, std::s
             if (!singleQuoteFound) {
                 singleQuoteFound = true;
                 if (curToken.length() != 0) {
-                    errorRoutine();
+                    errorRoutine(ErrorHandler::ERROR_IN_TERMINAL_DEFINTIION);
                 }
             } else {
                 if (curToken.length() != 0) {
                     Symbol newTerminal(curToken, TERMINAL);
                     rules.back().production.push_back(newTerminal);
-                    singleQuoteFound = false;
                     curToken.clear();
                 }
+                singleQuoteFound = false;
             }
-        } else if (curChar == OR_SEPARATOR && index > 0 && rhs.at(index - 1) != '\\') {
+        } else if (curChar == OR_SEPARATOR && (index == 0 || (index > 0 && rhs.at(index - 1) != '\\'))) {
             if (singleQuoteFound) {
-                errorRoutine();
+                errorRoutine(ErrorHandler::ERROR_IN_TERMINAL_DEFINTIION);
             } else {
                 if (curToken.length() != 0) {
                     if (curToken == startSymbolName){
                         Symbol newTerminal(curToken, START);
                         rules.back().production.push_back(newTerminal);
+                    } else {
+                        Symbol newTerminal(curToken, NON_TERMINAL);
+                        rules.back().production.push_back(newTerminal);
                     }
-                    Symbol newTerminal(curToken, NON_TERMINAL);
-                    rules.back().production.push_back(newTerminal);
                 }
                 curToken.clear();
             }
-            Production newProduction;
-            rules.push_back(newProduction);
+            if (!rules.back().production.empty()) {
+                Production newProduction;
+                rules.push_back(newProduction);
+            } else {
+                    errorRoutine(ErrorHandler::MISSING_NONTERMINAL_DEFINITION);
+            }
 
         } else if (curChar == LAMBDA_SYMBOL.at(1) && index > 0 && rhs.at(index - 1) == LAMBDA_SYMBOL.at(0)) {
             if (curToken.length() > 1 || singleQuoteFound) {
-                errorRoutine();
+                errorRoutine(ErrorHandler::NOSPACE_BEFORE_LAMBDA);
             }
             curToken.append(1, curChar);
             Symbol newTerminal(curToken, EPSILON);
@@ -163,7 +175,7 @@ std::vector<Production> CFGParser::calculateProductions(std::string &rhs, std::s
     }
 
     if (singleQuoteFound) {
-        errorRoutine();
+        errorRoutine(ErrorHandler::ERROR_IN_TERMINAL_DEFINTIION);
     } else {
         if (!curToken.empty()) {
             if (curToken == startSymbolName) {
@@ -178,26 +190,7 @@ std::vector<Production> CFGParser::calculateProductions(std::string &rhs, std::s
     return rules;
 }
 
-void CFGParser::errorRoutine() {
-    std::cout << "Error in defining rules\n";
-    exit(1);
-}
-
-void CFGParser::loadProperties(std::string propertiesFileName,
-                               Properties::PropertiesData &propertiesData) {
-    std::ifstream propertiesFile(propertiesFileName.c_str());
-    handleFileNotFound(propertiesFile);
-    propertiesFile >> propertiesData;
-}
-
-void CFGParser::handleFileNotFound(std::ifstream &file) {
-    if (!file) {
-        std::cout << "File not found" << std::endl;
-        exit(0);
-    }
-}
-
-void CFGParser::performLeftRecursiveElimination(std::map<Symbol, std::vector<Production>> *rules) {
+void CFGParser::executeLeftRecursiveElimination(std::map<Symbol, std::vector<Production>> *rules) {
     std::set<Symbol> nonTerminals;
     std::map<Symbol, std::vector<Production>>::iterator it;
     std::map<Symbol, std::vector<Production>> tempRules;
@@ -286,14 +279,11 @@ std::map<Symbol,std::vector<Production>> :: iterator CFGParser::performLeftFacto
                                                                                        std::map<Symbol,std::vector<Production>> *curRules,
                                                                                        std::vector<Production> &productions,
                                                                                        Symbol firstSymbol) {
-    std::cout<<"perform left factoring\n";
-    std::cout<<firstSymbol.name<<"55%\n";
        int index =  1;
        bool error = false;
        Production newProduction;
        while (index < productions[0].production.size()) {
            Symbol startSymbol = productions[0].production[index];
-           std::cout<<startSymbol.name<<"\n";
            for (int i = 1; i < productions.size(); i++) {
                if (index >= productions[i].production.size() || productions[i].production[index] != startSymbol) {
                    error = true;
@@ -309,17 +299,13 @@ std::map<Symbol,std::vector<Production>> :: iterator CFGParser::performLeftFacto
        if (index == 1 && index >= productions[0].production.size() || index == productions[0].production.size()){
            index--;
        }
-       std::cout<<index<< "updating\n";
        /*updates the production for the left factored rule*/
         for (int i = 0; i <= index; i++) {
-            std::cout<<"start\n";
-            std::cout<<productions[0].production[i].name<<"\n";
             newProduction.production.push_back(productions[0].production[i]);
         }
 
        /*create new rule*/
       std::vector<Production> newProductions;
-      std::cout<<"new productions\n";
       bool remainingSymbols = false;
       int minimumSizeProduction = INT_MAX;
       for (int i = 0; i < productions.size(); i++) {
@@ -329,14 +315,12 @@ std::map<Symbol,std::vector<Production>> :: iterator CFGParser::performLeftFacto
               newProduction.production.push_back(productions[i].production[j]);
           }
           if (!newProduction.production.empty()) {
-              newProduction.print();
               remainingSymbols = true;
               newProductions.push_back(newProduction);
           }
       }
 
     Symbol newNonTerminalSymbol (getNewSymbolName(tempRules, curRules, firstSymbol.name), NON_TERMINAL);
-    std::cout<<"new non Terminal"<<newNonTerminalSymbol.name<<"\n";
     if (remainingSymbols) {
         newProduction.production.push_back(newNonTerminalSymbol);
         if (index + 1 == minimumSizeProduction) {
@@ -354,7 +338,6 @@ std::map<Symbol,std::vector<Production>> :: iterator CFGParser::performLeftFacto
         newRule.push_back(newProduction);
         tempRules->insert(std::pair<Symbol, std::vector<Production>>(firstSymbol,newRule));
     }
-    std::cout<<"new productions vector size#"<<newProductions.size()<<"\n";
    if (!newProductions.empty()) {
        return tempRules->insert(std::pair<Symbol, std::vector<Production>>(newNonTerminalSymbol, newProductions)).first;
    } else {
@@ -368,12 +351,9 @@ void CFGParser::checkLeftFactoring(std::map<Symbol, std::vector<Production>> *te
                                      std::map<Symbol, std::vector<Production>>::iterator it) {
 
     std::vector<Production> productions = it->second;
-    std::cout<<"in check left facroring recusive \n";
-    std::cout<<"nonTerminal name #"<<it->first.name<<"#\n";
     std::map<Symbol, std::vector<Production>> commonStart;
     for (int i = 0; i < productions.size(); i++) {
         Symbol startSymbol = productions.at(i).production.front();
-        std::cout<<"symbol at first production "<<startSymbol.name<<"\n";
         std::map<Symbol, std::vector<Production>> :: iterator ret;
         ret = commonStart.find(startSymbol);
         if (ret != commonStart.end()) {
@@ -386,44 +366,37 @@ void CFGParser::checkLeftFactoring(std::map<Symbol, std::vector<Production>> *te
     }
     /*there's left recusive*/
     if (commonStart.size() != productions.size()) {
-            std::cout<<"common start size"<<commonStart.size()<<"\n";
             it->second.clear();
             for (std::map<Symbol, std::vector<Production>> ::iterator itTemp = commonStart.begin(); itTemp != commonStart.end(); itTemp++){
-                std::cout<<"for loop each has same beginning#"<<it->first.name<<"%\n";
                 std::map<Symbol,std::vector<Production>> :: iterator returnLeft = performLeftFactoring(tempRules,curRules,itTemp->second, it->first);
 
                 if (returnLeft != tempRules->end() && returnLeft->second.size() > 1) {
-                    std::cout<<"return left#"<<returnLeft->first.name<<" "<<returnLeft->second.size()<<"\n";
                     checkLeftFactoring(tempRules, curRules, returnLeft);
                 }
             }
     }
 }
 
-void CFGParser::excuteLeftFactoring(std::map<Symbol,std::vector<Production>> *curRules){
+void CFGParser::executeLeftFactoring(std::map<Symbol,std::vector<Production>> *curRules){
     std::map<Symbol,std::vector<Production>> tempRules;
-    std::cout<<"in excute left factoring\n";
         for (std::map<Symbol, std::vector<Production>>::iterator it = curRules->begin(); it != curRules->end(); it++) {
             checkLeftFactoring(&tempRules, curRules, it);
         }
 
         for (std::map<Symbol, std::vector<Production>>::iterator itTemp = tempRules.begin();
              itTemp != tempRules.end(); itTemp++) {
-            std::cout<<"temp to main#"<<itTemp->first.name<<"\n";
             std::map<Symbol,std::vector<Production>> :: iterator ret =curRules->find(itTemp->first);
             if (ret != curRules->end()) {
-                std::cout<<"here\n";
                 ret->second.clear();
                 ret->second  = itTemp->second;
             } else{
-                std::cout<<"here2    "<<itTemp->second.size()<<"\n";
                 if(!itTemp->second.empty()) {
                     curRules->insert(std::pair<Symbol, std::vector<Production>>(itTemp->first, itTemp->second));
                 }
             }
         }
 }
-bool CFGParser::checkRulesValidaty(std::map<Symbol, std::vector<Production>> *rules) {
+bool CFGParser::checkRulesValidity(std::map<Symbol, std::vector<Production>> *rules) {
     std::map<Symbol, std::vector<Production>>::iterator it;
     for (it = rules->begin(); it != rules->end(); it++) {
         std::vector<Production> curRules = it->second;
@@ -443,8 +416,6 @@ std:: string CFGParser::getNewSymbolName (std::map<Symbol,std::vector<Production
     int i = 0;
     Symbol newNonTerminalSymbol;
     std::string newNonTerminalName;
-    std::cout<<"get new symbol name#"<<firstSymbolName<<"\n";
-    std::cout<<"size of tempRules getSymbolName"<<tempRules->size()<<"\n";
     do {
         newNonTerminalName = firstSymbolName;
         newNonTerminalName.append(std::to_string(i));
@@ -452,4 +423,34 @@ std:: string CFGParser::getNewSymbolName (std::map<Symbol,std::vector<Production
         i++;
     } while (curRules->find(newNonTerminalSymbol) != curRules->end() || tempRules->find(newNonTerminalSymbol) != tempRules->end());
     return newNonTerminalName;
+}
+
+
+void CFGParser::errorRoutine(ErrorHandler::Error error) {
+    std::cout <<ErrorHandler::errors[error];
+    exit(1);
+}
+
+void CFGParser::loadProperties(std::string propertiesFileName,
+                               Properties::PropertiesData &propertiesData) {
+    std::ifstream propertiesFile(propertiesFileName.c_str());
+    handleFileNotFound(propertiesFile);
+    propertiesFile >> propertiesData;
+}
+
+std::ifstream *CFGParser::openFile(std::string fileName) {
+    std::ifstream *inFile = new std::ifstream;
+    inFile->open(fileName);
+    if (!inFile) {
+        std::cout << "Unable to find grammer rules file";
+        exit(1);
+    }
+    return inFile;
+}
+
+void CFGParser::handleFileNotFound(std::ifstream &file) {
+    if (!file) {
+        std::cout << "File not found" << std::endl;
+        exit(0);
+    }
 }

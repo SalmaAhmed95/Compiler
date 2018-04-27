@@ -3,7 +3,6 @@
 //
 
 #include "Grammar.h"
-#include "ParsingTable.h"
 #include <iostream>
 
 ParsingTable *Grammar::getGrammarTable(std::string fileName) {
@@ -219,7 +218,7 @@ void Grammar::constructParsingTable(std::map<Symbol, std::vector<Production>> ru
             if (hasEpsilon(first[symbols[0]])) {
                 for (auto terminal : follow[it->first]) {
                     if (!parsingTable->isEmpty(it->first, terminal)) {
-                        std::cout << "ERROR GRAMMER ISNOT LL(1)!";
+                        std::cout << ErrorHandler::errors[ErrorHandler::notLL1Error];
                         exit(0);
                     }
                     parsingTable->insertProduction(it->first, terminal, prod);
@@ -227,7 +226,7 @@ void Grammar::constructParsingTable(std::map<Symbol, std::vector<Production>> ru
             } else {
                 for (auto terminal : first[symbols[0]]) {
                     if (!parsingTable->isEmpty(it->first, terminal)) {
-                        std::cout << "ERROR GRAMMER ISNOT LL(1)!";
+                        std::cout << ErrorHandler::errors[ErrorHandler::notLL1Error];
                         exit(0);
                     }
                     parsingTable->insertProduction(it->first, terminal, prod);
