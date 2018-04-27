@@ -3,14 +3,14 @@
 void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer,
                    FileWriter *writer, FileWriter *leftDerivationWriter) {
     initialize(parsingTable);
-
     writer->writeParsingTable(parsingTable);
-    writer->writeLeftDerivation(derivativeLeftSide, stack, "");
 
     Lexeme token;
 
     ParseResult result;
     result.tokenDone = true;
+
+    leftDerivationWriter->writeLeftDerivation(derivativeLeftSide, stack, "");
 
     // There are more tokens or no more tokens but the last one is not done yet
     while (tokenizer->hasTokens() || !result.tokenDone) {

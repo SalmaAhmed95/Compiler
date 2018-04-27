@@ -13,7 +13,7 @@ FileWriter::FileWriter() {
 }
 
 FileWriter::FileWriter(std::string fileName) {
-    fileName = fileName;
+    this->fileName = fileName;
     file.open(fileName);
 
 }
