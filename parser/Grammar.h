@@ -17,8 +17,6 @@ public:
 
     ParsingTable* getGrammarTable(std::string fileName);
 
-    void printParsingTable(ParsingTable parsingTable);
-
     bool isTerminal(Symbol t);
 
 private:

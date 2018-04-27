@@ -31,3 +31,7 @@ void ParsingTable::setStartSymbol(Symbol start) {
     this->start = start;
 }
 
+std::map<Symbol, std::map<Symbol, Production>> ParsingTable::getTable() {
+    return parsingTable;
+}
+

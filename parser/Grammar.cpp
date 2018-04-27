@@ -6,59 +6,23 @@
 #include "ParsingTable.h"
 #include <iostream>
 
-ParsingTable* Grammar::getGrammarTable(std::string fileName) {
-    std::map<Symbol, std::vector<Production>> rules = CFGParser::getCFGRules(fileName ,"properties.ini");
-//    Symbol e("E", START);
-//    Symbol ed("ED", NON_TERMINAL);
-//    Symbol t("T", NON_TERMINAL);
-//    Symbol td("TD", NON_TERMINAL);
-//    Symbol f("F", NON_TERMINAL);
-//    Symbol eps("\\L", EPSILON);
-//    Symbol bo("(", TERMINAL);
-//    Symbol bc(")", TERMINAL);
-//    Symbol id("id", TERMINAL);
-//    Symbol star("*", TERMINAL);
-//    Symbol plus("+", TERMINAL);
-//    Production p1, p2, peps, p3, p4, p5, p6;
-//    peps.production.push_back(eps);
-//    p1.production.push_back(t);
-//    p1.production.push_back(ed);
-//    p2.production.push_back(plus);
-//    p2.production.push_back(t);
-//    p2.production.push_back(ed);
-//    rules[e].push_back(p1);
-//    rules[ed].push_back(p2);
-//    rules[ed].push_back(peps);
-//    p3.production.push_back(f);
-//    p3.production.push_back(td);
-//    rules[t].push_back(p3);
-//    p4.production.push_back(star);
-//    p4.production.push_back(f);
-//    p4.production.push_back(td);
-//    rules[td].push_back(p4);
-//    rules[td].push_back(peps);
-//    p5.production.push_back(bo);
-//    p5.production.push_back(e);
-//    p5.production.push_back(bc);
-//    p6.production.push_back(id);
-//    rules[f].push_back(p5);
-//    rules[f].push_back(p6);
-    for(auto rule : rules){
-        std::cout<<rule.first.name <<"  TYPE  "<<rule.first.type<<">>";
-        for(auto prod : rule.second){
+ParsingTable *Grammar::getGrammarTable(std::string fileName) {
+    std::map<Symbol, std::vector<Production>> rules = CFGParser::getCFGRules(fileName, "properties.ini");
+    for (auto rule : rules) {
+        std::cout << rule.first.name << "  TYPE  " << rule.first.type << ">>";
+        for (auto prod : rule.second) {
             prod.print();
         }
     }
     constructNonTerminals(rules);
     constructTerminals(rules);
-    std::cout << std::endl << "First Sets" << std::endl;
     constructFirst(rules);
+    std::cout << std::endl << "******First Sets******" << std::endl;
+    printSets(first);
     constructFollowSet(rules);
-    std::cout << std::endl << "Follow Sets" << std::endl;
+    std::cout << std::endl << "******Follow Sets******" << std::endl;
     printSets(follow);
     constructParsingTable(rules);
-    std::cout << std::endl << "Parsing Table" << std::endl;
-    printParsingTable(*parsingTable);
     return parsingTable;
 }
 
@@ -66,7 +30,7 @@ void Grammar::constructNonTerminals(
         std::map<Symbol, std::vector<Production>> rules) {
     for (auto it = rules.begin(); it != rules.end(); it++) {
         nonTerminals.insert(it->first);
-        if(it->first.type == START) {
+        if (it->first.type == START) {
             parsingTable->setStartSymbol(it->first);
             follow[it->first].insert(Symbol(END, TERMINAL));
         }
@@ -105,7 +69,7 @@ void Grammar::constructFirst(std::map<Symbol, std::vector<Production>> rules) {
     while (!nonTerminalsQueue.empty()) {
         ProductionNode *currentNode = nonTerminalsQueue.front();
         nonTerminalsCount--;
-        if(nonTerminalsCount < 0) {
+        if (nonTerminalsCount < 0) {
             break;
         }
         nonTerminalsQueue.pop();
@@ -142,14 +106,6 @@ void Grammar::constructFirst(std::map<Symbol, std::vector<Production>> rules) {
             }
         }
     }
-    for (auto it = first.begin(); it != first.end(); it++) {
-        std::cout << it->first.name << ':';
-        std::set<Symbol> f = it->second;
-        for (auto x : f) {
-            std::cout << x.name << '-';
-        }
-        std::cout << '\n';
-    }
 }
 
 void Grammar::buildGraph(std::map<Symbol, std::vector<Production>> rules,
@@ -166,11 +122,8 @@ void Grammar::buildGraph(std::map<Symbol, std::vector<Production>> rules,
                 if (symbol.type == TERMINAL) {
                     stop = true;
                 } else if (symbol.type != EPSILON) {
-                    std::cout << symbol.name << std::endl;
                     ProductionNode *currentNode = graph[symbol];
-
                     stop = !currentNode->containsEps();
-                    std::cout << "HERE2" << std::endl;
                     currentNode->addDependent(dependentNode);
                     dependentNode->changeDependencies(1);
                 }
@@ -278,22 +231,22 @@ void Grammar::constructParsingTable(std::map<Symbol, std::vector<Production>> ru
 
 void Grammar::addSyncEntries(std::map<Symbol, std::set<Symbol>> follow) {
     Production sync;
-    sync.production.push_back(Symbol(SYNC,TERMINAL));
+    sync.production.push_back(Symbol(SYNC, TERMINAL));
     for (auto f : follow) {
         for (auto s : f.second) {
-            if(parsingTable->isEmpty(f.first,s))
-               parsingTable->insertProduction(f.first,s,sync);
-            else if(parsingTable->parsingTable[f.first][s].production[0].type == EPSILON)
+            if (parsingTable->isEmpty(f.first, s))
+                parsingTable->insertProduction(f.first, s, sync);
+            else if (parsingTable->parsingTable[f.first][s].production[0].type == EPSILON)
                 continue;
             else
-                parsingTable->insertProduction(f.first,s,sync);
+                parsingTable->insertProduction(f.first, s, sync);
 
         }
     }
 }
 
 void Grammar::printSets(std::map<Symbol, std::set<Symbol>> set) {
-    for (auto f : follow) {
+    for (auto f : set) {
         std::cout << f.first.name << " >>  ";
         for (auto s : f.second) {
             std::cout << s.name << " ";
@@ -302,15 +255,4 @@ void Grammar::printSets(std::map<Symbol, std::set<Symbol>> set) {
     }
 }
 
-void Grammar::printParsingTable(ParsingTable parsingTable) {
-    for (auto &outer_map_pair : parsingTable.parsingTable) {
-        std::cout << outer_map_pair.first.name << " contains: " << std::endl;
-        for (auto &inner_map_pair : outer_map_pair.second) {
-            std::cout << inner_map_pair.first.name << ": ";
-            for (auto prod: inner_map_pair.second.production)
-                std::cout << prod.name << " ";
-            std::cout << std::endl;
-        }
-    }
-}
 

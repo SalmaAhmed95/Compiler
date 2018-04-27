@@ -2,7 +2,7 @@
 
 void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer) {
     initialize(parsingTable);
-
+    writer->writeParsingTable(parsingTable);
     Lexeme token;
     ParseResult result;
     result.tokenDone = true;
@@ -52,7 +52,7 @@ ParseResult Parser::parse(Lexeme token) {
             result.msg = "Error: (illegal " + top.toString() + ") - discard " + token.name;
             result.tokenDone = true;
         } else if (parseTable->isSync(top, Symbol(token.lexemeType, TERMINAL))) {
-            result.msg = "Error: Looking for a synchronizing token";
+            result.msg = "SYNC";
             result.tokenDone = false;
             stack->pop();
         } else {
