@@ -2,10 +2,6 @@
 // Created by karfass on 18/04/2018.
 
 #include "CFGParser.h"
-#include <fstream>
-#include <set>
-#include <climits>
-#include "../lexical-analyzer/utils/StringUtils.h"
 
 #define START_LINE '#'
 #define TERMINAL_IDENTIFIER '\''

@@ -1,9 +1,12 @@
-int x;
-x = 5;
-if (x > 2)
+int sum;
+int count ;
+float pass ;
+int mnt; while (pass == 10.5)
 {
-x = 0;
+pass = mnt * count;
+}
+if(sum >=count){
+count =5*(count+2);
 }
 else{
-x = 7;
-}
+mnt = pass / count;}

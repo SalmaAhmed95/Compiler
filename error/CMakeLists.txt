@@ -1,9 +1,9 @@
 set(ErrorHandle_SRCS
-    ErrorHandler.cpp
+        ErrorHandler.cpp
 )
 
 set(ErrorHandle_HEADERS
-    ErrorHandler.h
+        ErrorHandler.h
 )
 
 
@@ -17,5 +17,5 @@ add_library(error-handler STATIC
 # Specify here the include directories exported
 # by this library
 target_include_directories(error-handler PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
+        .
 )

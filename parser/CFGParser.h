@@ -9,7 +9,11 @@
 #include <map>
 #include <vector>
 #include "../lexical-analyzer/grammar-parser/Properties.hpp"
-#include "../lexical-analyzer/error/ErrorHandler.h"
+#include "../error/ErrorHandler.h"
+#include <fstream>
+#include <set>
+#include <climits>
+#include "../utils/StringUtils.h"
 
 #define EPSILONSYMBOl "\\L"
 
