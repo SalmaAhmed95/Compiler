@@ -1,0 +1,75 @@
+STATEMENT_LIST
+DECLARATION STATEMENT_LIST0
+PRIMITIVE_TYPE id ; STATEMENT_LIST0
+int id ; STATEMENT_LIST0
+int id ; STATEMENT_LIST0 ---> Matched int
+int x ; STATEMENT_LIST0 ---> Matched x
+int x ; STATEMENT_LIST0 ---> Matched ;
+int x ; STATEMENT STATEMENT_LIST0
+int x ; ASSIGNMENT STATEMENT_LIST0
+int x ; id assign EXPRESSION ; STATEMENT_LIST0
+int x ; x assign EXPRESSION ; STATEMENT_LIST0 ---> Matched x
+int x ; x = EXPRESSION ; STATEMENT_LIST0 ---> Matched =
+int x ; x = SIMPLE_EXPRESSION EXPRESSION0 ; STATEMENT_LIST0
+int x ; x = TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; STATEMENT_LIST0
+int x ; x = num TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; STATEMENT_LIST0
+int x ; x = 5 TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; STATEMENT_LIST0 ---> Matched 5
+int x ; x = 5 \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; STATEMENT_LIST0
+int x ; x = 5 SIMPLE_EXPRESSION0 EXPRESSION0 ; STATEMENT_LIST0 ---> SYNC
+int x ; x = 5 \L EXPRESSION0 ; STATEMENT_LIST0
+int x ; x = 5 \L ; STATEMENT_LIST0
+int x ; x = 5 ; STATEMENT_LIST0 ---> Matched ;
+int x ; x = 5 ; STATEMENT STATEMENT_LIST0
+int x ; x = 5 ; IF STATEMENT_LIST0
+int x ; x = 5 ; if ( EXPRESSION ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( EXPRESSION ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched if
+int x ; x = 5 ; if ( EXPRESSION ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched (
+int x ; x = 5 ; if ( SIMPLE_EXPRESSION EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( id TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched x
+int x ; x = 5 ; if ( x \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> SYNC
+int x ; x = 5 ; if ( x \L EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x relop SIMPLE_EXPRESSION ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > SIMPLE_EXPRESSION ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched >
+int x ; x = 5 ; if ( x > TERM TERM SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > num TERM0 TERM SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 TERM0 TERM SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched 2
+int x ; x = 5 ; if ( x > 2 \L TERM SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> SYNC
+int x ; x = 5 ; if ( x > 2 \L ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched )
+int x ; x = 5 ; if ( x > 2 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched {
+int x ; x = 5 ; if ( x > 2 ) { ASSIGNMENT } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { id assign EXPRESSION ; } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x assign EXPRESSION ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched x
+int x ; x = 5 ; if ( x > 2 ) { x = EXPRESSION ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched =
+int x ; x = 5 ; if ( x > 2 ) { x = SIMPLE_EXPRESSION EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = num TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched 0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> SYNC
+int x ; x = 5 ; if ( x > 2 ) { x = 0 \L EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 \L ; } else { STATEMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched ;
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched }
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched else
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched {
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { ASSIGNMENT } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { id assign EXPRESSION ; } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x assign EXPRESSION ; } STATEMENT_LIST0 ---> Matched x
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = EXPRESSION ; } STATEMENT_LIST0 ---> Matched =
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = SIMPLE_EXPRESSION EXPRESSION0 ; } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = num TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = 7 TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched 7
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = 7 \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = 7 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> SYNC
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = 7 \L EXPRESSION0 ; } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = 7 \L ; } STATEMENT_LIST0
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = 7 ; } STATEMENT_LIST0 ---> Matched ;
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = 7 ; } STATEMENT_LIST0 ---> Matched }
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = 7 ; } 
+int x ; x = 5 ; if ( x > 2 ) { x = 0 ; } else { x = 7 ; }  ---> FINISHED MATCHING

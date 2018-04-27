@@ -137,5 +137,22 @@ void FileWriter::writeParsingTable(ParsingTable *parsingTable) {
     }
 
     drawLine(table.size() * 50);
-    file<<std::endl;
+    file << std::endl;
+}
+
+void FileWriter::writeLeftDerivation(std::list<Symbol> *derivationLeftSide,
+                                     std::list<Symbol> *stack,
+                                     std::string errorMsg) {
+    for (auto symbol: *derivationLeftSide) {
+        file << symbol.toString() << " ";
+    }
+    auto endIterator = stack->end(), newLine = stack->end();
+    endIterator--, newLine--, newLine--;
+    for (auto it = stack->begin(); it != endIterator; it++) {
+        file << (*it).toString() << (it == newLine ? "" : " ");
+    }
+    if (!errorMsg.empty()) {
+        file << " ---> " << errorMsg;
+    }
+    file << std::endl;
 }

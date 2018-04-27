@@ -2,7 +2,7 @@
 #define COMPILER_PARSER_H
 
 #include <vector>
-#include <stack>
+#include <list>
 #include "CFGParser.h"
 #include "ParsingTable.h"
 #include "Grammar.h"
@@ -17,10 +17,15 @@ public:
         return parser;
     }
 
-    void parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer);
+    void parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer,
+               FileWriter *leftDerivationWriter);
 
 private:
     const Lexeme END_LEXEME = Lexeme(END, END);
+
+    std::list<Symbol> *stack;
+    ParsingTable *parseTable;
+    std::list<Symbol> *derivativeLeftSide;
 
     Parser() {};
 
@@ -31,11 +36,6 @@ private:
     void initialize(ParsingTable *parseTable);
 
     ParseResult parse(Lexeme token);
-
-    std::stack<Symbol> *stack;
-    ParsingTable *parseTable;
-
-    void printStack();
 };
 
 #endif //COMPILER_PARSER_H
