@@ -61,10 +61,10 @@ Matched pass
 TERM0 ----> \L
 SIMPLE_EXPRESSION0 ----> \L
 EXPRESSION0 ----> relop SIMPLE_EXPRESSION
-Matched ==
+Matched !=
 SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
 TERM ----> num TERM0
-Matched 10.5
+Matched 10
 TERM0 ----> \L
 SIMPLE_EXPRESSION0 ----> \L
 Matched )
@@ -76,80 +76,12 @@ Matched =
 EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
 SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
 TERM ----> id TERM0
-Matched mnt
-TERM0 ----> mulop FACTOR TERM0
-Matched *
-FACTOR ----> id
-Matched count
-TERM0 ----> \L
-SIMPLE_EXPRESSION0 ----> \L
-EXPRESSION0 ----> \L
-Matched ;
-Matched }
-STATEMENT_LIST0 ----> STATEMENT STATEMENT_LIST0
-STATEMENT ----> IF
-IF ----> if ( EXPRESSION ) { STATEMENT } else { STATEMENT }
-Matched if
-Matched (
-EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
-SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
-TERM ----> id TERM0
-Matched sum
-TERM0 ----> \L
-SIMPLE_EXPRESSION0 ----> \L
-EXPRESSION0 ----> relop SIMPLE_EXPRESSION
-Matched >=
-SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
-TERM ----> id TERM0
-Matched count
-TERM0 ----> \L
-SIMPLE_EXPRESSION0 ----> \L
-Matched )
-Matched {
-STATEMENT ----> ASSIGNMENT
-ASSIGNMENT ----> id assign EXPRESSION ;
-Matched count
-Matched =
-EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
-SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
-TERM ----> num TERM0
-Matched 5
-TERM0 ----> mulop FACTOR TERM0
-Matched *
-FACTOR ----> ( EXPRESSION )
-Matched (
-EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
-SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
-TERM ----> id TERM0
-Matched count
+Matched pass
 TERM0 ----> \L
 SIMPLE_EXPRESSION0 ----> addop TERM SIMPLE_EXPRESSION0
 Matched +
 TERM ----> num TERM0
-Matched 2
-TERM0 ----> \L
-SIMPLE_EXPRESSION0 ----> \L
-EXPRESSION0 ----> \L
-Matched )
-TERM0 ----> \L
-SIMPLE_EXPRESSION0 ----> \L
-EXPRESSION0 ----> \L
-Matched ;
-Matched }
-Matched else
-Matched {
-STATEMENT ----> ASSIGNMENT
-ASSIGNMENT ----> id assign EXPRESSION ;
-Matched mnt
-Matched =
-EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
-SIMPLE_EXPRESSION ----> TERM SIMPLE_EXPRESSION0
-TERM ----> id TERM0
-Matched pass
-TERM0 ----> mulop FACTOR TERM0
-Matched /
-FACTOR ----> id
-Matched count
+Matched 1
 TERM0 ----> \L
 SIMPLE_EXPRESSION0 ----> \L
 EXPRESSION0 ----> \L
