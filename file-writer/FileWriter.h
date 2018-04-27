@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <list>
 #include "../lexical-analyzer/automata/DFA.h"
 #include "../parser/CFGParser.h"
 #include "../parser/ParseResult.h"
@@ -32,6 +33,8 @@ public:
     void writeParsingTable(ParsingTable *parsingTable);
 
     void writeParserResult(ParseResult parserResult);
+
+    void writeLeftDerivation(std::list<Symbol> *derivationLeftSide, std::list<Symbol> *stack, std::string errorMsg);
 
 private:
     std::ofstream file;

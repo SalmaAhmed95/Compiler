@@ -1,9 +1,14 @@
 #include "Parser.h"
 
-void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer) {
+void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer,
+                   FileWriter *writer, FileWriter *leftDerivationWriter) {
     initialize(parsingTable);
+
     writer->writeParsingTable(parsingTable);
+    writer->writeLeftDerivation(derivativeLeftSide, stack, "");
+
     Lexeme token;
+
     ParseResult result;
     result.tokenDone = true;
 
@@ -15,6 +20,9 @@ void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter 
         if (tokenizer->tokenFound()) {
             result = Parser::getInstance().parse(token);
             writer->writeParserResult(result);
+            if (!result.tokenDone || (result.tokenDone && token.name != token.lexemeType) || !result.msg.empty()) {
+                leftDerivationWriter->writeLeftDerivation(derivativeLeftSide, stack, result.msg);
+            }
         }
     }
 
@@ -22,20 +30,21 @@ void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter 
     while (!stack->empty()) {
         result = Parser::getInstance().parse(END_LEXEME);
         if (!stack->empty()) {
-            stack->pop();
+            stack->pop_front();
         }
         writer->writeParserResult(result);
+        leftDerivationWriter->writeLeftDerivation(derivativeLeftSide, stack, result.msg);
     }
 }
 
 ParseResult Parser::parse(Lexeme token) {
     // To remove all the epsilons then start matching another symbol so the output message will not be empty
-    while (stack->top().type == EPSILON) { stack->pop(); }
+    while (stack->front().type == EPSILON) { stack->pop_front(); }
 
-    Symbol top = stack->top();
+    Symbol top = stack->front();
     ParseResult result;
     if (top.type == START && token == END_LEXEME) {
-        stack->pop();
+        stack->pop_front();
         result.msg = "FINISHED MATCHING";
         result.tokenDone = true;
     } else if (top.type == SymbolType::TERMINAL) {
@@ -45,8 +54,9 @@ ParseResult Parser::parse(Lexeme token) {
         } else {
             result.msg = "Matched " + token.name;
             result.tokenDone = true;
+            derivativeLeftSide->push_back(Symbol(token.name, TERMINAL));
         }
-        stack->pop();
+        stack->pop_front();
     } else {
         if (parseTable->isEmpty(top, Symbol(token.lexemeType, TERMINAL))) {
             result.msg = "Error: (illegal " + top.toString() + ") - discard " + token.name;
@@ -54,16 +64,15 @@ ParseResult Parser::parse(Lexeme token) {
         } else if (parseTable->isSync(top, Symbol(token.lexemeType, TERMINAL))) {
             result.msg = "SYNC";
             result.tokenDone = false;
-            stack->pop();
+            stack->pop_front();
         } else {
             Production prod = parseTable->getProduction(top, Symbol(token.lexemeType, TERMINAL));
-            result.rule.first = stack->top();
+            result.rule.first = stack->front();
             result.rule.second = prod;
             result.tokenDone = false;
-            stack->pop();
-            for (std::vector<Symbol>::reverse_iterator it = prod.production.rbegin();
-                 it != prod.production.rend(); it++) {
-                stack->push(*it);
+            stack->pop_front();
+            for (auto it = prod.production.rbegin(); it != prod.production.rend(); it++) {
+                stack->push_front(*it);
             }
         }
     }
@@ -73,22 +82,12 @@ ParseResult Parser::parse(Lexeme token) {
 
 void Parser::initialize(ParsingTable *table) {
     parseTable = table;
-    stack = new std::stack<Symbol>();
-    stack->push(Symbol(END, SymbolType::START));
-    stack->push(table->getStartSymbol());
-}
-
-void Parser::printStack() {
-    std::stack<Symbol> tmp;
-    while (!stack->empty()) {
-        Symbol symbol = stack->top();
-        tmp.push(symbol);
-        stack->pop();
+    if (stack != nullptr) {
+        delete (stack);
+        delete (derivativeLeftSide);
     }
-    while (!tmp.empty()) {
-        Symbol symbol = tmp.top();
-        std::cout << tmp.top().toString() << ", ";
-        stack->push(symbol);
-        tmp.pop();
-    }
+    stack = new std::list<Symbol>();
+    derivativeLeftSide = new std::list<Symbol>();
+    stack->push_front(Symbol(END, SymbolType::START));
+    stack->push_front(table->getStartSymbol());
 }
