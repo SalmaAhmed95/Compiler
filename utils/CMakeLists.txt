@@ -1,9 +1,9 @@
 set(utils_SRCS
-    SymbolTable.cpp
+        SymbolTable.cpp
 )
 
 set(utils_HEADERS
-    SymbolTable.h
+        SymbolTable.h
 )
 
 
@@ -17,5 +17,5 @@ add_library(utils-lib STATIC
 # Specify here the include directories exported
 # by this library
 target_include_directories(utils-lib PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
+        .
 )

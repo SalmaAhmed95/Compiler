@@ -4,6 +4,7 @@
 #include "CFGParser.h"
 #include "ProductionNode.h"
 #include "ParsingTable.h"
+#include "../error/ErrorHandler.h"
 #include <map>
 #include <queue>
 #include <set>
@@ -15,14 +16,14 @@ class Grammar {
 
 public:
 
-    ParsingTable* getGrammarTable(std::string fileName);
+    ParsingTable *getGrammarTable(std::string fileName);
 
     bool isTerminal(Symbol t);
 
 private:
     std::map<Symbol, std::set<Symbol>> first, follow;
     std::set<Symbol> terminals, nonTerminals;
-    ParsingTable* parsingTable = new ParsingTable;
+    ParsingTable *parsingTable = new ParsingTable;
 
 
     void constructTerminals(std::map<Symbol, std::vector<Production>> rules);
@@ -49,4 +50,5 @@ private:
 
     void printSets(std::map<Symbol, std::set<Symbol>> set);
 };
+
 #endif

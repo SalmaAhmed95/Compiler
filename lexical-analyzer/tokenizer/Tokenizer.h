@@ -7,11 +7,9 @@
 
 #include "../automata/DFA.h"
 #include "../code-parser/CodeParser.h"
-#include "../error/ErrorHandler.h"
-#include "../file-writer/FileWriter.h"
-#include "../utils/SymbolTable.h"
-
-#define EMPTYSTRING ""
+#include "../../file-writer/FileWriter.h"
+#include "../../error/ErrorHandler.h"
+#include "../../utils/SymbolTable.h"
 
 struct Lexeme {
     std::string name;

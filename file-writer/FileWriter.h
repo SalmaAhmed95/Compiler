@@ -8,10 +8,10 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "../automata/DFA.h"
-#include "../../parser/CFGParser.h"
-#include "../../parser/ParseResult.h"
-#include "../../parser/ParsingTable.h"
+#include "../lexical-analyzer/automata/DFA.h"
+#include "../parser/CFGParser.h"
+#include "../parser/ParseResult.h"
+#include "../parser/ParsingTable.h"
 
 #define  SPACING 20
 

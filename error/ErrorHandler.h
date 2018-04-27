@@ -9,11 +9,12 @@
 
 class ErrorHandler {
 public:
-  enum Error {
-    lexicalError
+    enum Error {
+        lexicalError,
+        notLL1Error
 
-  };
-  static const std::string errors[];
+    };
+    static const std::string errors[];
 };
 
 #endif // COMPILER_ERRORHANDLER_H

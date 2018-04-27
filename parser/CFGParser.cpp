@@ -5,7 +5,7 @@
 #include <fstream>
 #include <set>
 #include <climits>
-#include "../lexical-analyzer/utils/StringUtils.h"
+#include "../utils/StringUtils.h"
 
 #define START_LINE '#'
 #define TERMINAL_IDENTIFIER '\''
