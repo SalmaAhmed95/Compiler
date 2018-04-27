@@ -96,10 +96,10 @@ std::map<Symbol, std::vector<Production>> CFGParser::getCFGRules(std::string rul
         parseLine(curRule, startSymbolName, &rules);
     }
 
-   if (!checkRulesValidity(&rules)) {
+  if (!checkRulesValidity(&rules)) {
         errorRoutine(ErrorHandler::MISSING_NONTERMINAL_DEFINITION);
     }
-    executeLeftRecursiveElimination(&rules);
+   executeLeftRecursiveElimination(&rules);
     executeLeftFactoring(&rules);
 
     inFile->close();
@@ -191,6 +191,9 @@ std::vector<Production> CFGParser::calculateProductions(std::string &rhs, std::s
             }
         }
     }
+    if (rules.back().production.empty()) {
+        errorRoutine(ErrorHandler::MISSING_NONTERMINAL_DEFINITION);
+    }
     return rules;
 }
 
@@ -206,6 +209,7 @@ void CFGParser::executeLeftRecursiveElimination(std::map<Symbol, std::vector<Pro
         std::vector<Production> alpha;
         /*iterating over productions for certain non terminal*/
         for (Production curRule : curRules) {
+
             Symbol firstSymbol = curRule.production.front();
             std::set<Symbol>::iterator ret;
             ret = nonTerminals.find(firstSymbol);
@@ -215,17 +219,11 @@ void CFGParser::executeLeftRecursiveElimination(std::map<Symbol, std::vector<Pro
                 /*iterate over the productions of the predefined non terminal*/
                 for (Production retRule : retRules) {
                     Symbol retFirstSymbol = retRule.production.front();
-                    leftRecursive |= checkLeftRecursive(nonTerminal, retFirstSymbol, retRule, &alpha, &beta);
-                    for (std::vector<Production> :: iterator itAlpha = alpha.begin(); itAlpha != alpha.end(); itAlpha++){
-                        for (int i = 1; i < curRule.production.size(); i++) {
-                            itAlpha->production.push_back(curRule.production[i]);
-                        }
+                    Production concatenatedProduction = retRule;
+                    for (int i = 1; i < curRule.production.size(); i++){
+                        concatenatedProduction.production.push_back(curRule.production[i]);
                     }
-                    for (std::vector<Production> :: iterator itBeta = beta.begin(); itBeta != beta.end(); itBeta++){
-                        for (int i = 1; i < curRule.production.size(); i++) {
-                            itBeta->production.push_back(curRule.production[i]);
-                        }
-                    }
+                    leftRecursive |= checkLeftRecursive(nonTerminal, retFirstSymbol, concatenatedProduction, &alpha, &beta);
                 }
             } else {
                 leftRecursive |= checkLeftRecursive(nonTerminal, firstSymbol, curRule, &alpha, &beta);
@@ -278,6 +276,7 @@ bool CFGParser::checkLeftRecursive(Symbol &first, Symbol &rhsSymbol, Production 
     }
     return leftRecursive;
 }
+
 
 std::map<Symbol,std::vector<Production>> :: iterator CFGParser::performLeftFactoring(std::map<Symbol, std::vector<Production>> *tempRules,
                                                                                        std::map<Symbol,std::vector<Production>> *curRules,
