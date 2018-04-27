@@ -16,6 +16,7 @@ const std::string DEFAULT_LEXICAL = "lexical_rules.txt";
 const std::string DEFAULT_CODE = "code.txt";
 const std::string DEFAULT_LEXICAL_OUTPUT = "lexical_output.txt";
 const std::string DEFAULT_PARSER_OUTPUT = "parser_output.txt";
+const std::string DEFAULT_CFG_INPUT = "input.txt";
 
 void deleteTokens(std::vector<Token *> v) {
     for (int i = 0; i < v.size(); i++) {
@@ -66,11 +67,12 @@ int main(int argc, char **argv) {
     Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, lexicalWriter);
     FileWriter parserWriter = FileWriter(parserOutput);
     Grammar grammar;
-    ParsingTable *parsingTable = grammar.getGrammarTable("input.txt");
+    ParsingTable *parsingTable = grammar.getGrammarTable(DEFAULT_CFG_INPUT);
     Parser::getInstance().parse(parsingTable, tokenizer, &parserWriter);
     
     lexicalWriter->closeFile();
-    std::cout << "Finished Matching\n";
+    parserWriter.closeFile();
+    std::cout << "Finished Matching & Parsing\n";
     delete nfa;
     delete dfa;
     delete dfaMin;

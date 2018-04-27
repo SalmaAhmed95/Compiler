@@ -24,6 +24,8 @@ public:
 
     Symbol getStartSymbol();
 
+    std::map<Symbol, std::map<Symbol, Production>> getTable();
+
 private:
     std::map<Symbol, std::map<Symbol, Production>> parsingTable;
 

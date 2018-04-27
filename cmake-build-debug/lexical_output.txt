@@ -49,11 +49,29 @@
 43  {         |4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   
 44  }         |4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   4   
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Token: *                   Token Class: mulop
-Token: +                   Token Class: addop
-Token: id                  Token Class: id
-Token: )                   Token Class: )
-Token: +                   Token Class: addop
+Token: int                 Token Class: int
+Token: x                   Token Class: id
+Token: ;                   Token Class: ;
+Token: x                   Token Class: id
+Token: =                   Token Class: assign
+Token: 5                   Token Class: num
+Token: ;                   Token Class: ;
+Token: if                  Token Class: if
 Token: (                   Token Class: (
-Token: id                  Token Class: id
-Token: *                   Token Class: mulop
+Token: x                   Token Class: id
+Token: >                   Token Class: relop
+Token: 2                   Token Class: num
+Token: )                   Token Class: )
+Token: {                   Token Class: {
+Token: x                   Token Class: id
+Token: =                   Token Class: assign
+Token: 0                   Token Class: num
+Token: ;                   Token Class: ;
+Token: }                   Token Class: }
+Token: else                Token Class: else
+Token: {                   Token Class: {
+Token: x                   Token Class: id
+Token: =                   Token Class: assign
+Token: 7                   Token Class: num
+Token: ;                   Token Class: ;
+Token: }                   Token Class: }

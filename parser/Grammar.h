@@ -17,7 +17,7 @@ public:
 
     ParsingTable* getGrammarTable(std::string fileName);
 
-    void printParsingTable(ParsingTable parsingTable);
+    bool isTerminal(Symbol t);
 
 private:
     std::map<Symbol, std::set<Symbol>> first, follow;
@@ -38,8 +38,6 @@ private:
                     std::map<Symbol, ProductionNode *> &graph);
 
     void constructFirst(std::map<Symbol, std::vector<Production>> rules);
-
-    bool isTerminal(Symbol t);
 
     bool hasEpsilon(std::set<Symbol> first);
 

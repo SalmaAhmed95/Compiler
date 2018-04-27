@@ -95,3 +95,47 @@ void FileWriter::writeParserResult(ParseResult parserResult) {
         file << parserResult.msg << std::endl;
     }
 }
+
+void FileWriter::writeParsingTable(ParsingTable *parsingTable) {
+    std::map<Symbol, std::map<Symbol, Production>> table = parsingTable->getTable();
+    file << "PREDICTIVE PARSING TABLE :" << std::endl;
+    drawLine(table.size() * 50);
+    //first print terminals
+    std::set<Symbol> terminals;
+    for (auto &outer_map_pair : table)
+        for (auto &inner_map_pair : outer_map_pair.second)
+            terminals.insert(inner_map_pair.first);
+    fillSpaces(45);
+    for (auto terminal : terminals) {
+        if (terminal.name == "`")
+            file << "$";
+        else
+            file << terminal.name;
+        fillSpaces(50 - terminal.name.length());
+    }
+    file << std::endl;
+    drawLine(table.size() * 50);
+
+    //second print non terminals
+    //third loop to print cells
+    for (auto &outer_map_pair : table) {
+        file << outer_map_pair.first.name;
+        fillSpaces(20 - outer_map_pair.first.name.length());
+        file << "|";
+        for (auto terminal : terminals) {
+            if (!parsingTable->isEmpty(outer_map_pair.first, terminal)) {
+                std::string production = table[outer_map_pair.first][terminal].toString();
+                file << production;
+                fillSpaces(50 - production.length());
+                file << "|";
+            } else {
+                fillSpaces(50);
+                file << "|";
+            }
+        }
+        file << std::endl;
+    }
+
+    drawLine(table.size() * 50);
+    file<<std::endl;
+}

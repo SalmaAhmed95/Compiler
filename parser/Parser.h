@@ -20,7 +20,7 @@ public:
     void parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer);
 
 private:
-    const Symbol END_SYMBOL = Symbol(END, START);
+    const Lexeme END_LEXEME = Lexeme(END, END);
 
     Parser() {};
 
@@ -30,7 +30,7 @@ private:
 
     void initialize(ParsingTable *parseTable);
 
-    ParseResult parse(Symbol token);
+    ParseResult parse(Lexeme token);
 
     std::stack<Symbol> *stack;
     ParsingTable *parseTable;

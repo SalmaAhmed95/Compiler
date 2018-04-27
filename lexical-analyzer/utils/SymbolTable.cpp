@@ -4,14 +4,16 @@
 
 #include "SymbolTable.h"
 
-SymbolTable::SymbolTable() {
-    table=new std::vector<std::string>;
-}
+std::set<std::string> SymbolTable::table;
 
 void SymbolTable::insert(std::string identifierVal) {
-   table->push_back(identifierVal);
+    table.insert(identifierVal);
 }
 
-std::vector<std::string> SymbolTable::getAllIndetifiers() {
+std::set<std::string> SymbolTable::getAllIndetifiers() {
 
+}
+
+bool SymbolTable::contains(std::string id) {
+    return table.find(id) != table.end();
 }

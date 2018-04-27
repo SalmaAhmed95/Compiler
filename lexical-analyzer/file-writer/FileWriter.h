@@ -11,6 +11,7 @@
 #include "../automata/DFA.h"
 #include "../../parser/CFGParser.h"
 #include "../../parser/ParseResult.h"
+#include "../../parser/ParsingTable.h"
 
 #define  SPACING 20
 
@@ -27,6 +28,8 @@ public:
     void closeFile();
 
     void writeTransitionTable(DFA *dfaMin);
+
+    void writeParsingTable(ParsingTable *parsingTable);
 
     void writeParserResult(ParseResult parserResult);
 

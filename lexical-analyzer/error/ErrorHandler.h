@@ -10,7 +10,13 @@
 class ErrorHandler {
 public:
   enum Error {
-    lexicalError
+    lexicalError,
+    NONTERMINAL_INVALID,
+    MULTIPLE_DEFINITIONS,
+     MISSING_START_SYMBOL,
+      MISSING_NONTERMINAL_DEFINITION,
+      ERROR_IN_TERMINAL_DEFINTIION,
+      NOSPACE_BEFORE_LAMBDA
 
   };
   static const std::string errors[];

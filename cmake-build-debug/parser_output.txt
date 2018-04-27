@@ -1,14 +1,98 @@
-Error: (illegal E) - discard *
-Error: (illegal E) - discard +
-E ----> TED
-T ----> FTD
-F ----> id
-Matched id
-TD ----> \L
-ED ----> \L
-Error: (illegal `) - discard )
-Error: (illegal `) - discard +
-Error: (illegal `) - discard (
-Error: (illegal `) - discard id
-Error: (illegal `) - discard *
+PREDICTIVE PARSING TABLE :
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                             (                                                 )                                                 ;                                                 $                                                 addop                                             float                                             id                                                if                                                int                                               mulop                                             num                                               relop                                             while                                             }                                                 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ASSIGNMENT          |                                                  |                                                  |                                                  |sync                                              |                                                  |sync                                              |id assign EXPRESSION ;                            |sync                                              |sync                                              |                                                  |                                                  |                                                  |sync                                              |sync                                              |
+DECLARATION         |                                                  |                                                  |                                                  |sync                                              |                                                  |PRIMITIVE_TYPE id ;                               |sync                                              |sync                                              |PRIMITIVE_TYPE id ;                               |                                                  |                                                  |                                                  |sync                                              |sync                                              |
+EXPRESSION          |SIMPLE_EXPRESSION EXPRESSION0                     |sync                                              |sync                                              |                                                  |SIMPLE_EXPRESSION EXPRESSION0                     |                                                  |SIMPLE_EXPRESSION EXPRESSION0                     |                                                  |                                                  |                                                  |SIMPLE_EXPRESSION EXPRESSION0                     |                                                  |                                                  |                                                  |
+EXPRESSION0         |                                                  |\L                                                |\L                                                |                                                  |                                                  |                                                  |                                                  |                                                  |                                                  |                                                  |                                                  |relop SIMPLE_EXPRESSION                           |                                                  |                                                  |
+FACTOR              |( EXPRESSION )                                    |sync                                              |sync                                              |                                                  |sync                                              |                                                  |id                                                |                                                  |                                                  |sync                                              |num                                               |sync                                              |                                                  |                                                  |
+IF                  |                                                  |                                                  |                                                  |sync                                              |                                                  |sync                                              |sync                                              |if ( EXPRESSION ) { STATEMENT } else { STATEMENT }|sync                                              |                                                  |                                                  |                                                  |sync                                              |sync                                              |
+METHOD_BODY         |                                                  |                                                  |                                                  |sync                                              |                                                  |STATEMENT_LIST                                    |STATEMENT_LIST                                    |STATEMENT_LIST                                    |STATEMENT_LIST                                    |                                                  |                                                  |                                                  |STATEMENT_LIST                                    |                                                  |
+PRIMITIVE_TYPE      |                                                  |                                                  |                                                  |                                                  |                                                  |float                                             |sync                                              |                                                  |int                                               |                                                  |                                                  |                                                  |                                                  |                                                  |
+SIGN                |                                                  |                                                  |                                                  |                                                  |addop                                             |                                                  |                                                  |                                                  |                                                  |                                                  |                                                  |                                                  |                                                  |                                                  |
+SIMPLE_EXPRESSION   |TERM TERM SIMPLE_EXPRESSION0                      |sync                                              |sync                                              |                                                  |addop TERM SIMPLE_EXPRESSION0                     |                                                  |TERM TERM SIMPLE_EXPRESSION0                      |                                                  |                                                  |                                                  |TERM TERM SIMPLE_EXPRESSION0                      |sync                                              |                                                  |                                                  |
+SIMPLE_EXPRESSION0  |                                                  |\L                                                |\L                                                |                                                  |addop TERM SIMPLE_EXPRESSION0                     |                                                  |                                                  |                                                  |                                                  |                                                  |                                                  |\L                                                |                                                  |                                                  |
+STATEMENT           |                                                  |                                                  |                                                  |sync                                              |                                                  |DECLARATION                                       |ASSIGNMENT                                        |IF                                                |DECLARATION                                       |                                                  |                                                  |                                                  |WHILE                                             |sync                                              |
+STATEMENT_LIST      |                                                  |                                                  |                                                  |sync                                              |                                                  |DECLARATION STATEMENT_LIST0                       |ASSIGNMENT STATEMENT_LIST0                        |IF STATEMENT_LIST0                                |DECLARATION STATEMENT_LIST0                       |                                                  |                                                  |                                                  |WHILE STATEMENT_LIST0                             |                                                  |
+STATEMENT_LIST0     |                                                  |                                                  |                                                  |\L                                                |                                                  |STATEMENT STATEMENT_LIST0                         |STATEMENT STATEMENT_LIST0                         |STATEMENT STATEMENT_LIST0                         |STATEMENT STATEMENT_LIST0                         |                                                  |                                                  |                                                  |STATEMENT STATEMENT_LIST0                         |                                                  |
+TERM                |( EXPRESSION ) TERM0                              |sync                                              |sync                                              |                                                  |sync                                              |                                                  |id TERM0                                          |                                                  |                                                  |                                                  |num TERM0                                         |sync                                              |                                                  |                                                  |
+TERM0               |\L                                                |\L                                                |\L                                                |                                                  |\L                                                |                                                  |\L                                                |                                                  |                                                  |mulop FACTOR TERM0                                |\L                                                |\L                                                |                                                  |                                                  |
+WHILE               |                                                  |                                                  |                                                  |sync                                              |                                                  |sync                                              |sync                                              |sync                                              |sync                                              |                                                  |                                                  |                                                  |while ( EXPRESSION ) { STATEMENT }                |sync                                              |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+METHOD_BODY ----> STATEMENT_LIST
+STATEMENT_LIST ----> DECLARATION STATEMENT_LIST0
+DECLARATION ----> PRIMITIVE_TYPE id ;
+PRIMITIVE_TYPE ----> int
+Matched int
+Matched x
+Matched ;
+STATEMENT_LIST0 ----> STATEMENT STATEMENT_LIST0
+STATEMENT ----> ASSIGNMENT
+ASSIGNMENT ----> id assign EXPRESSION ;
+Matched x
+Matched =
+EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
+SIMPLE_EXPRESSION ----> TERM TERM SIMPLE_EXPRESSION0
+TERM ----> num TERM0
+Matched 5
+TERM0 ----> \L
+SYNC
+SIMPLE_EXPRESSION0 ----> \L
+EXPRESSION0 ----> \L
+Matched ;
+STATEMENT_LIST0 ----> STATEMENT STATEMENT_LIST0
+STATEMENT ----> IF
+IF ----> if ( EXPRESSION ) { STATEMENT } else { STATEMENT }
+Matched if
+Matched (
+EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
+SIMPLE_EXPRESSION ----> TERM TERM SIMPLE_EXPRESSION0
+TERM ----> id TERM0
+Matched x
+TERM0 ----> \L
+SYNC
+SIMPLE_EXPRESSION0 ----> \L
+EXPRESSION0 ----> relop SIMPLE_EXPRESSION
+Matched >
+SIMPLE_EXPRESSION ----> TERM TERM SIMPLE_EXPRESSION0
+TERM ----> num TERM0
+Matched 2
+TERM0 ----> \L
+SYNC
+SIMPLE_EXPRESSION0 ----> \L
+Matched )
+Matched {
+STATEMENT ----> ASSIGNMENT
+ASSIGNMENT ----> id assign EXPRESSION ;
+Matched x
+Matched =
+EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
+SIMPLE_EXPRESSION ----> TERM TERM SIMPLE_EXPRESSION0
+TERM ----> num TERM0
+Matched 0
+TERM0 ----> \L
+SYNC
+SIMPLE_EXPRESSION0 ----> \L
+EXPRESSION0 ----> \L
+Matched ;
+Matched }
+Matched else
+Matched {
+STATEMENT ----> ASSIGNMENT
+ASSIGNMENT ----> id assign EXPRESSION ;
+Matched x
+Matched =
+EXPRESSION ----> SIMPLE_EXPRESSION EXPRESSION0
+SIMPLE_EXPRESSION ----> TERM TERM SIMPLE_EXPRESSION0
+TERM ----> num TERM0
+Matched 7
+TERM0 ----> \L
+SYNC
+SIMPLE_EXPRESSION0 ----> \L
+EXPRESSION0 ----> \L
+Matched ;
+Matched }
+STATEMENT_LIST0 ----> \L
 FINISHED MATCHING

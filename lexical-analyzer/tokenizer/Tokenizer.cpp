@@ -14,7 +14,7 @@ Tokenizer::Tokenizer(DFA *dfa, std::string inputFile,
     symbolTable = new SymbolTable();
 }
 
-std::string Tokenizer::nextToken() {
+struct Lexeme Tokenizer::nextToken() {
     stateID startDFA = minDFA->getRootID();
     int curIndex = parser->getCurIndex();
     if (!findMatch(startDFA, curIndex)) {
@@ -31,7 +31,7 @@ bool Tokenizer::findMatch(stateID startDFA, int startChar) {
     std::string match;
     std::string tokenType;
     int matchIndex = -1;
-    token = "";
+    token.name = "";
     int prevPercedence = INT16_MIN;
     char c;
     std::set<char> attr = minDFA->getAllAttributes();
@@ -61,7 +61,8 @@ bool Tokenizer::findMatch(stateID startDFA, int startChar) {
         fwriter->writeMatch(match, tokenType);
         if (tokenType == parser->getIdentifierClass(propertiesFile))
             symbolTable->insert(match);
-        token = match;
+        token.name = match;
+        token.lexemeType = tokenType;
         return true;
     }
 }
@@ -71,7 +72,7 @@ bool Tokenizer::hasTokens() {
 }
 
 bool Tokenizer::tokenFound() {
-    if (token != "")
+    if (token.name != "")
         return true;
     else false;
 }
