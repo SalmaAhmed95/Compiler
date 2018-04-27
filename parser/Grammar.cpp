@@ -216,13 +216,22 @@ void Grammar::constructParsingTable(std::map<Symbol, std::vector<Production>> ru
         std::vector<Production> productions = rules[it->first];
         for (auto prod : productions) {
             std::vector<Symbol> symbols = prod.production;
-            //TODO if a cell in table has 2 values issue error
             if (hasEpsilon(first[symbols[0]])) {
-                for (auto terminal : follow[it->first])
+                for (auto terminal : follow[it->first]) {
+                    if (!parsingTable->isEmpty(it->first, terminal)) {
+                        std::cout << "ERROR GRAMMER ISNOT LL(1)!";
+                        exit(0);
+                    }
                     parsingTable->insertProduction(it->first, terminal, prod);
+                }
             } else {
-                for (auto terminal : first[symbols[0]])
+                for (auto terminal : first[symbols[0]]) {
+                    if (!parsingTable->isEmpty(it->first, terminal)) {
+                        std::cout << "ERROR GRAMMER ISNOT LL(1)!";
+                        exit(0);
+                    }
                     parsingTable->insertProduction(it->first, terminal, prod);
+                }
             }
         }
     }
