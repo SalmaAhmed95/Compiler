@@ -71,8 +71,8 @@ int main(int argc, char **argv) {
     std::cout << "Finished Minimization\n";
 
     FileWriter *lexicalWriter = new FileWriter(lexicalOutput);
-    FileWriter parserWriter = FileWriter(parserOutput);
-    FileWriter leftDerivationWriter = FileWriter(leftDerivationOutput);
+    FileWriter parserWriter(parserOutput);
+    FileWriter leftDerivationWriter(leftDerivationOutput);
 
     lexicalWriter->writeTransitionTable(dfaMin);
     Tokenizer *tokenizer = new Tokenizer(dfaMin, code, properties, lexicalWriter);

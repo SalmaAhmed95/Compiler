@@ -9,4 +9,6 @@ if(sum >=count){
 count =5*(count+2);
 }
 else{
-mnt = pass / count;}
+mnt = pass / count;
+
+}

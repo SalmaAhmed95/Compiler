@@ -1,3 +1,4 @@
+METHOD_BODY
 STATEMENT_LIST
 DECLARATION STATEMENT_LIST0
 PRIMITIVE_TYPE id ; STATEMENT_LIST0
@@ -32,19 +33,17 @@ int sum ; int count ; float pass ; int mnt ; while ( EXPRESSION ) { STATEMENT } 
 int sum ; int count ; float pass ; int mnt ; while ( EXPRESSION ) { STATEMENT } STATEMENT_LIST0 ---> Matched while
 int sum ; int count ; float pass ; int mnt ; while ( EXPRESSION ) { STATEMENT } STATEMENT_LIST0 ---> Matched (
 int sum ; int count ; float pass ; int mnt ; while ( SIMPLE_EXPRESSION EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( id TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0 ---> Matched pass
-int sum ; int count ; float pass ; int mnt ; while ( pass \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0 ---> SYNC
+int sum ; int count ; float pass ; int mnt ; while ( TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( id TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0 ---> Matched pass
+int sum ; int count ; float pass ; int mnt ; while ( pass \L SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass \L EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass relop SIMPLE_EXPRESSION ) { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == SIMPLE_EXPRESSION ) { STATEMENT } STATEMENT_LIST0 ---> Matched ==
-int sum ; int count ; float pass ; int mnt ; while ( pass == TERM TERM SIMPLE_EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == num TERM0 TERM SIMPLE_EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 TERM0 TERM SIMPLE_EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0 ---> Matched 10.5
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 \L TERM SIMPLE_EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 SIMPLE_EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0 ---> SYNC
+int sum ; int count ; float pass ; int mnt ; while ( pass == TERM SIMPLE_EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == num TERM0 SIMPLE_EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 TERM0 SIMPLE_EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0 ---> Matched 10.5
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 \L SIMPLE_EXPRESSION0 ) { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 \L ) { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { STATEMENT } STATEMENT_LIST0 ---> Matched )
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { STATEMENT } STATEMENT_LIST0 ---> Matched {
@@ -53,15 +52,14 @@ int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { id assign 
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass assign EXPRESSION ; } STATEMENT_LIST0 ---> Matched pass
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = EXPRESSION ; } STATEMENT_LIST0 ---> Matched =
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = SIMPLE_EXPRESSION EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = id TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched mnt
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt mulop FACTOR TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * FACTOR TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched *
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * id TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched count
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> SYNC
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = id TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched mnt
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt mulop FACTOR TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * FACTOR TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched *
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * id TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched count
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count \L SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count \L EXPRESSION0 ; } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count \L ; } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } STATEMENT_LIST0 ---> Matched ;
@@ -72,19 +70,17 @@ int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( EXPRESSION ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched if
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( EXPRESSION ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched (
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( SIMPLE_EXPRESSION EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( id TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched sum
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> SYNC
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( id TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched sum
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum \L SIMPLE_EXPRESSION0 EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum \L EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum relop SIMPLE_EXPRESSION ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= SIMPLE_EXPRESSION ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched >=
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= TERM TERM SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= id TERM0 TERM SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count TERM0 TERM SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched count
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count \L TERM SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> SYNC
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= TERM SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= id TERM0 SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count TERM0 SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched count
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count \L SIMPLE_EXPRESSION0 ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count \L ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched )
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { STATEMENT } else { STATEMENT } STATEMENT_LIST0 ---> Matched {
@@ -93,29 +89,27 @@ int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count assign EXPRESSION ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched count
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = EXPRESSION ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched =
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = SIMPLE_EXPRESSION EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = num TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched 5
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 mulop FACTOR TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * FACTOR TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched *
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( EXPRESSION ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( EXPRESSION ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched (
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( SIMPLE_EXPRESSION EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( id TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched count
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> SYNC
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count addop TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched +
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + num TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched 2
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 \L SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 \L EXPRESSION0 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 \L ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched )
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> SYNC
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = num TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched 5
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 mulop FACTOR TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * FACTOR TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched *
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( EXPRESSION ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( EXPRESSION ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched (
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( SIMPLE_EXPRESSION EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( id TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched count
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count \L SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count addop TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + TERM SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched +
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + num TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched 2
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 \L SIMPLE_EXPRESSION0 EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 \L EXPRESSION0 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 \L ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched )
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) \L SIMPLE_EXPRESSION0 EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) \L EXPRESSION0 ; } else { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) \L ; } else { STATEMENT } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { STATEMENT } STATEMENT_LIST0 ---> Matched ;
@@ -127,18 +121,17 @@ int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt assign EXPRESSION ; } STATEMENT_LIST0 ---> Matched mnt
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = EXPRESSION ; } STATEMENT_LIST0 ---> Matched =
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = SIMPLE_EXPRESSION EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = TERM TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = id TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched pass
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass mulop FACTOR TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / FACTOR TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched /
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / id TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count TERM0 TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched count
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count \L TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> SYNC
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = TERM SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = id TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched pass
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass mulop FACTOR TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / FACTOR TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched /
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / id TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count TERM0 SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0 ---> Matched count
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count \L SIMPLE_EXPRESSION0 EXPRESSION0 ; } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count \L EXPRESSION0 ; } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count \L ; } STATEMENT_LIST0
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count ; } STATEMENT_LIST0 ---> Matched ;
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count ; } STATEMENT_LIST0 ---> Matched }
-int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count ; } 
+int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count ; }
 int sum ; int count ; float pass ; int mnt ; while ( pass == 10.5 ) { pass = mnt * count ; } if ( sum >= count ) { count = 5 * ( count + 2 ) ; } else { mnt = pass / count ; }  ---> FINISHED MATCHING
