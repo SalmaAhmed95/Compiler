@@ -29,11 +29,11 @@ void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer,
     // For the remaining elements in the stack with the END symbol
     while (!stack->empty()) {
         result = Parser::getInstance().parse(END_LEXEME);
+        writer->writeParserResult(result);
+        leftDerivationWriter->writeLeftDerivation(derivativeLeftSide, stack, result.msg);
         if (!stack->empty()) {
             stack->pop_front();
         }
-        writer->writeParserResult(result);
-        leftDerivationWriter->writeLeftDerivation(derivativeLeftSide, stack, result.msg);
     }
 }
 
