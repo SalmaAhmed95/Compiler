@@ -17,10 +17,15 @@ public:
         return parser;
     }
 
-    void parse(ParsingTable *parsingTable, Tokenizer *tokenizer, FileWriter *writer,
+    void parse(ParsingTable *parsingTable,
+               Tokenizer *tokenizer,
+               FileWriter *parserWriter,
                FileWriter *leftDerivationWriter);
 
 private:
+    enum ERROR {
+        UNMATCHED_TERMINALS, EMPTY_CELL, SYNC_CELL
+    };
     const Lexeme END_LEXEME = Lexeme(END, END);
 
     std::list<Symbol> *stack;
@@ -36,6 +41,8 @@ private:
     void initialize(ParsingTable *parseTable);
 
     ParseResult parse(Lexeme token);
+
+    ParseResult panicModeRecovery(Lexeme token, ERROR error);
 };
 
 #endif //COMPILER_PARSER_H

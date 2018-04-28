@@ -1,9 +1,12 @@
 #include "Parser.h"
 
-void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer,
-                   FileWriter *writer, FileWriter *leftDerivationWriter) {
+void Parser::parse(ParsingTable *parsingTable,
+                   Tokenizer *tokenizer,
+                   FileWriter *parserWriter,
+                   FileWriter *leftDerivationWriter) {
+
     initialize(parsingTable);
-    writer->writeParsingTable(parsingTable);
+    parserWriter->writeParsingTable(parsingTable);
 
     Lexeme token;
 
@@ -19,7 +22,7 @@ void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer,
         }
         if (tokenizer->tokenFound()) {
             result = Parser::getInstance().parse(token);
-            writer->writeParserResult(result);
+            parserWriter->writeParserResult(result);
             if (!result.tokenDone || (result.tokenDone && token.name != token.lexemeType) || !result.msg.empty()) {
                 leftDerivationWriter->writeLeftDerivation(derivativeLeftSide, stack, result.msg);
             }
@@ -29,7 +32,7 @@ void Parser::parse(ParsingTable *parsingTable, Tokenizer *tokenizer,
     // For the remaining elements in the stack with the END symbol
     while (!stack->empty()) {
         result = Parser::getInstance().parse(END_LEXEME);
-        writer->writeParserResult(result);
+        parserWriter->writeParserResult(result);
         leftDerivationWriter->writeLeftDerivation(derivativeLeftSide, stack, result.msg);
         if (!stack->empty()) {
             stack->pop_front();
@@ -49,22 +52,18 @@ ParseResult Parser::parse(Lexeme token) {
         result.tokenDone = true;
     } else if (top.type == SymbolType::TERMINAL) {
         if (top.name != token.lexemeType) {
-            result.msg = "Error: missing " + top.toString() + ", inserted";
-            result.tokenDone = false;
+            return panicModeRecovery(token, UNMATCHED_TERMINALS);
         } else {
             result.msg = "Matched " + token.name;
             result.tokenDone = true;
             derivativeLeftSide->push_back(Symbol(token.name, TERMINAL));
+            stack->pop_front();
         }
-        stack->pop_front();
     } else {
         if (parseTable->isEmpty(top, Symbol(token.lexemeType, TERMINAL))) {
-            result.msg = "Error: (illegal " + top.toString() + ") - discard " + token.name;
-            result.tokenDone = true;
+            return panicModeRecovery(token, EMPTY_CELL);
         } else if (parseTable->isSync(top, Symbol(token.lexemeType, TERMINAL))) {
-            result.msg = "SYNC";
-            result.tokenDone = false;
-            stack->pop_front();
+            return panicModeRecovery(token, SYNC_CELL);
         } else {
             Production prod = parseTable->getProduction(top, Symbol(token.lexemeType, TERMINAL));
             result.rule.first = stack->front();
@@ -90,4 +89,25 @@ void Parser::initialize(ParsingTable *table) {
     derivativeLeftSide = new std::list<Symbol>();
     stack->push_front(Symbol(END, SymbolType::START));
     stack->push_front(table->getStartSymbol());
+}
+
+ParseResult Parser::panicModeRecovery(Lexeme token, Parser::ERROR error) {
+    ParseResult result;
+    switch (error) {
+        case UNMATCHED_TERMINALS:
+            result.msg = "Error: missing " + stack->front().toString() + ", inserted";
+            result.tokenDone = false;
+            stack->pop_front();
+            break;
+        case EMPTY_CELL:
+            result.msg = "Error: (illegal " + stack->front().toString() + ") - discard " + token.name;
+            result.tokenDone = true;
+            break;
+        case SYNC_CELL:
+            result.msg = "SYNC";
+            result.tokenDone = false;
+            stack->pop_front();
+            break;
+    }
+    return result;
 }
