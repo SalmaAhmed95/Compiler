@@ -59,3 +59,17 @@ std::string StringUtils::trimWhiteSpaces(std::string &str){
     }
     return str.substr(startIndex,  endIndex - startIndex + 1);
 }
+
+bool StringUtils::isAlphabet(char c){
+    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+        return true;
+    }
+    return false;
+}
+
+bool StringUtils::isAlphaNumeric(char c) {
+    if (isAlphabet(c) || (c >='0' && c<='9') || (c == '_')) {
+        return true;
+    }
+    return false;
+}

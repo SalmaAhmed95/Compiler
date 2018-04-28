@@ -1,14 +1,7 @@
 int sum;
 int count ;
 float pass ;
-int mnt; while (pass == 10.5)
+int mnt; while (pass != 10)
 {
-pass = mnt * count;
-}
-if(sum >=count){
-count =5*(count+2);
-}
-else{
-mnt = pass / count;
-
+pass = pass + 1;
 }

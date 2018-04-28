@@ -56,11 +56,14 @@ bool CFGParser::checkNonTerminalValidity(std::string &lhs) {
     int indexNonDelimiterChar = StringUtils::getFirstChar(lhs);
     bool delimiterFound = false;
     if (indexNonDelimiterChar != lhs.length()){
-        for (int i = indexNonDelimiterChar; i < lhs.length(); i++) {
+        if (!StringUtils::isAlphabet(lhs.at(indexNonDelimiterChar))){
+            return false;
+        }
+        for (int i = indexNonDelimiterChar + 1; i < lhs.length(); i++) {
             if (StringUtils::isDelimiter(lhs.at(i))){
                 delimiterFound = true;
             } else {
-                if (delimiterFound) {
+                if (delimiterFound || (!StringUtils::isAlphaNumeric(lhs.at(i)))) {
                     return false;
                 }
             }
@@ -161,7 +164,8 @@ std::vector<Production> CFGParser::calculateProductions(std::string &rhs, std::s
                     errorRoutine(ErrorHandler::MISSING_NONTERMINAL_DEFINITION);
             }
 
-        } else if (curChar == LAMBDA_SYMBOL.at(1) && index > 0 && rhs.at(index - 1) == LAMBDA_SYMBOL.at(0)) {
+        } else if (curChar == LAMBDA_SYMBOL.at(1) && index > 0 && rhs.at(index - 1) == LAMBDA_SYMBOL.at(0) &&
+                (index < 2 || index >= 2 && rhs.at(index - 2) != '\\')) {
             if (curToken.length() > 1 || singleQuoteFound) {
                 errorRoutine(ErrorHandler::NOSPACE_BEFORE_LAMBDA);
             }
@@ -169,8 +173,13 @@ std::vector<Production> CFGParser::calculateProductions(std::string &rhs, std::s
             Symbol newTerminal(curToken, EPSILON);
             rules.back().production.push_back(newTerminal);
             curToken.clear();
-        } else {
-            curToken.append(1, curChar);
+        } else{
+            if (!(curChar == '\\' && index != rhs.length() - 1 &&( (rhs.at(index + 1) == OR_SEPARATOR
+                                                                  || (rhs.at(index + 1) == TERMINAL_IDENTIFIER)
+                                                                   || index < rhs.length() - 2 && rhs.at(index + 1) == LAMBDA_SYMBOL.at(0)
+                                                                      && rhs.at(index + 2) == LAMBDA_SYMBOL.at(1))))){
+                curToken.append(1, curChar);
+            }
         }
     }
 
