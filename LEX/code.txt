@@ -1,1 +1,6 @@
-int sum ;
+int x;
+int y;
+int sum;
+x =  7;
+y = 9;
+sum = x * 3 + y;

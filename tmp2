@@ -7,7 +7,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
+#include "header.h"
 
 
 using namespace std;
@@ -25,7 +25,6 @@ const string MUL = "mul";
 const string DIV = "div";
 const string SUB = "sub";
 const string NEGATIVE = "iconst_m1";
-const string 
 // stuff from flex that bison needs to know about:
 extern "C" int yylex();
 extern "C" int yyparse();
@@ -56,26 +55,19 @@ void writeToFile (char *allCode);
 string declareAction(symrec);
 char *constAction(int type, int ival, float fval);
 string getTempName();
-char *assignAction(char *idName, string varName);
-string getFloatIntOp(symrec op1, symrec op2, string operation1, string operation2, string n1, string n2);
-struct synAttr *performOperation(string n1, string n2, char *opera);
-struct synAttr *loadID(string name);
-struct synAttr *performRelop(string n1, string n2, string opera);
+pair<char*, string> *loadID(string name);
+pair<char*, string>  *performOperation(symrec op1, symrec op2, char *opera);
+string getFloatIntOp(symrec op1, symrec op2);
+string generateSignCode (string term ,char* sign);
+char *assignAction(char *id, string varName);
+
 %}
-
-%code requires {
-    struct synAttr {
-     char *tempName = 0;
-     char *genCode;
-   } ;
-
-}  
 
 %union {
   int  ival;
   double fval;
   char *string;
-  struct synAttr *passedValue;
+  pair<char*, char*> *passedValue;
 }
 %start METHOD_BODY
 %token <string> ID
@@ -100,18 +92,9 @@ struct synAttr *performRelop(string n1, string n2, string opera);
 %%
 
 METHOD_BODY:		STATEMENT_LIST {$$ = $1;
-                                        cout<<"method body "<<$$<<endl;
 				        writeToFile($$);}
 STATEMENT_LIST:		STATEMENT {$$ = $1;}
-			| STATEMENT_LIST STATEMENT  {
-						       string statement_list($1);
-						       string statement ($2);
-						       statement_list += '\n' + statement;
-						       char *value = (char *)malloc (statement_list.length() + 1);
-                                                       copy( statement_list.begin(), statement_list.end(), value);
-					               value[statement_list.length()] = '\0';
-						       $$ = value;
-						    }
+			| STATEMENT_LIST STATEMENT 
 STATEMENT:		DECLARATION {$$ = $1;}
 			| IF
 			| WHILE
@@ -124,7 +107,6 @@ DECLARATION:		PRIMITIVE_TYPE ID ';' {
 						string tmp = declareAction(newRec);
                                                 char *value = (char *)malloc (tmp.length() + 1);
                                                 copy( tmp.begin(), tmp.end(), value );
-					       value[tmp.length()] = '\0';
 						$$ = value;
 					      }
 PRIMITIVE_TYPE:		INT {$$ = $1;}
@@ -135,94 +117,63 @@ IF:			If OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURL
 WHILE:			While OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURLY
 
 ASSIGNMENT:		ID ASSIGN EXPRESSION ';' {
-                                                     string expCode($3->genCode);
-						     string s($3->tempName);
-						     string assignCode( assignAction($1, s)); 
-						     expCode += assignCode; 
+                                                     string expCode($3);
+						     string assignCode( assignAction($1, $3->second));
+						     expCode += assignCode;
 						     char *value = (char *)malloc (expCode.length() + 1);
                                                      copy( expCode.begin(), expCode.end(), value );
-					             value[expCode.length()] = '\0';
 						     $$ = value;
-                                                     cout<<"assignment  "<<$$<<endl;     
                                                  } 
 
-EXPRESSION:		SIMPLE_EXPRESSION {
-					  $$ = new struct synAttr;
-				          $$->genCode = $1->genCode; 
-                               		  $$->tempName = $1->tempName;
-                                          cout<<"expression  "<<$$->genCode<<endl;     
+EXPRESSION:		SIMPLE_EXPRESSION {$$->first = $1->first; 
+                               		  $$->second = $1->second;
 					  }
 			| SIMPLE_EXPRESSION RELOP SIMPLE_EXPRESSION 
 
 SIMPLE_EXPRESSION:	TERM {
-			       $$ = new struct synAttr;
-			       $$->genCode = $1->genCode; 
-                               $$->tempName = $1->tempName;
-                               cout<<"simple expression  "<<$$->genCode<<endl;     
+			       $$->first = $1->first; 
+                               $$->second = $1->second;
                              }
-			| SIGN TERM
-			| SIMPLE_EXPRESSION ADDOP TERM {
-					     string exp($1->genCode);
-					     string term ($3->genCode);
-					     string genCode = exp + term;
-					     string s1($1->tempName), s2($3->tempName);
-                                             struct synAttr *returnedAttr = performOperation(s1, s2, $2);
-					     string attrStr(returnedAttr->genCode);
-					     genCode += attrStr;
-                                             char *value = (char *)malloc (genCode.length() + 1);
-                                             copy( genCode.begin(), genCode.end(), value );
-					     value[genCode.length()] = '\0';
-                                             $$ = new struct synAttr;
-					     $$->genCode = value;
-					     $$->tempName = returnedAttr->tempName;  
-
-                                           }
+			| SIGN TERM {
+				     string termCode($2->first);
+                                     termCode += generateSignCode($2->second,$1);
+                                     char *value = (char *)malloc (termCode.length() + 1);
+                                     copy( termCode.begin(), termCode.end(), value );
+                                     $$->first = value; 
+                                     $$->second = $2->second; 
+				    }
+			| SIMPLE_EXPRESSION ADDOP TERM 
 
 TERM:			FACTOR {
-			$$ = new struct synAttr;
-			$$->genCode = $1->genCode;
-			$$->tempName = $1->tempName;
-                        cout<<"term "<<$$->genCode<<endl;      
-                        }
+			$$->first = $1->first;
+			$$->second = $1->second; }
 			| TERM MULOP FACTOR {
-					     string termCode($1->genCode);
-					     string factorCode ($3->genCode);
+					     string termCode($1->first);
+					     string factorCode ($3->first);
 					     string genCode = termCode + factorCode;
-					     string s1($1->tempName), s2($3->tempName);
-                                             struct synAttr *returnedAttr = performOperation(s1, s2, $2);
-					     string attrStr(returnedAttr->genCode);
+                                             pair<char*, char*> *returnedAttr = performOperation($1->second, $3->second, $2);
+					     string attrStr(returnedAttr->first);
 					     genCode += attrStr;
                                              char *value = (char *)malloc (genCode.length() + 1);
-                                             cout<<"gencode in term mul  "<<genCode<<endl;
                                              copy( genCode.begin(), genCode.end(), value );
-					     value[genCode.length()] = '\0';
-                                             $$ = new struct synAttr;
-					     $$->genCode = value;
-					     $$->tempName = returnedAttr->tempName;
-                                           cout<<"term mul  "<<$$->genCode<<endl;     
-
+                                             value[genCode.length()] = 0;
+                                             $$->first = value;
+					     $$->second = returnedAttr->second;       
                                            }
 
 FACTOR:			ID  {
 			string idName($1);
-			struct synAttr *attr = loadID(idName);
-			$$->genCode = attr->genCode;
-			$$->tempName = attr->tempName;}
-			| NUM {char c[1]; c[0] = '\0';
-			      $$ = new struct synAttr;
-                              $$->genCode = $1;  
-                              $$->tempName = c; 
-                            cout<<"factor "<<$$->genCode<<endl;}
-			| OPEN_BRACKET EXPRESSION CLOSED_BRACKET {$$ = new struct synAttr;
-                                                                  $$->genCode = $2->genCode;  
-							          $$->tempName = $2->tempName;}
+			pair<char*, char*> *attr = loadID(idName);
+			$$->first = attr->first;
+			$$->second = attr->second;}
+			| NUM {$$->first = $1;  $$->second= "";}
+			| OPEN_BRACKET EXPRESSION CLOSED_BRACKET {$$->first = $2->first;  
+							          $$->second = $2->second;}
 
 SIGN:			ADDOP {$$ = $1;}
 
-NUM:                    INT { $$ = constAction(TINT, $1,0); 
-                             cout<<"in num "<<$$<<endl;}
-                        | FLOAT {$$ = constAction(TFLOAT,0, $1);}			
-
+NUM:                    INT { $$ = constAction(TINT, $1,0);}
+                        | FLOAT {$$ = constAction(TFLOAT,0, $1);}
 
 %%
 
@@ -259,8 +210,14 @@ string declareAction(symrec rec) {
 	return code;    
 }
 
+string assignAction() {
+
+
+
+}
+
 char *constAction(int type, int ival, float fval){
-                        string val,key;
+                        string val;
                         if (type == TINT){
                          key = to_string(ival);
 			 val = SI_PUSH + ' ' + to_string(ival);	
@@ -271,7 +228,6 @@ char *constAction(int type, int ival, float fval){
 			val += '\n'; 		
                         char *value = (char *)malloc (val.length() + 1);
 			copy(val.begin(), val.end(), value);
-                        value[val.length()] = '\0';
                         return value;
 
 }
@@ -295,14 +251,16 @@ string getTempName() {
         return t;
 }
 
-struct synAttr *loadID(string name){
-	if(symTable.find(name) == symTable.end()) exit(-1);
+pair<char *, char*> *loadID(string name){
 	symrec returnRec = symTable[name];
 	string genCode; 
+	if (returnRec == NULL) {
+		exit(-1);
+	}
         string tempName =  getTempName();
 	memory_location_counter++;
 	symrec temp(returnRec.type, memory_location_counter);
-	symTable[tempName] = temp; 
+	symTable[temp] = temp; 
        if (returnRec.type == TINT) {
 		genCode = I_LOAD + ' ' + to_string(returnRec.location) + '\n' + I_STORE + ' ' + to_string(memory_location_counter) + '\n';
 
@@ -311,51 +269,21 @@ struct synAttr *loadID(string name){
 	}
      
        char *value = (char *)malloc (genCode.length() + 1);
-       copy(genCode.begin(), genCode.end(), value);
-       value[genCode.length()] = '\0';
-        char *tname= (char *)malloc (tempName.length() + 1);
-       copy(tempName.begin(), tempName.end(), tname);
-        tname[tempName.length()] = '\0';
-       struct synAttr *attr = (struct synAttr *) malloc(sizeof(struct synAttr));
-       attr->genCode = value;
-       attr->tempName = tname;
-	return attr;
-}
-
-char *assignAction(char *idName, string varName){
-	string id(idName);
-        symrec returnedId = symTable[idName];
-        string code = "";
-         
-          if (returnedId.type == TINT) {
-                if (varName != "") {
-		symrec varRec = symTable[varName];
-		code += I_LOAD + ' ' + to_string(varRec.location) + '\n';
-		}
-   	        code += I_STORE + ' ' + to_string(returnedId.location) + '\n';
-	  } else {
-	       	if (varName != "") {
-		symrec varRec = symTable[varName];
-		code += F_LOAD + ' ' + to_string(varRec.location) + '\n';
-		}
-   	        code += F_STORE + ' ' + to_string(returnedId.location) + '\n';
-	  }
-	char *value = (char *)malloc (code.length() + 1);
-        copy(code.begin(), code.end(), value);
-       value[code.length()] = '\0';
-	return value;
-	
+        copy(genCode.begin(), genCode.end(), value);
+	char *t = (char *)malloc (genCode.length() + 1);
+	copy(tempName.begin(), tempName.end(), value);
+	return new pair<char*, char*>(value, t);
 }
 
 string getFloatIntOp(symrec op1, symrec op2, string operation1, string operation2, string n1, string n2) {
 	string genCode;
-	if(n1 != "") genCode = operation1 + ' ' + to_string(op1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n1);
-	if(n2 != "") genCode += operation2 + ' ' + to_string(op2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n2);
+	if(n1 != "") genCode = operation1 + ' ' + to_string(op1.location) + "\n", memory_location_counter--, temp_counter--, symTable[n1] = NULL;
+	if(n2 != "") genCode += operation2 + ' ' + to_string(op2.location) + "\n", memory_location_counter--, temp_counter--, symTable[n2] = NULL;
 	genCode += "f";
 	return genCode;
 }
 
-struct synAttr *performOperation(string n1, string n2, char *opera) {
+pair<char*, char*> *performOperation(string n1, string n2, char *operator) {
 	symrec op1 = symTable[n1];
 	symrec op2 = symTable[n2];
 	string genCode;	
@@ -371,13 +299,13 @@ struct synAttr *performOperation(string n1, string n2, char *opera) {
 		type = TFLOAT;
 	} else {
 		if(n1 != "")
-			genCode = I_LOAD + ' ' + to_string(op1.location) + '\n', memory_location_counter--, temp_counter--, symTable.erase(n1);
+			genCode = I_LOAD + ' ' + to_string(op1.location) + '\n', memory_location_counter--, temp_counter--, symTable[n1] = NULL;
 		if(n2 != "")
-			genCode = I_LOAD + ' ' + to_string(op2.location) + '\n', memory_location_counter--, temp_counter--, symTable.erase(n2);
+			genCode = I_LOAD + ' ' + to_string(op2.location) + '\n', memory_location_counter--, temp_counter--, symTable[n2] = NULL;
 		genCode += "i";
 		type = TINT;
 	}
-	switch(*opera) {
+	switch(*operator) {
 		case '+' : 
 			genCode += ADD;
 			break;
@@ -403,18 +331,57 @@ struct synAttr *performOperation(string n1, string n2, char *opera) {
 	} else {
 		genCode += F_STORE;	
 	}
-        genCode += " " + to_string(memory_location_counter) + '\n';
-         cout<<"geeen code "<<genCode<<endl;
         char *value = (char *)malloc (genCode.length() + 1);
-       copy(genCode.begin(), genCode.end(), value);
-        value[genCode.length()] = '\0';
-        char *tname= (char *)malloc (tempName.length() + 1);
-       copy(tempName.begin(), tempName.end(), tname);
-        tname[tempName.length()] = '\0';
-       struct synAttr *attr = (struct synAttr *) malloc(sizeof(struct synAttr));
-       attr->genCode = value;
-       attr->tempName = tname;
-	return attr;
-}	
+        copy(genCode.begin(), genCode.end(), value);
+	char *t = (char *)malloc (genCode.length() + 1);
+	copy(tempName.begin(), tempName.end(), value);
+	return new pair<char*, char*>(value, t);
+}
+string generateSignCode(string term,char* sign){
+ string genCode="";
+ if(*sign == "+")
+    return genCode;
+ symrec temp = symTable[term];
+ string mul;
+ string store;
+ if(temp.type == TINT){
+  genCode+=I_LOAD;
+  mul="i"+ MUL;
+  store =I_STORE;
+ }else{
+  genCode+=F_LOAD;
+  mul = "f"+MUL;
+  store=F_STORE;
+ }
+ genCode+=" " +to_string(temp.location)+"\n";
+ genCode+=NEGATIVE+"\n";
+ genCode+=mul+"\n";
+ genCode+=store+" "+to_string(temp.location)+"\n";
+ return genCode;
+}
 
+char *assignAction(char *idName, string varName){
+	string id(idName);
+        symrec returnedId = symTable[idName];
+        string code = "";
+         
+          if (returnedId.type == TINT) {
+                if (varName != "") {
+		symrec varRec = symTable[varName];
+		code += I_LOAD + ' ' + to_string(varRec.location) + '\n';
+		}
+   	        code += I_STORE + ' ' + to_string(returnedId.location) + '\n';
+	  } else {
+	       	if (varName != "") {
+		symrec varRec = symTable[varName];
+		code += F_LOAD + ' ' + to_string(varRec.location) + '\n';
+		}
+   	        code += F_STORE + ' ' + to_string(returnedId.location) + '\n';
+	  }
+	char *value = (char *)malloc (code.length() + 1);
+        copy(code.begin(), code.end(), value);
+	return value;
+	
+}
+	
 

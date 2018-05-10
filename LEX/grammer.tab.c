@@ -69,13 +69,27 @@
 #include <cstdio>
 #include <map>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
+
 
 
 using namespace std;
 #define TINT  267
 #define TFLOAT  268
+
+const string SI_PUSH = "si_push";
+const string F_PUSH = "sf_push";
+const string I_STORE = "istore";
+const string F_STORE = "fstore";
+const string I_LOAD = "iload";
+const string F_LOAD = "fload"; 
+const string ADD = "add";
+const string MUL = "mul";
+const string DIV = "div";
+const string SUB = "sub";
+const string NEGATIVE = "iconst_m1";
 // stuff from flex that bison needs to know about:
 extern "C" int yylex();
 extern "C" int yyparse();
@@ -85,30 +99,34 @@ void yyerror(const char *s);
 
 
 /*memory location counter for local variables*/
-int memory_location_counter = 1;
+int memory_location_counter = 0;
+int temp_counter  = 0;
 
 typedef struct symrec {
-  int type;    /* type of symbol: either VAR or FNCT */
+  int type;    
   int location;
-  bool isConstant;
 	
-  symrec(int type, bool isConstant) {
+  symrec(int type, int location_counter) {
     this->type = type;
-    location = memory_location_counter;
-    this->isConstant = isConstant;
+    location = location_counter;
   }
-  
+
   symrec(){}
 
 } symrec;
 
 map<string, symrec> symTable;
-
+void writeToFile (char *allCode);
 string declareAction(symrec);
-string assignAction();
+char *constAction(int type, int ival, float fval);
+string getTempName();
+char *assignAction(char *idName, string varName);
+string getFloatIntOp(symrec op1, symrec op2, string operation1, string operation2, string n1, string n2);
+struct synAttr *performOperation(string n1, string n2, char *opera);
+struct synAttr *loadID(string name);
 
 
-#line 112 "grammer.tab.c" /* yacc.c:339  */
+#line 130 "grammer.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -137,6 +155,16 @@ string assignAction();
 #if YYDEBUG
 extern int yydebug;
 #endif
+/* "%code requires" blocks.  */
+#line 65 "grammer.y" /* yacc.c:355  */
+
+    struct synAttr {
+     char *tempName = 0;
+     char *genCode;
+   } ;
+
+
+#line 168 "grammer.tab.c" /* yacc.c:355  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -165,13 +193,14 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 47 "grammer.y" /* yacc.c:355  */
+#line 73 "grammer.y" /* yacc.c:355  */
 
   int  ival;
   double fval;
   char *string;
+  struct synAttr *passedValue;
 
-#line 175 "grammer.tab.c" /* yacc.c:355  */
+#line 204 "grammer.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -188,7 +217,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 192 "grammer.tab.c" /* yacc.c:358  */
+#line 221 "grammer.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -487,9 +516,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    71,    71,    72,    73,    74,    75,    76,    77,    78,
-      87,    88,    89,    90,    91,    92,    93,    94,    95,    96,
-      97,    98,    99,   100,   101,   102,   104,   105
+       0,   101,   101,   104,   105,   114,   115,   116,   117,   118,
+     129,   130,   132,   134,   136,   148,   154,   156,   162,   163,
+     180,   186,   205,   210,   215,   219,   221,   223
 };
 #endif
 
@@ -1288,58 +1317,216 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 9:
-#line 78 "grammer.y" /* yacc.c:1646  */
+        case 2:
+#line 101 "grammer.y" /* yacc.c:1646  */
+    {(yyval.string) = (yyvsp[0].string);
+                                        cout<<"method body "<<(yyval.string)<<endl;
+				        writeToFile((yyval.string));}
+#line 1326 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 3:
+#line 104 "grammer.y" /* yacc.c:1646  */
+    {(yyval.string) = (yyvsp[0].string);}
+#line 1332 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 4:
+#line 105 "grammer.y" /* yacc.c:1646  */
+    {
+						       string statement_list((yyvsp[-1].string));
+						       string statement ((yyvsp[0].string));
+						       statement_list += '\n' + statement;
+						       char *value = (char *)malloc (statement_list.length() + 1);
+                                                       copy( statement_list.begin(), statement_list.end(), value);
+					               value[statement_list.length()] = '\0';
+						       (yyval.string) = value;
+						    }
+#line 1346 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 5:
+#line 114 "grammer.y" /* yacc.c:1646  */
+    {(yyval.string) = (yyvsp[0].string);}
+#line 1352 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 8:
+#line 117 "grammer.y" /* yacc.c:1646  */
+    {(yyval.string) = (yyvsp[0].string);}
+#line 1358 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 9:
+#line 118 "grammer.y" /* yacc.c:1646  */
     {
 						memory_location_counter++;
 						string varName((yyvsp[-1].string));
-						symrec newRec = symrec((yyvsp[-2].ival), false);
+						symrec newRec = symrec((yyvsp[-2].ival),memory_location_counter);
 						symTable[varName] = newRec;
 						string tmp = declareAction(newRec);
-						vector<char> v(tmp.begin(), tmp.end());
-						(yyval.string) = &v[0];
+                                                char *value = (char *)malloc (tmp.length() + 1);
+                                                copy( tmp.begin(), tmp.end(), value );
+					       value[tmp.length()] = '\0';
+						(yyval.string) = value;
 					      }
-#line 1303 "grammer.tab.c" /* yacc.c:1646  */
+#line 1374 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 87 "grammer.y" /* yacc.c:1646  */
+#line 129 "grammer.y" /* yacc.c:1646  */
     {(yyval.ival) = (yyvsp[0].ival);}
-#line 1309 "grammer.tab.c" /* yacc.c:1646  */
+#line 1380 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 88 "grammer.y" /* yacc.c:1646  */
+#line 130 "grammer.y" /* yacc.c:1646  */
     {(yyval.ival) = (yyvsp[0].fval);}
-#line 1315 "grammer.tab.c" /* yacc.c:1646  */
+#line 1386 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 91 "grammer.y" /* yacc.c:1646  */
-    {}
-#line 1321 "grammer.tab.c" /* yacc.c:1646  */
+#line 136 "grammer.y" /* yacc.c:1646  */
+    {
+                                                     string expCode((yyvsp[-1].passedValue)->genCode);
+						     string s((yyvsp[-1].passedValue)->tempName);
+						     string assignCode( assignAction((yyvsp[-3].string), s)); 
+						     expCode += assignCode; 
+						     char *value = (char *)malloc (expCode.length() + 1);
+                                                     copy( expCode.begin(), expCode.end(), value );
+					             value[expCode.length()] = '\0';
+						     (yyval.string) = value;
+                                                     cout<<"assignment  "<<(yyval.string)<<endl;     
+                                                 }
+#line 1402 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 15:
+#line 148 "grammer.y" /* yacc.c:1646  */
+    {
+					  (yyval.passedValue) = new struct synAttr;
+				          (yyval.passedValue)->genCode = (yyvsp[0].passedValue)->genCode; 
+                               		  (yyval.passedValue)->tempName = (yyvsp[0].passedValue)->tempName;
+                                          cout<<"expression  "<<(yyval.passedValue)->genCode<<endl;     
+					  }
+#line 1413 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 17:
+#line 156 "grammer.y" /* yacc.c:1646  */
+    {
+			       (yyval.passedValue) = new struct synAttr;
+			       (yyval.passedValue)->genCode = (yyvsp[0].passedValue)->genCode; 
+                               (yyval.passedValue)->tempName = (yyvsp[0].passedValue)->tempName;
+                               cout<<"simple expression  "<<(yyval.passedValue)->genCode<<endl;     
+                             }
+#line 1424 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 19:
+#line 163 "grammer.y" /* yacc.c:1646  */
+    {
+					     string exp((yyvsp[-2].passedValue)->genCode);
+					     string term ((yyvsp[0].passedValue)->genCode);
+					     string genCode = exp + term;
+					     string s1((yyvsp[-2].passedValue)->tempName), s2((yyvsp[0].passedValue)->tempName);
+                                             struct synAttr *returnedAttr = performOperation(s1, s2, (yyvsp[-1].string));
+					     string attrStr(returnedAttr->genCode);
+					     genCode += attrStr;
+                                             char *value = (char *)malloc (genCode.length() + 1);
+                                             copy( genCode.begin(), genCode.end(), value );
+					     value[genCode.length()] = '\0';
+                                             (yyval.passedValue) = new struct synAttr;
+					     (yyval.passedValue)->genCode = value;
+					     (yyval.passedValue)->tempName = returnedAttr->tempName;  
+
+                                           }
+#line 1445 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 20:
+#line 180 "grammer.y" /* yacc.c:1646  */
+    {
+			(yyval.passedValue) = new struct synAttr;
+			(yyval.passedValue)->genCode = (yyvsp[0].passedValue)->genCode;
+			(yyval.passedValue)->tempName = (yyvsp[0].passedValue)->tempName;
+                        cout<<"term "<<(yyval.passedValue)->genCode<<endl;      
+                        }
+#line 1456 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 21:
+#line 186 "grammer.y" /* yacc.c:1646  */
+    {
+					     string termCode((yyvsp[-2].passedValue)->genCode);
+					     string factorCode ((yyvsp[0].passedValue)->genCode);
+					     string genCode = termCode + factorCode;
+					     string s1((yyvsp[-2].passedValue)->tempName), s2((yyvsp[0].passedValue)->tempName);
+                                             struct synAttr *returnedAttr = performOperation(s1, s2, (yyvsp[-1].string));
+					     string attrStr(returnedAttr->genCode);
+					     genCode += attrStr;
+                                             char *value = (char *)malloc (genCode.length() + 1);
+                                             cout<<"gencode in term mul  "<<genCode<<endl;
+                                             copy( genCode.begin(), genCode.end(), value );
+					     value[genCode.length()] = '\0';
+                                             (yyval.passedValue) = new struct synAttr;
+					     (yyval.passedValue)->genCode = value;
+					     (yyval.passedValue)->tempName = returnedAttr->tempName;
+                                           cout<<"term mul  "<<(yyval.passedValue)->genCode<<endl;     
+
+                                           }
+#line 1479 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 22:
+#line 205 "grammer.y" /* yacc.c:1646  */
+    {
+			string idName((yyvsp[0].string));
+			struct synAttr *attr = loadID(idName);
+			(yyval.passedValue)->genCode = attr->genCode;
+			(yyval.passedValue)->tempName = attr->tempName;}
+#line 1489 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 23:
+#line 210 "grammer.y" /* yacc.c:1646  */
+    {char c[1]; c[0] = '\0';
+			      (yyval.passedValue) = new struct synAttr;
+                              (yyval.passedValue)->genCode = (yyvsp[0].string);  
+                              (yyval.passedValue)->tempName = c; 
+                            cout<<"factor "<<(yyval.passedValue)->genCode<<endl;}
+#line 1499 "grammer.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 24:
+#line 215 "grammer.y" /* yacc.c:1646  */
+    {(yyval.passedValue) = new struct synAttr;
+                                                                  (yyval.passedValue)->genCode = (yyvsp[-1].passedValue)->genCode;  
+							          (yyval.passedValue)->tempName = (yyvsp[-1].passedValue)->tempName;}
+#line 1507 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 102 "grammer.y" /* yacc.c:1646  */
+#line 219 "grammer.y" /* yacc.c:1646  */
     {(yyval.string) = (yyvsp[0].string);}
-#line 1327 "grammer.tab.c" /* yacc.c:1646  */
+#line 1513 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 104 "grammer.y" /* yacc.c:1646  */
-    {(yyval.ival) = (yyvsp[0].ival);}
-#line 1333 "grammer.tab.c" /* yacc.c:1646  */
+#line 221 "grammer.y" /* yacc.c:1646  */
+    { (yyval.string) = constAction(TINT, (yyvsp[0].ival),0); 
+                             cout<<"in num "<<(yyval.string)<<endl;}
+#line 1520 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 105 "grammer.y" /* yacc.c:1646  */
-    {(yyval.ival) = (yyvsp[0].fval);}
-#line 1339 "grammer.tab.c" /* yacc.c:1646  */
+#line 223 "grammer.y" /* yacc.c:1646  */
+    {(yyval.string) = constAction(TFLOAT,0, (yyvsp[0].fval));}
+#line 1526 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1343 "grammer.tab.c" /* yacc.c:1646  */
+#line 1530 "grammer.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1567,7 +1754,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 107 "grammer.y" /* yacc.c:1906  */
+#line 226 "grammer.y" /* yacc.c:1906  */
 
 
 int main (int argc, char const* argv[]) {
@@ -1595,16 +1782,170 @@ string declareAction(symrec rec) {
 	string code;
 	if (rec.type == TINT) {
 		code += "iconst_0\n";
-		code += string("istore") + (memory_location_counter < 4 ? "_" : "") + to_string(memory_location_counter);
+		code += I_STORE + (memory_location_counter < 4 ? "_" : "") + to_string(memory_location_counter);
 	} else if (rec.type == TFLOAT) {
 		code += string("fconst_0\n");
-		code += string("fstore") + (memory_location_counter < 4 ? string("_") : string(" ")) + to_string(memory_location_counter);
+		code += F_STORE + (memory_location_counter < 4 ? string("_") : string(" ")) + to_string(memory_location_counter);
 	}
 	return code;    
 }
 
+char *constAction(int type, int ival, float fval){
+                        string val,key;
+                        if (type == TINT){
+                         key = to_string(ival);
+			 val = SI_PUSH + ' ' + to_string(ival);	
+                        } else {
+                          key = to_string(fval);
+                         val = F_PUSH + ' ' + to_string(fval);
+                        }
+			val += '\n'; 		
+                        char *value = (char *)malloc (val.length() + 1);
+			copy(val.begin(), val.end(), value);
+                        value[val.length()] = '\0';
+                        return value;
+
+}
 void yyerror(const char *s) {
 	printf("EEK, parse error! %s\n",s);
 	// might as well halt now:
 	exit(-1);
 }
+
+void writeToFile (char *allCode) {
+     ofstream myfile;
+     myfile.open ("output.txt");
+     myfile << allCode;
+     myfile.close();
+
+}
+
+string getTempName() {
+	string t = "t" + to_string(temp_counter);
+	temp_counter++;
+        return t;
+}
+
+struct synAttr *loadID(string name){
+	if(symTable.find(name) == symTable.end()) exit(-1);
+	symrec returnRec = symTable[name];
+	string genCode; 
+        string tempName =  getTempName();
+	memory_location_counter++;
+	symrec temp(returnRec.type, memory_location_counter);
+	symTable[tempName] = temp; 
+       if (returnRec.type == TINT) {
+		genCode = I_LOAD + ' ' + to_string(returnRec.location) + '\n' + I_STORE + ' ' + to_string(memory_location_counter) + '\n';
+
+	}else {
+	       genCode = F_LOAD +  ' ' + to_string(returnRec.location) + '\n' + F_STORE + ' ' + to_string(memory_location_counter) + '\n';
+	}
+     
+       char *value = (char *)malloc (genCode.length() + 1);
+       copy(genCode.begin(), genCode.end(), value);
+       value[genCode.length()] = '\0';
+        char *tname= (char *)malloc (tempName.length() + 1);
+       copy(tempName.begin(), tempName.end(), tname);
+        tname[tempName.length()] = '\0';
+       struct synAttr *attr = (struct synAttr *) malloc(sizeof(struct synAttr));
+       attr->genCode = value;
+       attr->tempName = tname;
+	return attr;
+}
+
+char *assignAction(char *idName, string varName){
+	string id(idName);
+        symrec returnedId = symTable[idName];
+        string code = "";
+         
+          if (returnedId.type == TINT) {
+                if (varName != "") {
+		symrec varRec = symTable[varName];
+		code += I_LOAD + ' ' + to_string(varRec.location) + '\n';
+		}
+   	        code += I_STORE + ' ' + to_string(returnedId.location) + '\n';
+	  } else {
+	       	if (varName != "") {
+		symrec varRec = symTable[varName];
+		code += F_LOAD + ' ' + to_string(varRec.location) + '\n';
+		}
+   	        code += F_STORE + ' ' + to_string(returnedId.location) + '\n';
+	  }
+	char *value = (char *)malloc (code.length() + 1);
+        copy(code.begin(), code.end(), value);
+       value[code.length()] = '\0';
+	return value;
+	
+}
+
+string getFloatIntOp(symrec op1, symrec op2, string operation1, string operation2, string n1, string n2) {
+	string genCode;
+	if(n1 != "") genCode = operation1 + ' ' + to_string(op1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n1);
+	if(n2 != "") genCode += operation2 + ' ' + to_string(op2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n2);
+	genCode += "f";
+	return genCode;
+}
+
+struct synAttr *performOperation(string n1, string n2, char *opera) {
+	symrec op1 = symTable[n1];
+	symrec op2 = symTable[n2];
+	string genCode;	
+	int type;
+	if(op1.type == TFLOAT || op2.type == TFLOAT) {
+		if(op1.type == TFLOAT && op2.type == TINT) {
+			genCode = getFloatIntOp(op1, op2, F_LOAD, I_LOAD, n1, n2);
+		} else if(op1.type == TINT && op2.type == TFLOAT) {
+			genCode = getFloatIntOp(op1, op2, I_LOAD, F_LOAD, n1, n2);
+		} else {
+			genCode = getFloatIntOp(op1, op2, F_LOAD, F_LOAD, n1, n2);
+		}
+		type = TFLOAT;
+	} else {
+		if(n1 != "")
+			genCode = I_LOAD + ' ' + to_string(op1.location) + '\n', memory_location_counter--, temp_counter--, symTable.erase(n1);
+		if(n2 != "")
+			genCode = I_LOAD + ' ' + to_string(op2.location) + '\n', memory_location_counter--, temp_counter--, symTable.erase(n2);
+		genCode += "i";
+		type = TINT;
+	}
+	switch(*opera) {
+		case '+' : 
+			genCode += ADD;
+			break;
+		case '-' :
+			genCode += SUB;
+			break;
+		case '*' : 
+			genCode += MUL;
+			break;
+		case '/' :
+			genCode += DIV;
+			break;
+		default :
+			break;
+	}
+	genCode += '\n';
+	string tempName = getTempName();
+	memory_location_counter++;
+	symrec tempRec(type, memory_location_counter);
+	symTable[tempName] = tempRec;
+	if(type == TINT) {
+		genCode += I_STORE;	
+	} else {
+		genCode += F_STORE;	
+	}
+        genCode += " " + to_string(memory_location_counter) + '\n';
+         cout<<"geeen code "<<genCode<<endl;
+        char *value = (char *)malloc (genCode.length() + 1);
+       copy(genCode.begin(), genCode.end(), value);
+        value[genCode.length()] = '\0';
+        char *tname= (char *)malloc (tempName.length() + 1);
+       copy(tempName.begin(), tempName.end(), tname);
+        tname[tempName.length()] = '\0';
+       struct synAttr *attr = (struct synAttr *) malloc(sizeof(struct synAttr));
+       attr->genCode = value;
+       attr->tempName = tname;
+	return attr;
+}	
+
+
