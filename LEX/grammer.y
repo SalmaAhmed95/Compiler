@@ -425,11 +425,10 @@ string getFloatIntOp(symrec op1, symrec op2, string operation1, string operation
 	string genCode;
 	if(n1 != "") {
 		genCode = operation1 + ' ' + to_string(op1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n1);
-       		 if (operation1 == I_LOAD) {
-		   genCode += I2F + '\n';
-		}
-	 
         }
+         if (operation1 == I_LOAD) {
+		   genCode += I2F + '\n';
+	}
 	if(n2 != "") genCode += operation2 + ' ' + to_string(op2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n2);
 	genCode += "f";
 	return genCode;
