@@ -532,8 +532,8 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint16 yyrline[] =
 {
        0,   114,   114,   117,   118,   128,   129,   130,   131,   132,
-     144,   145,   147,   163,   176,   188,   195,   213,   220,   221,
-     237,   243,   261,   268,   276,   282,   284,   289
+     144,   145,   147,   163,   179,   191,   198,   216,   223,   224,
+     240,   246,   264,   271,   279,   285,   287,   292
 };
 #endif
 
@@ -1435,9 +1435,12 @@ yyreduce:
   case 13:
 #line 163 "grammer.y" /* yacc.c:1646  */
     {
+														string compCode = ((yyvsp[-4].passedValue)->genCode);
+														string stmtCode = ((yyvsp[-1].string));
 														string loopLabel = getNewLabel();
-														string genCode = loopLabel + " " + (yyvsp[-1].string) + "\n";
-														genCode += string((yyvsp[-4].passedValue)->genCode);
+														string genCode = loopLabel + " " + compCode;
+														string endDelimiter = getEndDelimiter(&stmtCode);
+														genCode += stmtCode + endDelimiter;
 														genCode += GOTO + " " + loopLabel + "\n";
 														genCode += string((yyvsp[-4].passedValue)->tempName);
 														char *codeVal = (char *) malloc(genCode.length() + 1);
@@ -1446,11 +1449,11 @@ yyreduce:
 														(yyval.string) = codeVal;
 														cout << "Parsed a while " << genCode << endl;
 													}
-#line 1450 "grammer.tab.c" /* yacc.c:1646  */
+#line 1453 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 176 "grammer.y" /* yacc.c:1646  */
+#line 179 "grammer.y" /* yacc.c:1646  */
     {
 								string expCode((yyvsp[-1].passedValue)->genCode);
 								string s((yyvsp[-1].passedValue)->tempName);
@@ -1462,22 +1465,22 @@ yyreduce:
 								(yyval.string) = value;
 								cout<<"assignment  "<<(yyval.string)<<endl;
 							}
-#line 1466 "grammer.tab.c" /* yacc.c:1646  */
+#line 1469 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 188 "grammer.y" /* yacc.c:1646  */
+#line 191 "grammer.y" /* yacc.c:1646  */
     {
 							(yyval.passedValue) = new struct synAttr;
 							(yyval.passedValue)->genCode = (yyvsp[0].passedValue)->genCode;
 							(yyval.passedValue)->tempName = (yyvsp[0].passedValue)->tempName;
 							cout<<"expression  "<<(yyval.passedValue)->genCode<<endl;
 						}
-#line 1477 "grammer.tab.c" /* yacc.c:1646  */
+#line 1480 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 195 "grammer.y" /* yacc.c:1646  */
+#line 198 "grammer.y" /* yacc.c:1646  */
     {
 										string exp1((yyvsp[-2].passedValue)->genCode);
 										string exp2((yyvsp[0].passedValue)->genCode);
@@ -1495,22 +1498,22 @@ yyreduce:
 										
 										cout << "Reversed Comparison" << (yyval.passedValue)->genCode << endl;
 									}
-#line 1499 "grammer.tab.c" /* yacc.c:1646  */
+#line 1502 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 213 "grammer.y" /* yacc.c:1646  */
+#line 216 "grammer.y" /* yacc.c:1646  */
     {
 					(yyval.passedValue) = new struct synAttr;
 					(yyval.passedValue)->genCode = (yyvsp[0].passedValue)->genCode;
 					(yyval.passedValue)->tempName = (yyvsp[0].passedValue)->tempName;
 					cout<<"simple expression  "<<(yyval.passedValue)->genCode<<endl;
 				}
-#line 1510 "grammer.tab.c" /* yacc.c:1646  */
+#line 1513 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
-#line 221 "grammer.y" /* yacc.c:1646  */
+#line 224 "grammer.y" /* yacc.c:1646  */
     {
 								string exp((yyvsp[-2].passedValue)->genCode);
 								string term ((yyvsp[0].passedValue)->genCode);
@@ -1526,22 +1529,22 @@ yyreduce:
 								(yyval.passedValue)->genCode = value;
 								(yyval.passedValue)->tempName = returnedAttr->tempName;
 							}
-#line 1530 "grammer.tab.c" /* yacc.c:1646  */
+#line 1533 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
-#line 237 "grammer.y" /* yacc.c:1646  */
+#line 240 "grammer.y" /* yacc.c:1646  */
     {
 					(yyval.passedValue) = new struct synAttr;
 					(yyval.passedValue)->genCode = (yyvsp[0].passedValue)->genCode;
 					(yyval.passedValue)->tempName = (yyvsp[0].passedValue)->tempName;
 				        cout<<"term "<<(yyval.passedValue)->genCode<<endl;
 		                }
-#line 1541 "grammer.tab.c" /* yacc.c:1646  */
+#line 1544 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
-#line 243 "grammer.y" /* yacc.c:1646  */
+#line 246 "grammer.y" /* yacc.c:1646  */
     {
 							string termCode((yyvsp[-2].passedValue)->genCode);
 							string factorCode ((yyvsp[0].passedValue)->genCode);
@@ -1559,22 +1562,22 @@ yyreduce:
 							(yyval.passedValue)->tempName = returnedAttr->tempName;
 							cout<<"term mul  "<<(yyval.passedValue)->genCode<<endl;
 						}
-#line 1563 "grammer.tab.c" /* yacc.c:1646  */
+#line 1566 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
-#line 261 "grammer.y" /* yacc.c:1646  */
+#line 264 "grammer.y" /* yacc.c:1646  */
     {
 					string idName((yyvsp[0].string));
 					struct synAttr *attr = loadID(idName);
 					(yyval.passedValue)->genCode = attr->genCode;
 					(yyval.passedValue)->tempName = attr->tempName;
 				}
-#line 1574 "grammer.tab.c" /* yacc.c:1646  */
+#line 1577 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
-#line 268 "grammer.y" /* yacc.c:1646  */
+#line 271 "grammer.y" /* yacc.c:1646  */
     {
 					char c[1]; c[0] = '\0';
 					(yyval.passedValue) = new struct synAttr;
@@ -1582,42 +1585,42 @@ yyreduce:
 					(yyval.passedValue)->tempName = c;
 					cout<<"factor "<<(yyval.passedValue)->genCode<<endl;
 				}
-#line 1586 "grammer.tab.c" /* yacc.c:1646  */
+#line 1589 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
-#line 276 "grammer.y" /* yacc.c:1646  */
+#line 279 "grammer.y" /* yacc.c:1646  */
     {
 										(yyval.passedValue) = new struct synAttr;
 										(yyval.passedValue)->genCode = (yyvsp[-1].passedValue)->genCode;
 										(yyval.passedValue)->tempName = (yyvsp[-1].passedValue)->tempName;
 									}
-#line 1596 "grammer.tab.c" /* yacc.c:1646  */
+#line 1599 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
-#line 282 "grammer.y" /* yacc.c:1646  */
+#line 285 "grammer.y" /* yacc.c:1646  */
     {(yyval.string) = (yyvsp[0].string);}
-#line 1602 "grammer.tab.c" /* yacc.c:1646  */
+#line 1605 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
-#line 284 "grammer.y" /* yacc.c:1646  */
+#line 287 "grammer.y" /* yacc.c:1646  */
     {
 					(yyval.string) = constAction(TINT, (yyvsp[0].ival),0);
 					cout<<"in num "<<(yyval.string)<<endl;
 				}
-#line 1611 "grammer.tab.c" /* yacc.c:1646  */
+#line 1614 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
-#line 289 "grammer.y" /* yacc.c:1646  */
+#line 292 "grammer.y" /* yacc.c:1646  */
     { (yyval.string) = constAction(TFLOAT,0, (yyvsp[0].fval)); }
-#line 1617 "grammer.tab.c" /* yacc.c:1646  */
+#line 1620 "grammer.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1621 "grammer.tab.c" /* yacc.c:1646  */
+#line 1624 "grammer.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1845,7 +1848,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 292 "grammer.y" /* yacc.c:1906  */
+#line 295 "grammer.y" /* yacc.c:1906  */
 
 
 int main (int argc, char const* argv[]) {
@@ -2036,8 +2039,10 @@ string genIfCode(string tempName1, string relOp, string tempName2) {
 	symrec sym1 = symTable[tempName1];
 	symrec sym2 = symTable[tempName2];
 	string code;
-	code += I_LOAD + " " + to_string(sym1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName1);
-	code += I_LOAD + " " + to_string(sym2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName2);
+//	if (sym1.location != 0)
+		code += I_LOAD + " " + to_string(sym1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName1);
+//	if (sym2.location != 0)
+		code += I_LOAD + " " + to_string(sym2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName2);
 	if (relOp == "==") {
 		code += IFNE;
 	} else if (relOp == "!=") {

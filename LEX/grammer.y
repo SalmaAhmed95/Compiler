@@ -161,9 +161,12 @@ IF:			If OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURL
 																		}
 
 WHILE:			While OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURLY	{
+														string compCode = ($3->genCode);
+														string stmtCode = ($6);
 														string loopLabel = getNewLabel();
-														string genCode = loopLabel + " " + $6 + "\n";
-														genCode += string($3->genCode);
+														string genCode = loopLabel + " " + compCode;
+														string endDelimiter = getEndDelimiter(&stmtCode);
+														genCode += stmtCode + endDelimiter;
 														genCode += GOTO + " " + loopLabel + "\n";
 														genCode += string($3->tempName);
 														char *codeVal = (char *) malloc(genCode.length() + 1);
@@ -479,8 +482,10 @@ string genIfCode(string tempName1, string relOp, string tempName2) {
 	symrec sym1 = symTable[tempName1];
 	symrec sym2 = symTable[tempName2];
 	string code;
-	code += I_LOAD + " " + to_string(sym1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName1);
-	code += I_LOAD + " " + to_string(sym2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName2);
+//	if (sym1.location != 0)
+		code += I_LOAD + " " + to_string(sym1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName1);
+//	if (sym2.location != 0)
+		code += I_LOAD + " " + to_string(sym2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName2);
 	if (relOp == "==") {
 		code += IFNE;
 	} else if (relOp == "!=") {

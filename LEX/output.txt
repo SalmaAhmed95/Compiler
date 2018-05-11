@@ -2,21 +2,20 @@ iconst_0
 istore_1
 si_push 6
 istore 1
-label_4 label_3 si_push 5
-istore 1
-iload 1
-istore 1
-si_push 4
-iload 1
-iload 0
-if_icmpge label_2
-goto label_3
-label_2
-iload 1
+label_4 iload 1
 istore 2
 si_push 7
 iload 2
 iload 0
 if_icmpge label_1
-goto label_4
+label_3 iload 1
+istore 1
+si_push 4
+iload 1
+iload 0
+if_icmpge label_2
+si_push 5
+istore 1
+goto label_3
+label_2 goto label_4
 label_1
