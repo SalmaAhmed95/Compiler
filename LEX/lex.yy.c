@@ -793,12 +793,12 @@ YY_RULE_SETUP
 case 7:
 YY_RULE_SETUP
 #line 26 "lexical-rules.l"
-{yylval.ival = INT; return INT;}
+{yylval.ival = INT; return PRIMITIVE_TYPE;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 27 "lexical-rules.l"
-{yylval.ival = FLOAT; return FLOAT;}
+{yylval.ival = FLOAT; return PRIMITIVE_TYPE;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP

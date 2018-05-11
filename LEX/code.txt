@@ -1,9 +1,5 @@
 int y;
 y = 6;
-int z;
-z = 7;
-if (y < z) {
-	y = 7;
-} else {
-	y = 1;
-}
+float z;
+z = 7.5;
+

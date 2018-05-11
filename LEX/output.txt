@@ -2,20 +2,7 @@ iconst_0
 istore_1
 si_push 6
 istore 1
-iconst_0
-istore_2
-si_push 7
-istore 2
-iload 1
-istore 3
-iload 2
-istore 4
-iload 3
-iload 4
-if_icmpge label_1
-si_push 7
-istore 1
-goto label_2
-label_1 si_push 1
-istore 1
-label_2
+fconst_0
+fstore_2
+sf_push 7.500000
+fstore 2

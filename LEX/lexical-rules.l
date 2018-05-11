@@ -23,8 +23,8 @@ mulop  [* | /]
 if {return If;}
 else {return ELSE;}
 while {return While;}
-int   {yylval.ival = INT; return INT;}
-float {yylval.ival = FLOAT; return FLOAT;}
+int   {yylval.ival = INT; return PRIMITIVE_TYPE;}
+float {yylval.ival = FLOAT; return PRIMITIVE_TYPE;}
 [0-9]+\.[0-9]+    { yylval.fval = atof(yytext); return FLOAT; }
 [0-9]+            { yylval.ival = atoi(yytext); return INT; }
 ";" {return ';';}

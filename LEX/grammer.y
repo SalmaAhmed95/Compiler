@@ -15,7 +15,7 @@ using namespace std;
 #define TFLOAT  268
 
 const string SI_PUSH = "si_push";
-const string F_PUSH = "sf_push";
+const string F_PUSH = "f_push";
 const string I_STORE = "istore";
 const string F_STORE = "fstore";
 const string I_LOAD = "iload";
@@ -110,7 +110,7 @@ struct synAttr *loadID(string name);
 %token <string> RELOP
 %token <string> ADDOP
 %token <string> MULOP
-%type <ival> PRIMITIVE_TYPE
+%token <ival> PRIMITIVE_TYPE
 %type <string> SIGN DECLARATION ASSIGNMENT STATEMENT STATEMENT_LIST METHOD_BODY NUM IF WHILE
 %type <passedValue> EXPRESSION SIMPLE_EXPRESSION FACTOR TERM 
 %%
@@ -136,6 +136,7 @@ STATEMENT:		DECLARATION {$$ = $1;}
 DECLARATION:		PRIMITIVE_TYPE ID ';'	{
 							memory_location_counter++;
 							string varName($2);
+						        cout<<"decl prim type "<<$1<<endl;
 							symrec newRec = symrec($1,memory_location_counter);
 							symTable[varName] = newRec;
 							string tmp = declareAction(newRec);
@@ -145,8 +146,6 @@ DECLARATION:		PRIMITIVE_TYPE ID ';'	{
 							$$ = value;
 						}
 
-PRIMITIVE_TYPE:		INT {$$ = $1;}
-			| FLOAT {$$ = $1;}
 
 IF:			If OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURLY ELSE OPEN_CURLY STATEMENT CLOSED_CURLY	{
 																			string compCode($3->genCode);
@@ -189,6 +188,7 @@ ASSIGNMENT:		ID ASSIGN EXPRESSION ';'	{
 								copy( expCode.begin(), expCode.end(), value );
 								value[expCode.length()] = '\0';
 								$$ = value;
+                                                                cout<<"expression type "<<symTable[s].type<<endl;
 								cout<<"assignment  "<<$$<<endl;
 							}
 
