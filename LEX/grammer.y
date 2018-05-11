@@ -73,6 +73,7 @@ string getTempName();
 char *assignAction(char *idName, string varName);
 string getFloatIntOp(symrec op1, symrec op2, string operation1, string operation2, string n1, string n2);
 string genIfCode(string op1, string relOp, string op2);
+string getEndDelimiter(string* code);
 struct synAttr *performOperation(string n1, string n2, char *opera);
 struct synAttr *loadID(string name);
 %}
@@ -147,18 +148,7 @@ IF:			If OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURL
 																			string compCode($3->genCode);
 																			string stmt1Code($6);
 																			string stmt2Code($10);
-																			string endDelimiter = "\n";
-																			int i = stmt1Code.length();
-																			while(--i >= 0) {
-																				if (stmt1Code[i] == '\n') {
-																					i++;
-																					break;
-																				}
-																			}
-																			string suffix = stmt1Code.substr(i);
-																			if (suffix.substr(0, string("label").length()) == string("label")) {
-																				endDelimiter = " ";
-																			}
+																			string endDelimiter = getEndDelimiter(&stmt1Code);
 																			string genCode = compCode + stmt1Code + endDelimiter;
 																			genCode += GOTO + " " + getNewLabel() + "\n";
 																			genCode += string($3->tempName) + " ";
@@ -514,5 +504,21 @@ string getNewLabel() {
 
 string getCurrentLabel() {
 	return string("label_") + to_string(label_counter);
+}
+
+string getEndDelimiter(string* code) {
+	string endDelimiter = "\n";
+	int i = code->length();
+	while(--i >= 0) {
+		if (code->operator[] (i) == '\n') {
+			i++;
+			break;
+		}
+	}
+	string suffix = code->substr(i);
+	if (suffix.substr(0, string("label").length()) == string("label")) {
+		endDelimiter = " ";
+	}
+	return endDelimiter;
 }
 
