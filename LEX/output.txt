@@ -1,25 +1,46 @@
 iconst_0
 istore_1
-iconst_0
-istore_2
-iconst_0
-istore_3
-si_push 7
+si_push 5
 istore 1
 
-si_push 9
+iconst_0
+istore_2
+si_push 6
 istore 2
 
+iconst_0
+istore_3
 iload 1
-istore 4
-si_push 3
-iload 4
-imul
 istore 4
 iload 2
 istore 5
-iload 5
-iadd
-istore 4
 iload 4
+iload 5
+if_icmpne label_1
+iload 2
+istore 4
+iload 3
+istore 5
+iload 4
+iload 5
+if_icmpne label_2
+si_push 1
 istore 3
+goto label_3
+label_2 si_push 2
+istore 3
+label_3
+goto label_6
+label_1 iload 1
+istore 4
+si_push 2
+iload 4
+iload 0
+if_icmpne label_4
+si_push 3
+istore 3
+goto label_5
+label_4 si_push 4
+istore 3
+label_5
+label_6

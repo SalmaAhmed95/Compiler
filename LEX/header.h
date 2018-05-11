@@ -8,9 +8,7 @@ typedef struct synAttr {
 	this->tempName = tempName;
 	this->genCode = genCode;
      }
-
-
-   } synAttr;
+} synAttr;
 
 
 #endif

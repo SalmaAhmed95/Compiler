@@ -40,15 +40,14 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 65 "grammer.y" /* yacc.c:1909  */
+#line 80 "grammer.y" /* yacc.c:1909  */
 
-    struct synAttr {
-     char *tempName = 0;
-     char *genCode;
-   } ;
+	struct synAttr {
+		char *tempName = 0;
+		char *genCode;
+	};
 
-
-#line 52 "grammer.tab.h" /* yacc.c:1909  */
+#line 51 "grammer.tab.h" /* yacc.c:1909  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -77,14 +76,14 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 73 "grammer.y" /* yacc.c:1909  */
+#line 87 "grammer.y" /* yacc.c:1909  */
 
-  int  ival;
-  double fval;
-  char *string;
-  struct synAttr *passedValue;
+	int ival;
+	double fval;
+	char *string;
+	struct synAttr *passedValue;
 
-#line 88 "grammer.tab.h" /* yacc.c:1909  */
+#line 87 "grammer.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
