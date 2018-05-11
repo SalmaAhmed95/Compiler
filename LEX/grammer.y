@@ -26,6 +26,9 @@ const string DIV = "div";
 const string SUB = "sub";
 const string NEGATIVE = "iconst_m1";
 
+const string I2F = "i2f";
+const string FCMPL = "fcmpl";
+
 const string IFNE = "if_icmpne";
 const string IFE = "if_icmpeq";
 const string IFLT = "if_icmplt";
@@ -482,22 +485,48 @@ string genIfCode(string tempName1, string relOp, string tempName2) {
 	symrec sym1 = symTable[tempName1];
 	symrec sym2 = symTable[tempName2];
 	string code;
+	cout << ">>>>>>>>>>>>>> " << sym1.type << "\t" << sym2.type << endl;
+	bool sym1Float = (sym1.type == TFLOAT);
+	bool sym2Float = (sym2.type == TFLOAT);
+	
 	if (sym1.location != 0)
-		code += I_LOAD + " " + to_string(sym1.location) + "\n";
+		code += (sym1Float ? F_LOAD : I_LOAD) + " " + to_string(sym1.location) + "\n";
+	if (sym2Float && !sym1Float)
+		code += I2F + "\n";
 	if (sym2.location != 0)
-		code += I_LOAD + " " + to_string(sym2.location) + "\n";
-	if (relOp == "==") {
-		code += IFNE;
-	} else if (relOp == "!=") {
-		code += IFE;
-	} else if (relOp == "<") {
-        	code += IFGE;
-	} else if (relOp == ">") {
-        	code += IFLE;
-	} else if (relOp == "<=") {
-		code += IFGT;
-	} else if (relOp == ">=") {
-        	code += IFLT;
+		code += (sym2Float ? F_LOAD : I_LOAD) + " " + to_string(sym2.location) + "\n";
+	if (sym1Float && !sym2Float)
+		code += I2F + "\n";
+		
+	if (sym1Float || sym2Float) {
+		code += FCMPL + "\n";
+		if (relOp == "==") {
+			code += IFNEZ;
+		} else if (relOp == "!=") {
+			code += IFEZ;
+		} else if (relOp == "<") {
+	      		code += IFLEZ;
+		} else if (relOp == ">") {
+			code += IFGEZ;
+		} else if (relOp == "<=") {
+			code += IFLTZ;
+		} else if (relOp == ">=") {
+			code += IFGTZ;
+		}
+	} else {
+		if (relOp == "==") {
+			code += IFNE;
+		} else if (relOp == "!=") {
+			code += IFE;
+		} else if (relOp == "<") {
+	      		code += IFGE;
+		} else if (relOp == ">") {
+			code += IFLE;
+		} else if (relOp == "<=") {
+			code += IFGT;
+		} else if (relOp == ">=") {
+			code += IFLT;
+		}
 	}
 	code += " " + getNewLabel() + "\n";
 	return  code;
