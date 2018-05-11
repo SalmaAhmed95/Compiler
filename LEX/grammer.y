@@ -134,8 +134,8 @@ DECLARATION:		PRIMITIVE_TYPE ID ';'	{
 							symrec newRec = symrec($1,memory_location_counter);
 							symTable[varName] = newRec;
 							string tmp = declareAction(newRec);
-							char *value = (char *)malloc (tmp.length() + 1);
-							copy( tmp.begin(), tmp.end(), value );
+							char *value = (char *) malloc(tmp.length() + 1);
+							copy(tmp.begin(), tmp.end(), value );
 							value[tmp.length()] = '\0';
 							$$ = value;
 						}
@@ -147,10 +147,22 @@ IF:			If OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURL
 																			string compCode($3->genCode);
 																			string stmt1Code($6);
 																			string stmt2Code($10);
-																			string genCode = compCode + stmt1Code;
+																			string endDelimiter = "\n";
+																			int i = stmt1Code.length();
+																			while(--i >= 0) {
+																				if (stmt1Code[i] == '\n') {
+																					i++;
+																					break;
+																				}
+																			}
+																			string suffix = stmt1Code.substr(i);
+																			if (suffix.substr(0, string("label").length()) == string("label")) {
+																				endDelimiter = " ";
+																			}
+																			string genCode = compCode + stmt1Code + endDelimiter;
 																			genCode += GOTO + " " + getNewLabel() + "\n";
-																			genCode += string($3->tempName) + "\n";
-																			genCode += stmt2Code;
+																			genCode += string($3->tempName) + " ";
+																			genCode += stmt2Code + "\n";
 																			genCode += getCurrentLabel();
 																			char *codeVal = (char *) malloc(genCode.length() + 1);
 																			copy(genCode.begin(), genCode.end(), codeVal );
@@ -160,10 +172,10 @@ IF:			If OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURL
 
 WHILE:			While OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURLY	{
 														string loopLabel = getNewLabel();
-														string genCode = loopLabel + "\n" + $6 + "\n";
+														string genCode = loopLabel + " " + $6 + "\n";
 														genCode += string($3->genCode);
 														genCode += GOTO + " " + loopLabel + "\n";
-														genCode += string($3->tempName) + "\n";
+														genCode += string($3->tempName);
 														char *codeVal = (char *) malloc(genCode.length() + 1);
 														copy(genCode.begin(), genCode.end(), codeVal );
 														codeVal[genCode.length()] = '\0';
@@ -194,11 +206,11 @@ EXPRESSION:		SIMPLE_EXPRESSION	{
 										string exp1($1->genCode);
 										string exp2($3->genCode);
 										string code = exp1 + exp2 + genIfCode($1->tempName, $2, $3->tempName);
-										char *codeVal = (char *)malloc (code.length() + 1);
+										char *codeVal = (char *) malloc(code.length() + 1);
 										copy(code.begin(), code.end(), codeVal);
 										codeVal[code.length()] = '\0';
 										string currentLabel = getCurrentLabel();
-										char *tempNameVal = (char *)malloc (currentLabel.length() + 1);
+										char *tempNameVal = (char *) malloc(currentLabel.length() + 1);
 										copy(currentLabel.begin(), currentLabel.end(), tempNameVal);
 										tempNameVal[code.length()] = '\0';
 										$$ = new struct synAttr;
@@ -389,13 +401,13 @@ char *assignAction(char *idName, string varName){
 			symrec varRec = symTable[varName];
 			code += I_LOAD + ' ' + to_string(varRec.location) + '\n';
 		}
-		code += I_STORE + ' ' + to_string(returnedId.location) + '\n';
+		code += I_STORE + ' ' + to_string(returnedId.location);
 	} else {
 		if (varName != "") {
 			symrec varRec = symTable[varName];
 			code += F_LOAD + ' ' + to_string(varRec.location) + '\n';
 		}
-		code += F_STORE + ' ' + to_string(returnedId.location) + '\n';
+		code += F_STORE + ' ' + to_string(returnedId.location);
 	}
 	char *value = (char *)malloc (code.length() + 1);
 	copy(code.begin(), code.end(), value);
@@ -427,9 +439,9 @@ struct synAttr *performOperation(string n1, string n2, char *opera) {
 		type = TFLOAT;
 	} else {
 		if(n1 != "")
-			genCode = I_LOAD + ' ' + to_string(op1.location) + '\n', memory_location_counter--, temp_counter--, symTable.erase(n1);
+			genCode = I_LOAD + " " + to_string(op1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n1);
 		if(n2 != "")
-			genCode = I_LOAD + ' ' + to_string(op2.location) + '\n', memory_location_counter--, temp_counter--, symTable.erase(n2);
+			genCode = I_LOAD + " " + to_string(op2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n2);
 		genCode += "i";
 		type = TINT;
 	}
@@ -477,8 +489,8 @@ string genIfCode(string tempName1, string relOp, string tempName2) {
 	symrec sym1 = symTable[tempName1];
 	symrec sym2 = symTable[tempName2];
 	string code;
-	code += I_LOAD + ' ' + to_string(sym1.location) + '\n', memory_location_counter--, temp_counter--, symTable.erase(tempName1);
-	code += I_LOAD + ' ' + to_string(sym2.location) + '\n', memory_location_counter--, temp_counter--, symTable.erase(tempName2);
+	code += I_LOAD + " " + to_string(sym1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName1);
+	code += I_LOAD + " " + to_string(sym2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName2);
 	if (relOp == "==") {
 		code += IFNE;
 	} else if (relOp == "!=") {
