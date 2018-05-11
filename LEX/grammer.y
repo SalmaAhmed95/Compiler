@@ -77,6 +77,7 @@ char *assignAction(char *idName, string varName);
 string getFloatIntOp(symrec op1, symrec op2, string operation1, string operation2, string n1, string n2);
 string genIfCode(string op1, string relOp, string op2);
 string getEndDelimiter(string* code);
+string generateSignCode (string term ,char* sign);
 struct synAttr *performOperation(string n1, string n2, char *opera);
 struct synAttr *loadID(string name);
 %}
@@ -111,7 +112,7 @@ struct synAttr *loadID(string name);
 %token <string> MULOP
 %type <ival> PRIMITIVE_TYPE
 %type <string> SIGN DECLARATION ASSIGNMENT STATEMENT STATEMENT_LIST METHOD_BODY NUM IF WHILE
-%type <passedValue> EXPRESSION SIMPLE_EXPRESSION FACTOR TERM
+%type <passedValue> EXPRESSION SIMPLE_EXPRESSION FACTOR TERM 
 %%
 
 METHOD_BODY:		STATEMENT_LIST {$$ = $1;
@@ -223,7 +224,16 @@ SIMPLE_EXPRESSION:	TERM	{
 					cout<<"simple expression  "<<$$->genCode<<endl;
 				}
 
-			| SIGN TERM
+			| SIGN TERM {
+				     string termCode($2->genCode);
+                                     termCode += generateSignCode($2->tempName,$1);
+                                     char *value = (char *)malloc (termCode.length() + 1);
+                                     copy( termCode.begin(), termCode.end(), value );
+				     value[termCode.length()] = '\0';
+                                     $$->genCode = value; 
+                                     $$->tempName = $2->tempName; 
+
+                                    }
 			| SIMPLE_EXPRESSION ADDOP TERM	{
 								string exp($1->genCode);
 								string term ($3->genCode);
@@ -554,5 +564,32 @@ string getEndDelimiter(string* code) {
 		endDelimiter = " ";
 	}
 	return endDelimiter;
+}
+
+
+string generateSignCode(string term,char* sign){
+ 	string genCode="";
+ 	if(*sign == '+')
+    		return genCode;
+ 	symrec temp = symTable[term];
+ 	string mul;
+ 	string store;
+ 	if(temp.type == TINT){
+  		if (temp.location != 0)
+  			genCode+= I_LOAD +" " +to_string(temp.location)+"\n";
+  		mul="i"+ MUL;
+  		store =I_STORE;
+	 }else{
+              if (temp.location != 0)
+  			genCode+=F_LOAD + " " +to_string(temp.location)+"\n";
+  		mul = "f"+MUL;
+ 		store=F_STORE;
+ 	}
+
+ 	genCode+=NEGATIVE+"\n";
+ 	genCode+=mul+"\n";
+ 	if (temp.location != 0)
+ 		genCode+=store+" "+to_string(temp.location)+"\n";
+ return genCode;
 }
 
