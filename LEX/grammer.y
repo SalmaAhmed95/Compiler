@@ -106,7 +106,7 @@ struct synAttr *loadID(string name);
 %token <string> ADDOP
 %token <string> MULOP
 %type <ival> PRIMITIVE_TYPE
-%type <string> SIGN DECLARATION ASSIGNMENT STATEMENT STATEMENT_LIST METHOD_BODY NUM IF
+%type <string> SIGN DECLARATION ASSIGNMENT STATEMENT STATEMENT_LIST METHOD_BODY NUM IF WHILE
 %type <passedValue> EXPRESSION SIMPLE_EXPRESSION FACTOR TERM
 %%
 
@@ -126,7 +126,7 @@ STATEMENT_LIST:		STATEMENT {$$ = $1;}
 
 STATEMENT:		DECLARATION {$$ = $1;}
 			| IF {$$ = $1;}
-			| WHILE
+			| WHILE {$$ = $1;}
 			| ASSIGNMENT {$$ = $1;}
 DECLARATION:		PRIMITIVE_TYPE ID ';'	{
 							memory_location_counter++;
@@ -149,16 +149,27 @@ IF:			If OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURL
 																			string stmt2Code($10);
 																			string genCode = compCode + stmt1Code;
 																			genCode += GOTO + " " + getNewLabel() + "\n";
-																			genCode += string($3->tempName) + " ";
+																			genCode += string($3->tempName) + "\n";
 																			genCode += stmt2Code;
-																			genCode += getCurrentLabel() + "\n";
-																			char *value = (char *) malloc(genCode.length() + 1);
-																			copy(genCode.begin(), genCode.end(), value );
-																			value[genCode.length()] = '\0';
-																			$$ = value;
+																			genCode += getCurrentLabel();
+																			char *codeVal = (char *) malloc(genCode.length() + 1);
+																			copy(genCode.begin(), genCode.end(), codeVal );
+																			codeVal[genCode.length()] = '\0';
+																			$$ = codeVal;
 																		}
 
-WHILE:			While OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURLY
+WHILE:			While OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURLY	{
+														string loopLabel = getNewLabel();
+														string genCode = loopLabel + "\n" + $6 + "\n";
+														genCode += string($3->genCode);
+														genCode += GOTO + " " + loopLabel + "\n";
+														genCode += string($3->tempName) + "\n";
+														char *codeVal = (char *) malloc(genCode.length() + 1);
+														copy(genCode.begin(), genCode.end(), codeVal );
+														codeVal[genCode.length()] = '\0';
+														$$ = codeVal;
+														cout << "Parsed a while " << genCode << endl;
+													}
 
 ASSIGNMENT:		ID ASSIGN EXPRESSION ';'	{
 								string expCode($3->genCode);
@@ -193,6 +204,8 @@ EXPRESSION:		SIMPLE_EXPRESSION	{
 										$$ = new struct synAttr;
 										$$->tempName = tempNameVal;
 										$$->genCode = codeVal;
+										
+										cout << "Reversed Comparison" << $$->genCode << endl;
 									}
 
 SIMPLE_EXPRESSION:	TERM	{

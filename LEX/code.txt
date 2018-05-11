@@ -1,18 +1,9 @@
-int x; 
-x = 5;
 int y;
 y = 6;
-int z;
-if (x == y) {
-	if (y == z) {
-		z = 1;
+while (y > 5) {
+	if (y == 4) {
+		y = y + 2;
 	} else {
-		z = 2;
-	}
-} else {
-	if (x == 2) {
-		z = 3;
-	} else {
-		z = 4;
+		y = y + 3;
 	}
 }
