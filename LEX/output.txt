@@ -6,13 +6,11 @@ label_4 iload 1
 istore 2
 si_push 7
 iload 2
-iload 0
 if_icmpge label_1
 label_3 iload 1
-istore 1
+istore 3
 si_push 4
-iload 1
-iload 0
+iload 3
 if_icmpge label_2
 si_push 5
 istore 1

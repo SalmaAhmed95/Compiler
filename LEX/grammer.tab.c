@@ -1491,7 +1491,7 @@ yyreduce:
 										string currentLabel = getCurrentLabel();
 										char *tempNameVal = (char *) malloc(currentLabel.length() + 1);
 										copy(currentLabel.begin(), currentLabel.end(), tempNameVal);
-										tempNameVal[code.length()] = '\0';
+										tempNameVal[currentLabel.length()] = '\0';
 										(yyval.passedValue) = new struct synAttr;
 										(yyval.passedValue)->tempName = tempNameVal;
 										(yyval.passedValue)->genCode = codeVal;
@@ -1883,16 +1883,16 @@ string declareAction(symrec rec) {
 }
 
 char *constAction(int type, int ival, float fval) {
-	string val,key;
+	string val, key;
 	if (type == TINT) {
 		key = to_string(ival);
-		val = SI_PUSH + ' ' + to_string(ival);
+		val = SI_PUSH + " " + to_string(ival);
 	} else {
 		key = to_string(fval);
-		val = F_PUSH + ' ' + to_string(fval);
+		val = F_PUSH + " " + to_string(fval);
 	}
-	val += '\n';
-	char *value = (char *)malloc (val.length() + 1);
+	val += "\n";
+	char *value = (char *) malloc(val.length() + 1);
 	copy(val.begin(), val.end(), value);
 	value[val.length()] = '\0';
 	return value;
@@ -2039,10 +2039,10 @@ string genIfCode(string tempName1, string relOp, string tempName2) {
 	symrec sym1 = symTable[tempName1];
 	symrec sym2 = symTable[tempName2];
 	string code;
-//	if (sym1.location != 0)
-		code += I_LOAD + " " + to_string(sym1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName1);
-//	if (sym2.location != 0)
-		code += I_LOAD + " " + to_string(sym2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(tempName2);
+	if (sym1.location != 0)
+		code += I_LOAD + " " + to_string(sym1.location) + "\n";
+	if (sym2.location != 0)
+		code += I_LOAD + " " + to_string(sym2.location) + "\n";
 	if (relOp == "==") {
 		code += IFNE;
 	} else if (relOp == "!=") {
