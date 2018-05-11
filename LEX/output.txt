@@ -4,5 +4,5 @@ si_push 6
 istore 1
 fconst_0
 fstore_2
-sf_push 7.500000
+f_push 7.500000
 fstore 2

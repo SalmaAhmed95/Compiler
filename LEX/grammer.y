@@ -423,7 +423,13 @@ char *assignAction(char *idName, string varName){
 
 string getFloatIntOp(symrec op1, symrec op2, string operation1, string operation2, string n1, string n2) {
 	string genCode;
-	if(n1 != "") genCode = operation1 + ' ' + to_string(op1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n1);
+	if(n1 != "") {
+		genCode = operation1 + ' ' + to_string(op1.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n1);
+       		 if (operation1 == I_LOAD) {
+		   genCode += I2F + '\n';
+		}
+	 
+        }
 	if(n2 != "") genCode += operation2 + ' ' + to_string(op2.location) + "\n", memory_location_counter--, temp_counter--, symTable.erase(n2);
 	genCode += "f";
 	return genCode;
@@ -437,6 +443,7 @@ struct synAttr *performOperation(string n1, string n2, char *opera) {
 	if(op1.type == TFLOAT || op2.type == TFLOAT) {
 		if(op1.type == TFLOAT && op2.type == TINT) {
 			genCode = getFloatIntOp(op1, op2, F_LOAD, I_LOAD, n1, n2);
+			genCode += I2F + '\n';
 		} else if(op1.type == TINT && op2.type == TFLOAT) {
 			genCode = getFloatIntOp(op1, op2, I_LOAD, F_LOAD, n1, n2);
 		} else {
