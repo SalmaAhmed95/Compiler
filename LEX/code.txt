@@ -1,5 +1,19 @@
-int y;
-y = 6;
-float z;
-z = 7.5;
-
+int i;
+i = 0;
+if (i < 2) {
+	while (i < 5) {
+		if (i < 6) {
+			i = 1;
+		} else {
+			i = 2;
+		}
+	}
+} else {
+	while (i < 5) {
+			if (i < 6) {
+				i = 1;
+			} else {
+				i = 2;
+			}
+	}
+}

@@ -76,7 +76,13 @@ string getTempName();
 char *assignAction(char *idName, string varName);
 string getFloatIntOp(symrec op1, symrec op2, string operation1, string operation2, string n1, string n2);
 string genIfCode(string op1, string relOp, string op2);
-string getEndDelimiter(string* code);
+//string getEndDelimiter(string* code);
+
+string getStartLabel(string* code);
+bool startsWithLabel(string* code);
+string getEndLabel(string* code);
+bool endsWithLabel(string* code);
+
 string generateSignCode (string term ,char* sign);
 struct synAttr *performOperation(string n1, string n2, char *opera);
 struct synAttr *loadID(string name);
@@ -151,14 +157,21 @@ IF:			If OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSED_CURL
 																			string compCode($3->genCode);
 																			string stmt1Code($6);
 																			string stmt2Code($10);
-																			string endDelimiter = getEndDelimiter(&stmt1Code);
-																			string genCode = compCode + stmt1Code + endDelimiter;
+																			string genCode = compCode + stmt1Code;
+																			genCode += endsWithLabel(&stmt1Code) ? " " : "\n";
 																			genCode += GOTO + " " + getNewLabel() + "\n";
 																			genCode += string($3->tempName) + " ";
-																			genCode += stmt2Code + "\n";
+																			if (startsWithLabel(&stmt2Code)) {
+																				genCode += GOTO + " " + getStartLabel(&stmt2Code) + "\n";
+																			}
+																			genCode += stmt2Code;
+																			if (endsWithLabel(&stmt2Code)) {
+																				genCode += " " + GOTO + " " + getCurrentLabel();
+																			}
+																			genCode += "\n";
 																			genCode += getCurrentLabel();
 																			char *codeVal = (char *) malloc(genCode.length() + 1);
-																			copy(genCode.begin(), genCode.end(), codeVal );
+																			copy(genCode.begin(), genCode.end(), codeVal);
 																			codeVal[genCode.length()] = '\0';
 																			$$ = codeVal;
 																		}
@@ -168,8 +181,8 @@ WHILE:			While OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSE
 														string stmtCode = ($6);
 														string loopLabel = getNewLabel();
 														string genCode = loopLabel + " " + compCode;
-														string endDelimiter = getEndDelimiter(&stmtCode);
-														genCode += stmtCode + endDelimiter;
+														genCode += stmtCode;
+														genCode += endsWithLabel(&stmtCode) ? " " : "\n";
 														genCode += GOTO + " " + loopLabel + "\n";
 														genCode += string($3->tempName);
 														char *codeVal = (char *) malloc(genCode.length() + 1);
@@ -495,7 +508,6 @@ string genIfCode(string tempName1, string relOp, string tempName2) {
 	symrec sym1 = symTable[tempName1];
 	symrec sym2 = symTable[tempName2];
 	string code;
-	cout << ">>>>>>>>>>>>>> " << sym1.type << "\t" << sym2.type << endl;
 	bool sym1Float = (sym1.type == TFLOAT);
 	bool sym2Float = (sym2.type == TFLOAT);
 	
@@ -550,6 +562,7 @@ string getCurrentLabel() {
 	return string("label_") + to_string(label_counter);
 }
 
+/*
 string getEndDelimiter(string* code) {
 	string endDelimiter = "\n";
 	int i = code->length();
@@ -565,6 +578,7 @@ string getEndDelimiter(string* code) {
 	}
 	return endDelimiter;
 }
+*/
 
 
 string generateSignCode(string term,char* sign){
@@ -593,3 +607,58 @@ string generateSignCode(string term,char* sign){
  return genCode;
 }
 
+bool endsWithLabel(string* code) {
+	int i = code->length() - 1;
+	while (i >= 0 && isdigit(code->operator[] (i))) {
+		i--;
+	}
+	if (i == code->length() - 1) {
+		return false;
+	}
+	if (code->operator[] (i) != '_') {
+		return false;
+	}
+	i--;
+	if (i < 4) {
+		return false;
+	}
+	if (code->substr(i - 4, 5) == "label") {
+		return true;
+	}
+	return false;
+}
+
+string getEndLabel(string* code) {
+	if(!endsWithLabel(code)) {
+		return NULL;
+	}
+	int i = code->length() - 1;
+	while (i >= 0 && isdigit(code->operator[] (i))) {
+		i--;
+	}
+	i -= 5;
+	string ret = code->substr(i, code->length() - i);
+	return ret;
+}
+
+bool startsWithLabel(string* code) {
+	if (code->length() < 5) {
+		return false;
+	}
+	if (code->substr(0, 5) == "label") {
+		return true;
+	}
+	return false;
+}
+
+string getStartLabel(string* code) {
+	if(!startsWithLabel(code)) {
+		return NULL;
+	}
+	int i = 6;
+	while (i < code->length() && isdigit(code->operator[] (i))) {
+		i++;
+	}
+	string ret = code->substr(0, i + 1);
+	return ret;
+}

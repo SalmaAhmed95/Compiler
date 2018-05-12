@@ -40,7 +40,7 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 85 "grammer.y" /* yacc.c:1909  */
+#line 91 "grammer.y" /* yacc.c:1909  */
 
 	struct synAttr {
 		char *tempName = 0;
@@ -77,7 +77,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 92 "grammer.y" /* yacc.c:1909  */
+#line 98 "grammer.y" /* yacc.c:1909  */
 
 	int ival;
 	double fval;
