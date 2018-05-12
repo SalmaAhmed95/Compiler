@@ -40,6 +40,13 @@ istore 1
 goto label_8
 label_7 si_push 2
 istore 1
+<<<<<<< HEAD
 label_8 goto label_9
 label_6 goto label_10
 label_10
+=======
+fconst_0
+fstore_2
+f_push 7.500000
+fstore 2
+>>>>>>> 09340a07c85f034a07c41dc0baaea50e8f8105c7
