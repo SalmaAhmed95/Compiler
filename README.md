@@ -11,7 +11,7 @@ As extension to the project, it was required to generate JavaByte code for simpl
 rules to generate it. To construct the parse tree, Bison tool was used and we generated the suitable actions to generate the 
 intermediate code. 
 
-## Future Plans:
+## Future Plans
 
 Implementing the parser tree and extending the original project to excute semantic actions and completing the documentation for the project.
 
@@ -25,11 +25,11 @@ Implementing the parser tree and extending the original project to excute semant
   
  `2. properties.ini : It contains  the delimiters that are used to define the regular expressions.
  
-  3. grammer.txt : It contains the context free grammer rules and it can be recusive.
+  3. grammer.txt : It contains the context free grammer rules and it can be recursive.
   
   4. code.txt : It contains the code you needs to be complied.
   
-###  And There are four output files:  
+###  And There are three output files:  
 
  1. lexical_ouput.txt : It contains the minimzied DFA that are used to parse the regular expressions and each lexeme with its type
  
