@@ -14,7 +14,7 @@ using namespace std;
 #define TINT  267
 #define TFLOAT  268
 
-const string SI_PUSH = "si_push";
+const string SI_PUSH = "sipush";
 const string F_PUSH = "f_push";
 const string I_STORE = "istore";
 const string F_STORE = "fstore";
@@ -121,14 +121,21 @@ struct synAttr *loadID(string name);
 %type <passedValue> EXPRESSION SIMPLE_EXPRESSION FACTOR TERM 
 %%
 
-METHOD_BODY:		STATEMENT_LIST {$$ = $1;
+METHOD_BODY:		STATEMENT_LIST {
+					string allCode($1);
+				        string rr(" return\n");
+					allCode += rr;
+					char *value = (char *)malloc (allCode.length() + 1);
+					copy( allCode.begin(), allCode.end(), value);
+					value[allCode.length()] = '\0';
+					$$ = value;
                                         cout<<"method body "<<$$<<endl;
 				        writeToFile($$);}
 STATEMENT_LIST:		STATEMENT {$$ = $1;}
 			| STATEMENT_LIST STATEMENT	{
 								string statement_list($1);
 								string statement ($2);
-								statement_list += '\n' + statement;
+								statement_list += "\n" + statement;
 								char *value = (char *)malloc (statement_list.length() + 1);
 								copy( statement_list.begin(), statement_list.end(), value);
 								value[statement_list.length()] = '\0';
@@ -144,6 +151,7 @@ DECLARATION:		PRIMITIVE_TYPE ID ';'	{
 							string varName($2);
 						        cout<<"decl prim type "<<$1<<endl;
 							symrec newRec = symrec($1,memory_location_counter);
+                                                        if (symTable.find(varName) != symTable.end()) { cout <<" exit -1"<<endl; exit(-1);}
 							symTable[varName] = newRec;
 							string tmp = declareAction(newRec);
 							char *value = (char *) malloc(tmp.length() + 1);
@@ -194,6 +202,7 @@ WHILE:			While OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSE
 
 ASSIGNMENT:		ID ASSIGN EXPRESSION ';'	{
 								string expCode($3->genCode);
+				                                cout<<"term name "<<$3->tempName<<endl;
 								string s($3->tempName);
 								string assignCode( assignAction($1, s));
 								expCode += assignCode;
@@ -201,7 +210,7 @@ ASSIGNMENT:		ID ASSIGN EXPRESSION ';'	{
 								copy( expCode.begin(), expCode.end(), value );
 								value[expCode.length()] = '\0';
 								$$ = value;
-                                                                cout<<"expression type "<<symTable[s].type<<endl;
+                                                               
 								cout<<"assignment  "<<$$<<endl;
 							}
 
@@ -370,7 +379,7 @@ char *constAction(int type, int ival, float fval) {
 void yyerror(const char *s) {
 	printf("EEK, parse error! %s\n",s);
 	// might as well halt now:
-	exit(-1);
+	{ cout <<"exit -1"; exit(-1);}
 }
 
 void writeToFile (char *allCode) {
@@ -387,7 +396,12 @@ string getTempName() {
 }
 
 struct synAttr *loadID(string name){
-	if(symTable.find(name) == symTable.end()) exit(-1);
+        cout<<"looad id"<<endl;
+        for (map<string, symrec>::iterator it = symTable.begin(); it != symTable.end(); it++) {
+		cout << (*it).first << "\t" << (*it).second.type << endl;
+	}
+	
+	if(symTable.find(name) == symTable.end()) { cout<<"exit -1\n"; exit(-1); }
 	symrec returnRec = symTable[name];
 	string genCode;
 	string tempName =  getTempName();
@@ -413,8 +427,11 @@ struct synAttr *loadID(string name){
 
 char *assignAction(char *idName, string varName){
 	string id(idName);
+         
+         if (idName == NULL || id ==  "" || symTable.find(id) == symTable.end()) {cout<<"exit -1\n"; exit(-1);}
 	symrec returnedId = symTable[idName];
 	string code = "";
+ 
 	if (returnedId.type == TINT) {
 		if (varName != "") {
 			symrec varRec = symTable[varName];

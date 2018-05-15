@@ -1,52 +1,48 @@
 iconst_0
 istore_1
-si_push 0
+sipush 0
 istore 1
-iload 1
+label_2 iload 1
 istore 2
-si_push 2
+sipush 5
 iload 2
 if_icmpge label_1
-label_5 iload 1
+iload 1
 istore 3
-si_push 5
+f_push 6.700000
 iload 3
-if_icmpge label_2
+iadd
+istore 3
+iload 3
+istore 1
+goto label_2
+label_1
+iconst_0
+istore4
 iload 1
-istore 4
-si_push 6
-iload 4
-if_icmpge label_3
-si_push 1
-istore 1
-goto label_4
-label_3 si_push 2
-istore 1
-label_4 goto label_5
-label_2 goto label_10
-label_1 goto label_9 
-label_9 iload 1
 istore 5
-si_push 5
 iload 5
-if_icmpge label_6
-iload 1
+istore 4
+iload 4
 istore 6
-si_push 6
+sipush 5
 iload 6
-if_icmpge label_7
-si_push 1
-istore 1
-goto label_8
-label_7 si_push 2
-istore 1
-<<<<<<< HEAD
-label_8 goto label_9
-label_6 goto label_10
-label_10
-=======
-fconst_0
-fstore_2
-f_push 7.500000
-fstore 2
->>>>>>> 09340a07c85f034a07c41dc0baaea50e8f8105c7
+if_icmpne label_3
+iload 1
+istore 7
+sipush 3
+iload 7
+imul
+istore 7
+iload 7
+istore 4
+goto label_4
+label_3 iload 1
+istore 8
+sipush 3
+iload 8
+iadd
+istore 8
+iload 8
+istore 4
+label_4 return

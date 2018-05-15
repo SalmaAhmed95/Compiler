@@ -1,19 +1,15 @@
 int i;
 i = 0;
-if (i < 2) {
-	while (i < 5) {
-		if (i < 6) {
-			i = 1;
-		} else {
-			i = 2;
-		}
-	}
-} else {
-	while (i < 5) {
-			if (i < 6) {
-				i = 1;
-			} else {
-				i = 2;
-			}
-	}
+
+while (i < 5) {
+	i = i + 6.7;
 }
+int j;
+j = i;
+if (j == 5) {
+	j = i * 3;
+} else {
+	j = i + 3;
+}
+
+
