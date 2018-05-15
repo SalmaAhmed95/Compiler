@@ -17,7 +17,7 @@ const std::string DEFAULT_CODE = "code.txt";
 const std::string DEFAULT_LEXICAL_OUTPUT = "lexical_output.txt";
 const std::string DEFAULT_PARSER_OUTPUT = "parser_output.txt";
 const std::string DEFAULT_LEFT_DERIVATION = "left_derivation.txt";
-const std::string DEFAULT_CFG_INPUT = "input.txt";
+const std::string DEFAULT_CFG_INPUT = "grammer.txt";
 
 void deleteTokens(std::vector<Token *> v) {
     for (int i = 0; i < v.size(); i++) {
