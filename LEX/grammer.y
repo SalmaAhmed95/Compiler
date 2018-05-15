@@ -129,7 +129,6 @@ METHOD_BODY:		STATEMENT_LIST {
 					copy( allCode.begin(), allCode.end(), value);
 					value[allCode.length()] = '\0';
 					$$ = value;
-                                        cout<<"method body "<<$$<<endl;
 				        writeToFile($$);}
 STATEMENT_LIST:		STATEMENT {$$ = $1;}
 			| STATEMENT_LIST STATEMENT	{
@@ -149,7 +148,6 @@ STATEMENT:		DECLARATION {$$ = $1;}
 DECLARATION:		PRIMITIVE_TYPE ID ';'	{
 							memory_location_counter++;
 							string varName($2);
-						        cout<<"decl prim type "<<$1<<endl;
 							symrec newRec = symrec($1,memory_location_counter);
                                                         if (symTable.find(varName) != symTable.end()) { cout <<" exit -1"<<endl; exit(-1);}
 							symTable[varName] = newRec;
@@ -197,12 +195,10 @@ WHILE:			While OPEN_BRACKET EXPRESSION CLOSED_BRACKET OPEN_CURLY STATEMENT CLOSE
 														copy(genCode.begin(), genCode.end(), codeVal );
 														codeVal[genCode.length()] = '\0';
 														$$ = codeVal;
-														cout << "Parsed a while " << genCode << endl;
 													}
 
 ASSIGNMENT:		ID ASSIGN EXPRESSION ';'	{
 								string expCode($3->genCode);
-				                                cout<<"term name "<<$3->tempName<<endl;
 								string s($3->tempName);
 								string assignCode( assignAction($1, s));
 								expCode += assignCode;
@@ -210,15 +206,12 @@ ASSIGNMENT:		ID ASSIGN EXPRESSION ';'	{
 								copy( expCode.begin(), expCode.end(), value );
 								value[expCode.length()] = '\0';
 								$$ = value;
-                                                               
-								cout<<"assignment  "<<$$<<endl;
 							}
 
 EXPRESSION:		SIMPLE_EXPRESSION	{
 							$$ = new struct synAttr;
 							$$->genCode = $1->genCode;
 							$$->tempName = $1->tempName;
-							cout<<"expression  "<<$$->genCode<<endl;
 						}
 
 			| SIMPLE_EXPRESSION RELOP SIMPLE_EXPRESSION	{
@@ -235,15 +228,12 @@ EXPRESSION:		SIMPLE_EXPRESSION	{
 										$$ = new struct synAttr;
 										$$->tempName = tempNameVal;
 										$$->genCode = codeVal;
-										
-										cout << "Reversed Comparison" << $$->genCode << endl;
 									}
 
 SIMPLE_EXPRESSION:	TERM	{
 					$$ = new struct synAttr;
 					$$->genCode = $1->genCode;
 					$$->tempName = $1->tempName;
-					cout<<"simple expression  "<<$$->genCode<<endl;
 				}
 
 			| SIGN TERM {
@@ -276,7 +266,6 @@ TERM:			FACTOR	{
 					$$ = new struct synAttr;
 					$$->genCode = $1->genCode;
 					$$->tempName = $1->tempName;
-				        cout<<"term "<<$$->genCode<<endl;
 		                }
 			| TERM MULOP FACTOR	{
 							string termCode($1->genCode);
@@ -287,13 +276,11 @@ TERM:			FACTOR	{
 							string attrStr(returnedAttr->genCode);
 							genCode += attrStr;
 				                        char *value = (char *)malloc (genCode.length() + 1);
-				                        cout<<"gencode in term mul  "<<genCode<<endl;
 				                        copy( genCode.begin(), genCode.end(), value );
 							value[genCode.length()] = '\0';
 							$$ = new struct synAttr;
 							$$->genCode = value;
 							$$->tempName = returnedAttr->tempName;
-							cout<<"term mul  "<<$$->genCode<<endl;
 						}
 
 FACTOR:			ID	{
@@ -308,7 +295,6 @@ FACTOR:			ID	{
 					$$ = new struct synAttr;
 					$$->genCode = $1;
 					$$->tempName = c;
-					cout<<"factor "<<$$->genCode<<endl;
 				}
 
 			| OPEN_BRACKET EXPRESSION CLOSED_BRACKET	{
@@ -321,7 +307,6 @@ SIGN:			ADDOP	{$$ = $1;}
 
 NUM:                    INT	{
 					$$ = constAction(TINT, $1,0);
-					cout<<"in num "<<$$<<endl;
 				}
 
                         | FLOAT { $$ = constAction(TFLOAT,0, $1); }
@@ -341,9 +326,6 @@ int main (int argc, char const* argv[]) {
 		do {
 			yyparse();
 		} while (!feof(yyin));
-	}
-	for (map<string, symrec>::iterator it = symTable.begin(); it != symTable.end(); it++) {
-		cout << (*it).first << "\t" << (*it).second.type << endl;
 	}
 	return 0;
 }
@@ -396,11 +378,7 @@ string getTempName() {
 }
 
 struct synAttr *loadID(string name){
-        cout<<"looad id"<<endl;
-        for (map<string, symrec>::iterator it = symTable.begin(); it != symTable.end(); it++) {
-		cout << (*it).first << "\t" << (*it).second.type << endl;
-	}
-	
+
 	if(symTable.find(name) == symTable.end()) { cout<<"exit -1\n"; exit(-1); }
 	symrec returnRec = symTable[name];
 	string genCode;
@@ -514,7 +492,6 @@ struct synAttr *performOperation(string n1, string n2, char *opera) {
 		genCode += F_STORE;
 	}
 	genCode += " " + to_string(memory_location_counter) + '\n';
-	cout<<"geeen code "<<genCode<<endl;
 	char *value = (char *)malloc (genCode.length() + 1);
 	copy(genCode.begin(), genCode.end(), value);
 	value[genCode.length()] = '\0';
